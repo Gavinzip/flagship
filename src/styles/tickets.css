@@ -1,0 +1,110 @@
+.section--tickets {
+  padding-top: clamp(72px, 7vw, 112px);
+  padding-bottom: clamp(80px, 8vw, 128px);
+}
+
+.section--tickets .section-heading {
+  margin-bottom: clamp(36px, 4vw, 56px);
+}
+
+.ticket-embed {
+  width: min(100%, 780px);
+  margin-inline: auto;
+  background: rgba(3, 9, 18, 0.96);
+}
+
+.ticket-embed__inner {
+  padding: clamp(12px, 1.6vw, 20px);
+  background:
+    linear-gradient(145deg, rgba(8, 18, 32, 0.98), rgba(3, 9, 18, 0.98));
+}
+
+.ticket-embed__toolbar {
+  display: flex;
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 12px clamp(18px, 2vw, 24px);
+}
+
+.ticket-embed__toolbar > div {
+  display: grid;
+  gap: 5px;
+}
+
+.ticket-embed__toolbar span {
+  color: var(--color-blue-bright);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+}
+
+.ticket-embed__toolbar strong {
+  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  letter-spacing: 0.03em;
+}
+
+.ticket-embed__toolbar a {
+  display: inline-flex;
+  min-height: 46px;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+  padding-inline: 16px;
+  border: 1px solid rgba(85, 168, 255, 0.45);
+  color: rgba(238, 245, 255, 0.82);
+  font-weight: 700;
+  transition:
+    border-color 200ms ease,
+    color 200ms ease,
+    transform 200ms var(--ease-out);
+}
+
+.ticket-embed__toolbar a:hover,
+.ticket-embed__toolbar a:focus-visible {
+  border-color: rgba(255, 74, 92, 0.76);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.ticket-embed__toolbar svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ticket-embed iframe {
+  display: block;
+  width: 100%;
+  height: clamp(640px, 74svh, 760px);
+  border: 1px solid rgba(107, 142, 198, 0.32);
+  background: #111315;
+}
+
+@media (max-width: 620px) {
+  .section--tickets .section-heading {
+    margin-bottom: 32px;
+  }
+
+  .ticket-embed__inner {
+    padding: 10px;
+  }
+
+  .ticket-embed__toolbar {
+    display: grid;
+    gap: 14px;
+    padding: 10px 8px 18px;
+  }
+
+  .ticket-embed__toolbar a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ticket-embed iframe {
+    height: max(620px, 78svh);
+  }
+}

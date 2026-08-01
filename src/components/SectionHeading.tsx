@@ -1,6 +1,6 @@
 type SectionHeadingProps = {
   title: string;
-  english: string;
+  english?: string;
   description?: string;
 };
 
@@ -13,7 +13,9 @@ export function SectionHeading({
     <header className="section-heading" data-reveal>
       <div>
         <h2>{title}</h2>
-        <p className="section-heading__english">{english}</p>
+        {english ? (
+          <p className="section-heading__english">{english}</p>
+        ) : null}
       </div>
       {description ? (
         <p className="section-heading__description">{description}</p>

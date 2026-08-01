@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { WarningTriangle } from "iconoir-react";
 import { eventHighlights } from "../data/eventHighlights";
 import { GlareSweep } from "./GlareSweep";
 import { SpotlightCard } from "./SpotlightCard";
@@ -81,6 +82,13 @@ export function EventHighlightsGrid() {
                       <li key={point}>{point}</li>
                     ))}
                   </ul>
+
+                  {"notice" in highlight ? (
+                    <p className="event-highlight-card__notice">
+                      <WarningTriangle aria-hidden="true" />
+                      <span>{highlight.notice}</span>
+                    </p>
+                  ) : null}
                 </div>
               </SpotlightCard>
             </li>

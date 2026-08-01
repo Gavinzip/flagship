@@ -2,9 +2,9 @@ import type { CSSProperties } from "react";
 import { Calendar, Clock, MapPin } from "iconoir-react";
 import { media } from "../config/media";
 import { event } from "../data/event";
-import { ActionLink } from "./ActionLink";
 import { CalendarButton } from "./CalendarButton";
 import { SpotlightCard } from "./SpotlightCard";
+import { TicketLink } from "./TicketLink";
 
 export function EventPass() {
   return (
@@ -66,7 +66,7 @@ export function EventPass() {
         </dl>
 
         <div className="event-pass__actions">
-          <ActionLink href="#highlights">查看活動資訊</ActionLink>
+          <TicketLink>立即購票</TicketLink>
           <CalendarButton />
         </div>
       </SpotlightCard>

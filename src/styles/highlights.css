@@ -271,6 +271,25 @@
   line-height: 1;
 }
 
+.event-highlight-card__notice {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  margin: -4px 0 0;
+  color: rgba(208, 220, 238, 0.7);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.event-highlight-card__notice svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  color: var(--color-red);
+  stroke-width: 1.8;
+}
+
 @media (max-width: 980px) {
   .event-highlights-index {
     grid-template-columns: repeat(3, minmax(0, 1fr));

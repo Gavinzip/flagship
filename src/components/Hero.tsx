@@ -43,7 +43,7 @@ export function Hero() {
               <span>台灣年度</span>
               <small>TAIWAN · 2026</small>
             </span>
-            <span className="hero__title-main">旗艦卡牌盛會</span>
+            <span className="hero__title-main">旗艦卡牌展</span>
           </h1>
         </div>
 

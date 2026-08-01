@@ -14,7 +14,6 @@ export function ScheduleSection() {
           <SectionHeading
             title="節目表"
             english="SCHEDULE"
-            description="入場、舞台活動和散場時間，都會更新在這裡。"
           />
           <CalendarButton />
         </div>

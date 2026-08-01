@@ -117,6 +117,19 @@
     linear-gradient(145deg, rgba(5, 10, 22, 0.76), rgba(4, 9, 20, 0.7) 52%, rgba(3, 8, 18, 0.82));
 }
 
+.section--tickets {
+  --section-image: var(--asset-section-highlights);
+  --section-image-size: cover;
+  --section-image-position: center 58%;
+  --section-image-opacity: 0.14;
+  --section-image-filter: saturate(0.58) contrast(1.12) brightness(0.54);
+  --section-image-mask: linear-gradient(#000, #000);
+  --section-atmosphere:
+    radial-gradient(ellipse at 16% 30%, rgba(255, 36, 59, 0.1), transparent 34%),
+    radial-gradient(ellipse at 84% 62%, rgba(31, 116, 255, 0.13), transparent 38%),
+    linear-gradient(155deg, rgba(5, 10, 22, 0.8), rgba(4, 9, 20, 0.74) 54%, rgba(3, 8, 18, 0.86));
+}
+
 .section--vendors .vendor-announcement > .energy-frame__inner,
 .section--venue .venue-frame > .energy-frame__inner {
   background:
@@ -153,5 +166,10 @@
   .section--faq {
     --section-image-size: auto 100%;
     --section-image-position: 58% center;
+  }
+
+  .section--tickets {
+    --section-image-size: auto 100%;
+    --section-image-position: 52% center;
   }
 }

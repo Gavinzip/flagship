@@ -9,6 +9,7 @@ export type EventHighlight = {
   imagePosition: string;
   alt: string;
   points: readonly string[];
+  notice?: string;
   layout: "compact" | "wide" | "stage";
 };
 
@@ -16,9 +17,9 @@ export const eventHighlights = [
   {
     number: "01",
     english: "MORE BACK INTO THE EVENT",
-    title: "活動收入回到現場",
+    title: "活動收入，全數回饋參與者",
     description:
-      "活動收入將投入宣傳、入場好禮、獎品、製作與現場體驗，讓每一位到場玩家都能感受到更完整的活動內容。",
+      "活動收入將全數投入入場好禮、卡牌贈禮、活動獎品與現場驚喜，讓每位到場玩家都能玩得盡興、帶著滿滿收穫回家。",
     image: media.sectionHighlightsArena,
     imagePosition: "48% center",
     alt: "紅藍燈光下的大型卡牌活動會場與收藏展示區",
@@ -27,14 +28,14 @@ export const eventHighlights = [
   },
   {
     number: "02",
-    english: "IMMERSIVE ATTENDEE EXPERIENCE",
-    title: "沉浸式參加體驗",
+    english: "GIFTS & ON-SITE SURPRISES",
+    title: "入場好禮與現場驚喜",
     description:
-      "從入場好禮、牌組試玩與 TCG 對戰，到小遊戲任務與幸運抽獎，進場後一路都有事情可以玩。",
+      "不只是來逛展。入場即可獲得精選好禮，現場還有卡牌贈禮、互動任務與抽獎獎品，讓你從進場到離開都有值得期待的收穫。",
     image: media.highlightPlayers,
     imagePosition: "50% center",
     alt: "玩家在卡牌活動現場交流、試玩並分享手上的卡牌",
-    points: ["入場好禮", "牌組試玩與對戰", "任務與抽獎"],
+    points: ["入場好禮", "卡牌贈禮", "任務與抽獎"],
     layout: "wide",
   },
   {
@@ -54,7 +55,7 @@ export const eventHighlights = [
     english: "RARE CARD & COLLECTIBLES SHOWCASE",
     title: "稀有卡牌與收藏展示",
     description:
-      "近距離觀看玩家提供的珍稀卡牌與收藏品，也讀到每件藏品和運動、遊戲或在地文化之間的故事。",
+      "走進珍稀卡牌區與收藏展示區，近距離欣賞特殊設計的卡牌與精選收藏，一次看見卡牌文化的不同面貌。",
     image: media.highlightRareCard,
     imagePosition: "60% center",
     alt: "參加者近距離欣賞具有特殊設計的珍稀卡牌",
@@ -66,11 +67,12 @@ export const eventHighlights = [
     english: "30+ TCG VENDORS",
     title: "30+ TCG 攤商集結",
     description:
-      "現場預計集結 30+ TCG 攤商，依逛展動線安排攤位；名單與位置確認後會更新在活動頁與場地圖。",
+      "現場集結 30+ TCG 攤商，從熱門作品到特色店家，一次逛遍不同卡牌世界。",
     image: media.eventCrowd,
     imagePosition: "center",
     alt: "眾多玩家在設有大量攤位的 TCG 卡牌活動現場逛展",
     points: ["30+ 攤商", "精選店家", "名單與地圖"],
+    notice: "攤商名單與攤位圖將陸續公布",
     layout: "compact",
   },
 ] as const satisfies readonly EventHighlight[];

@@ -1,4 +1,4 @@
-import { Calendar, Map, MapPin, Train } from "iconoir-react";
+import { Map, MapPin, Train } from "iconoir-react";
 import { media } from "../config/media";
 import { event } from "../data/event";
 import { ActionLink } from "./ActionLink";
@@ -13,7 +13,6 @@ export function VenueSection() {
         <SectionHeading
           title="場地地圖"
           english="VENUE & FLOOR MAP"
-          description="從忠孝新生站怎麼走、進三創後去哪一層，連同場內配置都放在下面。"
         />
 
         <EnergyFrame className="venue-frame" data-reveal>
@@ -117,12 +116,6 @@ export function VenueSection() {
             <span>右側：舞台</span>
           </div>
 
-          <div className="venue-note">
-            <Calendar aria-hidden="true" />
-            <p>
-              此圖依活動簡報配置製作；最終攤商名稱與攤位位置確認後會同步更新。
-            </p>
-          </div>
         </section>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Calendar, Map } from "iconoir-react";
+import { Map, SecurityPass } from "iconoir-react";
 import { event } from "../data/event";
+import { TicketLink } from "./TicketLink";
 
 export function MobileActionBar() {
   const [visible, setVisible] = useState(false);
@@ -24,10 +25,13 @@ export function MobileActionBar() {
       aria-label="活動快速操作"
       aria-hidden={!visible}
     >
-      <a href="#highlights" tabIndex={visible ? undefined : -1}>
-        <Calendar aria-hidden="true" />
-        <span>活動資訊</span>
-      </a>
+      <TicketLink
+        variant="plain"
+        tabIndex={visible ? undefined : -1}
+      >
+        <SecurityPass aria-hidden="true" />
+        <span>立即購票</span>
+      </TicketLink>
       <a
         href={event.mapUrl}
         target="_blank"

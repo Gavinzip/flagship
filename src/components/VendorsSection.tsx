@@ -9,7 +9,6 @@ export function VendorsSection() {
         <SectionHeading
           title="參展攤商"
           english="EXHIBITORS"
-          description="現場預計有 30+ TCG 攤商，名單與攤位位置確認後會更新。"
         />
 
         <EnergyFrame className="vendor-announcement" data-reveal>

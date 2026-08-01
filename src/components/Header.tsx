@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, Xmark } from "iconoir-react";
 import { media } from "../config/media";
 import { navigation } from "../data/event";
-import { ActionLink } from "./ActionLink";
+import { TicketLink } from "./TicketLink";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -38,9 +38,7 @@ export function Header() {
           ))}
         </nav>
 
-        <ActionLink className="header-cta" href="#highlights">
-          活動資訊
-        </ActionLink>
+        <TicketLink className="header-cta">立即購票</TicketLink>
 
         <button
           className="menu-button"
