@@ -1,0 +1,8 @@
+node_modules/
+dist/
+tmp/
+.DS_Store
+*.tsbuildinfo
+
+# Local design specifications must never ship with the production site.
+design/concepts/

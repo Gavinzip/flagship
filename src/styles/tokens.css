@@ -1,0 +1,29 @@
+:root {
+  color-scheme: dark;
+  --color-bg: #02050a;
+  --color-bg-raised: #07101b;
+  --color-panel: #07111f;
+  --color-panel-strong: #0a1627;
+  --color-text: #f5f7fb;
+  --color-muted: #9aa8bd;
+  --color-dim: #65738a;
+  --color-line: rgba(157, 180, 218, 0.22);
+  --color-line-strong: rgba(208, 224, 248, 0.38);
+  --color-red: #ff243b;
+  --color-red-deep: #a80b20;
+  --color-blue: #1f74ff;
+  --color-blue-bright: #55a8ff;
+  --color-warm: #f5c876;
+  --font-body:
+    "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-display:
+    "Barlow Condensed", "Noto Sans TC", "PingFang TC", sans-serif;
+  --site-gutter: clamp(20px, 4vw, 64px);
+  --site-width: 1480px;
+  --section-space: clamp(96px, 10vw, 154px);
+  --cut-large: 24px;
+  --cut-small: 12px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-red: 0 0 38px rgba(255, 36, 59, 0.23);
+  --shadow-blue: 0 0 38px rgba(31, 116, 255, 0.23);
+}

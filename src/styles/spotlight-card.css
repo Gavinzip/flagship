@@ -1,0 +1,41 @@
+.spotlight-card {
+  --spotlight-x: 50%;
+  --spotlight-y: 46%;
+  --spotlight-size: 320px;
+  --spotlight-color: rgba(104, 180, 255, 0.24);
+
+  isolation: isolate;
+}
+
+.spotlight-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    circle var(--spotlight-size) at var(--spotlight-x) var(--spotlight-y),
+    var(--spotlight-color),
+    transparent 72%
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 360ms ease;
+  will-change: opacity;
+}
+
+.spotlight-card:hover::after,
+.spotlight-card:focus-within::after {
+  opacity: 0.78;
+}
+
+@media (hover: none), (max-width: 620px) {
+  .spotlight-card::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-card::after {
+    transition: none;
+  }
+}
