@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { Calendar, Clock, MapPin } from "iconoir-react";
+import { media } from "../config/media";
 import { event } from "../data/event";
 import { ActionLink } from "./ActionLink";
 import { CalendarButton } from "./CalendarButton";
@@ -19,7 +20,7 @@ export function EventPass() {
         <span className="event-pass__face" aria-hidden="true" />
         <img
           className="event-pass__frame"
-          src="/assets/event-pass-frame.webp"
+          src={media.eventPassFrame}
           width="1200"
           height="900"
           alt=""

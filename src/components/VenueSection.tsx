@@ -1,4 +1,5 @@
 import { Calendar, Map, MapPin, Train } from "iconoir-react";
+import { media } from "../config/media";
 import { event } from "../data/event";
 import { ActionLink } from "./ActionLink";
 import { CalendarButton } from "./CalendarButton";
@@ -85,7 +86,7 @@ export function VenueSection() {
               <span>入口位於左下方，舞台位於右側；手機可左右滑動查看。</span>
             </div>
             <ActionLink
-              href="/assets/floor-plan-public.webp"
+              href={media.floorPlan}
               target="_blank"
               rel="noreferrer"
               tone="secondary"
@@ -101,7 +102,7 @@ export function VenueSection() {
             tabIndex={0}
           >
             <img
-              src="/assets/floor-plan-public.webp"
+              src={media.floorPlan}
               width="3600"
               height="2200"
               alt="Clapper Studio 5F 會場配置圖；入口在左下方，攤位位於中央，展示區在上方，舞台在右側，出口在下方偏右。"

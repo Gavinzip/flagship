@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, Xmark } from "iconoir-react";
+import { media } from "../config/media";
 import { navigation } from "../data/event";
 import { ActionLink } from "./ActionLink";
 
@@ -22,7 +23,7 @@ export function Header() {
       <div className="site-shell site-header__inner">
         <a className="brand-link" href="#top" aria-label="回到網站頂端">
           <img
-            src="/assets/flagship-logo.webp"
+            src={media.flagshipLogo}
             width="900"
             height="493"
             alt="Flagship Card Show Taiwan"

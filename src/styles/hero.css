@@ -175,7 +175,7 @@
   inset: var(--pass-face-inset);
   z-index: 0;
   background-color: #071122;
-  background-image: url("/assets/event-pass-surface.webp");
+  background-image: var(--asset-event-pass-surface);
   background-position: center;
   background-size: cover;
   clip-path: polygon(

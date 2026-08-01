@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { media } from "../config/media";
 import { EventPass } from "./EventPass";
 import { HudScan } from "./HudScan";
 
@@ -7,7 +8,7 @@ export function Hero() {
     <section className="hero" id="top">
       <img
         className="hero__backdrop"
-        src="/assets/hero-arena.webp"
+        src={media.heroArena}
         width="1536"
         height="1024"
         alt=""
@@ -16,7 +17,7 @@ export function Hero() {
       />
       <img
         className="hero__arena-frame"
-        src="/assets/arena-frame.webp"
+        src={media.arenaFrame}
         width="1536"
         height="1024"
         alt=""
@@ -31,7 +32,7 @@ export function Hero() {
         >
           <img
             className="hero__logo"
-            src="/assets/flagship-logo.webp"
+            src={media.flagshipLogo}
             width="900"
             height="493"
             alt="Flagship Card Show Taiwan"

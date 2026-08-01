@@ -1,4 +1,5 @@
 import { ArrowUp, Calendar, MapPin } from "iconoir-react";
+import { media } from "../config/media";
 import { event } from "../data/event";
 
 export function Footer() {
@@ -6,7 +7,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="site-shell site-footer__inner">
         <img
-          src="/assets/flagship-logo.webp"
+          src={media.flagshipLogo}
           width="900"
           height="493"
           alt="Flagship Card Show Taiwan"

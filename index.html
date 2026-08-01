@@ -15,9 +15,18 @@
       property="og:description"
       content="__EVENT_OG_DESCRIPTION__"
     />
-    <link rel="icon" type="image/png" href="/assets/app-icon.png" />
-    <link rel="preload" as="image" href="/assets/hero-city.webp" fetchpriority="high" />
+    <link rel="icon" type="image/png" href="__ASSET_APP_ICON__" />
+    <link rel="preload" as="image" href="__ASSET_FLAGSHIP_LOGO__" fetchpriority="high" />
+    <link rel="preload" as="image" href="__ASSET_HERO_ARENA__" fetchpriority="high" />
     <title>__EVENT_TITLE__</title>
+    <style>
+      html,
+      body,
+      #root {
+        min-height: 100%;
+        background: #02050a;
+      }
+    </style>
     <script type="application/ld+json">
       __EVENT_STRUCTURED_DATA__
     </script>

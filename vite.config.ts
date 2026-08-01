@@ -1,8 +1,9 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig, loadEnv, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import event from "./src/config/event.json";
+import { STATIC_ASSET_RELEASE } from "./src/generated/staticAssetRelease";
 
 const projectRoot = fileURLToPath(new URL(".", import.meta.url));
 
@@ -45,8 +46,51 @@ function foldCalendarLine(line: string) {
   return folded;
 }
 
-function eventAssets(): Plugin {
+function buildCalendar() {
+  return [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Flagship Card Show Taiwan//Event//ZH-TW",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "BEGIN:VEVENT",
+    `UID:${event.calendarUid}`,
+    `DTSTAMP:${formatUtcStamp(event.publishedAt)}`,
+    `DTSTART:${toUtcStamp(event.dateIso, event.startTime)}`,
+    `DTEND:${toUtcStamp(event.dateIso, event.endTime)}`,
+    `SUMMARY:${escapeCalendarText(event.name)}`,
+    `LOCATION:${escapeCalendarText(`${event.venue} ${event.room}, ${event.address}`)}`,
+    `DESCRIPTION:${escapeCalendarText(event.description)}`,
+    "END:VEVENT",
+    "END:VCALENDAR",
+    "",
+  ].map(foldCalendarLine).join("\r\n");
+}
+
+function productionAssetResolver(mode: string, rawCdnBase: string) {
+  if (mode !== "production") {
+    return (path: string) => path;
+  }
+
+  const cdnBase = rawCdnBase.trim().replace(/\/+$/, "");
+  if (!cdnBase || STATIC_ASSET_RELEASE === "unpublished") {
+    throw new Error(
+      "Production static assets are unpublished. Set VITE_STATIC_ASSET_CDN_BASE_URL and publish the immutable R2 release first.",
+    );
+  }
+
+  const origin = new URL(cdnBase);
+  if (origin.protocol !== "https:") {
+    throw new Error("VITE_STATIC_ASSET_CDN_BASE_URL must use HTTPS.");
+  }
+
+  return (path: string) =>
+    `${origin.toString().replace(/\/$/, "")}/${STATIC_ASSET_RELEASE}${path}`;
+}
+
+function eventAssets(assetUrl: (path: string) => string): Plugin {
   const ogDescription = `${event.date} ${event.weekday} · ${event.startTime}—${event.endTime} · ${event.venue} ${event.room}`;
+  const calendar = buildCalendar();
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -66,41 +110,36 @@ function eventAssets(): Plugin {
         addressCountry: event.addressCountry,
       },
     },
-    image: "/assets/hero-arena.webp",
+    image: assetUrl("/assets/hero-arena.webp"),
     description: event.description,
   };
 
   return {
     name: "flagship-event-assets",
-    configResolved() {
-      const calendar = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//Flagship Card Show Taiwan//Event//ZH-TW",
-        "CALSCALE:GREGORIAN",
-        "METHOD:PUBLISH",
-        "BEGIN:VEVENT",
-        `UID:${event.calendarUid}`,
-        `DTSTAMP:${formatUtcStamp(event.publishedAt)}`,
-        `DTSTART:${toUtcStamp(event.dateIso, event.startTime)}`,
-        `DTEND:${toUtcStamp(event.dateIso, event.endTime)}`,
-        `SUMMARY:${escapeCalendarText(event.name)}`,
-        `LOCATION:${escapeCalendarText(`${event.venue} ${event.room}, ${event.address}`)}`,
-        `DESCRIPTION:${escapeCalendarText(event.description)}`,
-        "END:VEVENT",
-        "END:VCALENDAR",
-        "",
-      ].map(foldCalendarLine).join("\r\n");
-
+    configResolved(config) {
+      if (config.command !== "serve") return;
       const publicDir = new URL("./public/", import.meta.url);
       mkdirSync(publicDir, { recursive: true });
       writeFileSync(new URL(event.calendarFilename, publicDir), calendar, "utf8");
+    },
+    generateBundle() {
+      this.emitFile({
+        type: "asset",
+        fileName: event.calendarFilename,
+        source: calendar,
+      });
     },
     transformIndexHtml(html) {
       return html
         .replaceAll("__EVENT_TITLE__", event.name)
         .replaceAll("__EVENT_META_DESCRIPTION__", event.metaDescription)
         .replaceAll("__EVENT_OG_DESCRIPTION__", ogDescription)
+        .replaceAll("__ASSET_APP_ICON__", assetUrl("/assets/app-icon.png"))
+        .replaceAll(
+          "__ASSET_FLAGSHIP_LOGO__",
+          assetUrl("/assets/flagship-logo.webp"),
+        )
+        .replaceAll("__ASSET_HERO_ARENA__", assetUrl("/assets/hero-arena.webp"))
         .replace(
           "__EVENT_STRUCTURED_DATA__",
           JSON.stringify(structuredData).replace(/</g, "\\u003c"),
@@ -109,11 +148,20 @@ function eventAssets(): Plugin {
   };
 }
 
-export default defineConfig({
-  root: projectRoot,
-  plugins: [eventAssets(), react()],
-  build: {
-    cssCodeSplit: true,
-    sourcemap: false,
-  },
+export default defineConfig(({ mode }) => {
+  const environment = loadEnv(mode, projectRoot, "VITE_");
+  const assetUrl = productionAssetResolver(
+    mode,
+    environment.VITE_STATIC_ASSET_CDN_BASE_URL || "",
+  );
+
+  return {
+    root: projectRoot,
+    plugins: [eventAssets(assetUrl), react()],
+    build: {
+      copyPublicDir: false,
+      cssCodeSplit: true,
+      sourcemap: false,
+    },
+  };
 });

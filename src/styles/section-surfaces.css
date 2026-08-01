@@ -42,7 +42,7 @@
 }
 
 .section--highlights {
-  --section-image: url("/assets/section-highlights-arena.webp");
+  --section-image: var(--asset-section-highlights);
   --section-image-size: cover;
   --section-image-position: center;
   --section-image-opacity: 0.22;
@@ -60,7 +60,7 @@
 }
 
 .section--schedule {
-  --section-image: url("/assets/section-schedule-stage.webp");
+  --section-image: var(--asset-section-schedule);
   --section-image-size: cover;
   --section-image-position: center;
   --section-image-opacity: 0.28;
@@ -73,7 +73,7 @@
 }
 
 .section--vendors {
-  --section-image: url("/assets/section-vendors-gallery.webp");
+  --section-image: var(--asset-section-vendors);
   --section-image-size: cover;
   --section-image-position: center;
   --section-image-opacity: 0.24;
@@ -87,8 +87,8 @@
 
 .section--venue {
   --section-image:
-    url("/assets/section-venue-arrival.webp"),
-    url("/assets/section-venue-arrival.webp");
+    var(--asset-section-venue),
+    var(--asset-section-venue);
   --section-image-size:
     max(100%, 1800px) auto,
     max(100%, 1800px) auto;
@@ -105,7 +105,7 @@
 }
 
 .section--faq {
-  --section-image: url("/assets/section-venue-arrival.webp");
+  --section-image: var(--asset-section-venue);
   --section-image-size: cover;
   --section-image-position: center 62%;
   --section-image-opacity: 0.15;
