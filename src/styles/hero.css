@@ -100,8 +100,6 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 22px;
-  padding-left: 14px;
-  border-left: 3px solid var(--color-red);
   color: var(--color-red);
   font-size: 0.31em;
   letter-spacing: 0.09em;

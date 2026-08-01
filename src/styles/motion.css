@@ -65,12 +65,6 @@
   will-change: transform;
 }
 
-.experience-card:hover > .glare-sweep,
-.experience-card:focus-visible > .glare-sweep {
-  opacity: 0.82;
-  transform: skewX(-14deg) translate3d(1550%, 0, 0);
-}
-
 .energy-frame__rail {
   animation: energy-rail-pulse 3.6s var(--ease-out) infinite;
   transform: scaleX(0.24);
