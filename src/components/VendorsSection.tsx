@@ -19,7 +19,6 @@ export function VendorsSection() {
             <Shop aria-hidden="true" />
             <div>
               <h3>攤商名單陸續公布</h3>
-              <p>攤商與攤位編號確認後，會直接更新在這一頁。</p>
             </div>
           </div>
           <div className="vendor-announcement__map">
