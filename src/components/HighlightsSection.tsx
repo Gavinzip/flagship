@@ -8,7 +8,6 @@ export function HighlightsSection() {
         <SectionHeading
           title="活動亮點"
           english="EVENT HIGHLIGHTS"
-          description="從入場體驗、舞台挑戰到珍稀收藏與 30+ TCG 攤商，五個值得到場的理由一次看清楚。"
         />
 
         <EventHighlightsGrid />
