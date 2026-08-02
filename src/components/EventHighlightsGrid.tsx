@@ -70,7 +70,15 @@ export function EventHighlightsGrid() {
 
                   <div className="event-highlight-card__copy">
                     <span>{highlight.english}</span>
-                    <h3>{highlight.title}</h3>
+                    <h3
+                      className={
+                        "singleLineTitle" in highlight
+                          ? "event-highlight-card__title--single-line"
+                          : undefined
+                      }
+                    >
+                      {highlight.title}
+                    </h3>
                     <p>{highlight.description}</p>
                   </div>
 

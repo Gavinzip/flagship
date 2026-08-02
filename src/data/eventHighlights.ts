@@ -4,6 +4,7 @@ export type EventHighlight = {
   number: `0${1 | 2 | 3 | 4 | 5}`;
   english: string;
   title: string;
+  singleLineTitle?: boolean;
   description: string;
   image: string;
   imagePosition: string;
@@ -18,6 +19,7 @@ export const eventHighlights = [
     number: "01",
     english: "MORE BACK INTO THE EVENT",
     title: "活動收入全數回饋",
+    singleLineTitle: true,
     description:
       "活動收入將全數投入入場好禮、卡牌贈禮、活動獎品與現場驚喜，讓每位到場玩家都能玩得盡興、帶著滿滿收穫回家。",
     image: media.sectionHighlightsArena,

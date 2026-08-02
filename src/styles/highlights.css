@@ -242,6 +242,12 @@
   font-size: clamp(2.2rem, 3.6vw, 4.25rem);
 }
 
+.event-highlight-card__copy h3.event-highlight-card__title--single-line {
+  font-size: clamp(2rem, 3.2vw, 3.75rem);
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
 .event-highlight-card__copy p {
   max-width: 720px;
   margin: 0;
@@ -366,6 +372,10 @@
   .event-highlight-card__copy h3,
   .event-highlights__item--compact .event-highlight-card__copy h3 {
     font-size: clamp(2.25rem, 12vw, 3.25rem);
+  }
+
+  .event-highlight-card__copy h3.event-highlight-card__title--single-line {
+    font-size: clamp(2rem, 10vw, 2.75rem);
   }
 
   .event-highlight-card__copy p {
