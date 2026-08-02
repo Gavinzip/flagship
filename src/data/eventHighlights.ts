@@ -31,7 +31,7 @@ export const eventHighlights = [
     english: "GIFTS & ON-SITE SURPRISES",
     title: "入場好禮與現場驚喜",
     description:
-      "不只是來逛展。入場即可獲得精選好禮，現場還有卡牌贈禮、互動任務與抽獎獎品，讓你從進場到離開都有值得期待的收穫。",
+      "不只是來逛展。入場即可獲得精選好禮，現場還有卡牌贈禮、互動任務與抽獎獎品。",
     image: media.highlightPlayers,
     imagePosition: "50% center",
     alt: "玩家在卡牌活動現場交流、試玩並分享手上的卡牌",
@@ -67,11 +67,11 @@ export const eventHighlights = [
     english: "30+ TCG VENDORS",
     title: "30+ TCG 攤商集結",
     description:
-      "現場集結 30+ TCG 攤商，從熱門作品到特色店家，一次逛遍不同卡牌世界。",
+      "現場集結 30+ 家 TCG 攤商，不只有寶可夢，也有不同卡種與收藏方向。",
     image: media.eventCrowd,
     imagePosition: "center",
     alt: "眾多玩家在設有大量攤位的 TCG 卡牌活動現場逛展",
-    points: ["30+ 攤商", "精選店家", "名單與地圖"],
+    points: ["30+ 攤商", "多元卡種", "特色選品"],
     notice: "攤商名單與攤位圖將陸續公布",
     layout: "compact",
   },
