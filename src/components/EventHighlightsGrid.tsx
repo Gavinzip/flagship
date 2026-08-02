@@ -70,7 +70,18 @@ export function EventHighlightsGrid() {
 
                   <div className="event-highlight-card__copy">
                     <span>{highlight.english}</span>
-                    <h3>{highlight.title}</h3>
+                    <h3 aria-label={highlight.title}>
+                      {"titleLines" in highlight
+                        ? highlight.titleLines.map((line) => (
+                            <span
+                              className="event-highlight-card__title-line"
+                              key={line}
+                            >
+                              {line}
+                            </span>
+                          ))
+                        : highlight.title}
+                    </h3>
                     <p>{highlight.description}</p>
                   </div>
 
