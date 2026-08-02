@@ -242,10 +242,6 @@
   font-size: clamp(2.2rem, 3.6vw, 4.25rem);
 }
 
-.event-highlight-card__title-line {
-  display: block;
-}
-
 .event-highlight-card__copy p {
   max-width: 720px;
   margin: 0;
