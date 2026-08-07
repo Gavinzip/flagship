@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { WarningTriangle } from "iconoir-react";
-import { eventHighlights } from "../data/eventHighlights";
+import { eventHighlightVisuals } from "../data/eventHighlights";
+import { useLocale } from "../i18n/LocaleProvider";
 import { GlareSweep } from "./GlareSweep";
 import { SpotlightCard } from "./SpotlightCard";
 
@@ -10,10 +11,16 @@ type RevealStyle = CSSProperties & {
 };
 
 export function EventHighlightsGrid() {
+  const { content } = useLocale();
+  const highlights = content.highlights.items.map((item) => ({
+    ...item,
+    ...eventHighlightVisuals.find(({ number }) => number === item.number)!,
+  }));
+
   return (
     <>
-      <nav className="event-highlights-index" aria-label="活動亮點快速導覽">
-        {eventHighlights.map((highlight) => (
+      <nav className="event-highlights-index" aria-label={content.highlights.indexLabel}>
+        {highlights.map((highlight) => (
           <a href={`#highlight-${highlight.number}`} key={highlight.number}>
             <span>{highlight.number}</span>
             <strong>{highlight.title}</strong>
@@ -21,8 +28,8 @@ export function EventHighlightsGrid() {
         ))}
       </nav>
 
-      <ol className="event-highlights" aria-label="五大活動亮點">
-        {eventHighlights.map((highlight, index) => {
+      <ol className="event-highlights" aria-label={content.highlights.listLabel}>
+        {highlights.map((highlight, index) => {
           const revealStyle: RevealStyle = {
             "--highlight-image-position": highlight.imagePosition,
             "--reveal-index": index,
@@ -84,7 +91,7 @@ export function EventHighlightsGrid() {
 
                   <ul
                     className="event-highlight-card__points"
-                    aria-label={`${highlight.title}包含的內容`}
+                    aria-label={content.highlights.pointsLabel(highlight.title)}
                   >
                     {highlight.points.map((point) => (
                       <li key={point}>{point}</li>

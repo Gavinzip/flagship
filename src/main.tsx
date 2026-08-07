@@ -7,14 +7,17 @@ import "@fontsource/barlow-condensed/latin-900.css";
 import { App } from "./App";
 import { SiteBoot } from "./components/SiteBoot";
 import { installStaticAssetCssVariables } from "./config/media";
+import { LocaleProvider } from "./i18n/LocaleProvider";
 import "./styles/index.css";
 
 installStaticAssetCssVariables();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <SiteBoot>
-      <App />
-    </SiteBoot>
+    <LocaleProvider>
+      <SiteBoot>
+        <App />
+      </SiteBoot>
+    </LocaleProvider>
   </StrictMode>,
 );

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Map, SecurityPass } from "iconoir-react";
 import { event } from "../data/event";
+import { useLocale } from "../i18n/LocaleProvider";
 import { TicketLink } from "./TicketLink";
 
 export function MobileActionBar() {
   const [visible, setVisible] = useState(false);
+  const { content } = useLocale();
 
   useEffect(() => {
     const hero = document.querySelector("#top");
@@ -22,7 +24,7 @@ export function MobileActionBar() {
   return (
     <nav
       className={`mobile-action-bar${visible ? " mobile-action-bar--visible" : ""}`}
-      aria-label="活動快速操作"
+      aria-label={content.mobileActions.label}
       aria-hidden={!visible}
     >
       <TicketLink
@@ -30,7 +32,7 @@ export function MobileActionBar() {
         tabIndex={visible ? undefined : -1}
       >
         <SecurityPass aria-hidden="true" />
-        <span>立即購票</span>
+        <span>{content.mobileActions.ticket}</span>
       </TicketLink>
       <a
         href={event.mapUrl}
@@ -39,7 +41,7 @@ export function MobileActionBar() {
         tabIndex={visible ? undefined : -1}
       >
         <Map aria-hidden="true" />
-        <span>開始導航</span>
+        <span>{content.mobileActions.directions}</span>
       </a>
     </nav>
   );

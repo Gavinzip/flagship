@@ -1,19 +1,22 @@
 import { Clock, HomeSimpleDoor, WhiteFlag } from "iconoir-react";
 import { event } from "../data/event";
+import { useLocale } from "../i18n/LocaleProvider";
 import { CalendarButton } from "./CalendarButton";
 import { EnergyFrame } from "./EnergyFrame";
 import { HudScan } from "./HudScan";
 import { SectionHeading } from "./SectionHeading";
 
 export function ScheduleSection() {
+  const { content } = useLocale();
+
   return (
     <section className="section section--schedule" id="schedule">
       <HudScan className="hud-scan--schedule" />
       <div className="site-shell">
         <div className="schedule-heading-row">
           <SectionHeading
-            title="節目表"
-            english="SCHEDULE"
+            title={content.schedule.title}
+            english={content.schedule.english}
           />
           <CalendarButton />
         </div>
@@ -25,15 +28,15 @@ export function ScheduleSection() {
                 <HomeSimpleDoor aria-hidden="true" />
               </span>
               <strong>{event.startTime}</strong>
-              <p>開放入場</p>
+              <p>{content.schedule.entryOpen}</p>
             </div>
 
             <div className="schedule-status">
               <span className="schedule-point__icon">
                 <Clock aria-hidden="true" />
               </span>
-              <strong>完整舞台時程即將公布</strong>
-              <p>挑戰賽、互動活動與抽獎時段將陸續更新</p>
+              <strong>{content.schedule.comingSoon}</strong>
+              <p>{content.schedule.comingSoonDescription}</p>
             </div>
 
             <div className="schedule-point schedule-point--end">
@@ -41,7 +44,7 @@ export function ScheduleSection() {
                 <WhiteFlag aria-hidden="true" />
               </span>
               <strong>{event.endTime}</strong>
-              <p>活動結束</p>
+              <p>{content.schedule.eventEnds}</p>
             </div>
           </div>
         </EnergyFrame>

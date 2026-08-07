@@ -1,9 +1,12 @@
 import type { CSSProperties } from "react";
 import { media } from "../config/media";
+import { useLocale } from "../i18n/LocaleProvider";
 import { EventPass } from "./EventPass";
 import { HudScan } from "./HudScan";
 
 export function Hero() {
+  const { content } = useLocale();
+
   return (
     <section className="hero" id="top">
       <img
@@ -37,13 +40,13 @@ export function Hero() {
             height="493"
             alt="Flagship Card Show Taiwan"
           />
-          <p className="hero__eyebrow">MORE THAN TABLES · CONNECTING PLAY CULTURE</p>
+          <p className="hero__eyebrow">{content.hero.eyebrow}</p>
           <h1>
             <span className="hero__title-kicker">
-              <span>台灣年度</span>
+              <span>{content.hero.titleKicker}</span>
               <small>TAIWAN · 2026</small>
             </span>
-            <span className="hero__title-main">旗艦卡牌展</span>
+            <span className="hero__title-main">{content.hero.title}</span>
           </h1>
         </div>
 

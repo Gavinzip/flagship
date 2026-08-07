@@ -2,11 +2,14 @@ import type { CSSProperties } from "react";
 import { Calendar, Clock, MapPin } from "iconoir-react";
 import { media } from "../config/media";
 import { event } from "../data/event";
+import { useLocale } from "../i18n/LocaleProvider";
 import { CalendarButton } from "./CalendarButton";
 import { SpotlightCard } from "./SpotlightCard";
 import { TicketLink } from "./TicketLink";
 
 export function EventPass() {
+  const { content } = useLocale();
+
   return (
     <div
       className="hero__pass entry-item"
@@ -35,7 +38,7 @@ export function EventPass() {
           <div>
             <dt>
               <Calendar aria-hidden="true" />
-              <span>DATE</span>
+              <span>{content.eventPass.dateLabel}</span>
             </dt>
             <dd>
               <strong>{event.date}</strong>
@@ -45,7 +48,7 @@ export function EventPass() {
           <div>
             <dt>
               <Clock aria-hidden="true" />
-              <span>TIME</span>
+              <span>{content.eventPass.timeLabel}</span>
             </dt>
             <dd>
               <strong>
@@ -56,17 +59,17 @@ export function EventPass() {
           <div>
             <dt>
               <MapPin aria-hidden="true" />
-              <span>PLACE</span>
+              <span>{content.eventPass.placeLabel}</span>
             </dt>
             <dd>
-              <strong>{event.venue}</strong>
+              <strong>{content.event.venue}</strong>
               <small>{event.room}</small>
             </dd>
           </div>
         </dl>
 
         <div className="event-pass__actions">
-          <TicketLink>立即購票</TicketLink>
+          <TicketLink>{content.header.ticketLabel}</TicketLink>
           <CalendarButton />
         </div>
       </SpotlightCard>

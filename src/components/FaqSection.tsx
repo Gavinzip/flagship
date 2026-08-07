@@ -1,20 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HelpCircle, NavArrowDown } from "iconoir-react";
-import { faqCategories, faqItems } from "../data/event";
+import { useLocale } from "../i18n/LocaleProvider";
 import { SectionHeading } from "./SectionHeading";
 
 export function FaqSection() {
+  const { content, locale } = useLocale();
+  const { categories, items } = content.faq;
   const [activeCategory, setActiveCategory] =
-    useState<(typeof faqCategories)[number]>(faqCategories[0]);
+    useState<string>(categories[0]);
   const [activeQuestion, setActiveQuestion] = useState<string | null>(
-    faqItems[0].question,
+    items[0].question,
   );
-  const visibleItems = faqItems.filter(
+  const visibleItems = items.filter(
     (item) => item.category === activeCategory,
   );
 
-  const selectCategory = (category: (typeof faqCategories)[number]) => {
-    const firstQuestion = faqItems.find(
+  useEffect(() => {
+    setActiveCategory(categories[0]);
+    setActiveQuestion(items[0].question);
+  }, [categories, items, locale]);
+
+  const selectCategory = (category: string) => {
+    const firstQuestion = items.find(
       (item) => item.category === category,
     )?.question;
 
@@ -28,8 +35,8 @@ export function FaqSection() {
         <SectionHeading title="FAQ" />
 
         <div className="faq-panel" data-reveal>
-          <nav className="faq-categories" aria-label="常見問題分類">
-            {faqCategories.map((category, index) => {
+          <nav className="faq-categories" aria-label={content.faq.categoryLabel}>
+            {categories.map((category, index) => {
               const isSelected = category === activeCategory;
 
               return (
@@ -48,9 +55,9 @@ export function FaqSection() {
           </nav>
 
           <div className="faq-list">
-            {visibleItems.map((item) => {
+            {visibleItems.map((item, index) => {
               const isOpen = activeQuestion === item.question;
-              const answerId = `faq-answer-${faqItems.indexOf(item)}`;
+              const answerId = `faq-answer-${locale}-${index}`;
 
               return (
                 <div

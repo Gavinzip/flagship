@@ -9,12 +9,13 @@
   }
 
   .desktop-nav {
-    gap: 4px;
+    gap: clamp(7px, 0.8vw, 10px);
   }
 
   .desktop-nav a {
-    padding-inline: 10px;
+    padding-inline: clamp(7px, 0.8vw, 10px);
     font-size: 0.84rem;
+    white-space: nowrap;
   }
 
   .header-cta {

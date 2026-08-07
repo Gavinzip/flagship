@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Flagship Card Show Taiwan//Event//en
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:flagship-card-show-taiwan-20260905@flagship
+DTSTAMP:20260730T090000Z
+DTSTART:20260905T040000Z
+DTEND:20260905T110000Z
+SUMMARY:Flagship Card Show Taiwan 2026
+LOCATION:Syntrend Creative Park CLAPPER STUDIO 5F\, No. 2\, Sec. 3\, Civic 
+ Blvd.\, Zhongzheng District\, Taipei City 100\, Taiwan
+DESCRIPTION:TCG vendors\, rare-card displays\, live matches\, and stage act
+ ivities—all in one day.
+END:VEVENT
+END:VCALENDAR

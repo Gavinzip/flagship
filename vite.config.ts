@@ -46,11 +46,13 @@ function foldCalendarLine(line: string) {
   return folded;
 }
 
-function buildCalendar() {
+function buildCalendar(locale: "zh-TW" | "en") {
+  const isEnglish = locale === "en";
+
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Flagship Card Show Taiwan//Event//ZH-TW",
+    `PRODID:-//Flagship Card Show Taiwan//Event//${locale}`,
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",
@@ -59,8 +61,14 @@ function buildCalendar() {
     `DTSTART:${toUtcStamp(event.dateIso, event.startTime)}`,
     `DTEND:${toUtcStamp(event.dateIso, event.endTime)}`,
     `SUMMARY:${escapeCalendarText(event.name)}`,
-    `LOCATION:${escapeCalendarText(`${event.venue} ${event.room}, ${event.address}`)}`,
-    `DESCRIPTION:${escapeCalendarText(event.description)}`,
+    `LOCATION:${escapeCalendarText(
+      isEnglish
+        ? `${event.englishVenue} ${event.room}, ${event.englishAddress}`
+        : `${event.venue} ${event.room}, ${event.address}`,
+    )}`,
+    `DESCRIPTION:${escapeCalendarText(
+      isEnglish ? event.englishDescription : event.description,
+    )}`,
     "END:VEVENT",
     "END:VCALENDAR",
     "",
@@ -90,7 +98,8 @@ function productionAssetResolver(mode: string, rawCdnBase: string) {
 
 function eventAssets(assetUrl: (path: string) => string): Plugin {
   const ogDescription = `${event.date} ${event.weekday} · ${event.startTime}—${event.endTime} · ${event.venue} ${event.room}`;
-  const calendar = buildCalendar();
+  const calendar = buildCalendar("zh-TW");
+  const englishCalendar = buildCalendar("en");
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -121,12 +130,22 @@ function eventAssets(assetUrl: (path: string) => string): Plugin {
       const publicDir = new URL("./public/", import.meta.url);
       mkdirSync(publicDir, { recursive: true });
       writeFileSync(new URL(event.calendarFilename, publicDir), calendar, "utf8");
+      writeFileSync(
+        new URL(event.calendarEnglishFilename, publicDir),
+        englishCalendar,
+        "utf8",
+      );
     },
     generateBundle() {
       this.emitFile({
         type: "asset",
         fileName: event.calendarFilename,
         source: calendar,
+      });
+      this.emitFile({
+        type: "asset",
+        fileName: event.calendarEnglishFilename,
+        source: englishCalendar,
       });
     },
     transformIndexHtml(html) {

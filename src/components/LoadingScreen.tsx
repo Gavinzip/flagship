@@ -1,5 +1,6 @@
 import { WarningTriangle } from "iconoir-react";
 import { media } from "../config/media";
+import { useLocale } from "../i18n/LocaleProvider";
 import type { SiteReadiness } from "../hooks/useSiteReadiness";
 
 type LoadingScreenProps = {
@@ -12,13 +13,14 @@ export function LoadingScreen({
   readiness,
 }: LoadingScreenProps) {
   const hasError = readiness.status === "error";
+  const { content } = useLocale();
 
   return (
     <div
       className={`loading-screen${exiting ? " loading-screen--exiting" : ""}`}
       role={hasError ? "alert" : "status"}
       aria-live="polite"
-      aria-label={hasError ? "網站載入失敗" : "網站載入中"}
+      aria-label={hasError ? content.loading.errorLabel : content.loading.loadingLabel}
     >
       <div className="loading-screen__glow" aria-hidden="true" />
       <div className="loading-screen__content">
@@ -33,17 +35,17 @@ export function LoadingScreen({
         {hasError ? (
           <div className="loading-screen__error">
             <WarningTriangle aria-hidden="true" />
-            <strong>部分活動素材未能載入</strong>
-            <p>請確認網路連線後重新載入，我們不會用低畫質圖片替代。</p>
+            <strong>{content.loading.errorTitle}</strong>
+            <p>{content.loading.errorDescription}</p>
             <button type="button" onClick={() => window.location.reload()}>
-              重新載入
+              {content.loading.reload}
             </button>
           </div>
         ) : (
           <>
             <div
               className="loading-screen__meter"
-              aria-label={`載入進度 ${readiness.progress}%`}
+              aria-label={content.loading.progressLabel(readiness.progress)}
             >
               <span style={{ width: `${readiness.progress}%` }} />
             </div>
