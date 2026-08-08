@@ -153,6 +153,47 @@
     display: none;
   }
 
+  .hero--hand {
+    min-height: 1060px;
+    aspect-ratio: auto;
+    padding: 0;
+    margin-top: 74px;
+  }
+
+  .hero-hand__scene {
+    object-fit: cover;
+    object-position: 50% center;
+  }
+
+  .hero-hand__atmosphere {
+    left: 0;
+    opacity: 0.28;
+    object-position: 50% center;
+  }
+
+  .hero-hand__intro {
+    top: 5.2%;
+    left: 8%;
+    width: 84%;
+    max-width: 620px;
+    padding: 0;
+  }
+
+  .hero-hand__intro .hero__logo {
+    width: min(100%, 350px);
+  }
+
+  .hero--hand .hero-hand__intro h1 {
+    font-size: clamp(3.45rem, 8vw, 4.7rem);
+  }
+
+  .hero-hand__card {
+    top: auto;
+    bottom: 4.5%;
+    left: 6%;
+    width: 88%;
+  }
+
   .section-heading {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -232,6 +273,46 @@
     letter-spacing: -0.055em;
   }
 
+  .hero--hand {
+    min-height: 730px;
+    padding: 0;
+  }
+
+  .hero-hand__intro {
+    top: 4.2%;
+    left: 6%;
+    width: 90%;
+  }
+
+  .hero-hand__intro .hero__logo {
+    width: min(70vw, 270px);
+    margin-bottom: 8px;
+  }
+
+  .hero-hand__intro .hero__eyebrow {
+    max-width: 320px;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    font-size: 0.48rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero--hand .hero-hand__intro h1 {
+    max-width: 340px;
+    font-size: clamp(2.9rem, 13.2vw, 3.55rem);
+  }
+
+  .hero-hand__intro .hero__title-kicker {
+    margin-bottom: 9px;
+    padding-left: 0;
+  }
+
+  .hero-hand__card {
+    bottom: 4%;
+    left: 2%;
+    width: 96%;
+  }
+
   .hero__pass {
     margin-inline: 0;
   }
@@ -305,6 +386,117 @@
     gap: 10px;
     margin-top: 20px;
     grid-template-columns: 1fr;
+  }
+
+  .event-pass--floating {
+    inset: 7.6% 6.8% 8%;
+    width: auto;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .event-pass--floating .event-pass__header {
+    padding-bottom: 4px;
+    font-size: 0.37rem;
+    letter-spacing: 0.13em;
+  }
+
+  .event-pass--floating .event-pass__header span:last-child {
+    display: inline;
+    font-size: 0.36rem;
+    letter-spacing: 0.08em;
+  }
+
+  .event-pass--floating .event-pass__meta {
+    grid-template-columns: 1.08fr 0.92fr;
+    grid-template-rows: 1fr 0.9fr;
+    margin-top: 2px;
+  }
+
+  .event-pass--floating .event-pass__meta > div {
+    display: flex;
+    gap: 2px;
+    padding: 3px 6px;
+    border-bottom: 1px solid rgba(205, 222, 248, 0.16);
+  }
+
+  .event-pass--floating .event-pass__item--date {
+    border-right: 1px solid rgba(205, 222, 248, 0.16);
+  }
+
+  .event-pass--floating .event-pass__item--place {
+    grid-column: 1 / -1;
+    border-bottom: 0;
+  }
+
+  .event-pass--floating .event-pass__meta dt {
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
+    padding-left: 0;
+    font-size: 0.28rem;
+  }
+
+  .event-pass--floating .event-pass__meta dt svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .event-pass--floating .event-pass__meta dd,
+  .event-pass--floating .event-pass__meta > div:last-child dd {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 4px;
+    margin-top: 0;
+    padding-left: 0;
+  }
+
+  .event-pass--floating .event-pass__meta strong,
+  .event-pass--floating .event-pass__meta > div:last-child strong {
+    font-size: clamp(0.84rem, 4.1vw, 1rem);
+  }
+
+  .event-pass--floating .event-pass__item--time strong {
+    font-size: clamp(0.82rem, 4vw, 0.98rem);
+  }
+
+  .event-pass--floating .event-pass__item--place dd {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 5px;
+  }
+
+  .event-pass--floating .event-pass__item--place strong {
+    font-size: clamp(0.8rem, 3.8vw, 0.94rem);
+  }
+
+  .event-pass--floating .event-pass__meta small,
+  .event-pass--floating .event-pass__meta > div:last-child small {
+    font-size: 0.31rem;
+  }
+
+  .event-pass--floating .event-pass__transit {
+    min-height: 17px;
+    gap: 3px;
+    padding-inline: 6px;
+    font-size: 0.28rem;
+  }
+
+  .event-pass--floating .event-pass__transit svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .event-pass--floating .event-pass__actions {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .event-pass--floating .event-pass__actions .action-link,
+  .event-pass--floating .event-pass__actions .calendar-button {
+    min-height: 31px;
+    font-size: 0.59rem;
   }
 
   .action-link,

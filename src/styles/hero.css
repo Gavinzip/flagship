@@ -367,8 +367,384 @@
   right: 31px;
 }
 
+.hero--hand {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 1512 / 844;
+  padding: 0;
+  margin-top: 88px;
+  background: #050914;
+}
+
+.hero--hand::before,
+.hero--hand::after {
+  display: none;
+}
+
+.hero-hand__scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+}
+
+.hero-hand__atmosphere {
+  position: absolute;
+  inset: 0 auto 0 -8%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.hero-hand__atmosphere {
+  z-index: 1;
+  opacity: 0.62;
+  filter: saturate(0.64) contrast(1.08);
+  mix-blend-mode: screen;
+}
+
+.hero-hand__layout {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-hand__intro {
+  position: absolute;
+  top: 18.4%;
+  left: 7.2%;
+  width: 39.2%;
+  padding: 0;
+}
+
+.hero-hand__intro .hero__logo {
+  width: min(112%, 430px);
+  margin-bottom: clamp(10px, 1vw, 16px);
+  transform: translateX(-12%);
+}
+
+.hero-hand__intro .hero__eyebrow {
+  width: fit-content;
+  padding: 5px 10px 5px 0;
+  margin-bottom: clamp(10px, 0.9vw, 14px);
+  border-bottom: 1px solid rgba(85, 168, 255, 0.42);
+  font-size: clamp(0.54rem, 0.66vw, 0.74rem);
+  letter-spacing: 0.25em;
+}
+
+.hero--hand .hero-hand__intro h1 {
+  max-width: 520px;
+  font-size: clamp(3.8rem, 5.25vw, 5.75rem);
+}
+
+.hero-hand__intro .hero__title-kicker {
+  margin-bottom: clamp(11px, 1vw, 16px);
+}
+
+.hero--hand .hero__title-main {
+  font-size: 0.9em;
+}
+
+.hero-hand__card {
+  --card-rotate-x: 0deg;
+  --card-rotate-y: 0deg;
+
+  position: absolute;
+  top: 20.8%;
+  left: 47.2%;
+  width: 46.9%;
+  aspect-ratio: 658 / 426;
+  animation: hero-card-float 6.4s ease-in-out infinite;
+  filter:
+    drop-shadow(-10px 14px 24px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 24px 28px rgba(0, 0, 0, 0.32));
+  transform: perspective(1200px) rotateX(var(--card-rotate-x))
+    rotateY(var(--card-rotate-y)) rotateZ(-0.45deg);
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transition:
+    transform 260ms var(--ease-out),
+    filter 260ms ease;
+  will-change: transform;
+}
+
+.hero-hand__card:hover,
+.hero-hand__card:focus-within {
+  filter:
+    drop-shadow(-12px 18px 30px rgba(0, 0, 0, 0.48))
+    drop-shadow(12px 28px 34px rgba(0, 0, 0, 0.4));
+}
+
+.hero-hand__card-echo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.hero-hand__card-face {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: clamp(12px, 1.35vw, 22px);
+}
+
+.hero-hand__card-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.hero-hand__card-echo {
+  opacity: 0.11;
+  mix-blend-mode: screen;
+  animation: hero-card-echo 5.4s ease-in-out infinite;
+}
+
+.hero-hand__card-echo--rear {
+  z-index: 0;
+  transform: translate3d(-4.8%, 4.8%, -68px) rotateZ(-2.4deg);
+}
+
+.hero-hand__card-echo--near {
+  z-index: 1;
+  opacity: 0.08;
+  animation-delay: -2.7s;
+  transform: translate3d(2.7%, -2.4%, -34px) rotateZ(1.35deg);
+}
+
+.hero-hand__card-face.spotlight-card::after {
+  inset: 2.2%;
+  z-index: 2;
+  border-radius: clamp(10px, 1.1vw, 18px);
+  mix-blend-mode: screen;
+}
+
+.event-pass--floating {
+  position: absolute;
+  inset: 7.4% 6.8% 7.8%;
+  z-index: 3;
+  display: flex;
+  width: auto;
+  height: auto;
+  min-height: 0;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+  transform: none;
+}
+
+.event-pass--floating .event-pass__header {
+  min-height: 0;
+  padding-bottom: clamp(7px, 0.65vw, 11px);
+  border-color: rgba(217, 228, 247, 0.22);
+  font-size: clamp(0.52rem, 0.66vw, 0.74rem);
+  letter-spacing: 0.2em;
+}
+
+.event-pass--floating .event-pass__header span:last-child {
+  position: static;
+  font-size: inherit;
+  letter-spacing: 0.15em;
+  writing-mode: horizontal-tb;
+}
+
+.event-pass--floating .event-pass__meta {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  grid-template-columns: 1.08fr 0.92fr;
+  grid-template-rows: 1fr 0.92fr;
+  margin: clamp(5px, 0.5vw, 8px) 0 0;
+}
+
+.event-pass--floating .event-pass__meta > div {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(5px, 0.5vw, 8px);
+  padding: clamp(5px, 0.6vw, 10px) clamp(10px, 1.2vw, 18px);
+  border-bottom: 1px solid rgba(205, 222, 248, 0.16);
+}
+
+.event-pass--floating .event-pass__item--date {
+  border-right: 1px solid rgba(205, 222, 248, 0.16);
+}
+
+.event-pass--floating .event-pass__item--place {
+  grid-column: 1 / -1;
+  border-bottom: 0;
+}
+
+.event-pass--floating .event-pass__meta dt {
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(4px, 0.4vw, 7px);
+  padding-left: 0;
+  font-size: clamp(0.54rem, 0.66vw, 0.74rem);
+  letter-spacing: 0.2em;
+}
+
+.event-pass--floating .event-pass__meta dt svg {
+  width: clamp(16px, 1.4vw, 23px);
+  height: clamp(16px, 1.4vw, 23px);
+}
+
+.event-pass--floating .event-pass__meta dd,
+.event-pass--floating .event-pass__meta > div:last-child dd {
+  display: flex;
+  min-width: 0;
+  flex-direction: row;
+  align-items: baseline;
+  gap: clamp(6px, 0.65vw, 10px);
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.event-pass--floating .event-pass__meta strong,
+.event-pass--floating .event-pass__meta > div:last-child strong {
+  max-width: 100%;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: clamp(1.7rem, 2.9vw, 3rem);
+  letter-spacing: 0.025em;
+  line-height: 0.96;
+  white-space: nowrap;
+}
+
+.event-pass--floating .event-pass__item--time strong {
+  font-size: clamp(1.65rem, 2.65vw, 2.75rem);
+}
+
+.event-pass--floating .event-pass__item--place dd {
+  flex-direction: row;
+  align-items: baseline;
+  gap: clamp(8px, 0.85vw, 13px);
+}
+
+.event-pass--floating .event-pass__item--place strong {
+  font-size: clamp(1.65rem, 2.65vw, 2.75rem);
+}
+
+.event-pass--floating .event-pass__meta small,
+.event-pass--floating .event-pass__meta > div:last-child small {
+  color: rgba(220, 229, 244, 0.68);
+  font-size: clamp(0.43rem, 0.52vw, 0.6rem);
+  letter-spacing: 0.08em;
+}
+
+.event-pass--floating .event-pass__meta > div:first-child small {
+  color: var(--color-red);
+}
+
+.event-pass--floating .event-pass__transit {
+  display: grid;
+  min-height: clamp(22px, 2.25vw, 32px);
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(5px, 0.55vw, 9px);
+  padding: 0 clamp(10px, 1.2vw, 18px);
+  margin: 0;
+  border-top: 1px solid rgba(205, 222, 248, 0.12);
+  color: rgba(220, 229, 244, 0.62);
+  font-family: var(--font-display);
+  font-size: clamp(0.46rem, 0.6vw, 0.65rem);
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.event-pass--floating .event-pass__transit svg {
+  width: clamp(12px, 1.1vw, 17px);
+  height: clamp(12px, 1.1vw, 17px);
+  color: var(--color-blue-bright);
+}
+
+.event-pass--floating .event-pass__transit span {
+  color: var(--color-blue-bright);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.event-pass--floating .event-pass__transit strong {
+  min-width: 0;
+  overflow: hidden;
+  color: rgba(244, 247, 252, 0.76);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-pass--floating .event-pass__actions {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: clamp(7px, 0.75vw, 12px);
+  margin-top: clamp(6px, 0.62vw, 10px);
+}
+
+.event-pass--floating .event-pass__actions .action-link,
+.event-pass--floating .event-pass__actions .calendar-button {
+  min-height: clamp(41px, 3.8vw, 54px);
+  font-size: clamp(0.78rem, 1vw, 1.05rem);
+}
+
+.hero-hand__card:focus-within {
+  outline: 2px solid rgba(117, 173, 255, 0.92);
+  outline-offset: 5px;
+}
+
+@keyframes hero-card-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -7px;
+  }
+}
+
+@keyframes hero-card-echo {
+  0%,
+  100% {
+    opacity: 0.07;
+  }
+
+  50% {
+    opacity: 0.15;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .event-pass {
+  .event-pass,
+  .hero-hand__card,
+  .hero-hand__card-echo {
+    animation: none;
     transition: none;
   }
+
+  .hero-hand__card {
+    translate: none;
+    transform: none;
+  }
+
 }

@@ -7,6 +7,7 @@ import {
 
 type SpotlightStyles = CSSProperties & {
   "--spotlight-color": string;
+  "--spotlight-opacity": string;
   "--spotlight-size": string;
 };
 
@@ -37,6 +38,7 @@ export function SpotlightCard({
 
       card.style.setProperty("--spotlight-x", `${localX}px`);
       card.style.setProperty("--spotlight-y", `${localY}px`);
+      card.style.setProperty("--spotlight-opacity", "0.78");
     }
 
     onPointerMove?.(event);
@@ -45,6 +47,7 @@ export function SpotlightCard({
   const spotlightStyles: SpotlightStyles = {
     ...style,
     "--spotlight-color": spotlightColor,
+    "--spotlight-opacity": "0",
     "--spotlight-size": `${spotlightSize}px`,
   };
 
@@ -54,6 +57,12 @@ export function SpotlightCard({
       ref={cardRef}
       className={`spotlight-card ${className}`.trim()}
       onPointerMove={handlePointerMove}
+      onPointerLeave={(event) => {
+        cardRef.current?.style.removeProperty("--spotlight-x");
+        cardRef.current?.style.removeProperty("--spotlight-y");
+        cardRef.current?.style.setProperty("--spotlight-opacity", "0");
+        articleProps.onPointerLeave?.(event);
+      }}
       style={spotlightStyles}
     >
       {children}

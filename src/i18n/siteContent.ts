@@ -37,6 +37,8 @@ type SiteContent = {
     eyebrow: string;
     titleKicker: string;
     title: string;
+    coverVisualAlt: string;
+    featureTags: readonly string[];
   };
   event: {
     venue: string;
@@ -150,6 +152,8 @@ export const siteContent = {
       eyebrow: "MORE THAN TABLES · CONNECTING PLAY CULTURE",
       titleKicker: "台灣年度",
       title: "旗艦卡牌展",
+      coverVisualAlt: "浮動的 Flagship Card Show Taiwan 橫向活動卡片",
+      featureTags: ["30+ TCG 攤商", "冠軍挑戰賽", "稀有收藏展示"],
     },
     event: {
       venue: event.venue,
@@ -398,6 +402,8 @@ export const siteContent = {
       eyebrow: "MORE THAN TABLES · CONNECTING PLAY CULTURE",
       titleKicker: "TAIWAN'S PREMIER",
       title: "CARD SHOW",
+      coverVisualAlt: "A floating landscape Flagship Card Show Taiwan event card",
+      featureTags: ["30+ TCG VENDORS", "CHAMPION CHALLENGE", "RARE SHOWCASE"],
     },
     event: {
       venue: event.englishVenue,

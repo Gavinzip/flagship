@@ -3,6 +3,7 @@
   --spotlight-y: 46%;
   --spotlight-size: 320px;
   --spotlight-color: rgba(104, 180, 255, 0.24);
+  --spotlight-opacity: 0;
 
   isolation: isolate;
 }
@@ -17,13 +18,12 @@
     transparent 72%
   );
   content: "";
-  opacity: 0;
+  opacity: var(--spotlight-opacity);
   pointer-events: none;
   transition: opacity 360ms ease;
   will-change: opacity;
 }
 
-.spotlight-card:hover::after,
 .spotlight-card:focus-within::after {
   opacity: 0.78;
 }

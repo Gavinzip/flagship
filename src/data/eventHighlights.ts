@@ -10,25 +10,25 @@ export type EventHighlight = {
 export const eventHighlightVisuals = [
   {
     number: "01",
-    image: media.highlightPlayers,
+    image: media.highlightEntryGift,
     imagePosition: "50% center",
     layout: "compact",
   },
   {
     number: "02",
-    image: media.sectionScheduleStage,
+    image: media.highlightChampionChallenge,
     imagePosition: "center",
     layout: "wide",
   },
   {
     number: "03",
-    image: media.highlightRareCard,
+    image: media.highlightRareShowcase,
     imagePosition: "60% center",
     layout: "wide",
   },
   {
     number: "04",
-    image: media.eventCrowd,
+    image: media.highlightTcgVendors,
     imagePosition: "center",
     layout: "compact",
   },
