@@ -1,0 +1,15 @@
+:8080 {
+  root * /usr/share/caddy
+  encode zstd gzip
+
+  @immutable path /assets/*
+  header @immutable Cache-Control "public, max-age=31536000, immutable"
+
+  @noCache not path /assets/*
+  header @noCache Cache-Control "no-cache"
+
+  header X-Content-Type-Options "nosniff"
+
+  try_files {path} /index.html
+  file_server
+}
