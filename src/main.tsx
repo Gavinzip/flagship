@@ -8,9 +8,11 @@ import { App } from "./App";
 import { SiteBoot } from "./components/SiteBoot";
 import { installStaticAssetCssVariables } from "./config/media";
 import { LocaleProvider } from "./i18n/LocaleProvider";
+import { installGoogleAnalytics } from "./lib/googleAnalytics";
 import "./styles/index.css";
 
 installStaticAssetCssVariables();
+installGoogleAnalytics();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

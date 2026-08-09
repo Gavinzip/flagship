@@ -96,7 +96,26 @@ function productionAssetResolver(mode: string, rawCdnBase: string) {
     `${origin.toString().replace(/\/$/, "")}/${STATIC_ASSET_RELEASE}${path}`;
 }
 
-function eventAssets(assetUrl: (path: string) => string): Plugin {
+function analyticsMeasurementId(mode: string, rawMeasurementId: string) {
+  const measurementId = rawMeasurementId.trim();
+
+  if (mode !== "production" && !measurementId) {
+    return "";
+  }
+
+  if (!/^G-[A-Z0-9]+$/.test(measurementId)) {
+    throw new Error(
+      "VITE_GA_MEASUREMENT_ID must be a valid GA4 measurement ID.",
+    );
+  }
+
+  return measurementId;
+}
+
+function eventAssets(
+  assetUrl: (path: string) => string,
+  measurementId: string,
+): Plugin {
   const ogDescription = `${event.date} ${event.weekday} · ${event.startTime}—${event.endTime} · ${event.venue} ${event.room}`;
   const calendar = buildCalendar("zh-TW");
   const englishCalendar = buildCalendar("en");
@@ -153,6 +172,7 @@ function eventAssets(assetUrl: (path: string) => string): Plugin {
         .replaceAll("__EVENT_TITLE__", event.name)
         .replaceAll("__EVENT_META_DESCRIPTION__", event.metaDescription)
         .replaceAll("__EVENT_OG_DESCRIPTION__", ogDescription)
+        .replaceAll("__GA_MEASUREMENT_ID__", measurementId)
         .replaceAll("__ASSET_APP_ICON__", assetUrl("/assets/app-icon.png"))
         .replaceAll(
           "__ASSET_FLAGSHIP_LOGO__",
@@ -173,10 +193,14 @@ export default defineConfig(({ mode }) => {
     mode,
     environment.VITE_STATIC_ASSET_CDN_BASE_URL || "",
   );
+  const measurementId = analyticsMeasurementId(
+    mode,
+    environment.VITE_GA_MEASUREMENT_ID || "",
+  );
 
   return {
     root: projectRoot,
-    plugins: [eventAssets(assetUrl), react()],
+    plugins: [eventAssets(assetUrl, measurementId), react()],
     build: {
       copyPublicDir: false,
       cssCodeSplit: true,

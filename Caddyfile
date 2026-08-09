@@ -8,7 +8,9 @@
   @noCache not path /assets/*
   header @noCache Cache-Control "no-cache"
 
+  header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://embed.lu.ma; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; img-src 'self' data: https://flagship-cardshow-media.tree-gavin.workers.dev https://www.google-analytics.com https://region1.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; media-src 'self' https://flagship-cardshow-media.tree-gavin.workers.dev; frame-src https://lu.ma https://luma.com https://www.google.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
   header X-Content-Type-Options "nosniff"
+  header Referrer-Policy "strict-origin-when-cross-origin"
 
   try_files {path} /index.html
   file_server
