@@ -146,7 +146,7 @@ export const siteContent = {
         { locale: "zh-TW", label: "繁體中文" },
         { locale: "en", label: "English" },
       ],
-      ticketLabel: "立即購票",
+      ticketLabel: "立即預約",
     },
     hero: {
       eyebrow: "MORE THAN TABLES · CONNECTING PLAY CULTURE",
@@ -164,7 +164,7 @@ export const siteContent = {
     calendar: { label: "加入行事曆" },
     mobileActions: {
       label: "活動快速操作",
-      ticket: "立即購票",
+      ticket: "立即預約",
       directions: "開始導航",
     },
     highlights: {
@@ -291,7 +291,7 @@ export const siteContent = {
           category: "門票與入場",
           question: "如何購買門票？",
           answer:
-            "點選網站中的「立即購票」，即可透過 Luma 查看票價、入場權益並完成購票。名額額滿後將停止售票。",
+            "點選網站中的「立即預約」，即可透過 Luma 查看票價、入場權益並完成購票。名額額滿後將停止售票。",
         },
         {
           category: "門票與入場",
