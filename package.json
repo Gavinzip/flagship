@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5174 --strictPort",
-    "build": "tsc --noEmit && vite build && npm run assets:assert-build",
+    "build": "tsc --noEmit && vite build && node scripts/generate-csp.mjs && npm run assets:assert-build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "assets:audit": "node scripts/r2-static-assets.mjs audit",

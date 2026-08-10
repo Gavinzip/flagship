@@ -1,5 +1,5 @@
 import { Map, MapPin, Train } from "iconoir-react";
-import { media } from "../config/media";
+import { media, responsiveMedia } from "../config/media";
 import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
 import { ActionLink } from "./ActionLink";
@@ -23,7 +23,6 @@ export function VenueSection() {
             <iframe
               src={event.mapEmbedUrl}
               title={content.venue.mapTitle}
-              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
             <span>{content.venue.mapRoute}</span>
@@ -98,11 +97,10 @@ export function VenueSection() {
             tabIndex={0}
           >
             <img
-              src={media.floorPlan}
+              {...responsiveMedia.floorPlan}
               width="3600"
               height="2200"
               alt={content.venue.floorPlanAlt}
-              loading="lazy"
             />
           </div>
 

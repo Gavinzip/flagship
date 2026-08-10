@@ -1,19 +1,12 @@
 import {
   type AnchorHTMLAttributes,
+  type MouseEvent,
   type ReactNode,
-  useEffect,
 } from "react";
 import { event } from "../data/event";
 import { ActionLink } from "./ActionLink";
 import { InteractiveLink } from "./InteractiveLink";
-
-declare global {
-  interface Window {
-    luma?: {
-      initCheckout?: () => void;
-    };
-  }
-}
+import { useLumaCheckout } from "./LumaCheckoutProvider";
 
 type TicketLinkProps = Omit<
   AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -24,32 +17,25 @@ type TicketLinkProps = Omit<
   variant?: "action" | "plain";
 };
 
-function initializeLumaCheckout() {
-  window.luma?.initCheckout?.();
-}
-
 export function TicketLink({
   children,
   tone = "primary",
   variant = "action",
   ...props
 }: TicketLinkProps) {
-  useEffect(() => {
-    const checkoutScript = document.getElementById("luma-checkout");
+  const { openCheckout } = useLumaCheckout();
+  const openLumaCheckout = (mouseEvent: MouseEvent<HTMLAnchorElement>) => {
+    props.onClick?.(mouseEvent);
+    if (mouseEvent.defaultPrevented) return;
 
-    initializeLumaCheckout();
-    checkoutScript?.addEventListener("load", initializeLumaCheckout);
-
-    return () => {
-      checkoutScript?.removeEventListener("load", initializeLumaCheckout);
-    };
-  }, []);
+    mouseEvent.preventDefault();
+    openCheckout();
+  };
 
   const checkoutProps = {
     ...props,
     href: event.ticketUrl,
-    "data-luma-action": "checkout",
-    "data-luma-event-id": event.lumaEventId,
+    onClick: openLumaCheckout,
   };
 
   if (variant === "plain") {

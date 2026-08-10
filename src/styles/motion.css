@@ -17,8 +17,9 @@
   top: 4%;
   height: 1px;
   opacity: 0.06;
+  transform: translate3d(0, 0, 0);
   animation: hud-scan-travel 8.8s linear infinite;
-  will-change: top, opacity;
+  will-change: transform, opacity;
 }
 
 .hud-scan__beam--red {
@@ -81,25 +82,22 @@
 
 .motion-ready [data-reveal] {
   opacity: 0.06;
-  filter: blur(9px);
   transform: translate3d(0, 24px, 0);
   transition:
     opacity 680ms ease,
-    filter 680ms ease,
     transform 760ms var(--ease-out);
   transition-delay: calc(var(--reveal-index, 0) * 80ms);
 }
 
 .motion-ready [data-reveal].is-revealed {
   opacity: 1;
-  filter: blur(0);
   transform: translate3d(0, 0, 0);
 }
 
 @keyframes hud-scan-travel {
   0% {
-    top: 4%;
     opacity: 0.06;
+    transform: translate3d(0, 0, 0);
   }
 
   9% {
@@ -111,8 +109,8 @@
   }
 
   100% {
-    top: 96%;
     opacity: 0.06;
+    transform: translate3d(0, 92vh, 0);
   }
 }
 
@@ -149,7 +147,6 @@
 
   .motion-ready [data-reveal] {
     opacity: 1;
-    filter: none;
     transform: none;
     transition: none;
   }

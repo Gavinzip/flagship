@@ -5,6 +5,7 @@ import "@fontsource/barlow-condensed/latin-700.css";
 import "@fontsource/barlow-condensed/latin-800.css";
 import "@fontsource/barlow-condensed/latin-900.css";
 import { App } from "./App";
+import { LumaCheckoutProvider } from "./components/LumaCheckoutProvider";
 import { SiteBoot } from "./components/SiteBoot";
 import { installStaticAssetCssVariables } from "./config/media";
 import { LocaleProvider } from "./i18n/LocaleProvider";
@@ -17,9 +18,11 @@ installGoogleAnalytics();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <LocaleProvider>
-      <SiteBoot>
-        <App />
-      </SiteBoot>
+      <LumaCheckoutProvider>
+        <SiteBoot>
+          <App />
+        </SiteBoot>
+      </LumaCheckoutProvider>
     </LocaleProvider>
   </StrictMode>,
 );

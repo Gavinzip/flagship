@@ -3,7 +3,7 @@ import {
   type PointerEvent,
   useRef,
 } from "react";
-import { media } from "../config/media";
+import { responsiveMedia } from "../config/media";
 import { useLocale } from "../i18n/LocaleProvider";
 import { EventPassContent } from "./EventPass";
 import { SpotlightCard } from "./SpotlightCard";
@@ -57,7 +57,7 @@ export function FloatingEventPass() {
     >
       <img
         className="hero-hand__card-echo hero-hand__card-echo--rear"
-        src={media.heroFloatingCard}
+        {...responsiveMedia.heroFloatingCard}
         width="1576"
         height="1020"
         alt=""
@@ -65,7 +65,7 @@ export function FloatingEventPass() {
       />
       <img
         className="hero-hand__card-echo hero-hand__card-echo--near"
-        src={media.heroFloatingCard}
+        {...responsiveMedia.heroFloatingCard}
         width="1576"
         height="1020"
         alt=""
@@ -78,7 +78,7 @@ export function FloatingEventPass() {
       >
         <img
           className="hero-hand__card-image"
-          src={media.heroFloatingCard}
+          {...responsiveMedia.heroFloatingCard}
           width="1576"
           height="1020"
           alt=""

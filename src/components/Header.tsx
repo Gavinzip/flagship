@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, Xmark } from "iconoir-react";
-import { media } from "../config/media";
+import { responsiveMedia } from "../config/media";
 import { useLocale } from "../i18n/LocaleProvider";
 import { LanguageSelector } from "./LanguageSelector";
 import { TicketLink } from "./TicketLink";
@@ -25,7 +25,7 @@ export function Header() {
       <div className="site-shell site-header__inner">
         <a className="brand-link" href="#top" aria-label={content.header.homeLabel}>
           <img
-            src={media.flagshipLogo}
+            {...responsiveMedia.flagshipLogo}
             width="900"
             height="493"
             alt="Flagship Card Show Taiwan"

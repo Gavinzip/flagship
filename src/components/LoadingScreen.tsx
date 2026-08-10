@@ -1,5 +1,5 @@
 import { WarningTriangle } from "iconoir-react";
-import { media } from "../config/media";
+import { media, responsiveMedia } from "../config/media";
 import { useLocale } from "../i18n/LocaleProvider";
 import type { SiteReadiness } from "../hooks/useSiteReadiness";
 import { SpotlightCard } from "./SpotlightCard";
@@ -38,7 +38,7 @@ export function LoadingScreen({
       >
         <img
           className="loading-screen__card-surface"
-          src={media.heroFloatingCard}
+          {...responsiveMedia.heroFloatingCard}
           width="1576"
           height="1020"
           alt=""
@@ -47,7 +47,7 @@ export function LoadingScreen({
         <div className="loading-screen__content">
           <img
             className="loading-screen__logo"
-            src={media.flagshipLogo}
+            {...responsiveMedia.flagshipLogo}
             width="900"
             height="493"
             alt="Flagship Card Show Taiwan"

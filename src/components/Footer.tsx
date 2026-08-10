@@ -1,5 +1,5 @@
 import { ArrowUp, Calendar, MapPin } from "iconoir-react";
-import { media } from "../config/media";
+import { responsiveMedia } from "../config/media";
 import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
 
@@ -10,7 +10,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="site-shell site-footer__inner">
         <img
-          src={media.flagshipLogo}
+          {...responsiveMedia.flagshipLogo}
           width="900"
           height="493"
           alt="Flagship Card Show Taiwan"

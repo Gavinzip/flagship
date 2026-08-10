@@ -1,5 +1,6 @@
 node_modules/
 dist/
+Caddyfile.csp
 tmp/
 .DS_Store
 *.tsbuildinfo

@@ -44,7 +44,6 @@ export function TicketSection() {
             <iframe
               src={`https://luma.com/embed/event/${event.lumaEventId}/simple`}
               title={content.tickets.iframeTitle}
-              loading="lazy"
               allow="fullscreen; payment"
             />
           </div>

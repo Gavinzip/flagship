@@ -1,3 +1,5 @@
+import { setTrustedScriptSource } from "./trustedScripts";
+
 const MEASUREMENT_ID_META_NAME = "ga-measurement-id";
 const MEASUREMENT_ID_PATTERN = /^G-[A-Z0-9]+$/;
 
@@ -46,7 +48,10 @@ export function installGoogleAnalytics() {
   const script = document.createElement("script");
   script.async = true;
   script.dataset.gaMeasurementId = measurementId;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+  setTrustedScriptSource(
+    script,
+    `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`,
+  );
   document.head.append(script);
 
   window.gtag("js", new Date());

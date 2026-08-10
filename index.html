@@ -10,24 +10,27 @@
     <meta name="theme-color" content="#05080f" />
     <meta name="ga-measurement-id" content="__GA_MEASUREMENT_ID__" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="__EVENT_CANONICAL_URL__" />
     <meta property="og:locale" content="zh_TW" />
     <meta property="og:title" content="__EVENT_TITLE__" />
     <meta
       property="og:description"
       content="__EVENT_OG_DESCRIPTION__"
     />
+    <link rel="canonical" href="__EVENT_CANONICAL_URL__" />
+    <link rel="preconnect" href="__ASSET_CDN_ORIGIN__" crossorigin />
+    <link rel="preconnect" href="https://luma.com" crossorigin />
     <link rel="icon" type="image/png" href="__ASSET_APP_ICON__" />
-    <link rel="preload" as="image" href="__ASSET_FLAGSHIP_LOGO__" fetchpriority="high" />
-    <link rel="preload" as="image" href="__ASSET_HERO_ARENA__" fetchpriority="high" />
+    <link
+      rel="preload"
+      as="image"
+      href="__ASSET_FLAGSHIP_LOGO__"
+      imagesrcset="__ASSET_FLAGSHIP_LOGO_SRCSET__"
+      imagesizes="(max-width: 620px) 92vw, 650px"
+      fetchpriority="high"
+    />
+    <link rel="preload" as="image" href="__ASSET_HERO_STAGE__" fetchpriority="high" />
     <title>__EVENT_TITLE__</title>
-    <style>
-      html,
-      body,
-      #root {
-        min-height: 100%;
-        background: #02050a;
-      }
-    </style>
     <script type="application/ld+json">
       __EVENT_STRUCTURED_DATA__
     </script>
@@ -35,9 +38,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      id="luma-checkout"
-      src="https://embed.lu.ma/checkout-button.js"
-    ></script>
   </body>
 </html>

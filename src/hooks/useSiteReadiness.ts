@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { siteImageUrls } from "../config/media";
+import {
+  siteImagePreloads,
+  type SiteImagePreload,
+} from "../config/media";
 
 export type SiteReadiness =
   | {
@@ -24,7 +27,7 @@ export type SiteReadiness =
       failedUrls: readonly string[];
     };
 
-function preloadImage(url: string) {
+function preloadImage({ src, srcSet, sizes }: SiteImagePreload) {
   return new Promise<void>((resolve, reject) => {
     const image = new Image();
     image.decoding = "async";
@@ -36,7 +39,7 @@ function preloadImage(url: string) {
           await image.decode();
         } catch {
           if (!image.naturalWidth) {
-            reject(new Error(`Image could not be decoded: ${url}`));
+            reject(new Error(`Image could not be decoded: ${src}`));
             return;
           }
         }
@@ -47,11 +50,13 @@ function preloadImage(url: string) {
 
     image.addEventListener(
       "error",
-      () => reject(new Error(`Image could not be loaded: ${url}`)),
+      () => reject(new Error(`Image could not be loaded: ${src}`)),
       { once: true },
     );
 
-    image.src = url;
+    if (srcSet) image.srcset = srcSet;
+    if (sizes) image.sizes = sizes;
+    image.src = src;
   });
 }
 
@@ -62,7 +67,7 @@ function nextPaint() {
 }
 
 export function useSiteReadiness(): SiteReadiness {
-  const total = siteImageUrls.length;
+  const total = siteImagePreloads.length;
   const [readiness, setReadiness] = useState<SiteReadiness>({
     status: "loading",
     completed: 0,
@@ -89,19 +94,24 @@ export function useSiteReadiness(): SiteReadiness {
     };
 
     const prepareSite = async () => {
+      const resources = [
+        ...siteImagePreloads.map((image) => ({
+          label: image.label,
+          prepare: () => preloadImage(image),
+        })),
+      ];
       const results = await Promise.allSettled(
-        siteImageUrls.map(async (url) => {
+        resources.map(async ({ prepare }) => {
           try {
-            await preloadImage(url);
+            await prepare();
           } finally {
             updateProgress();
           }
-          return url;
         }),
       );
 
       const failedUrls = results.flatMap((result, index) =>
-        result.status === "rejected" ? [siteImageUrls[index]] : [],
+        result.status === "rejected" ? [resources[index].label] : [],
       );
 
       if (!active) return;

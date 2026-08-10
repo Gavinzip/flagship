@@ -52,7 +52,6 @@ export function EventHighlightsGrid() {
                   <img
                     src={highlight.image}
                     alt={highlight.alt}
-                    loading={index === 0 ? "eager" : "lazy"}
                     decoding="async"
                   />
                   <span

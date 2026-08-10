@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { media } from "../config/media";
+import { responsiveMedia } from "../config/media";
 import { useLocale } from "../i18n/LocaleProvider";
 
 type HeroIntroProps = {
@@ -16,7 +16,7 @@ export function HeroIntro({ className = "" }: HeroIntroProps) {
     >
       <img
         className="hero__logo"
-        src={media.flagshipLogo}
+        {...responsiveMedia.flagshipLogo}
         width="900"
         height="493"
         alt="Flagship Card Show Taiwan"

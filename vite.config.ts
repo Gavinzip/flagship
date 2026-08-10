@@ -6,6 +6,25 @@ import event from "./src/config/event.json";
 import { STATIC_ASSET_RELEASE } from "./src/generated/staticAssetRelease";
 
 const projectRoot = fileURLToPath(new URL(".", import.meta.url));
+const canonicalUrl = "https://tcgflagship.com/";
+
+function buildRobots() {
+  return `User-agent: *\nAllow: /\n\nSitemap: ${new URL("sitemap.xml", canonicalUrl)}\n`;
+}
+
+function buildLlms() {
+  return `# ${event.name}\n\n> Taiwan's annual flagship trading card show, held at ${event.englishVenue} in Taipei.\n\n## Event\n\n- Date: ${event.dateIso}\n- Time: ${event.startTime}-${event.endTime} (UTC${event.timezone})\n- Venue: ${event.englishVenue}, ${event.room}\n- Address: ${event.englishAddress}\n\n## Official links\n\n- Website: ${canonicalUrl}\n- Registration: ${event.ticketUrl}\n- Calendar: ${new URL(event.calendarEnglishFilename, canonicalUrl)}\n`;
+}
+
+function buildSitemap() {
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${canonicalUrl}</loc>\n  </url>\n</urlset>\n`;
+}
+
+const publicTextAssets = {
+  "robots.txt": buildRobots(),
+  "llms.txt": buildLlms(),
+  "sitemap.xml": buildSitemap(),
+} as const;
 
 function toUtcStamp(date: string, time: string) {
   return new Date(`${date}T${time}:00${event.timezone}`)
@@ -144,6 +163,28 @@ function eventAssets(
 
   return {
     name: "flagship-event-assets",
+    configureServer(server) {
+      server.middlewares.use((request, response, next) => {
+        const pathname = request.url?.split("?", 1)[0].replace(/^\//, "");
+        const source = pathname
+          ? publicTextAssets[pathname as keyof typeof publicTextAssets]
+          : undefined;
+
+        if (!source) {
+          next();
+          return;
+        }
+
+        response.statusCode = 200;
+        response.setHeader(
+          "Content-Type",
+          pathname?.endsWith(".xml")
+            ? "application/xml; charset=utf-8"
+            : "text/plain; charset=utf-8",
+        );
+        response.end(source);
+      });
+    },
     configResolved(config) {
       if (config.command !== "serve") return;
       const publicDir = new URL("./public/", import.meta.url);
@@ -166,19 +207,39 @@ function eventAssets(
         fileName: event.calendarEnglishFilename,
         source: englishCalendar,
       });
+      for (const [filename, source] of Object.entries(publicTextAssets)) {
+        this.emitFile({
+          type: "asset",
+          fileName: filename,
+          source,
+        });
+      }
     },
     transformIndexHtml(html) {
+      const heroStageUrl = assetUrl("/assets/hero-floating-stage.webp");
+      const assetCdnOrigin = new URL(heroStageUrl, canonicalUrl).origin;
+      const flagshipLogoSrcSet = [
+        ["/assets/flagship-logo-360.webp", 360],
+        ["/assets/flagship-logo-600.webp", 600],
+        ["/assets/flagship-logo.webp", 900],
+      ]
+        .map(([path, width]) => `${assetUrl(String(path))} ${width}w`)
+        .join(", ");
+
       return html
         .replaceAll("__EVENT_TITLE__", event.name)
         .replaceAll("__EVENT_META_DESCRIPTION__", event.metaDescription)
         .replaceAll("__EVENT_OG_DESCRIPTION__", ogDescription)
+        .replaceAll("__EVENT_CANONICAL_URL__", canonicalUrl)
         .replaceAll("__GA_MEASUREMENT_ID__", measurementId)
+        .replaceAll("__ASSET_CDN_ORIGIN__", assetCdnOrigin)
         .replaceAll("__ASSET_APP_ICON__", assetUrl("/assets/app-icon.png"))
         .replaceAll(
           "__ASSET_FLAGSHIP_LOGO__",
           assetUrl("/assets/flagship-logo.webp"),
         )
-        .replaceAll("__ASSET_HERO_ARENA__", assetUrl("/assets/hero-arena.webp"))
+        .replaceAll("__ASSET_FLAGSHIP_LOGO_SRCSET__", flagshipLogoSrcSet)
+        .replaceAll("__ASSET_HERO_STAGE__", heroStageUrl)
         .replace(
           "__EVENT_STRUCTURED_DATA__",
           JSON.stringify(structuredData).replace(/</g, "\\u003c"),
