@@ -7,7 +7,7 @@ type TrustedTypePolicy = {
 declare global {
   interface Window {
     trustedTypes?: {
-      createPolicy: (
+      createPolicy?: (
         name: string,
         rules: { createScriptURL: (input: string) => string },
       ) => TrustedTypePolicy;
@@ -33,9 +33,13 @@ function validateScriptUrl(input: string) {
 }
 
 export function trustedScriptUrl(input: string) {
-  if (!window.trustedTypes) return validateScriptUrl(input);
+  const createPolicy = window.trustedTypes?.createPolicy;
 
-  scriptPolicy ??= window.trustedTypes.createPolicy("flagship", {
+  if (typeof createPolicy !== "function") {
+    return validateScriptUrl(input);
+  }
+
+  scriptPolicy ??= createPolicy.call(window.trustedTypes, "flagship", {
     createScriptURL: validateScriptUrl,
   });
 

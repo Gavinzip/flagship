@@ -3,6 +3,11 @@ import { setTrustedScriptSource } from "./trustedScripts";
 const MEASUREMENT_ID_META_NAME = "ga-measurement-id";
 const MEASUREMENT_ID_PATTERN = /^G-[A-Z0-9]+$/;
 
+export type GoogleAnalyticsInstallResult =
+  | { status: "installed" | "already-installed" }
+  | { status: "not-configured" }
+  | { status: "unavailable"; reason: string };
+
 declare global {
   interface Window {
     dataLayer?: IArguments[];
@@ -22,14 +27,17 @@ function readMeasurementId() {
     : null;
 }
 
-export function installGoogleAnalytics() {
+function describeInstallError(error: unknown) {
+  return error instanceof Error
+    ? `${error.name}: ${error.message}`
+    : "Unknown Google Analytics installation error";
+}
+
+export function installGoogleAnalytics(): GoogleAnalyticsInstallResult {
   const measurementId = readMeasurementId();
 
   if (!measurementId) {
-    if (import.meta.env.PROD) {
-      throw new Error("A valid Google Analytics measurement ID is required.");
-    }
-    return;
+    return { status: "not-configured" };
   }
 
   if (
@@ -37,7 +45,20 @@ export function installGoogleAnalytics() {
       `script[data-ga-measurement-id="${measurementId}"]`,
     )
   ) {
-    return;
+    return { status: "already-installed" };
+  }
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.dataset.gaMeasurementId = measurementId;
+
+  try {
+    setTrustedScriptSource(
+      script,
+      `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`,
+    );
+  } catch (error) {
+    return { status: "unavailable", reason: describeInstallError(error) };
   }
 
   window.dataLayer ??= [];
@@ -45,15 +66,14 @@ export function installGoogleAnalytics() {
     window.dataLayer?.push(arguments);
   };
 
-  const script = document.createElement("script");
-  script.async = true;
-  script.dataset.gaMeasurementId = measurementId;
-  setTrustedScriptSource(
-    script,
-    `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`,
-  );
-  document.head.append(script);
+  try {
+    document.head.append(script);
+    window.gtag("js", new Date());
+    window.gtag("config", measurementId);
+  } catch (error) {
+    script.remove();
+    return { status: "unavailable", reason: describeInstallError(error) };
+  }
 
-  window.gtag("js", new Date());
-  window.gtag("config", measurementId);
+  return { status: "installed" };
 }

@@ -13,7 +13,6 @@ import { installGoogleAnalytics } from "./lib/googleAnalytics";
 import "./styles/index.css";
 
 installStaticAssetCssVariables();
-installGoogleAnalytics();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -26,3 +25,14 @@ createRoot(document.getElementById("root")!).render(
     </LocaleProvider>
   </StrictMode>,
 );
+
+window.setTimeout(() => {
+  const analyticsResult = installGoogleAnalytics();
+
+  if (analyticsResult.status === "unavailable") {
+    console.warn(
+      "Google Analytics is unavailable in this browser:",
+      analyticsResult.reason,
+    );
+  }
+}, 0);
