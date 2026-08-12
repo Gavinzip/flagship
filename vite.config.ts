@@ -227,7 +227,7 @@ function eventAssets(
         .join(", ");
 
       return html
-        .replaceAll("__EVENT_TITLE__", event.name)
+        .replaceAll("__EVENT_TITLE__", event.seoTitle)
         .replaceAll("__EVENT_META_DESCRIPTION__", event.metaDescription)
         .replaceAll("__EVENT_OG_DESCRIPTION__", ogDescription)
         .replaceAll("__EVENT_CANONICAL_URL__", canonicalUrl)
