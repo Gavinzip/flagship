@@ -88,30 +88,36 @@ export function ReservationEntryPage() {
 
       <main className="reservation-entry-main">
         <div className="reservation-entry-intro site-shell entry-item">
-          <p>FLAGSHIP 2026 · EARLY-BIRD ACCESS</p>
-          <h1>{content.tickets.title}</h1>
-          <p className="reservation-entry-intro__description">
-            {content.tickets.description}
-          </p>
-          <div className="reservation-entry-intro__meta">
-            <span>{event.date} · {event.weekday}</span>
-            <span>{event.startTime}—{event.endTime}</span>
-            <span>{content.event.venue} · {event.room}</span>
+          <div className="reservation-entry-intro__primary">
+            <p className="reservation-entry-intro__eyebrow">
+              FLAGSHIP 2026 · EARLY-BIRD ACCESS
+            </p>
+            <h1>{content.tickets.title}</h1>
+            <p className="reservation-entry-intro__description">
+              {content.tickets.description}
+            </p>
           </div>
-          {demoMode ? (
-            <aside
-              className="reservation-entry-demo"
-              aria-label={locale === "zh-TW" ? "示範模式" : "Demo mode"}
-            >
-              <span>DEMO MODE</span>
-              <p>
-                {locale === "zh-TW"
-                  ? "這是獨立示範資料，不會送出或占用正式名額。測試 Gmail："
-                  : "This isolated demo sends no data and uses no live capacity. Test Gmail: "}
-                <code>{RESERVATION_DEMO_GMAIL}</code>
-              </p>
-            </aside>
-          ) : null}
+          <div className="reservation-entry-intro__details">
+            <div className="reservation-entry-intro__meta">
+              <span>{event.date} · {event.weekday}</span>
+              <span>{event.startTime}—{event.endTime}</span>
+              <span>{content.event.venue} · {event.room}</span>
+            </div>
+            {demoMode ? (
+              <aside
+                className="reservation-entry-demo"
+                aria-label={locale === "zh-TW" ? "示範模式" : "Demo mode"}
+              >
+                <span>DEMO MODE</span>
+                <p>
+                  {locale === "zh-TW"
+                    ? "這是獨立示範資料，不會送出或占用正式名額。測試 Gmail："
+                    : "This isolated demo sends no data and uses no live capacity. Test Gmail: "}
+                  <code>{RESERVATION_DEMO_GMAIL}</code>
+                </p>
+              </aside>
+            ) : null}
+          </div>
         </div>
         <TicketSection />
       </main>
