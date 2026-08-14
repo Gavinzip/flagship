@@ -56,6 +56,81 @@ pnpm assets:deploy-gateway
 
 正式 build 缺少 CDN 設定或仍夾帶活動圖片時會直接失敗，不會退回本機圖片。
 
+## 早鳥入場時段登記
+
+網站內建的 React 表單會顯示伺服器目前的剩餘名額，並讓已完成早鳥預約的參加者使用 Gmail 選擇入場時段。送出前會核對匯入的 Luma 早鳥名單；每個合資格 Gmail 只能登記一次，而且每次固定登記 1 張早鳥票、扣除 1 個入場名額。Luma 匯入資料中的原始票數只用於匯入對帳，不會改變登記扣額。時段額滿、`cutoff_at` 到期或入場時段已開始後，Worker 會在同一筆條件式寫入中拒絕送出，前端數字不具備最終扣額權限。資料庫同時禁止截止時間晚於入場開始時間，避免營運資料誤設後開放過期登記。
+
+資料與程式位置：
+
+- `cloudflare/reservations/reservation-worker.ts`：名額查詢、Gmail 驗證與原子登記
+- `cloudflare/reservations/migrations/`：D1 schema 與正式時段資料 migration
+- `shared/reservations/`：前後端共用的 Gmail、時段狀態與錯誤碼規則
+- `src/reservations/`：前端 API、15 秒同步、伺服器時間校正與流程狀態
+- `src/components/ReservationFlow.tsx`：共用於頁面與 modal 的流程組合層
+- `src/components/reservation/`：選擇、確認、成功與可用性畫面
+
+本機啟動：
+
+```bash
+pnpm reservation:migrate:local
+pnpm reservation:dev
+pnpm dev
+```
+
+正式環境必須先建立 `flagship-early-bird-reservations` D1 database，將 Wrangler 回傳的真實 `database_id` 寫入 `cloudflare/reservations/wrangler.jsonc`，再依序執行：
+
+```bash
+pnpm reservation:migrate:remote
+pnpm reservation:deploy
+pnpm reservation:verify:live
+pnpm build
+```
+
+目前 migration 只建立資料表，刻意沒有放入推測的正式時段或容量。主辦單位確認每個時段的中英文名稱、開始時間、結束時間、截止時間及名額後，應新增下一個 migration 寫入 `reservation_slots`，不可直接修改已套用的 migration。
+
+### 匯入 Luma 早鳥名單
+
+在 Luma 活動後台進入 `Manage → Guests`，下載完整 Guest CSV。匯出檔包含姓名與個資，不可放入 Git；本專案已忽略 `private/` 與 `*.luma-guests.csv`。
+
+先只看統計，不寫入資料庫，也不會輸出任何 Gmail：
+
+```bash
+pnpm reservation:eligibility:import -- /path/to/luma-guests.csv
+```
+
+統計會分開顯示 approved 票數、唯一 Gmail 數、群組票數、非 Gmail 票數及票種。工具支援每張票一列，也會在 CSV 有 `Ticket Quantity`、`Number of Tickets`、`Ticket Count` 或 `Quantity` 欄時按數量計算；同一 Gmail 的多列或多張票會合併成 `source_ticket_count`，只供來源資料對帳。實際登記仍固定扣除 1 個名額。
+
+確認統計後才套用本機名單：
+
+```bash
+pnpm reservation:eligibility:import -- /path/to/luma-guests.csv \
+  --ticket-type="Standard" \
+  --expect-csv-rows=1457 \
+  --expect-approved-tickets=1457 \
+  --expect-selected-tickets=1457 \
+  --apply-local --replace
+```
+
+正式匯入屬外部資料寫入，只能在取得發布同意、套用 migrations 且確認 D1 目標後執行：
+
+```bash
+pnpm reservation:eligibility:import -- /path/to/luma-guests.csv \
+  --ticket-type="Standard" \
+  --expect-csv-rows=1457 \
+  --expect-approved-tickets=1457 \
+  --expect-selected-tickets=1457 \
+  --apply-remote --replace \
+  --confirm-remote=IMPORT-EARLY-BIRD-GUESTS
+```
+
+以上 `Standard` 與 `1457` 只是目前公開 Luma 頁面觀察到的值，執行前仍須用實際 CSV dry run 結果及主辦方確認值替換。Apply 必須明確指定完全相符的票種名稱，以及預期 CSV 列數、全部 approved 票數與所選票種票數；任一對不上就停止，避免截斷檔或其他票種覆蓋正式資格名單。
+
+若 CSV 內有已核准但不是 Gmail 的票，工具預設停止，不會悄悄排除。只有主辦方明確決定這些票不適用時，才能額外加上 `--exclude-non-gmail`。
+
+目前採 Gmail 文字輸入並核對匯入的原 Luma 名單，不包含 Google OAuth 或信箱所有權驗證。名單核對能阻止不在早鳥名單內的 Gmail，但知道他人 Gmail 的人仍可能代為登記；若要驗證本人，仍需 Google OAuth 或一次性驗證信。
+
+`pnpm reservation:verify:live` 會直接檢查正式 health、時段資料、`Cache-Control: no-store`、CORS、台北時區、容量與剩餘名額，不會送出或更動預約。Health 只有在時段與合資格名單都存在，而且全部時段總容量不少於合資格 Gmail 數時才回傳成功；正式 API 尚未部署或資料未完整時，此檢查必須失敗。
+
 ## 待主辦單位確認
 
 - 票務與入場方式

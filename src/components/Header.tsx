@@ -3,7 +3,6 @@ import { Menu, Xmark } from "iconoir-react";
 import { responsiveMedia } from "../config/media";
 import { useLocale } from "../i18n/LocaleProvider";
 import { LanguageSelector } from "./LanguageSelector";
-import { TicketLink } from "./TicketLink";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -42,7 +41,6 @@ export function Header() {
 
         <div className="header-actions">
           <LanguageSelector />
-          <TicketLink className="header-cta">{content.header.ticketLabel}</TicketLink>
 
           <button
             className="menu-button"

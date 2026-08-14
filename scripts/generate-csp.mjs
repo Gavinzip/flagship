@@ -2,10 +2,18 @@ import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadEnv } from "vite";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const indexPath = resolve(projectRoot, "dist/index.html");
 const cspPath = resolve(projectRoot, "Caddyfile.csp");
+const productionEnvironment = loadEnv("production", projectRoot, "VITE_");
+const assetCdnOrigin = new URL(
+  productionEnvironment.VITE_STATIC_ASSET_CDN_BASE_URL,
+).origin;
+const reservationApiOrigin = new URL(
+  productionEnvironment.VITE_RESERVATION_API_BASE_URL,
+).origin;
 
 function hashContent(algorithm, content) {
   return `${algorithm}-${createHash(algorithm).update(content).digest("base64")}`;
@@ -53,16 +61,16 @@ for (const [, attributes, content] of inlineScripts) {
 const directives = [
   "default-src 'self'",
   `script-src 'self' ${scriptHashes.map((hash) => `'${hash}'`).join(" ")} 'strict-dynamic' https://www.googletagmanager.com`,
-  "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com",
-  "img-src 'self' data: https://flagship-cardshow-media.tree-gavin.workers.dev https://www.google-analytics.com https://region1.google-analytics.com",
+  `connect-src 'self' ${reservationApiOrigin} https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com`,
+  `img-src 'self' data: ${assetCdnOrigin} https://www.google-analytics.com https://region1.google-analytics.com`,
   "style-src-elem 'self'",
   "style-src-attr 'unsafe-inline'",
   "font-src 'self' data:",
-  "media-src 'self' https://flagship-cardshow-media.tree-gavin.workers.dev",
-  "frame-src https://lu.ma https://luma.com https://www.google.com",
+  `media-src 'self' ${assetCdnOrigin}`,
+  "frame-src https://www.google.com",
   "object-src 'none'",
   "base-uri 'self'",
-  "form-action 'self' https://lu.ma https://luma.com",
+  "form-action 'self'",
   "frame-ancestors 'none'",
   "require-trusted-types-for 'script'",
   "trusted-types flagship goog#html",

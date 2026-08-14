@@ -4,7 +4,6 @@
 @import "./motion.css";
 @import "./spotlight-card.css";
 @import "./loading-screen.css";
-@import "./luma-modal.css";
 @import "./hero.css";
 @import "./highlights.css";
 @import "./schedule.css";
@@ -12,5 +11,6 @@
 @import "./venue.css";
 @import "./faq.css";
 @import "./tickets.css";
+@import "./reservation-entry.css";
 @import "./section-surfaces.css";
 @import "./responsive.css";

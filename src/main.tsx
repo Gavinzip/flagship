@@ -5,23 +5,31 @@ import "@fontsource/barlow-condensed/latin-700.css";
 import "@fontsource/barlow-condensed/latin-800.css";
 import "@fontsource/barlow-condensed/latin-900.css";
 import { App } from "./App";
-import { LumaCheckoutProvider } from "./components/LumaCheckoutProvider";
+import { ReservationEntryPage } from "./components/ReservationEntryPage";
 import { SiteBoot } from "./components/SiteBoot";
 import { installStaticAssetCssVariables } from "./config/media";
 import { LocaleProvider } from "./i18n/LocaleProvider";
 import { installGoogleAnalytics } from "./lib/googleAnalytics";
+import { ReservationAvailabilityProvider } from "./reservations/ReservationAvailabilityProvider";
+import { isReservationEntryPath } from "./reservations/reservationRoute";
 import "./styles/index.css";
 
 installStaticAssetCssVariables();
 
+const reservationEntry = isReservationEntryPath(window.location.pathname);
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <LocaleProvider>
-      <LumaCheckoutProvider>
+      {reservationEntry ? (
+        <ReservationAvailabilityProvider>
+          <ReservationEntryPage />
+        </ReservationAvailabilityProvider>
+      ) : (
         <SiteBoot>
           <App />
         </SiteBoot>
-      </LumaCheckoutProvider>
+      )}
     </LocaleProvider>
   </StrictMode>,
 );

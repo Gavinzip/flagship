@@ -13,7 +13,7 @@ function buildRobots() {
 }
 
 function buildLlms() {
-  return `# ${event.name}\n\n> Taiwan's annual flagship trading card show, held at ${event.englishVenue} in Taipei.\n\n## Event\n\n- Date: ${event.dateIso}\n- Time: ${event.startTime}-${event.endTime} (UTC${event.timezone})\n- Venue: ${event.englishVenue}, ${event.room}\n- Address: ${event.englishAddress}\n\n## Official links\n\n- Website: ${canonicalUrl}\n- Registration: ${event.ticketUrl}\n- Calendar: ${new URL(event.calendarEnglishFilename, canonicalUrl)}\n`;
+  return `# ${event.name}\n\n> Taiwan's annual flagship trading card show, held at ${event.englishVenue} in Taipei.\n\n## Event\n\n- Date: ${event.dateIso}\n- Time: ${event.startTime}-${event.endTime} (UTC${event.timezone})\n- Venue: ${event.englishVenue}, ${event.room}\n- Address: ${event.englishAddress}\n\n## Official links\n\n- Website: ${canonicalUrl}\n- Calendar: ${new URL(event.calendarEnglishFilename, canonicalUrl)}\n`;
 }
 
 function buildSitemap() {
@@ -129,6 +129,21 @@ function analyticsMeasurementId(mode: string, rawMeasurementId: string) {
   }
 
   return measurementId;
+}
+
+function reservationApiBaseUrl(mode: string, rawApiBaseUrl: string) {
+  const apiBaseUrl = rawApiBaseUrl.trim().replace(/\/+$/, "");
+
+  if (!apiBaseUrl) {
+    throw new Error("VITE_RESERVATION_API_BASE_URL is required.");
+  }
+
+  const origin = new URL(apiBaseUrl);
+  if (mode === "production" && origin.protocol !== "https:") {
+    throw new Error("VITE_RESERVATION_API_BASE_URL must use HTTPS in production.");
+  }
+
+  return apiBaseUrl;
 }
 
 function eventAssets(
@@ -257,6 +272,10 @@ export default defineConfig(({ mode }) => {
   const measurementId = analyticsMeasurementId(
     mode,
     environment.VITE_GA_MEASUREMENT_ID || "",
+  );
+  reservationApiBaseUrl(
+    mode,
+    environment.VITE_RESERVATION_API_BASE_URL || "",
   );
 
   return {

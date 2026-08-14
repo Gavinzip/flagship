@@ -2,6 +2,9 @@ node_modules/
 dist/
 Caddyfile.csp
 tmp/
+.wrangler/
+private/
+*.luma-guests.csv
 .DS_Store
 *.tsbuildinfo
 
