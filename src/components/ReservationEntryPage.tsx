@@ -4,10 +4,9 @@ import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
 import { LanguageSelector } from "./LanguageSelector";
 import { TicketSection } from "./TicketSection";
-
-const localDemoGmail = import.meta.env.DEV
-  ? "flagship.tail.demo@gmail.com"
-  : null;
+import { RESERVATION_DEMO_GMAIL } from "../reservations/reservationDemo";
+import { RESERVATION_ENTRY_PATH } from "../reservations/reservationRoute";
+import { useReservationAvailability } from "../reservations/ReservationAvailabilityProvider";
 
 function usePrivatePageMetadata(title: string) {
   useEffect(() => {
@@ -36,6 +35,8 @@ function usePrivatePageMetadata(title: string) {
 
 export function ReservationEntryPage() {
   const { content, locale } = useLocale();
+  const { mode } = useReservationAvailability();
+  const demoMode = mode === "demo";
   usePrivatePageMetadata(
     `${content.tickets.title}｜FLAGSHIP Card Show Taiwan`,
   );
@@ -55,9 +56,32 @@ export function ReservationEntryPage() {
               alt="Flagship Card Show Taiwan"
             />
           </a>
-          <div>
+          <div className="reservation-entry-header__tools">
             <span>INVITED EARLY-BIRD GUESTS</span>
-            <LanguageSelector />
+            <div className="reservation-entry-header__controls">
+              <a
+                className={`reservation-demo-toggle${demoMode ? " is-active" : ""}`}
+                href={
+                  demoMode
+                    ? RESERVATION_ENTRY_PATH
+                    : `${RESERVATION_ENTRY_PATH}?demo=1`
+                }
+                aria-current={demoMode ? "page" : undefined}
+                aria-label={
+                  demoMode
+                    ? locale === "zh-TW"
+                      ? "離開示範模式"
+                      : "Exit demo mode"
+                    : locale === "zh-TW"
+                      ? "開啟示範模式"
+                      : "Open demo mode"
+                }
+              >
+                <i aria-hidden="true" />
+                DEMO
+              </a>
+              <LanguageSelector />
+            </div>
           </div>
         </div>
       </header>
@@ -74,11 +98,17 @@ export function ReservationEntryPage() {
             <span>{event.startTime}—{event.endTime}</span>
             <span>{content.event.venue} · {event.room}</span>
           </div>
-          {localDemoGmail ? (
-            <aside className="reservation-entry-demo" aria-label="本機示範資料">
-              <span>LOCAL DEMO</span>
+          {demoMode ? (
+            <aside
+              className="reservation-entry-demo"
+              aria-label={locale === "zh-TW" ? "示範模式" : "Demo mode"}
+            >
+              <span>DEMO MODE</span>
               <p>
-                本機示範 Gmail：<code>{localDemoGmail}</code>
+                {locale === "zh-TW"
+                  ? "這是獨立示範資料，不會送出或占用正式名額。測試 Gmail："
+                  : "This isolated demo sends no data and uses no live capacity. Test Gmail: "}
+                <code>{RESERVATION_DEMO_GMAIL}</code>
               </p>
             </aside>
           ) : null}

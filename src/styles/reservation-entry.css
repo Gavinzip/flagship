@@ -32,19 +32,70 @@
   align-items: center;
 }
 
-.reservation-entry-header__inner > div {
+.reservation-entry-header__tools,
+.reservation-entry-header__controls {
   display: flex;
   align-items: center;
+}
+
+.reservation-entry-header__tools {
   gap: 22px;
 }
 
-.reservation-entry-header__inner > div > span,
+.reservation-entry-header__controls {
+  gap: 8px;
+}
+
+.reservation-entry-header__tools > span,
 .reservation-entry-intro > p {
   color: var(--color-blue-bright);
   font-family: var(--font-display);
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.24em;
+}
+
+.reservation-demo-toggle {
+  display: inline-flex;
+  min-width: 76px;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(134, 163, 208, 0.34);
+  background: rgba(4, 12, 23, 0.86);
+  color: rgba(219, 229, 243, 0.72);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms var(--ease-out);
+}
+
+.reservation-demo-toggle i {
+  width: 6px;
+  height: 6px;
+  background: rgba(143, 164, 202, 0.54);
+  border-radius: 50%;
+  box-shadow: 0 0 0 rgba(113, 226, 165, 0);
+}
+
+.reservation-demo-toggle:hover,
+.reservation-demo-toggle:focus-visible,
+.reservation-demo-toggle.is-active {
+  border-color: rgba(113, 226, 165, 0.58);
+  background: rgba(19, 53, 42, 0.48);
+  color: #b9f7d2;
+  transform: translateY(-2px);
+}
+
+.reservation-demo-toggle.is-active i {
+  background: #71e2a5;
+  box-shadow: 0 0 12px rgba(113, 226, 165, 0.78);
 }
 
 .reservation-entry-main {
@@ -156,8 +207,17 @@
 }
 
 @media (max-width: 720px) {
-  .reservation-entry-header__inner > div > span {
+  .reservation-entry-header__tools > span {
     display: none;
+  }
+
+  .reservation-entry-header__inner > a {
+    width: 116px;
+  }
+
+  .reservation-demo-toggle {
+    min-width: 68px;
+    padding-inline: 9px;
   }
 
   .reservation-entry-main {
@@ -166,6 +226,21 @@
 
   .reservation-entry-intro h1 {
     font-size: clamp(2.7rem, 15vw, 4.4rem);
+  }
+}
+
+@media (max-width: 360px) {
+  .reservation-entry-header__inner {
+    gap: 12px;
+  }
+
+  .reservation-entry-header__inner > a {
+    width: 104px;
+  }
+
+  .reservation-demo-toggle {
+    min-width: 62px;
+    padding-inline: 7px;
   }
 }
 

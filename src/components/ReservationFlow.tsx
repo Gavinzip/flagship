@@ -111,6 +111,11 @@ export function ReservationFlow() {
       <ReservationSuccessState
         confirmation={flow.confirmation}
         onReset={flow.reset}
+        resetLabel={
+          flow.mode === "demo"
+            ? copy.replayDemo
+            : undefined
+        }
       />
     );
   }

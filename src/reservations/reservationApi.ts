@@ -1,6 +1,7 @@
 import type {
   AvailabilityResponse,
   ReservationErrorCode,
+  ReservationInput,
   ReservationReceipt,
 } from "./types";
 import {
@@ -67,11 +68,7 @@ export async function fetchAvailability(signal?: AbortSignal) {
   return (await response.json()) as AvailabilityResponse;
 }
 
-export async function createReservation(input: {
-  email: string;
-  slotId: string;
-  company: string;
-}) {
+export async function createReservation(input: ReservationInput) {
   let response: Response;
   try {
     response = await fetch(`${apiBaseUrl}/api/early-bird/reservations`, {

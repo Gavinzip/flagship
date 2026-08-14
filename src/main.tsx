@@ -17,12 +17,17 @@ import "./styles/index.css";
 installStaticAssetCssVariables();
 
 const reservationEntry = isReservationEntryPath(window.location.pathname);
+const reservationDemo =
+  reservationEntry &&
+  new URLSearchParams(window.location.search).get("demo") === "1";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <LocaleProvider>
       {reservationEntry ? (
-        <ReservationAvailabilityProvider>
+        <ReservationAvailabilityProvider
+          mode={reservationDemo ? "demo" : "live"}
+        >
           <ReservationEntryPage />
         </ReservationAvailabilityProvider>
       ) : (

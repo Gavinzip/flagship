@@ -1,7 +1,8 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { RESERVATION_ERROR } from "../../shared/reservations/domain";
 import { normalizeGmail } from "../../shared/reservations/gmail";
-import { createReservation, ReservationApiError } from "./reservationApi";
+import { ReservationApiError } from "./reservationApi";
+import { RESERVATION_DEMO_GMAIL } from "./reservationDemo";
 import { useReservationAvailability } from "./ReservationAvailabilityProvider";
 import type {
   ReservationErrorCode,
@@ -24,7 +25,9 @@ function reservationAttemptKey(email: string, slotId: string) {
 export function useReservationFlow() {
   const availability = useReservationAvailability();
   const [step, setStep] = useState<ReservationFlowStep>("select");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(() =>
+    availability.mode === "demo" ? RESERVATION_DEMO_GMAIL : "",
+  );
   const [selectedSlotId, setSelectedSlotId] = useState("");
   const [company, setCompany] = useState("");
   const [fieldError, setFieldError] = useState<ReservationFieldError>(null);
@@ -89,7 +92,7 @@ export function useReservationFlow() {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const receipt = await createReservation({
+      const receipt = await availability.createReservation({
         email,
         slotId: selectedSlot.id,
         company,
@@ -134,8 +137,11 @@ export function useReservationFlow() {
   };
 
   const reset = () => {
+    availability.resetDemo?.();
     setStep("select");
-    setEmail("");
+    setEmail(
+      availability.mode === "demo" ? RESERVATION_DEMO_GMAIL : "",
+    );
     setSelectedSlotId("");
     setCompany("");
     setFieldError(null);

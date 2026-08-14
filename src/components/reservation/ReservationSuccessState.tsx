@@ -6,9 +6,11 @@ import type { ReservationConfirmation } from "../../reservations/useReservationF
 export function ReservationSuccessState({
   confirmation,
   onReset,
+  resetLabel,
 }: {
   confirmation: ReservationConfirmation;
   onReset: () => void;
+  resetLabel?: string;
 }) {
   const { content, locale } = useLocale();
   const copy = content.tickets;
@@ -45,7 +47,7 @@ export function ReservationSuccessState({
         type="button"
         onClick={onReset}
       >
-        {copy.registerAnother}
+        {resetLabel ?? copy.registerAnother}
       </button>
     </div>
   );

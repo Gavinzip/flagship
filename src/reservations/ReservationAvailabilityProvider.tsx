@@ -8,11 +8,21 @@ import {
   useRef,
   useState,
 } from "react";
-import { fetchAvailability } from "./reservationApi";
-import type { ReservationSlot } from "./types";
+import {
+  createReservation as createLiveReservation,
+  fetchAvailability,
+} from "./reservationApi";
+import { createReservationDemoSession } from "./reservationDemo";
+import type {
+  ReservationInput,
+  ReservationReceipt,
+  ReservationSlot,
+} from "./types";
 import { getReservationSlotStatus } from "../../shared/reservations/domain";
 
 const REFRESH_INTERVAL_MS = 15_000;
+
+export type ReservationMode = "live" | "demo";
 
 type ReservationAvailabilityValue = {
   slots: ReservationSlot[];
@@ -20,7 +30,10 @@ type ReservationAvailabilityValue = {
   loading: boolean;
   error: boolean;
   stale: boolean;
+  mode: ReservationMode;
   refresh: (signal?: AbortSignal) => Promise<void>;
+  createReservation: (input: ReservationInput) => Promise<ReservationReceipt>;
+  resetDemo: (() => void) | null;
 };
 
 const ReservationAvailabilityContext =
@@ -28,9 +41,15 @@ const ReservationAvailabilityContext =
 
 export function ReservationAvailabilityProvider({
   children,
+  mode = "live",
 }: {
   children: ReactNode;
+  mode?: ReservationMode;
 }) {
+  const demoSession = useMemo(
+    () => (mode === "demo" ? createReservationDemoSession() : null),
+    [mode],
+  );
   const [slots, setSlots] = useState<ReservationSlot[]>([]);
   const [serverOffsetMs, setServerOffsetMs] = useState(0);
   const [now, setNow] = useState(() => Date.now());
@@ -45,7 +64,9 @@ export function ReservationAvailabilityProvider({
   const refresh = useCallback(async (signal?: AbortSignal) => {
     const requestId = ++latestRequest.current;
     try {
-      const response = await fetchAvailability(signal);
+      const response = demoSession
+        ? await demoSession.fetchAvailability(signal)
+        : await fetchAvailability(signal);
       const receivedAt = Date.now();
       const responseServerTime = Date.parse(response.serverTime);
       if (Number.isNaN(responseServerTime)) {
@@ -77,7 +98,26 @@ export function ReservationAvailabilityProvider({
         setLoading(false);
       }
     }
-  }, []);
+  }, [demoSession]);
+
+  const createReservation = useCallback(
+    (input: ReservationInput) =>
+      demoSession
+        ? demoSession.createReservation(input)
+        : createLiveReservation(input),
+    [demoSession],
+  );
+
+  const resetDemo = useMemo(
+    () =>
+      demoSession
+        ? () => {
+            demoSession.reset();
+            void refresh();
+          }
+        : null,
+    [demoSession, refresh],
+  );
 
   useEffect(() => {
     const controller = new AbortController();
@@ -105,8 +145,28 @@ export function ReservationAvailabilityProvider({
   }, [now, serverOffsetMs, slots]);
 
   const value = useMemo(
-    () => ({ slots: liveSlots, updatedAt, loading, error, stale, refresh }),
-    [error, liveSlots, loading, refresh, stale, updatedAt],
+    () => ({
+      slots: liveSlots,
+      updatedAt,
+      loading,
+      error,
+      stale,
+      mode,
+      refresh,
+      createReservation,
+      resetDemo,
+    }),
+    [
+      createReservation,
+      error,
+      liveSlots,
+      loading,
+      mode,
+      refresh,
+      resetDemo,
+      stale,
+      updatedAt,
+    ],
   );
 
   return (

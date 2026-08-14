@@ -148,6 +148,7 @@ type SiteContent = {
     successDescription: string;
     successReference: string;
     registerAnother: string;
+    replayDemo: string;
     errors: Record<ReservationErrorCode, string>;
   };
   footer: {
@@ -441,6 +442,7 @@ export const siteContent = {
       successDescription: "請截圖保存以下資料，並於活動當日攜帶原早鳥票券。",
       successReference: "登記編號",
       registerAnother: "登記其他 Gmail",
+      replayDemo: "再看一次示範",
       errors: {
         INVALID_GMAIL: "這個地址不是有效的 Gmail，請重新確認。",
         INVALID_SLOT: "這個時段已不存在，請重新選擇。",
@@ -741,6 +743,7 @@ export const siteContent = {
       successDescription: "Save a screenshot of these details and bring your original early-bird ticket to the event.",
       successReference: "Reference",
       registerAnother: "Register another Gmail",
+      replayDemo: "Replay demo",
       errors: {
         INVALID_GMAIL: "Enter a valid Gmail address and try again.",
         INVALID_SLOT: "That entry time no longer exists. Please choose again.",

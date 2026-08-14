@@ -32,3 +32,9 @@ export type ReservationReceipt = {
   ticketCount: number;
   createdAt: string;
 };
+
+export type ReservationInput = {
+  email: string;
+  slotId: string;
+  company: string;
+};
