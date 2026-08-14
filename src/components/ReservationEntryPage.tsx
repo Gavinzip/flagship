@@ -92,7 +92,7 @@ export function ReservationEntryPage() {
             <p className="reservation-entry-intro__eyebrow">
               FLAGSHIP 2026 · EARLY-BIRD ACCESS
             </p>
-            <h1>{content.tickets.title}</h1>
+            <h1>{content.tickets.pageHeading}</h1>
             <p className="reservation-entry-intro__description">
               {content.tickets.description}
             </p>

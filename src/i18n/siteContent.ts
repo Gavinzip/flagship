@@ -103,6 +103,7 @@ type SiteContent = {
   };
   tickets: {
     title: string;
+    pageHeading: string;
     description: string;
     statusEyebrow: string;
     liveStatus: string;
@@ -395,6 +396,7 @@ export const siteContent = {
     },
     tickets: {
       title: "早鳥入場時段",
+      pageHeading: "預約入場時段",
       description:
         "早鳥票預約已結束。已完成預約的參加者，請輸入當時使用的 Gmail，並選擇尚有名額的入場時段。",
       statusEyebrow: "LIVE CAPACITY",
@@ -696,6 +698,7 @@ export const siteContent = {
     },
     tickets: {
       title: "Early-Bird Entry Times",
+      pageHeading: "Early-Bird Entry Times",
       description:
         "Early-bird reservations are closed. If you already reserved, enter the Gmail used at registration and choose an available entry time.",
       statusEyebrow: "LIVE CAPACITY",
