@@ -1,15 +1,11 @@
 export const PUBLIC_QUEUE_PATH = "/now-serving";
 export const ADMIN_QUEUE_PATH = "/queue-admin";
-export const JOIN_QUEUE_PATH = "/join-queue";
-export const QUEUE_QR_PATH = "/queue-qr";
 
-export type QueuePageMode = "public" | "admin" | "join" | "qr";
+export type QueuePageMode = "public" | "admin";
 
 const QUEUE_ROUTE_BY_MODE = {
   admin: { analytics: false, path: ADMIN_QUEUE_PATH },
-  join: { analytics: false, path: JOIN_QUEUE_PATH },
   public: { analytics: true, path: PUBLIC_QUEUE_PATH },
-  qr: { analytics: false, path: QUEUE_QR_PATH },
 } as const satisfies Record<QueuePageMode, {
   analytics: boolean;
   path: string;
@@ -39,14 +35,4 @@ function readQueueToken(hash: string) {
 
 export function readQueueAdminToken(hash: string) {
   return readQueueToken(hash);
-}
-
-export function readQueueJoinToken(hash: string) {
-  return readQueueToken(hash);
-}
-
-export function buildQueueJoinUrl(origin: string, joinToken: string) {
-  const url = new URL(JOIN_QUEUE_PATH, origin);
-  url.hash = new URLSearchParams({ token: joinToken }).toString();
-  return url.toString();
 }

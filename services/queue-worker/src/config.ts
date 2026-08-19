@@ -2,7 +2,6 @@ export type QueueWorkerConfig = {
   port: number;
   redisUrl: string;
   adminToken: string;
-  joinToken: string;
   allowedOrigins: ReadonlySet<string>;
 };
 
@@ -44,20 +43,15 @@ function origins() {
 
 export function loadConfig(): QueueWorkerConfig {
   const adminToken = required("QUEUE_ADMIN_TOKEN");
-  const joinToken = required("QUEUE_JOIN_TOKEN");
 
-  if (adminToken.length < 32 || joinToken.length < 32) {
-    throw new Error("Queue tokens must each contain at least 32 characters.");
-  }
-  if (adminToken === joinToken) {
-    throw new Error("QUEUE_ADMIN_TOKEN and QUEUE_JOIN_TOKEN must differ.");
+  if (adminToken.length < 32) {
+    throw new Error("QUEUE_ADMIN_TOKEN must contain at least 32 characters.");
   }
 
   return {
     port: port(),
     redisUrl: required("REDIS_URL"),
     adminToken,
-    joinToken,
     allowedOrigins: origins(),
   };
 }

@@ -1,7 +1,5 @@
 import {
   isQueueSnapshot,
-  isQueueTicket,
-  type QueueTicket,
   type QueueSnapshot,
 } from "../../shared/queue/domain";
 
@@ -33,12 +31,6 @@ async function readErrorCode(response: Response) {
 async function readSnapshot(response: Response) {
   const payload: unknown = await response.json();
   if (!isQueueSnapshot(payload)) throw new QueueApiError("INVALID_QUEUE_STATE");
-  return payload;
-}
-
-async function readTicket(response: Response) {
-  const payload: unknown = await response.json();
-  if (!isQueueTicket(payload)) throw new QueueApiError("INVALID_QUEUE_TICKET");
   return payload;
 }
 
@@ -81,52 +73,6 @@ export async function updateQueueNumber(
 
   if (!response.ok) throw new QueueApiError(await readErrorCode(response));
   return readSnapshot(response);
-}
-
-export async function fetchQueueTicket(ticketId: string, signal?: AbortSignal) {
-  let response: Response;
-
-  try {
-    response = await fetch(
-      `${apiBaseUrl}/api/queue/tickets/${encodeURIComponent(ticketId)}`,
-      {
-        headers: { Accept: "application/json" },
-        cache: "no-store",
-        signal,
-      },
-    );
-  } catch {
-    throw new QueueApiError("QUEUE_NETWORK_ERROR");
-  }
-
-  if (!response.ok) throw new QueueApiError(await readErrorCode(response));
-  return readTicket(response);
-}
-
-export async function issueQueueTicket(
-  ticketId: string,
-  joinToken: string,
-  signal?: AbortSignal,
-): Promise<QueueTicket> {
-  let response: Response;
-
-  try {
-    response = await fetch(`${apiBaseUrl}/api/queue/tickets`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${joinToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ticketId }),
-      signal,
-    });
-  } catch {
-    throw new QueueApiError("QUEUE_NETWORK_ERROR");
-  }
-
-  if (!response.ok) throw new QueueApiError(await readErrorCode(response));
-  return readTicket(response);
 }
 
 export function openQueueEvents(

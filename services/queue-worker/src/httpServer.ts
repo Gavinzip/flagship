@@ -5,15 +5,11 @@ import {
 } from "node:http";
 import {
   isQueueNumber,
-  isQueueTicketId,
   QUEUE_NUMBER_MAX,
   QUEUE_NUMBER_MIN,
 } from "../domain.js";
 import type { QueueWorkerConfig } from "./config.js";
-import {
-  QueueTicketLimitError,
-  RedisQueueRepository,
-} from "./redisQueueRepository.js";
+import { RedisQueueRepository } from "./redisQueueRepository.js";
 import { hasBearerAccess } from "./security.js";
 import { QueueEventHub } from "./sseHub.js";
 
@@ -31,7 +27,7 @@ function corsHeaders(request: IncomingMessage, config: QueueWorkerConfig) {
 
   if (origin && config.allowedOrigins.has(origin)) {
     headers["Access-Control-Allow-Origin"] = origin;
-    headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, OPTIONS";
+    headers["Access-Control-Allow-Methods"] = "GET, PUT, OPTIONS";
     headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type";
     headers["Access-Control-Max-Age"] = "600";
     headers.Vary = "Origin";
@@ -178,76 +174,6 @@ export function createQueueHttpServer(
         return;
       }
 
-      if (
-        url.pathname === `${API_PREFIX}/tickets` &&
-        request.method === "POST"
-      ) {
-        if (!hasBearerAccess(request, config.joinToken)) {
-          json(
-            request,
-            response,
-            config,
-            { code: "QUEUE_JOIN_UNAUTHORIZED" },
-            401,
-          );
-          return;
-        }
-        const input = await readJson(request);
-        if (!isQueueTicketId(input.ticketId)) {
-          json(
-            request,
-            response,
-            config,
-            { code: "INVALID_QUEUE_TICKET_ID" },
-            400,
-          );
-          return;
-        }
-        const result = await repository.issueTicket(input.ticketId);
-        json(request, response, config, result.ticket, result.created ? 201 : 200);
-        return;
-      }
-
-      if (
-        url.pathname.startsWith(`${API_PREFIX}/tickets/`) &&
-        request.method === "GET"
-      ) {
-        let ticketId = "";
-        try {
-          ticketId = decodeURIComponent(
-            url.pathname.slice(`${API_PREFIX}/tickets/`.length),
-          );
-        } catch {
-          json(
-            request,
-            response,
-            config,
-            { code: "INVALID_QUEUE_TICKET_ID" },
-            400,
-          );
-          return;
-        }
-        if (!isQueueTicketId(ticketId)) {
-          json(
-            request,
-            response,
-            config,
-            { code: "INVALID_QUEUE_TICKET_ID" },
-            400,
-          );
-          return;
-        }
-        const ticket = await repository.readTicket(ticketId);
-        json(
-          request,
-          response,
-          config,
-          ticket ?? { code: "QUEUE_TICKET_NOT_FOUND" },
-          ticket ? 200 : 404,
-        );
-        return;
-      }
-
       json(request, response, config, { code: "NOT_FOUND" }, 404);
     } catch (error) {
       if (error instanceof InvalidBodyError) {
@@ -258,16 +184,6 @@ export function createQueueHttpServer(
               ? 413
               : 400;
         json(request, response, config, { code: error.message }, status);
-        return;
-      }
-      if (error instanceof QueueTicketLimitError) {
-        json(
-          request,
-          response,
-          config,
-          { code: "QUEUE_TICKET_LIMIT_REACHED" },
-          409,
-        );
         return;
       }
       console.error("Queue request failed", error);

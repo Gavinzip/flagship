@@ -133,32 +133,23 @@ pnpm reservation:eligibility:import -- /path/to/luma-guests.csv \
 
 ## 現場即時叫號
 
-叫號系統使用獨立的 Zeabur Node worker 與同專案 Redis。Redis 保存唯一狀態並原子發號，worker 透過 Server-Sent Events 即時推送到所有開啟中的頁面；沒有輪詢或前端自算的替代資料源。
+叫號系統使用獨立的 Zeabur Node worker 與同專案 Redis。Redis 保存唯一的目前叫號狀態，worker 透過 Server-Sent Events 即時推送到所有開啟中的頁面；沒有輪詢或前端自算的替代資料源。
 
 - 公開頁：`/now-serving`
 - 管理頁：`/queue-admin#token=<QUEUE_ADMIN_TOKEN>`
-- 現場 QR 展示頁：`/queue-qr#token=<QUEUE_JOIN_TOKEN>`（主辦方開啟並展示／下載）
-- 現場取號頁：`/join-queue#token=<QUEUE_JOIN_TOKEN>`（QR Code 指向此網址）
-- `services/queue-worker/src/redisQueueRepository.ts`：Redis 原子發號與持久化目前號碼／取號資料
-- `services/queue-worker/src/httpServer.ts`：公開讀取、管理更新、現場取號與 token 驗證
+- `services/queue-worker/src/redisQueueRepository.ts`：Redis 持久化目前叫號狀態
+- `services/queue-worker/src/httpServer.ts`：公開讀取、管理更新與管理 token 驗證
 - `services/queue-worker/src/sseHub.ts`：跨 worker 實例的 Redis Pub/Sub 與 SSE 廣播
 - `src/queue/`：路由、API、即時連線與資料驗證
-- `src/components/QueuePage.tsx`：公開顯示、管理控制台與現場取號頁
+- `src/components/QueuePage.tsx`：公開顯示與管理控制台
 
 管理頁不需要帳號登入；完整網址中的 fragment token 就是管理權限。Fragment 不會送到網站伺服器，也不會寫進 Git 或前端 bundle。正式服務的高熵 token 只設定在 Zeabur `queue-worker` 環境變數，而且不要把 token 放在 query string：
 
 ```text
 REDIS_URL=<Zeabur Redis URI>
 QUEUE_ADMIN_TOKEN=<high-entropy admin token>
-QUEUE_JOIN_TOKEN=<high-entropy onsite token>
 ALLOWED_ORIGINS=https://tcgflagship.com,https://www.tcgflagship.com
 ```
-
-主辦方使用 `/queue-qr#token=<QUEUE_JOIN_TOKEN>` 顯示或下載現場 QR Code；這個展示頁不會取號。QR Code 內容是 `/join-queue#token=<QUEUE_JOIN_TOKEN>` 完整網址。手機首次掃描開啟時會先在瀏覽器建立 UUID，再由 Redis Lua script 原子分配下一個號碼；UUID 同時是 idempotency key，因此重複請求、網路重試和重新整理不會多取一號。取號結果只保存 UUID、號碼和發號時間，不收集姓名、電話、Email 或其他個資。成功取號後會從網址列移除 fragment token。
-
-若瀏覽器中已存在但格式損壞的取號 UUID，頁面會停止並明確請參加者洽現場工作人員，不會把損壞資料當成尚未取號而自動重發新號。
-
-此流程刻意不要求登入，因此只能做到「同一瀏覽器儲存空間保留同一號碼」。清除網站資料、使用另一個瀏覽器／無痕模式或把 QR 網址轉傳給別人，仍可能取得新的號碼；若未來要做到一人一號，需要增加身份或裝置驗證，不能用前端限制假裝達成。
 
 本機驗證 worker 時可連接本機 Redis，並用非正式 token 啟動：
 
@@ -166,7 +157,6 @@ ALLOWED_ORIGINS=https://tcgflagship.com,https://www.tcgflagship.com
 REDIS_URL=redis://127.0.0.1:6380 \
 PORT=8790 \
 QUEUE_ADMIN_TOKEN=local-queue-admin-token-at-least-32-characters \
-QUEUE_JOIN_TOKEN=local-queue-join-token-at-least-32-characters \
 ALLOWED_ORIGINS=http://127.0.0.1:5174 \
 pnpm queue:start
 ```
@@ -176,8 +166,6 @@ pnpm queue:start
 ```text
 http://127.0.0.1:5174/now-serving
 http://127.0.0.1:5174/queue-admin#token=local-queue-admin-token-at-least-32-characters
-http://127.0.0.1:5174/queue-qr#token=local-queue-join-token-at-least-32-characters
-http://127.0.0.1:5174/join-queue#token=local-queue-join-token-at-least-32-characters
 ```
 
 正式啟用時，Zeabur `queue-worker` 從 `main` 自動部署，Root Directory 設為 `services/queue-worker`，並使用該服務根目錄的 `Dockerfile`；Zeabur 後台 Dockerfile 覆寫維持空白。只完成本機 build 不代表叫號系統已上線。
