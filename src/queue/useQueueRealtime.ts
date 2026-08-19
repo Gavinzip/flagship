@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { fetchQueueSnapshot, openQueueSocket } from "./queueApi";
+import { fetchQueueSnapshot, openQueueEvents } from "./queueApi";
 import type { QueueSnapshot } from "../../shared/queue/domain";
 
 export type QueueConnectionStatus = "connecting" | "live" | "offline";
@@ -19,10 +19,7 @@ export function useQueueRealtime() {
   useEffect(() => {
     const controller = new AbortController();
     let disposed = false;
-    let socket: WebSocket | null = null;
-    let retryTimer: number | null = null;
-    let heartbeatTimer: number | null = null;
-    let retryCount = 0;
+    let events: EventSource | null = null;
 
     void fetchQueueSnapshot(controller.signal)
       .then(acceptSnapshot)
@@ -30,44 +27,22 @@ export function useQueueRealtime() {
         if (!disposed) setConnectionStatus("offline");
       });
 
-    const connect = () => {
-      if (disposed) return;
-      setConnectionStatus("connecting");
-      socket = openQueueSocket(acceptSnapshot);
-
-      socket.addEventListener("open", () => {
-        retryCount = 0;
+    events = openQueueEvents(acceptSnapshot);
+    events.addEventListener("open", () => {
+      if (!disposed) {
         setConnectionStatus("live");
-        heartbeatTimer = window.setInterval(() => {
-          if (socket?.readyState === WebSocket.OPEN) socket.send("ping");
-        }, 25_000);
-      });
-
-      socket.addEventListener("close", () => {
-        if (heartbeatTimer !== null) window.clearInterval(heartbeatTimer);
-        heartbeatTimer = null;
-        if (disposed) return;
-
+      }
+    });
+    events.addEventListener("error", () => {
+      if (!disposed) {
         setConnectionStatus("offline");
-        const delay = Math.min(1_000 * 2 ** retryCount, 10_000);
-        retryCount += 1;
-        retryTimer = window.setTimeout(connect, delay);
-      });
-
-      socket.addEventListener("error", () => {
-        setConnectionStatus("offline");
-        socket?.close();
-      });
-    };
-
-    connect();
+      }
+    });
 
     return () => {
       disposed = true;
       controller.abort();
-      if (retryTimer !== null) window.clearTimeout(retryTimer);
-      if (heartbeatTimer !== null) window.clearInterval(heartbeatTimer);
-      socket?.close(1000, "Page closed");
+      events?.close();
     };
   }, [acceptSnapshot]);
 

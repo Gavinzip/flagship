@@ -16,9 +16,8 @@ const reservationApiOrigin = new URL(
 ).origin;
 const queueApiUrl = new URL(productionEnvironment.VITE_QUEUE_API_BASE_URL);
 const queueApiOrigin = queueApiUrl.origin;
-const queueWebSocketOrigin = `${queueApiUrl.protocol === "https:" ? "wss:" : "ws:"}//${queueApiUrl.host}`;
 const firstPartyConnections = [
-  ...new Set([reservationApiOrigin, queueApiOrigin, queueWebSocketOrigin]),
+  ...new Set([reservationApiOrigin, queueApiOrigin]),
 ].join(" ");
 
 function hashContent(algorithm, content) {

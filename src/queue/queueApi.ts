@@ -129,19 +129,13 @@ export async function issueQueueTicket(
   return readTicket(response);
 }
 
-function webSocketUrl() {
-  const url = new URL(`${apiBaseUrl}/api/queue/events`);
-  url.protocol = url.protocol === "https:" ? "wss:" : "ws:";
-  return url.toString();
-}
-
-export function openQueueSocket(
+export function openQueueEvents(
   onSnapshot: (snapshot: QueueSnapshot) => void,
 ) {
-  const socket = new WebSocket(webSocketUrl());
+  const events = new EventSource(`${apiBaseUrl}/api/queue/events`);
 
-  socket.addEventListener("message", (event) => {
-    if (event.data === "pong" || typeof event.data !== "string") return;
+  const acceptEvent = (event: MessageEvent<string>) => {
+    if (typeof event.data !== "string") return;
 
     try {
       const payload = JSON.parse(event.data) as {
@@ -157,7 +151,9 @@ export function openQueueSocket(
     } catch {
       // Ignore malformed push messages and keep the verified connection open.
     }
-  });
+  };
 
-  return socket;
+  events.addEventListener("queue.snapshot", acceptEvent as EventListener);
+  events.addEventListener("queue.updated", acceptEvent as EventListener);
+  return events;
 }

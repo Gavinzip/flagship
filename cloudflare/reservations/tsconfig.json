@@ -11,8 +11,6 @@
   },
   "include": [
     "reservation-worker.ts",
-    "../queue/**/*.ts",
-    "../../shared/queue/**/*.ts",
     "../../shared/reservations/**/*.ts"
   ]
 }

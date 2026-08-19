@@ -3,15 +3,11 @@ import {
   getReservationSlotStatus,
   RESERVATION_ERROR,
 } from "../../shared/reservations/domain";
-import { QueueRoom } from "../queue/QueueRoom";
-import { handleQueueApi, type QueueEnv } from "../queue/queueApi";
 
-interface Env extends QueueEnv {
+interface Env {
   DB: D1Database;
   ALLOWED_ORIGINS: string;
 }
-
-export { QueueRoom };
 
 type SlotRow = {
   id: string;
@@ -311,19 +307,6 @@ export default {
     }
     if (url.pathname === `${API_PREFIX}/reservations` && request.method === "POST") {
       return createReservation(request, env);
-    }
-
-    const queueResponse = await handleQueueApi(request, env);
-    if (queueResponse) {
-      const headers = new Headers(queueResponse.headers);
-      const cors = corsHeaders(request, env);
-      for (const [name, value] of cors) headers.set(name, value);
-      return new Response(queueResponse.body, {
-        status: queueResponse.status,
-        statusText: queueResponse.statusText,
-        headers,
-        webSocket: queueResponse.webSocket,
-      });
     }
 
     return json(request, env, { code: "NOT_FOUND" }, 404);
