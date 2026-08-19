@@ -137,6 +137,7 @@ pnpm reservation:eligibility:import -- /path/to/luma-guests.csv \
 
 - 公開頁：`/now-serving`
 - 管理頁：`/queue-admin#token=<QUEUE_ADMIN_TOKEN>`
+- 現場 QR 展示頁：`/queue-qr#token=<QUEUE_JOIN_TOKEN>`（主辦方開啟並展示／下載）
 - 現場取號頁：`/join-queue#token=<QUEUE_JOIN_TOKEN>`（QR Code 指向此網址）
 - `services/queue-worker/src/redisQueueRepository.ts`：Redis 原子發號與持久化目前號碼／取號資料
 - `services/queue-worker/src/httpServer.ts`：公開讀取、管理更新、現場取號與 token 驗證
@@ -153,7 +154,7 @@ QUEUE_JOIN_TOKEN=<high-entropy onsite token>
 ALLOWED_ORIGINS=https://tcgflagship.com,https://www.tcgflagship.com
 ```
 
-現場 QR Code 只應包含 `/join-queue#token=<QUEUE_JOIN_TOKEN>` 完整網址。手機首次開啟時會先在瀏覽器建立 UUID，再由 Redis Lua script 原子分配下一個號碼；UUID 同時是 idempotency key，因此重複請求、網路重試和重新整理不會多取一號。取號結果只保存 UUID、號碼和發號時間，不收集姓名、電話、Email 或其他個資。成功取號後會從網址列移除 fragment token。
+主辦方使用 `/queue-qr#token=<QUEUE_JOIN_TOKEN>` 顯示或下載現場 QR Code；這個展示頁不會取號。QR Code 內容是 `/join-queue#token=<QUEUE_JOIN_TOKEN>` 完整網址。手機首次掃描開啟時會先在瀏覽器建立 UUID，再由 Redis Lua script 原子分配下一個號碼；UUID 同時是 idempotency key，因此重複請求、網路重試和重新整理不會多取一號。取號結果只保存 UUID、號碼和發號時間，不收集姓名、電話、Email 或其他個資。成功取號後會從網址列移除 fragment token。
 
 若瀏覽器中已存在但格式損壞的取號 UUID，頁面會停止並明確請參加者洽現場工作人員，不會把損壞資料當成尚未取號而自動重發新號。
 
@@ -175,6 +176,7 @@ pnpm queue:start
 ```text
 http://127.0.0.1:5174/now-serving
 http://127.0.0.1:5174/queue-admin#token=local-queue-admin-token-at-least-32-characters
+http://127.0.0.1:5174/queue-qr#token=local-queue-join-token-at-least-32-characters
 http://127.0.0.1:5174/join-queue#token=local-queue-join-token-at-least-32-characters
 ```
 

@@ -11,6 +11,7 @@ import {
 import { useQueueRealtime } from "../queue/useQueueRealtime";
 import { useQueueTicket } from "../queue/useQueueTicket";
 import { QueueAdminPanel } from "./queue/QueueAdminPanel";
+import { QueueQrPanel } from "./queue/QueueQrPanel";
 import { QueueScreen } from "./queue/QueueScreen";
 import { QueueTicketPanel } from "./queue/QueueTicketPanel";
 
@@ -111,8 +112,43 @@ function JoinQueuePage() {
   );
 }
 
+function QueueQrPage() {
+  const { locale } = useLocale();
+  const content = queueCopy[locale];
+  const { snapshot, connectionStatus } = useQueueRealtime();
+  const joinToken = useMemo(
+    () => readQueueJoinToken(window.location.hash),
+    [],
+  );
+
+  usePrivatePageMetadata(`${content.qrTitle}｜FLAGSHIP Card Show Taiwan`);
+
+  return (
+    <QueueScreen
+      connectionStatus={connectionStatus}
+      footer={
+        <a className="queue-public-link" href="/now-serving">
+          {content.backToDisplay} <span aria-hidden="true">↗</span>
+        </a>
+      }
+      headerLabel="VENUE QR DISPLAY"
+      locale={locale}
+      snapshot={snapshot}
+      variant="qr"
+    >
+      <QueueQrPanel joinToken={joinToken} locale={locale} />
+    </QueueScreen>
+  );
+}
+
+const QUEUE_PAGE_BY_MODE = {
+  admin: AdminQueuePage,
+  join: JoinQueuePage,
+  public: PublicQueuePage,
+  qr: QueueQrPage,
+} satisfies Record<QueuePageMode, () => React.JSX.Element>;
+
 export function QueuePage({ mode }: { mode: QueuePageMode }) {
-  if (mode === "admin") return <AdminQueuePage />;
-  if (mode === "join") return <JoinQueuePage />;
-  return <PublicQueuePage />;
+  const Page = QUEUE_PAGE_BY_MODE[mode];
+  return <Page />;
 }

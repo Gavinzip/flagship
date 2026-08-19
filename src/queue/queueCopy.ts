@@ -9,6 +9,7 @@ export const queueCopy = {
     publicTitle: "現場即時叫號",
     adminTitle: "叫號控制台",
     joinTitle: "現場掃碼取號",
+    qrTitle: "現場取號 QR Code",
     eyebrow: "FLAGSHIP 2026 · LIVE QUEUE",
     current: "目前叫號",
     waiting: "尚未開始",
@@ -63,11 +64,26 @@ export const queueCopy = {
     retryTicket: "重新嘗試",
     ticketIssued: "取號完成",
     ticketReminder: "請記住這個號碼，輪到時再前往服務台。",
+    qrEyebrow: "ON-SITE QR DISPLAY",
+    qrHeading: "掃描取得排隊號碼",
+    qrDescription:
+      "請參加者使用手機掃描下方 QR Code。開啟頁面後，系統會自動分配排隊號碼，不需要登入或填寫資料。",
+    qrReady: "QR CODE READY",
+    qrGenerating: "正在產生現場 QR Code…",
+    qrFailedTitle: "無法產生 QR Code",
+    qrFailedDescription: "請重新整理頁面；若仍無法顯示，請洽現場技術人員。",
+    qrMissingTitle: "QR Code 網址不完整",
+    qrMissingDescription:
+      "這個網址缺少取號 token，請使用包含 QUEUE_JOIN_TOKEN 的完整 QR 展示網址。",
+    qrScanHint: "掃描後會自動取號；同一瀏覽器重新整理不會重複發號。",
+    qrDownload: "下載 QR Code",
+    qrPrint: "列印 QR Code",
   },
   en: {
     publicTitle: "Live Queue",
     adminTitle: "Queue Control",
     joinTitle: "Get a Queue Number",
+    qrTitle: "On-site Queue QR Code",
     eyebrow: "FLAGSHIP 2026 · LIVE QUEUE",
     current: "Now serving",
     waiting: "Not started",
@@ -128,6 +144,22 @@ export const queueCopy = {
     retryTicket: "Try again",
     ticketIssued: "Queue pass ready",
     ticketReminder: "Remember this number and approach the service desk when called.",
+    qrEyebrow: "ON-SITE QR DISPLAY",
+    qrHeading: "Scan to get a queue number",
+    qrDescription:
+      "Ask attendees to scan the QR code below. The page automatically issues a queue number without sign-in or a form.",
+    qrReady: "QR CODE READY",
+    qrGenerating: "Generating the venue QR code…",
+    qrFailedTitle: "Unable to generate the QR code",
+    qrFailedDescription:
+      "Reload this page. If the code still does not appear, contact the on-site technical team.",
+    qrMissingTitle: "Incomplete QR display URL",
+    qrMissingDescription:
+      "This URL has no join token. Use the complete QR display URL containing QUEUE_JOIN_TOKEN.",
+    qrScanHint:
+      "Scanning issues a number automatically. Reloading in the same browser will not issue another number.",
+    qrDownload: "Download QR code",
+    qrPrint: "Print QR code",
   },
 } as const satisfies Record<Locale, object>;
 

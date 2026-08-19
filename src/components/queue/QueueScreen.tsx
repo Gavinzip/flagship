@@ -13,7 +13,7 @@ type QueueScreenProps = {
   headerLabel: string;
   locale: Locale;
   snapshot: QueueSnapshot | null;
-  variant: "admin" | "join" | "public";
+  variant: "admin" | "join" | "public" | "qr";
 };
 
 export function QueueScreen({

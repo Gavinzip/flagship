@@ -13,7 +13,10 @@ import { LocaleProvider } from "./i18n/LocaleProvider";
 import { installGoogleAnalytics } from "./lib/googleAnalytics";
 import { ReservationAvailabilityProvider } from "./reservations/ReservationAvailabilityProvider";
 import { isReservationEntryPath } from "./reservations/reservationRoute";
-import { getQueuePageMode } from "./queue/queueRoute";
+import {
+  getQueuePageMode,
+  shouldInstallQueueAnalytics,
+} from "./queue/queueRoute";
 import "./styles/index.css";
 
 installStaticAssetCssVariables();
@@ -44,7 +47,7 @@ createRoot(document.getElementById("root")!).render(
   </StrictMode>,
 );
 
-if (queuePageMode !== "admin" && queuePageMode !== "join") {
+if (shouldInstallQueueAnalytics(queuePageMode)) {
   window.setTimeout(() => {
     const analyticsResult = installGoogleAnalytics();
 

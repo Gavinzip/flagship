@@ -84,6 +84,71 @@
   animation-fill-mode: both;
 }
 
+:is(.queue-ticket-panel, .queue-qr-panel) {
+  position: relative;
+  display: grid;
+  align-content: center;
+  align-self: center;
+  border: 1px solid rgba(137, 166, 214, 0.3);
+  box-shadow:
+    0 34px 86px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+}
+
+:is(.queue-ticket-panel, .queue-qr-panel)::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #ff4459, transparent) top left / 42% 1px no-repeat,
+    linear-gradient(270deg, #55a8ff, transparent) bottom right / 48% 1px no-repeat;
+  pointer-events: none;
+  content: "";
+}
+
+:is(.queue-ticket-panel__heading, .queue-qr-panel__heading) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+:is(
+  .queue-ticket-panel__heading p,
+  .queue-ticket-panel__heading span,
+  .queue-qr-panel__eyebrow,
+  .queue-qr-panel__heading span
+) {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+:is(.queue-ticket-panel__heading p, .queue-qr-panel__eyebrow) {
+  color: var(--color-blue-bright);
+}
+
+:is(.queue-ticket-panel__heading span, .queue-qr-panel__heading span) {
+  color: #92e8b6;
+}
+
+:is(.queue-ticket-panel, .queue-qr-panel) h1 {
+  margin: 16px 0 14px;
+  color: white;
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+
+:is(.queue-ticket-panel__description, .queue-qr-panel__description) {
+  margin: 0;
+  color: rgba(215, 228, 246, 0.7);
+  font-size: 0.92rem;
+  line-height: 1.72;
+}
+
 .queue-header {
   position: relative;
   z-index: 4;
@@ -135,19 +200,24 @@
 }
 
 .queue-page--admin .queue-main,
-.queue-page--join .queue-main {
+.queue-page--join .queue-main,
+.queue-page--qr .queue-main {
   grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.7fr);
 }
 
-.queue-page--join {
+.queue-page--join,
+.queue-page--qr {
   overflow: auto;
+  overflow-x: hidden;
 }
 
-.queue-page--join .queue-main {
+.queue-page--join .queue-main,
+.queue-page--qr .queue-main {
   grid-template-columns: minmax(340px, 0.78fr) minmax(0, 1.08fr);
 }
 
-.queue-page--join .queue-ticket-panel {
+.queue-page--join .queue-ticket-panel,
+.queue-page--qr .queue-qr-panel {
   order: -1;
 }
 
