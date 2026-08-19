@@ -1,6 +1,5 @@
 import { event } from "../data/event";
 import type { EventHighlightNumber } from "../data/eventHighlights";
-import type { ReservationErrorCode } from "../../shared/reservations/domain";
 
 export type Locale = "zh-TW" | "en";
 
@@ -32,6 +31,7 @@ type SiteContent = {
     languageMenuLabel: string;
     currentLanguageLabel: string;
     languageOptions: readonly { locale: Locale; label: string }[];
+    ticketLabel: string;
   };
   hero: {
     eyebrow: string;
@@ -55,6 +55,7 @@ type SiteContent = {
   };
   mobileActions: {
     label: string;
+    ticket: string;
     directions: string;
   };
   highlights: {
@@ -103,54 +104,12 @@ type SiteContent = {
   };
   tickets: {
     title: string;
-    pageHeading: string;
+    english: string;
     description: string;
-    statusEyebrow: string;
-    liveStatus: string;
-    lastUpdated: (time: string) => string;
-    refresh: string;
-    loadingTitle: string;
-    loadingDescription: string;
-    unavailableTitle: string;
-    unavailableDescription: string;
-    staleAvailability: string;
-    retry: string;
-    emptyTitle: string;
-    emptyDescription: string;
-    selectStep: string;
-    confirmStep: string;
-    gmailLabel: string;
-    gmailPlaceholder: string;
-    gmailHint: string;
-    slotsLabel: string;
-    remaining: (count: number) => string;
-    registered: (count: number) => string;
-    capacity: (count: number) => string;
-    slotAvailable: string;
-    slotFull: string;
-    slotClosed: string;
-    slotRejected: string;
-    closesAt: (time: string) => string;
-    continue: string;
-    invalidGmail: string;
-    selectSlot: string;
-    reviewTitle: string;
-    reviewDescription: string;
-    reviewGmail: string;
-    reviewSlot: string;
-    ticketCountLabel: string;
-    ticketCount: (count: number) => string;
-    back: string;
-    submit: string;
-    submitting: string;
-    privacy: string;
-    successEyebrow: string;
-    successTitle: string;
-    successDescription: string;
-    successReference: string;
-    registerAnother: string;
-    replayDemo: string;
-    errors: Record<ReservationErrorCode, string>;
+    toolbarTitle: string;
+    toolbarDescription: string;
+    openOnLuma: string;
+    iframeTitle: string;
   };
   footer: {
     backToTop: string;
@@ -187,6 +146,7 @@ export const siteContent = {
         { locale: "zh-TW", label: "繁體中文" },
         { locale: "en", label: "English" },
       ],
+      ticketLabel: "立即預約",
     },
     hero: {
       eyebrow: "MORE THAN TABLES · CONNECTING PLAY CULTURE",
@@ -204,6 +164,7 @@ export const siteContent = {
     calendar: { label: "加入行事曆" },
     mobileActions: {
       label: "活動快速操作",
+      ticket: "立即預約",
       directions: "開始導航",
     },
     highlights: {
@@ -328,9 +289,9 @@ export const siteContent = {
         },
         {
           category: "門票與入場",
-          question: "早鳥票要如何選擇入場時段？",
+          question: "如何購買門票？",
           answer:
-            "已完成早鳥預約的參加者，將由主辦單位寄送入場時段登記通知至預約時使用的 Gmail。請從信件中的專屬頁面選擇尚有名額的時段；每個 Gmail 只能登記一次。",
+            "點選網站中的「立即預約」，即可透過 Luma 查看票價、入場權益並完成購票。名額額滿後將停止售票。",
         },
         {
           category: "門票與入場",
@@ -395,65 +356,13 @@ export const siteContent = {
       ],
     },
     tickets: {
-      title: "早鳥入場時段",
-      pageHeading: "預約入場時段",
-      description:
-        "早鳥票預約已結束。已完成預約的參加者，請輸入當時使用的 Gmail，並選擇尚有名額的入場時段。",
-      statusEyebrow: "LIVE CAPACITY",
-      liveStatus: "即時名額",
-      lastUpdated: (time) => `更新於 ${time}`,
-      refresh: "更新名額",
-      loadingTitle: "正在取得即時名額",
-      loadingDescription: "名額會以伺服器目前資料為準。",
-      unavailableTitle: "目前無法取得名額",
-      unavailableDescription:
-        "為避免顯示錯誤數字，暫時不開放送出。請稍後重新整理。",
-      staleAvailability: "即時更新暫時中斷，目前顯示最後一次成功取得的名額；恢復更新前不開放送出。",
-      retry: "重新取得",
-      emptyTitle: "時段尚未開放",
-      emptyDescription: "主辦單位完成時段與名額設定後，會在這裡直接開放登記。",
-      selectStep: "選擇時段",
-      confirmStep: "確認送出",
-      gmailLabel: "早鳥預約使用的 Gmail",
-      gmailPlaceholder: "yourname@gmail.com",
-      gmailHint: "請填寫完成早鳥預約時使用的 Gmail；每個 Gmail 限登記一次，且只會登記 1 張早鳥票。",
-      slotsLabel: "選擇入場時段",
-      remaining: (count) => `剩餘 ${count} 名`,
-      registered: (count) => `已登記 ${count} 名`,
-      capacity: (count) => `總名額 ${count} 名`,
-      slotAvailable: "可登記",
-      slotFull: "已額滿",
-      slotClosed: "已截止",
-      slotRejected: "此組合未完成",
-      closesAt: (time) => `${time} 截止`,
-      continue: "確認資料",
-      invalidGmail: "請輸入完整的 Gmail 地址。",
-      selectSlot: "請先選擇一個尚有名額的入場時段。",
-      reviewTitle: "最後確認",
-      reviewDescription: "送出後無法自行更改時段；本次只會登記 1 張早鳥票，請確認 Gmail 與入場時間。",
-      reviewGmail: "Gmail",
-      reviewSlot: "入場時段",
-      ticketCountLabel: "本次登記",
-      ticketCount: (count) => `${count} 張早鳥票`,
-      back: "返回修改",
-      submit: "確認登記",
-      submitting: "正在鎖定名額",
-      privacy: "Gmail 僅用於本次早鳥入場時段登記、辨識重複資料及活動通知。",
-      successEyebrow: "RESERVATION LOCKED",
-      successTitle: "入場時段已登記",
-      successDescription: "請截圖保存以下資料，並於活動當日攜帶原早鳥票券。",
-      successReference: "登記編號",
-      registerAnother: "登記其他 Gmail",
-      replayDemo: "再看一次示範",
-      errors: {
-        INVALID_GMAIL: "這個地址不是有效的 Gmail，請重新確認。",
-        INVALID_SLOT: "這個時段已不存在，請重新選擇。",
-        SLOT_CLOSED: "你選擇的時段剛剛截止，請改選其他時段。",
-        SLOT_FULL: "這個時段剛剛額滿，請改選其他時段。",
-        RESERVATION_UNAVAILABLE: "目前無法完成登記。請確認 Gmail 與原 Luma 早鳥預約相同、尚未選過時段，或改選其他時段。",
-        SERVER_ERROR: "系統暫時無法完成登記，名額不會被誤扣，請稍後再試。",
-        NETWORK_ERROR: "網路連線中斷，請確認連線後再試一次。",
-      },
+      title: "活動票券",
+      english: "TICKETS & REGISTRATION",
+      description: "票種、名額與報名狀態以 Luma 顯示為準。",
+      toolbarTitle: "EVENT REGISTRATION",
+      toolbarDescription: "透過 Luma 查看票券",
+      openOnLuma: "在 Luma 開啟",
+      iframeTitle: "Flagship Card Show Taiwan 活動票券與報名",
     },
     footer: { backToTop: "返回頂端" },
     loading: {
@@ -487,6 +396,7 @@ export const siteContent = {
         { locale: "zh-TW", label: "Traditional Chinese" },
         { locale: "en", label: "English" },
       ],
+      ticketLabel: "Tickets",
     },
     hero: {
       eyebrow: "MORE THAN TABLES · CONNECTING PLAY CULTURE",
@@ -504,6 +414,7 @@ export const siteContent = {
     calendar: { label: "Add to Calendar" },
     mobileActions: {
       label: "Event quick actions",
+      ticket: "Tickets",
       directions: "Get Directions",
     },
     highlights: {
@@ -630,9 +541,9 @@ export const siteContent = {
         },
         {
           category: "Tickets & Entry",
-          question: "How do early-bird guests choose an entry time?",
+          question: "How do I buy tickets?",
           answer:
-            "Early-bird guests will receive an entry-time registration email at the Gmail used for their reservation. Open the private page from that email and choose an available slot; each Gmail may register once.",
+            "Select “Tickets” on this website to view pricing and entry benefits on Luma, then complete your purchase there. Sales end once capacity is reached.",
         },
         {
           category: "Tickets & Entry",
@@ -697,65 +608,13 @@ export const siteContent = {
       ],
     },
     tickets: {
-      title: "Early-Bird Entry Times",
-      pageHeading: "Early-Bird Entry Times",
-      description:
-        "Early-bird reservations are closed. If you already reserved, enter the Gmail used at registration and choose an available entry time.",
-      statusEyebrow: "LIVE CAPACITY",
-      liveStatus: "Live availability",
-      lastUpdated: (time) => `Updated ${time}`,
-      refresh: "Refresh availability",
-      loadingTitle: "Loading live availability",
-      loadingDescription: "Availability is confirmed against the server.",
-      unavailableTitle: "Availability is temporarily unavailable",
-      unavailableDescription:
-        "Submission is paused instead of showing an inaccurate number. Please try again shortly.",
-      staleAvailability: "Live updates are temporarily interrupted. The last confirmed availability remains visible, and submission is paused until updates resume.",
-      retry: "Try again",
-      emptyTitle: "Entry times are not open yet",
-      emptyDescription: "Registration will open here once the organizer confirms the time slots and capacities.",
-      selectStep: "Choose a time",
-      confirmStep: "Confirm",
-      gmailLabel: "Gmail used for the early-bird reservation",
-      gmailPlaceholder: "yourname@gmail.com",
-      gmailHint: "Use the Gmail from your early-bird reservation. Each Gmail can register once, for exactly one early-bird ticket.",
-      slotsLabel: "Choose an entry time",
-      remaining: (count) => `${count} remaining`,
-      registered: (count) => `${count} registered`,
-      capacity: (count) => `${count} total`,
-      slotAvailable: "Available",
-      slotFull: "Full",
-      slotClosed: "Closed",
-      slotRejected: "Combination not accepted",
-      closesAt: (time) => `Closes ${time}`,
-      continue: "Review details",
-      invalidGmail: "Enter a complete Gmail address.",
-      selectSlot: "Choose an entry time that is still available.",
-      reviewTitle: "Final check",
-      reviewDescription: "You cannot change the entry time yourself after submission. This registration covers exactly one early-bird ticket.",
-      reviewGmail: "Gmail",
-      reviewSlot: "Entry time",
-      ticketCountLabel: "This registration",
-      ticketCount: (count) => `${count} early-bird ticket${count === 1 ? "" : "s"}`,
-      back: "Edit details",
-      submit: "Confirm entry time",
-      submitting: "Securing your place",
-      privacy: "Your Gmail is used only for this entry-time registration, duplicate detection, and event updates.",
-      successEyebrow: "RESERVATION LOCKED",
-      successTitle: "Your entry time is confirmed",
-      successDescription: "Save a screenshot of these details and bring your original early-bird ticket to the event.",
-      successReference: "Reference",
-      registerAnother: "Register another Gmail",
-      replayDemo: "Replay demo",
-      errors: {
-        INVALID_GMAIL: "Enter a valid Gmail address and try again.",
-        INVALID_SLOT: "That entry time no longer exists. Please choose again.",
-        SLOT_CLOSED: "That entry time just closed. Please choose another.",
-        SLOT_FULL: "This entry time just filled up. Choose another time.",
-        RESERVATION_UNAVAILABLE: "Registration could not be completed. Check the Gmail against the original Luma early-bird booking, confirm it has not registered already, or choose another time.",
-        SERVER_ERROR: "Registration is temporarily unavailable. No place was deducted; please try again.",
-        NETWORK_ERROR: "The connection was interrupted. Check your network and try again.",
-      },
+      title: "Tickets",
+      english: "TICKETS & REGISTRATION",
+      description: "Ticket types, capacity, and registration status are shown on Luma.",
+      toolbarTitle: "EVENT REGISTRATION",
+      toolbarDescription: "View tickets on Luma",
+      openOnLuma: "Open on Luma",
+      iframeTitle: "Flagship Card Show Taiwan tickets and registration",
     },
     footer: { backToTop: "Back to Top" },
     loading: {

@@ -8,13 +8,6 @@
     "build": "tsc --noEmit && vite build && node scripts/generate-csp.mjs && npm run assets:assert-build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "reservation:typecheck": "tsc -p cloudflare/reservations/tsconfig.json",
-    "reservation:dev": "wrangler dev --config cloudflare/reservations/wrangler.jsonc --port 8787 --persist-to .wrangler/state",
-    "reservation:migrate:local": "wrangler d1 migrations apply flagship-early-bird-reservations --local --config cloudflare/reservations/wrangler.jsonc --persist-to .wrangler/state",
-    "reservation:migrate:remote": "wrangler d1 migrations apply flagship-early-bird-reservations --remote --config cloudflare/reservations/wrangler.jsonc",
-    "reservation:eligibility:import": "node --experimental-strip-types scripts/import-luma-early-bird-guests.ts",
-    "reservation:deploy": "wrangler deploy --config cloudflare/reservations/wrangler.jsonc",
-    "reservation:verify:live": "node scripts/verify-reservation-api.mjs",
     "queue:typecheck": "npm --prefix services/queue-worker run typecheck",
     "queue:build": "npm --prefix services/queue-worker run build",
     "queue:start": "npm --prefix services/queue-worker start",
@@ -31,7 +24,6 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20260811.1",
     "@emnapi/core": "2.0.0-alpha.3",
     "@emnapi/runtime": "2.0.0-alpha.3",
     "@types/node": "^26.1.2",
@@ -39,7 +31,6 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "typescript": "^7.0.2",
-    "vite": "^8.1.5",
-    "wrangler": "^4.120.1"
+    "vite": "^8.1.5"
   }
 }

@@ -5,6 +5,7 @@ import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
 import { CalendarButton } from "./CalendarButton";
 import { SpotlightCard } from "./SpotlightCard";
+import { TicketLink } from "./TicketLink";
 
 type EventPassContentProps = {
   showTransit?: boolean;
@@ -65,6 +66,7 @@ export function EventPassContent({
       ) : null}
 
       <div className="event-pass__actions">
+        <TicketLink>{content.header.ticketLabel}</TicketLink>
         <CalendarButton />
       </div>
     </>

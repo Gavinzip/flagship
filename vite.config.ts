@@ -13,7 +13,7 @@ function buildRobots() {
 }
 
 function buildLlms() {
-  return `# ${event.name}\n\n> Taiwan's annual flagship trading card show, held at ${event.englishVenue} in Taipei.\n\n## Event\n\n- Date: ${event.dateIso}\n- Time: ${event.startTime}-${event.endTime} (UTC${event.timezone})\n- Venue: ${event.englishVenue}, ${event.room}\n- Address: ${event.englishAddress}\n\n## Official links\n\n- Website: ${canonicalUrl}\n- Calendar: ${new URL(event.calendarEnglishFilename, canonicalUrl)}\n`;
+  return `# ${event.name}\n\n> Taiwan's annual flagship trading card show, held at ${event.englishVenue} in Taipei.\n\n## Event\n\n- Date: ${event.dateIso}\n- Time: ${event.startTime}-${event.endTime} (UTC${event.timezone})\n- Venue: ${event.englishVenue}, ${event.room}\n- Address: ${event.englishAddress}\n\n## Official links\n\n- Website: ${canonicalUrl}\n- Registration: ${event.ticketUrl}\n- Calendar: ${new URL(event.calendarEnglishFilename, canonicalUrl)}\n`;
 }
 
 function buildSitemap() {
@@ -276,11 +276,6 @@ export default defineConfig(({ mode }) => {
   const measurementId = analyticsMeasurementId(
     mode,
     environment.VITE_GA_MEASUREMENT_ID || "",
-  );
-  firstPartyApiBaseUrl(
-    mode,
-    environment.VITE_RESERVATION_API_BASE_URL || "",
-    "VITE_RESERVATION_API_BASE_URL",
   );
   firstPartyApiBaseUrl(
     mode,

@@ -3,7 +3,6 @@ packages:
 
 allowBuilds:
   esbuild: true
-  workerd: true
 
 overrides:
   "@emnapi/core": "2.0.0-alpha.3"

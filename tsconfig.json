@@ -11,16 +11,10 @@
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src",
-    "shared",
-    "scripts/import-luma-early-bird-guests.ts",
-    "vite.config.ts"
-  ]
+  "include": ["src", "vite.config.ts"]
 }
