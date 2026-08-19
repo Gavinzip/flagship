@@ -1,6 +1,6 @@
-export async function generateQueueQrCodeDataUrl(targetUrl: string) {
-  const { default: QRCode } = await import("qrcode");
+import QRCode from "qrcode";
 
+export async function generateQueueQrCodeDataUrl(targetUrl: string) {
   return QRCode.toDataURL(targetUrl, {
     color: {
       dark: "#030910ff",
