@@ -50,12 +50,13 @@ export function QueueScreen({
 
       <main className="queue-main">
         <div className="queue-grid" aria-hidden="true" />
+        {variant === "admin" ? children : null}
         <QueueLiveDisplay
           connectionStatus={connectionStatus}
           locale={locale}
           snapshot={snapshot}
         />
-        {children}
+        {variant === "public" ? children : null}
       </main>
       {footer}
     </div>

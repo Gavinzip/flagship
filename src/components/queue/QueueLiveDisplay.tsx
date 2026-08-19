@@ -32,6 +32,10 @@ function connectionLabel(status: QueueConnectionStatus, locale: Locale) {
   return content.offline;
 }
 
+function numberDisplayDensity(currentNumber: number) {
+  return String(currentNumber).length > 3 ? "compact" : "standard";
+}
+
 export function QueueLiveDisplay({
   connectionStatus,
   locale,
@@ -74,7 +78,11 @@ export function QueueLiveDisplay({
             aria-busy={snapshot === null}
           >
             {snapshot && snapshot.currentNumber > 0 ? (
-              <span key={snapshot.revision} className="queue-number__value">
+              <span
+                key={snapshot.revision}
+                className="queue-number__value"
+                data-display-density={numberDisplayDensity(snapshot.currentNumber)}
+              >
                 {snapshot.currentNumber}
               </span>
             ) : (

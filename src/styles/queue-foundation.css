@@ -41,6 +41,7 @@
   position: relative;
   display: grid;
   min-height: 100dvh;
+  grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
   background:
     radial-gradient(circle at 14% 12%, rgba(255, 36, 59, 0.14), transparent 30%),
@@ -124,6 +125,7 @@
   z-index: 1;
   display: grid;
   width: min(100%, 1540px);
+  min-height: 0;
   align-items: center;
   gap: clamp(28px, 4vw, 62px);
   margin: 0 auto;
@@ -136,6 +138,16 @@
 
 .queue-page--admin .queue-main {
   grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.7fr);
+}
+
+.queue-page--admin .queue-live-panel {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.queue-page--admin .queue-admin-panel {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .queue-grid {

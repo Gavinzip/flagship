@@ -104,6 +104,7 @@ export function QueueAdminPanel({
   return (
     <aside
       className="queue-admin-panel entry-item"
+      data-save-state={saveState}
       style={{ "--entry-index": 4 } as CSSProperties}
     >
       <div className="queue-admin-panel__heading">
@@ -148,7 +149,7 @@ export function QueueAdminPanel({
           type="submit"
           disabled={controlsDisabled}
         >
-          {saveState === "saving" ? content.saving : content.save}
+          <span>{saveState === "saving" ? content.saving : content.save}</span>
         </button>
         <div className="queue-admin-form__feedback" aria-live="polite">
           {!controlsReady ? <p>{content.controlsUnavailable}</p> : null}

@@ -1,3 +1,47 @@
+@keyframes queue-admin-confirm {
+  0% {
+    border-color: rgba(113, 226, 165, 0);
+    box-shadow: inset 0 0 0 rgba(113, 226, 165, 0);
+    opacity: 0.08;
+  }
+
+  42% {
+    border-color: rgba(113, 226, 165, 0.74);
+    box-shadow:
+      inset 0 0 32px rgba(113, 226, 165, 0.08),
+      0 0 34px rgba(113, 226, 165, 0.14);
+    opacity: 1;
+  }
+
+  100% {
+    border-color: rgba(113, 226, 165, 0);
+    box-shadow: inset 0 0 0 rgba(113, 226, 165, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes queue-submit-sheen {
+  from {
+    transform: translate3d(-150%, 0, 0) skewX(-18deg);
+  }
+
+  to {
+    transform: translate3d(360%, 0, 0) skewX(-18deg);
+  }
+}
+
+@keyframes queue-feedback-arrive {
+  from {
+    opacity: 0.08;
+    transform: translate3d(0, 4px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .queue-admin-panel {
   position: relative;
   align-self: center;
@@ -8,6 +52,21 @@
     rgba(5, 13, 24, 0.9);
   box-shadow: 0 28px 72px rgba(0, 0, 0, 0.4);
   clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+}
+
+.queue-admin-panel::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border: 1px solid transparent;
+  clip-path: inherit;
+  pointer-events: none;
+  content: "";
+  opacity: 0;
+}
+
+.queue-admin-panel[data-save-state="saved"]::after {
+  animation: queue-admin-confirm 860ms var(--ease-out) both;
 }
 
 .queue-admin-panel--locked {
@@ -120,6 +179,21 @@
   gap: 10px;
 }
 
+.queue-admin-form__quick-controls button span {
+  display: inline-block;
+  transition: transform 220ms var(--ease-out);
+}
+
+.queue-admin-form__quick-controls button:first-child:hover:not(:disabled) span,
+.queue-admin-form__quick-controls button:first-child:focus-visible:not(:disabled) span {
+  transform: translate3d(-3px, 0, 0);
+}
+
+.queue-admin-form__quick-controls button:last-child:hover:not(:disabled) span,
+.queue-admin-form__quick-controls button:last-child:focus-visible:not(:disabled) span {
+  transform: translate3d(3px, 0, 0);
+}
+
 .queue-admin-form button {
   min-height: 52px;
   border: 1px solid rgba(137, 166, 214, 0.34);
@@ -152,10 +226,35 @@
   position: relative;
   min-height: 58px;
   margin-top: 4px;
+  overflow: hidden;
   border-color: rgba(255, 73, 91, 0.76);
   background: linear-gradient(135deg, #b40d22, #ff243b);
   color: white;
   box-shadow: 0 16px 36px rgba(255, 36, 59, 0.2);
+  isolation: isolate;
+}
+
+.queue-admin-form .queue-admin-form__submit::after {
+  position: absolute;
+  z-index: 0;
+  top: -30%;
+  bottom: -30%;
+  left: 0;
+  width: 24%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+  pointer-events: none;
+  content: "";
+  opacity: 0;
+}
+
+.queue-admin-form .queue-admin-form__submit > span {
+  position: relative;
+  z-index: 1;
+}
+
+.queue-admin-panel[data-save-state="saving"] .queue-admin-form__submit::after {
+  opacity: 1;
+  animation: queue-submit-sheen 880ms ease-in-out infinite;
 }
 
 .queue-admin-form .queue-admin-form__submit:hover:not(:disabled),
@@ -175,6 +274,7 @@
 
 .queue-admin-form__feedback .is-success {
   color: #91e9b7;
+  animation: queue-feedback-arrive 420ms var(--ease-out) both;
 }
 
 .queue-admin-form__feedback .is-error {
