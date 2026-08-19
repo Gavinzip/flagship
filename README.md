@@ -131,6 +131,55 @@ pnpm reservation:eligibility:import -- /path/to/luma-guests.csv \
 
 `pnpm reservation:verify:live` 會直接檢查正式 health、時段資料、`Cache-Control: no-store`、CORS、台北時區、容量與剩餘名額，不會送出或更動預約。Health 只有在時段與合資格名單都存在，而且全部時段總容量不少於合資格 Gmail 數時才回傳成功；正式 API 尚未部署或資料未完整時，此檢查必須失敗。
 
+## 現場即時叫號
+
+叫號系統沿用第一方 Cloudflare Worker，透過 Durable Object 保存唯一狀態，並用 WebSocket 即時推送到所有開啟中的頁面；沒有輪詢或前端自算的替代資料源。
+
+- 公開頁：`/now-serving`
+- 管理頁：`/queue-admin#token=<QUEUE_ADMIN_TOKEN>`
+- 現場取號頁：`/join-queue#token=<QUEUE_JOIN_TOKEN>`（QR Code 指向此網址）
+- `cloudflare/queue/QueueRoom.ts`：原子發號、持久化目前號碼／取號資料與 WebSocket 廣播
+- `cloudflare/queue/queueApi.ts`：公開讀取、管理更新、現場取號與 token 驗證
+- `src/queue/`：路由、API、即時連線與資料驗證
+- `src/components/QueuePage.tsx`：公開顯示、管理控制台與現場取號頁
+
+管理頁不需要帳號登入；完整網址中的 fragment token 就是管理權限。Fragment 不會送到網站伺服器，也不會寫進 Git 或前端 bundle。正式發布前必須用 Wrangler Secret 設定一段高熵 token，而且不要把 token 放在 query string：
+
+```bash
+pnpm exec wrangler secret put QUEUE_ADMIN_TOKEN \
+  --config cloudflare/reservations/wrangler.jsonc
+
+pnpm exec wrangler secret put QUEUE_JOIN_TOKEN \
+  --config cloudflare/reservations/wrangler.jsonc
+```
+
+現場 QR Code 只應包含 `/join-queue#token=<QUEUE_JOIN_TOKEN>` 完整網址。手機首次開啟時會先在瀏覽器建立 UUID，再由 Durable Object 原子分配下一個號碼；UUID 同時是 idempotency key，因此開發模式重複請求、網路重試和重新整理不會多取一號。取號結果只保存 UUID、號碼和發號時間，不收集姓名、電話、Email 或其他個資。成功取號後會從網址列移除 fragment token。
+
+若瀏覽器中已存在但格式損壞的取號 UUID，頁面會停止並明確請參加者洽現場工作人員，不會把損壞資料當成尚未取號而自動重發新號。
+
+此流程刻意不要求登入，因此只能做到「同一瀏覽器儲存空間保留同一號碼」。清除網站資料、使用另一個瀏覽器／無痕模式或把 QR 網址轉傳給別人，仍可能取得新的號碼；若未來要做到一人一號，需要增加身份或裝置驗證，不能用前端限制假裝達成。
+
+本機驗證 Worker 時可用非正式 token 啟動：
+
+```bash
+pnpm exec wrangler dev \
+  --config cloudflare/reservations/wrangler.jsonc \
+  --port 8787 \
+  --persist-to .wrangler/state \
+  --var QUEUE_ADMIN_TOKEN:local-queue-admin \
+  --var QUEUE_JOIN_TOKEN:local-queue-join
+```
+
+再開啟：
+
+```text
+http://127.0.0.1:5174/now-serving
+http://127.0.0.1:5174/queue-admin#token=local-queue-admin
+http://127.0.0.1:5174/join-queue#token=local-queue-join
+```
+
+正式啟用需要先部署包含 `QueueRoom` migration 的 Worker，再發布網站。兩者都屬正式外部變更，必須另外取得同意；只完成本機 build 不代表叫號系統已上線。
+
 ## 待主辦單位確認
 
 - 票務與入場方式

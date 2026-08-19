@@ -131,16 +131,20 @@ function analyticsMeasurementId(mode: string, rawMeasurementId: string) {
   return measurementId;
 }
 
-function reservationApiBaseUrl(mode: string, rawApiBaseUrl: string) {
+function firstPartyApiBaseUrl(
+  mode: string,
+  rawApiBaseUrl: string,
+  variableName: string,
+) {
   const apiBaseUrl = rawApiBaseUrl.trim().replace(/\/+$/, "");
 
   if (!apiBaseUrl) {
-    throw new Error("VITE_RESERVATION_API_BASE_URL is required.");
+    throw new Error(`${variableName} is required.`);
   }
 
   const origin = new URL(apiBaseUrl);
   if (mode === "production" && origin.protocol !== "https:") {
-    throw new Error("VITE_RESERVATION_API_BASE_URL must use HTTPS in production.");
+    throw new Error(`${variableName} must use HTTPS in production.`);
   }
 
   return apiBaseUrl;
@@ -273,9 +277,15 @@ export default defineConfig(({ mode }) => {
     mode,
     environment.VITE_GA_MEASUREMENT_ID || "",
   );
-  reservationApiBaseUrl(
+  firstPartyApiBaseUrl(
     mode,
     environment.VITE_RESERVATION_API_BASE_URL || "",
+    "VITE_RESERVATION_API_BASE_URL",
+  );
+  firstPartyApiBaseUrl(
+    mode,
+    environment.VITE_QUEUE_API_BASE_URL || "",
+    "VITE_QUEUE_API_BASE_URL",
   );
 
   return {

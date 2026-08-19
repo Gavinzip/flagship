@@ -1,37 +1,12 @@
-import { useEffect } from "react";
 import { responsiveMedia } from "../config/media";
 import { event } from "../data/event";
+import { usePrivatePageMetadata } from "../hooks/usePrivatePageMetadata";
 import { useLocale } from "../i18n/LocaleProvider";
 import { LanguageSelector } from "./LanguageSelector";
 import { TicketSection } from "./TicketSection";
 import { RESERVATION_DEMO_GMAIL } from "../reservations/reservationDemo";
 import { RESERVATION_ENTRY_PATH } from "../reservations/reservationRoute";
 import { useReservationAvailability } from "../reservations/ReservationAvailabilityProvider";
-
-function usePrivatePageMetadata(title: string) {
-  useEffect(() => {
-    const previousTitle = document.title;
-    const existingRobots = document.querySelector<HTMLMetaElement>(
-      'meta[name="robots"]',
-    );
-    const previousRobots = existingRobots?.content;
-    const robots = existingRobots ?? document.createElement("meta");
-
-    document.title = title;
-    robots.name = "robots";
-    robots.content = "noindex, nofollow, noarchive";
-    if (!existingRobots) document.head.append(robots);
-
-    return () => {
-      document.title = previousTitle;
-      if (existingRobots && previousRobots !== undefined) {
-        existingRobots.content = previousRobots;
-      } else {
-        robots.remove();
-      }
-    };
-  }, [title]);
-}
 
 export function ReservationEntryPage() {
   const { content, locale } = useLocale();

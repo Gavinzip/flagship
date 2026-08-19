@@ -14,6 +14,12 @@ const assetCdnOrigin = new URL(
 const reservationApiOrigin = new URL(
   productionEnvironment.VITE_RESERVATION_API_BASE_URL,
 ).origin;
+const queueApiUrl = new URL(productionEnvironment.VITE_QUEUE_API_BASE_URL);
+const queueApiOrigin = queueApiUrl.origin;
+const queueWebSocketOrigin = `${queueApiUrl.protocol === "https:" ? "wss:" : "ws:"}//${queueApiUrl.host}`;
+const firstPartyConnections = [
+  ...new Set([reservationApiOrigin, queueApiOrigin, queueWebSocketOrigin]),
+].join(" ");
 
 function hashContent(algorithm, content) {
   return `${algorithm}-${createHash(algorithm).update(content).digest("base64")}`;
@@ -61,7 +67,7 @@ for (const [, attributes, content] of inlineScripts) {
 const directives = [
   "default-src 'self'",
   `script-src 'self' ${scriptHashes.map((hash) => `'${hash}'`).join(" ")} 'strict-dynamic' https://www.googletagmanager.com`,
-  `connect-src 'self' ${reservationApiOrigin} https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com`,
+  `connect-src 'self' ${firstPartyConnections} https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com`,
   `img-src 'self' data: ${assetCdnOrigin} https://www.google-analytics.com https://region1.google-analytics.com`,
   "style-src-elem 'self'",
   "style-src-attr 'unsafe-inline'",

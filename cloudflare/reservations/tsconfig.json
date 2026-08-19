@@ -9,5 +9,10 @@
     "noEmit": true,
     "types": ["@cloudflare/workers-types"]
   },
-  "include": ["reservation-worker.ts", "../../shared/reservations/**/*.ts"]
+  "include": [
+    "reservation-worker.ts",
+    "../queue/**/*.ts",
+    "../../shared/queue/**/*.ts",
+    "../../shared/reservations/**/*.ts"
+  ]
 }

@@ -1,0 +1,199 @@
+.queue-admin-panel {
+  position: relative;
+  align-self: center;
+  padding: clamp(26px, 3vw, 42px);
+  border: 1px solid rgba(137, 166, 214, 0.28);
+  background:
+    linear-gradient(135deg, rgba(31, 116, 255, 0.07), transparent 38%),
+    rgba(5, 13, 24, 0.9);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.4);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+}
+
+.queue-admin-panel--locked {
+  border-color: rgba(255, 83, 100, 0.34);
+}
+
+.queue-admin-panel__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.queue-admin-panel__eyebrow {
+  margin: 0 0 8px;
+  color: var(--color-blue-bright);
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+
+.queue-admin-panel h2 {
+  margin: 0;
+  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  letter-spacing: -0.025em;
+  line-height: 0.94;
+}
+
+.queue-admin-panel__secure {
+  flex: 0 0 auto;
+  padding: 7px 9px;
+  border: 1px solid rgba(113, 226, 165, 0.28);
+  color: #94e9b7;
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.queue-admin-panel__description,
+.queue-admin-panel--locked > p:last-child {
+  margin: 18px 0 28px;
+  color: rgba(210, 225, 245, 0.68);
+  font-size: 0.92rem;
+}
+
+.queue-admin-form {
+  display: grid;
+  gap: 14px;
+}
+
+.queue-admin-form > label {
+  color: rgba(223, 233, 247, 0.82);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.queue-admin-form__input-row {
+  display: flex;
+  min-height: 104px;
+  align-items: baseline;
+  padding: 8px 18px;
+  border: 1px solid rgba(139, 169, 218, 0.34);
+  background: rgba(1, 5, 11, 0.72);
+}
+
+.queue-admin-form__input-row:focus-within {
+  border-color: rgba(85, 168, 255, 0.86);
+  box-shadow: 0 0 0 3px rgba(31, 116, 255, 0.12);
+}
+
+.queue-admin-form__input-row input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  appearance: textfield;
+}
+
+.queue-admin-form__input-row input::-webkit-inner-spin-button,
+.queue-admin-form__input-row input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.queue-admin-form__input-row input:disabled {
+  cursor: wait;
+  opacity: 0.46;
+}
+
+.queue-admin-form__input-row > span {
+  color: #ff6979;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.queue-admin-form__quick-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.queue-admin-form button {
+  min-height: 52px;
+  border: 1px solid rgba(137, 166, 214, 0.34);
+  background: rgba(8, 20, 36, 0.9);
+  color: rgba(231, 238, 248, 0.9);
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms var(--ease-out);
+}
+
+.queue-admin-form button:hover:not(:disabled),
+.queue-admin-form button:focus-visible:not(:disabled) {
+  border-color: rgba(85, 168, 255, 0.76);
+  background: rgba(13, 37, 66, 0.96);
+  transform: translateY(-2px);
+}
+
+.queue-admin-form button:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.queue-admin-form .queue-admin-form__submit {
+  position: relative;
+  min-height: 58px;
+  margin-top: 4px;
+  border-color: rgba(255, 73, 91, 0.76);
+  background: linear-gradient(135deg, #b40d22, #ff243b);
+  color: white;
+  box-shadow: 0 16px 36px rgba(255, 36, 59, 0.2);
+}
+
+.queue-admin-form .queue-admin-form__submit:hover:not(:disabled),
+.queue-admin-form .queue-admin-form__submit:focus-visible:not(:disabled) {
+  border-color: #ff8a96;
+  background: linear-gradient(135deg, #c51128, #ff4055);
+}
+
+.queue-admin-form__feedback {
+  min-height: 28px;
+}
+
+.queue-admin-form__feedback p {
+  margin: 2px 0 0;
+  font-size: 0.82rem;
+}
+
+.queue-admin-form__feedback .is-success {
+  color: #91e9b7;
+}
+
+.queue-admin-form__feedback .is-error {
+  color: #ff8995;
+}
+
+.queue-public-link {
+  position: fixed;
+  z-index: 5;
+  right: var(--site-gutter);
+  bottom: 22px;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 14px;
+  border: 1px solid rgba(135, 164, 210, 0.28);
+  background: rgba(3, 9, 18, 0.84);
+  color: rgba(215, 228, 246, 0.78);
+  font-size: 0.78rem;
+  backdrop-filter: blur(14px);
+}

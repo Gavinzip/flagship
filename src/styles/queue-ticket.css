@@ -1,0 +1,152 @@
+.queue-ticket-panel {
+  position: relative;
+  display: grid;
+  min-height: clamp(520px, 61vh, 690px);
+  align-content: center;
+  align-self: center;
+  padding: clamp(28px, 4vw, 54px);
+  border: 1px solid rgba(137, 166, 214, 0.3);
+  background:
+    linear-gradient(145deg, rgba(255, 36, 59, 0.1), transparent 38%),
+    linear-gradient(325deg, rgba(31, 116, 255, 0.1), transparent 42%),
+    rgba(4, 11, 21, 0.92);
+  box-shadow:
+    0 34px 86px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+}
+
+.queue-ticket-panel::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #ff4459, transparent) top left / 42% 1px no-repeat,
+    linear-gradient(270deg, #55a8ff, transparent) bottom right / 48% 1px no-repeat;
+  pointer-events: none;
+  content: "";
+}
+
+.queue-ticket-panel__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.queue-ticket-panel__heading p,
+.queue-ticket-panel__heading span {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.queue-ticket-panel__heading p {
+  color: var(--color-blue-bright);
+}
+
+.queue-ticket-panel__heading span {
+  color: #92e8b6;
+}
+
+.queue-ticket-panel h1 {
+  margin: 16px 0 14px;
+  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 5vw, 4.9rem);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+.queue-ticket-panel__description {
+  margin: 0;
+  color: rgba(215, 228, 246, 0.7);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.queue-ticket-panel__pass {
+  position: relative;
+  display: flex;
+  min-height: 190px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: clamp(24px, 4vh, 38px) 0 18px;
+  padding: 24px;
+  border: 1px solid rgba(138, 169, 218, 0.34);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(31, 116, 255, 0.09), transparent 58%),
+    rgba(1, 5, 11, 0.72);
+  text-align: center;
+}
+
+.queue-ticket-panel__number {
+  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 15vw, 13rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.72;
+  text-shadow:
+    0 0 24px rgba(85, 168, 255, 0.22),
+    0 0 62px rgba(255, 36, 59, 0.12);
+  animation: queue-number-arrive 540ms var(--ease-out) both;
+}
+
+.queue-ticket-panel__suffix {
+  align-self: flex-end;
+  margin-bottom: 18px;
+  color: #ff6979;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.queue-ticket-panel__status {
+  margin: 0;
+  color: rgba(225, 235, 248, 0.78);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.queue-ticket-panel__message {
+  max-width: 430px;
+}
+
+.queue-ticket-panel__message h2 {
+  margin: 0 0 10px;
+  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1;
+}
+
+.queue-ticket-panel__message p {
+  margin: 0;
+  color: rgba(211, 225, 244, 0.7);
+  font-size: 0.88rem;
+}
+
+.queue-ticket-panel__message button {
+  min-width: 150px;
+  min-height: 48px;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 91, 108, 0.74);
+  background: linear-gradient(135deg, #b40d22, #ff243b);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.queue-ticket-panel__reminder {
+  margin: 0;
+  color: #9ee8bd;
+  font-size: 0.86rem;
+  text-align: center;
+}

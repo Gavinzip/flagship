@@ -1,0 +1,156 @@
+@media (max-width: 1080px) {
+  .queue-page--admin,
+  .queue-page--join {
+    overflow: auto;
+  }
+
+  .queue-page--admin .queue-main,
+  .queue-page--join .queue-main {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .queue-page--admin .queue-live-panel,
+  .queue-page--admin .queue-admin-panel,
+  .queue-page--join .queue-live-panel,
+  .queue-page--join .queue-ticket-panel {
+    width: min(100%, 760px);
+    margin: 0 auto;
+  }
+
+  .queue-page--admin .queue-callout,
+  .queue-page--join .queue-callout {
+    min-height: 390px;
+  }
+
+  .queue-page--join .queue-ticket-panel {
+    min-height: 470px;
+  }
+
+  .queue-public-link {
+    position: absolute;
+  }
+}
+
+@media (max-width: 680px) {
+  .queue-header {
+    min-height: 68px;
+  }
+
+  .queue-header > a {
+    width: 104px;
+    min-height: 42px;
+  }
+
+  .queue-header__tools {
+    gap: 8px;
+  }
+
+  .queue-header__tools > span {
+    display: none;
+  }
+
+  .queue-main {
+    align-items: start;
+    padding-top: 28px;
+  }
+
+  .queue-live-panel::before,
+  .queue-live-panel::after {
+    display: none;
+  }
+
+  .queue-live-panel__topline,
+  .queue-live-panel__footer {
+    align-items: flex-start;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  .queue-live-panel__topline {
+    padding: 12px;
+  }
+
+  .queue-live-panel__footer {
+    padding: 10px 6px 0;
+  }
+
+  .queue-callout {
+    min-height: min(62vh, 530px);
+    padding: 40px 18px;
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  }
+
+  .queue-callout__number-row {
+    min-height: 122px;
+    gap: 10px;
+  }
+
+  .queue-number__value,
+  .queue-page--admin .queue-number__value {
+    font-size: clamp(7.4rem, 42vw, 12rem);
+  }
+
+  .queue-ticket-panel {
+    min-height: 440px;
+    padding: 28px 20px;
+  }
+
+  .queue-ticket-panel h1 {
+    font-size: clamp(2.8rem, 13vw, 4rem);
+  }
+
+  .queue-ticket-panel__pass {
+    min-height: 170px;
+    padding: 20px 14px;
+  }
+
+  .queue-ticket-panel__number {
+    font-size: clamp(7.2rem, 36vw, 10rem);
+  }
+
+  .queue-number__waiting {
+    font-size: clamp(3.1rem, 16vw, 5.4rem);
+  }
+
+  .queue-number__status {
+    font-size: clamp(2.1rem, 10vw, 3rem);
+  }
+
+  .queue-callout__suffix {
+    font-size: 1.45rem;
+  }
+
+  .queue-admin-panel {
+    padding: 24px 18px;
+  }
+
+  .queue-admin-panel__secure {
+    display: none;
+  }
+
+  .queue-admin-form__input-row {
+    min-height: 90px;
+  }
+
+  .queue-admin-form__input-row input {
+    font-size: 4.5rem;
+  }
+
+  .queue-public-link {
+    right: 20px;
+    bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .queue-page .entry-item,
+  .queue-number__value,
+  .queue-ticket-panel__number,
+  .queue-connection--live i {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+}

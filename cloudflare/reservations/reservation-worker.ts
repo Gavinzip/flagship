@@ -3,11 +3,15 @@ import {
   getReservationSlotStatus,
   RESERVATION_ERROR,
 } from "../../shared/reservations/domain";
+import { QueueRoom } from "../queue/QueueRoom";
+import { handleQueueApi, type QueueEnv } from "../queue/queueApi";
 
-interface Env {
+interface Env extends QueueEnv {
   DB: D1Database;
   ALLOWED_ORIGINS: string;
 }
+
+export { QueueRoom };
 
 type SlotRow = {
   id: string;
@@ -50,8 +54,8 @@ function corsHeaders(request: Request, env: Env) {
 
   if (origin && allowedOrigins(env).has(origin)) {
     headers.set("Access-Control-Allow-Origin", origin);
-    headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    headers.set("Access-Control-Allow-Headers", "Content-Type");
+    headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
+    headers.set("Access-Control-Allow-Headers", "Authorization, Content-Type");
     headers.set("Access-Control-Max-Age", "600");
     headers.set("Vary", "Origin");
   }
@@ -307,6 +311,19 @@ export default {
     }
     if (url.pathname === `${API_PREFIX}/reservations` && request.method === "POST") {
       return createReservation(request, env);
+    }
+
+    const queueResponse = await handleQueueApi(request, env);
+    if (queueResponse) {
+      const headers = new Headers(queueResponse.headers);
+      const cors = corsHeaders(request, env);
+      for (const [name, value] of cors) headers.set(name, value);
+      return new Response(queueResponse.body, {
+        status: queueResponse.status,
+        statusText: queueResponse.statusText,
+        headers,
+        webSocket: queueResponse.webSocket,
+      });
     }
 
     return json(request, env, { code: "NOT_FOUND" }, 404);

@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_RESERVATION_API_BASE_URL: string;
+  readonly VITE_QUEUE_API_BASE_URL: string;
 }
 
 interface ImportMeta {

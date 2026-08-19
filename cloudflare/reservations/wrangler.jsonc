@@ -10,6 +10,20 @@
   "vars": {
     "ALLOWED_ORIGINS": "https://tcgflagship.com,https://www.tcgflagship.com,https://flagship.zeabur.app,http://127.0.0.1:5174"
   },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "QUEUE_ROOM",
+        "class_name": "QueueRoom"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1-queue-room",
+      "new_sqlite_classes": ["QueueRoom"]
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB",
