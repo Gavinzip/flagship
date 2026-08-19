@@ -4,12 +4,16 @@ import {
   type ServerResponse,
 } from "node:http";
 import {
-  isQueueNumber,
+  isLegacyQueueRangeInput,
+  normalizeQueueRangeInput,
   QUEUE_NUMBER_MAX,
   QUEUE_NUMBER_MIN,
 } from "../domain.js";
 import type { QueueWorkerConfig } from "./config.js";
-import { RedisQueueRepository } from "./redisQueueRepository.js";
+import {
+  LegacyQueueUpdateConflictError,
+  RedisQueueRepository,
+} from "./redisQueueRepository.js";
 import { hasBearerAccess } from "./security.js";
 import { QueueEventHub } from "./sseHub.js";
 
@@ -138,15 +142,23 @@ export function createQueueHttpServer(
           return;
         }
         const input = await readJson(request);
-        if (!isQueueNumber(input.currentNumber)) {
+        const source = isLegacyQueueRangeInput(input) ? "legacy" : "range";
+        const range = normalizeQueueRangeInput(input);
+        if (!range) {
           json(
             request,
             response,
             config,
             {
-              code: "INVALID_QUEUE_NUMBER",
+              code: "INVALID_QUEUE_RANGE",
               minimum: QUEUE_NUMBER_MIN,
+              activeMinimum: 1,
               maximum: QUEUE_NUMBER_MAX,
+              waitingRange: { rangeStart: 0, rangeEnd: 0 },
+              constraints: [
+                "RANGE_START_MUST_NOT_EXCEED_RANGE_END",
+                "ZERO_IS_ONLY_VALID_FOR_THE_WAITING_RANGE",
+              ],
             },
             400,
           );
@@ -156,7 +168,7 @@ export function createQueueHttpServer(
           request,
           response,
           config,
-          await repository.updateSnapshot(input.currentNumber),
+          await repository.updateSnapshot(range, source),
         );
         return;
       }
@@ -176,6 +188,16 @@ export function createQueueHttpServer(
 
       json(request, response, config, { code: "NOT_FOUND" }, 404);
     } catch (error) {
+      if (error instanceof LegacyQueueUpdateConflictError) {
+        json(
+          request,
+          response,
+          config,
+          { code: "LEGACY_QUEUE_UPDATE_CONFLICT" },
+          409,
+        );
+        return;
+      }
       if (error instanceof InvalidBodyError) {
         const status =
           error.message === "INVALID_CONTENT_TYPE"

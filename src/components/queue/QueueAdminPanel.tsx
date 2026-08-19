@@ -1,35 +1,56 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from "react";
 import {
-  isQueueNumber,
+  formatQueueRange,
+  isQueueRange,
+  isQueueRangeActive,
   QUEUE_NUMBER_MAX,
   QUEUE_NUMBER_MIN,
+  type QueueRange,
   type QueueSnapshot,
 } from "../../../shared/queue/domain";
 import type { Locale } from "../../i18n/siteContent";
-import { QueueApiError, updateQueueNumber } from "../../queue/queueApi";
+import { QueueApiError, updateQueueRange } from "../../queue/queueApi";
 import { queueCopy } from "../../queue/queueCopy";
 
 type QueueAdminPanelProps = {
   adminToken: string;
   locale: Locale;
   onSnapshot: (snapshot: QueueSnapshot) => void;
+  rangeUpdatesSupported: boolean;
   snapshot: QueueSnapshot | null;
 };
+
+function parseDraftRange(draftStart: string, draftEnd: string) {
+  const normalizedStart = draftStart.trim();
+  const normalizedEnd = draftEnd.trim();
+  if (!/^\d+$/.test(normalizedStart) || !/^\d+$/.test(normalizedEnd)) {
+    return null;
+  }
+  const range = {
+    rangeStart: Number(normalizedStart),
+    rangeEnd: Number(normalizedEnd),
+  };
+  return isQueueRange(range) ? range : null;
+}
 
 export function QueueAdminPanel({
   adminToken,
   locale,
   onSnapshot,
+  rangeUpdatesSupported,
   snapshot,
 }: QueueAdminPanelProps) {
   const content = queueCopy[locale];
-  const [draft, setDraft] = useState("");
+  const [draftStart, setDraftStart] = useState("");
+  const [draftEnd, setDraftEnd] = useState("");
   const [saveState, setSaveState] =
     useState<"idle" | "saving" | "saved" | "error">("idle");
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (snapshot) setDraft(String(snapshot.currentNumber));
+    if (!snapshot) return;
+    setDraftStart(String(snapshot.rangeStart));
+    setDraftEnd(String(snapshot.rangeEnd));
   }, [snapshot]);
 
   if (!adminToken) {
@@ -45,17 +66,19 @@ export function QueueAdminPanel({
     );
   }
 
-  const controlsReady = snapshot !== null;
+  const controlsReady = snapshot !== null && rangeUpdatesSupported;
 
-  const save = async (currentNumber: number) => {
+  const save = async (range: QueueRange) => {
     if (!controlsReady) {
       setSaveState("error");
-      setError(content.controlsUnavailable);
+      setError(
+        snapshot ? content.rangeUpgradePending : content.controlsUnavailable,
+      );
       return;
     }
-    if (!isQueueNumber(currentNumber)) {
+    if (!isQueueRange(range)) {
       setSaveState("error");
-      setError(content.invalidNumber);
+      setError(content.invalidRange);
       return;
     }
 
@@ -63,9 +86,10 @@ export function QueueAdminPanel({
     setError("");
 
     try {
-      const next = await updateQueueNumber(currentNumber, adminToken);
+      const next = await updateQueueRange(range, adminToken);
       onSnapshot(next);
-      setDraft(String(next.currentNumber));
+      setDraftStart(String(next.rangeStart));
+      setDraftEnd(String(next.rangeEnd));
       setSaveState("saved");
     } catch (saveError) {
       setSaveState("error");
@@ -80,26 +104,44 @@ export function QueueAdminPanel({
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const normalized = draft.trim();
-    if (!/^\d+$/.test(normalized)) {
+    const range = parseDraftRange(draftStart, draftEnd);
+    if (!range) {
       setSaveState("error");
-      setError(content.invalidNumber);
+      setError(content.invalidRange);
       return;
     }
-    void save(Number(normalized));
+    void save(range);
   };
 
   const step = (amount: number) => {
     if (!snapshot) return;
-    const next = Math.min(
-      QUEUE_NUMBER_MAX,
-      Math.max(QUEUE_NUMBER_MIN, snapshot.currentNumber + amount),
-    );
-    setDraft(String(next));
+    const minimum = isQueueRangeActive(snapshot) ? 1 : QUEUE_NUMBER_MIN;
+    const rangeStart = snapshot.rangeStart + amount;
+    const rangeEnd = snapshot.rangeEnd + amount;
+    if (
+      rangeStart < minimum ||
+      rangeStart > QUEUE_NUMBER_MAX ||
+      rangeEnd < minimum ||
+      rangeEnd > QUEUE_NUMBER_MAX
+    ) {
+      return;
+    }
+    const next = {
+      rangeStart,
+      rangeEnd,
+    };
+    setDraftStart(String(next.rangeStart));
+    setDraftEnd(String(next.rangeEnd));
     void save(next);
   };
 
   const controlsDisabled = !controlsReady || saveState === "saving";
+  const previewRange = parseDraftRange(draftStart, draftEnd);
+  const preview = previewRange
+    ? isQueueRangeActive(previewRange)
+      ? `${formatQueueRange(previewRange)}${content.numberSuffix}`
+      : content.waiting
+    : null;
 
   return (
     <aside
@@ -117,31 +159,65 @@ export function QueueAdminPanel({
       <p className="queue-admin-panel__description">{content.adminDescription}</p>
 
       <form className="queue-admin-form" onSubmit={submit}>
-        <label htmlFor="queue-current-number">{content.inputLabel}</label>
-        <div className="queue-admin-form__input-row">
-          <input
-            id="queue-current-number"
-            disabled={!controlsReady}
-            inputMode="numeric"
-            min={QUEUE_NUMBER_MIN}
-            max={QUEUE_NUMBER_MAX}
-            step="1"
-            type="number"
-            value={draft}
-            onChange={(event) => {
-              setDraft(event.target.value);
-              setSaveState("idle");
-              setError("");
-            }}
-          />
-          <span aria-hidden="true">{content.numberSuffix}</span>
-        </div>
+        <fieldset className="queue-admin-form__range">
+          <legend>{content.inputLabel}</legend>
+          <div className="queue-admin-form__range-fields">
+            <label className="queue-admin-form__range-field" htmlFor="queue-range-start">
+              <span>{content.rangeStartLabel}</span>
+              <span className="queue-admin-form__input-row">
+                <input
+                  id="queue-range-start"
+                  disabled={!controlsReady}
+                  inputMode="numeric"
+                  min={QUEUE_NUMBER_MIN}
+                  max={QUEUE_NUMBER_MAX}
+                  step="1"
+                  type="number"
+                  value={draftStart}
+                  onChange={(event) => {
+                    setDraftStart(event.target.value);
+                    setSaveState("idle");
+                    setError("");
+                  }}
+                />
+                <span aria-hidden="true">{content.numberSuffix}</span>
+              </span>
+            </label>
+            <span className="queue-admin-form__range-connector" aria-hidden="true">
+              {content.rangeConnector}
+            </span>
+            <label className="queue-admin-form__range-field" htmlFor="queue-range-end">
+              <span>{content.rangeEndLabel}</span>
+              <span className="queue-admin-form__input-row">
+                <input
+                  id="queue-range-end"
+                  disabled={!controlsReady}
+                  inputMode="numeric"
+                  min={QUEUE_NUMBER_MIN}
+                  max={QUEUE_NUMBER_MAX}
+                  step="1"
+                  type="number"
+                  value={draftEnd}
+                  onChange={(event) => {
+                    setDraftEnd(event.target.value);
+                    setSaveState("idle");
+                    setError("");
+                  }}
+                />
+                <span aria-hidden="true">{content.numberSuffix}</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+        <p className="queue-admin-form__preview" aria-live="polite">
+          {preview ? `${content.previewLabel} ${preview}` : content.previewInvalid}
+        </p>
         <div className="queue-admin-form__quick-controls">
           <button type="button" onClick={() => step(-1)} disabled={controlsDisabled}>
-            <span aria-hidden="true">−</span> {content.previous}
+            <span aria-hidden="true">−</span> {content.previousRange}
           </button>
           <button type="button" onClick={() => step(1)} disabled={controlsDisabled}>
-            {content.next} <span aria-hidden="true">＋</span>
+            {content.nextRange} <span aria-hidden="true">＋</span>
           </button>
         </div>
         <button
@@ -152,7 +228,10 @@ export function QueueAdminPanel({
           <span>{saveState === "saving" ? content.saving : content.save}</span>
         </button>
         <div className="queue-admin-form__feedback" aria-live="polite">
-          {!controlsReady ? <p>{content.controlsUnavailable}</p> : null}
+          {!snapshot ? <p>{content.controlsUnavailable}</p> : null}
+          {snapshot && !rangeUpdatesSupported ? (
+            <p>{content.rangeUpgradePending}</p>
+          ) : null}
           {saveState === "saved" ? (
             <p className="is-success">{content.saved}</p>
           ) : null}

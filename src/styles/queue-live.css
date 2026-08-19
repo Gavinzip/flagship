@@ -197,9 +197,10 @@
   display: block;
   color: white;
   font-family: var(--font-display);
-  font-size: clamp(8.8rem, 24vw, 18.5rem);
+  font-size: clamp(6.6rem, 18vw, 14rem);
   font-weight: 900;
-  letter-spacing: -0.055em;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
   line-height: 0.78;
   text-shadow:
     0 0 22px rgba(103, 165, 255, 0.2),
@@ -207,12 +208,28 @@
   animation: queue-number-arrive 540ms var(--ease-out) both;
 }
 
+.queue-number__value[data-display-density="compact"] {
+  font-size: clamp(5rem, 13vw, 9.4rem);
+}
+
+.queue-number__value[data-display-density="dense"] {
+  font-size: clamp(4rem, 10vw, 7.4rem);
+}
+
 .queue-page--public .queue-number__value {
   animation: queue-number-arrive 540ms var(--ease-out) both;
 }
 
 .queue-page--admin .queue-number__value {
-  font-size: clamp(7.5rem, 14vw, 13rem);
+  font-size: clamp(5.8rem, 10vw, 9rem);
+}
+
+.queue-page--admin .queue-number__value[data-display-density="compact"] {
+  font-size: clamp(4.7rem, 8vw, 7.2rem);
+}
+
+.queue-page--admin .queue-number__value[data-display-density="dense"] {
+  font-size: clamp(3.8rem, 6vw, 5.8rem);
 }
 
 .queue-number__waiting {
@@ -270,6 +287,10 @@
   margin: 0;
   color: rgba(213, 226, 244, 0.72);
   font-size: clamp(0.92rem, 1.5vw, 1.08rem);
+}
+
+.queue-callout__guidance span {
+  display: block;
 }
 
 .queue-live-panel__footer {

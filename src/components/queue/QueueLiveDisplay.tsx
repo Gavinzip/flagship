@@ -1,5 +1,9 @@
 import type { CSSProperties } from "react";
-import type { QueueSnapshot } from "../../../shared/queue/domain";
+import {
+  formatQueueRange,
+  isQueueRangeActive,
+  type QueueSnapshot,
+} from "../../../shared/queue/domain";
 import type { Locale } from "../../i18n/siteContent";
 import {
   formatQueueUpdatedAt,
@@ -19,7 +23,7 @@ function numberStateLabel(
   locale: Locale,
 ) {
   const content = queueCopy[locale];
-  if (snapshot) return snapshot.currentNumber === 0 ? content.waiting : null;
+  if (snapshot) return isQueueRangeActive(snapshot) ? null : content.waiting;
   return connectionStatus === "offline"
     ? content.unavailableNumber
     : content.loadingNumber;
@@ -32,8 +36,10 @@ function connectionLabel(status: QueueConnectionStatus, locale: Locale) {
   return content.offline;
 }
 
-function numberDisplayDensity(currentNumber: number) {
-  return String(currentNumber).length > 3 ? "compact" : "standard";
+function rangeDisplayDensity(snapshot: QueueSnapshot) {
+  const length = formatQueueRange(snapshot).length;
+  if (length > 7) return "dense";
+  return length > 5 ? "compact" : "standard";
 }
 
 export function QueueLiveDisplay({
@@ -77,13 +83,13 @@ export function QueueLiveDisplay({
             aria-atomic="true"
             aria-busy={snapshot === null}
           >
-            {snapshot && snapshot.currentNumber > 0 ? (
+            {snapshot && isQueueRangeActive(snapshot) ? (
               <span
                 key={snapshot.revision}
                 className="queue-number__value"
-                data-display-density={numberDisplayDensity(snapshot.currentNumber)}
+                data-display-density={rangeDisplayDensity(snapshot)}
               >
-                {snapshot.currentNumber}
+                {formatQueueRange(snapshot)}
               </span>
             ) : (
               <span
@@ -97,14 +103,18 @@ export function QueueLiveDisplay({
               </span>
             )}
           </div>
-          {snapshot && snapshot.currentNumber > 0 && content.numberSuffix ? (
+          {snapshot && isQueueRangeActive(snapshot) && content.numberSuffix ? (
             <span className="queue-callout__suffix">{content.numberSuffix}</span>
           ) : null}
         </div>
         <div className="queue-callout__rule" aria-hidden="true">
           <i />
         </div>
-        <p className="queue-callout__guidance">{content.guidance}</p>
+        <p className="queue-callout__guidance">
+          {content.guidance.map((line) => (
+            <span key={line}>{line}</span>
+          ))}
+        </p>
       </div>
 
       <div

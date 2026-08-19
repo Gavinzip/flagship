@@ -33,7 +33,12 @@ function PublicQueuePage() {
 function AdminQueuePage() {
   const { locale } = useLocale();
   const content = queueCopy[locale];
-  const { snapshot, connectionStatus, acceptSnapshot } = useQueueRealtime();
+  const {
+    snapshot,
+    connectionStatus,
+    rangeUpdatesSupported,
+    acceptSnapshot,
+  } = useQueueRealtime();
   const adminToken = useMemo(
     () => readQueueAdminToken(window.location.hash),
     [],
@@ -60,6 +65,7 @@ function AdminQueuePage() {
         adminToken={adminToken}
         snapshot={snapshot}
         onSnapshot={acceptSnapshot}
+        rangeUpdatesSupported={rangeUpdatesSupported}
         locale={locale}
       />
     </QueueScreen>

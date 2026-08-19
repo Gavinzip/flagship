@@ -135,11 +135,15 @@
   }
 
   .queue-number__value {
-    font-size: clamp(7.4rem, 42vw, 12rem);
+    font-size: clamp(4.6rem, 24vw, 6.4rem);
   }
 
   .queue-page--public .queue-number__value[data-display-density="compact"] {
-    font-size: clamp(5.4rem, 30vw, 7.2rem);
+    font-size: clamp(3.7rem, 17.5vw, 5rem);
+  }
+
+  .queue-page--public .queue-number__value[data-display-density="dense"] {
+    font-size: clamp(3rem, 13.5vw, 4rem);
   }
 
   .queue-number__waiting {
@@ -189,11 +193,15 @@
   }
 
   .queue-page--admin .queue-number__value {
-    font-size: clamp(5.8rem, 28vw, 7.4rem);
+    font-size: clamp(4rem, 20vw, 5.4rem);
   }
 
   .queue-page--admin .queue-number__value[data-display-density="compact"] {
-    font-size: clamp(5.2rem, 25vw, 6.6rem);
+    font-size: clamp(3.3rem, 16vw, 4.5rem);
+  }
+
+  .queue-page--admin .queue-number__value[data-display-density="dense"] {
+    font-size: clamp(2.7rem, 12.5vw, 3.6rem);
   }
 
   .queue-page--admin .queue-number__waiting {
@@ -242,11 +250,28 @@
 
   .queue-admin-form__input-row {
     min-height: 78px;
-    padding: 6px 14px;
+    padding: 6px 10px;
   }
 
   .queue-admin-form__input-row input {
-    font-size: 3.8rem;
+    font-size: clamp(2.5rem, 12vw, 3.4rem);
+  }
+
+  .queue-admin-form__range-fields {
+    gap: 7px;
+  }
+
+  .queue-admin-form__range-field > span:first-child {
+    font-size: 0.74rem;
+  }
+
+  .queue-admin-form__range-connector {
+    min-height: 78px;
+    font-size: 0.78rem;
+  }
+
+  .queue-admin-form__input-row > span {
+    font-size: 1rem;
   }
 
   .queue-admin-form__quick-controls {

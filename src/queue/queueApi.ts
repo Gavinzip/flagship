@@ -1,5 +1,7 @@
 import {
   isQueueSnapshot,
+  normalizeQueueSnapshot,
+  type QueueRange,
   type QueueSnapshot,
 } from "../../shared/queue/domain";
 
@@ -30,8 +32,12 @@ async function readErrorCode(response: Response) {
 
 async function readSnapshot(response: Response) {
   const payload: unknown = await response.json();
-  if (!isQueueSnapshot(payload)) throw new QueueApiError("INVALID_QUEUE_STATE");
-  return payload;
+  const snapshot = normalizeQueueSnapshot(payload);
+  if (!snapshot) throw new QueueApiError("INVALID_QUEUE_STATE");
+  return {
+    snapshot,
+    rangeUpdatesSupported: isQueueSnapshot(payload),
+  };
 }
 
 export async function fetchQueueSnapshot(signal?: AbortSignal) {
@@ -51,8 +57,8 @@ export async function fetchQueueSnapshot(signal?: AbortSignal) {
   return readSnapshot(response);
 }
 
-export async function updateQueueNumber(
-  currentNumber: number,
+export async function updateQueueRange(
+  range: QueueRange,
   adminToken: string,
 ) {
   let response: Response;
@@ -65,18 +71,21 @@ export async function updateQueueNumber(
         Authorization: `Bearer ${adminToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ currentNumber }),
+      body: JSON.stringify(range),
     });
   } catch {
     throw new QueueApiError("QUEUE_NETWORK_ERROR");
   }
 
   if (!response.ok) throw new QueueApiError(await readErrorCode(response));
-  return readSnapshot(response);
+  return (await readSnapshot(response)).snapshot;
 }
 
 export function openQueueEvents(
-  onSnapshot: (snapshot: QueueSnapshot) => void,
+  onSnapshot: (
+    snapshot: QueueSnapshot,
+    rangeUpdatesSupported: boolean,
+  ) => void,
 ) {
   const events = new EventSource(`${apiBaseUrl}/api/queue/events`);
 
@@ -88,11 +97,9 @@ export function openQueueEvents(
         type?: unknown;
         snapshot?: unknown;
       };
-      if (
-        (payload.type === "queue.snapshot" || payload.type === "queue.updated") &&
-        isQueueSnapshot(payload.snapshot)
-      ) {
-        onSnapshot(payload.snapshot);
+      if (payload.type === "queue.snapshot" || payload.type === "queue.updated") {
+        const snapshot = normalizeQueueSnapshot(payload.snapshot);
+        if (snapshot) onSnapshot(snapshot, isQueueSnapshot(payload.snapshot));
       }
     } catch {
       // Ignore malformed push messages and keep the verified connection open.

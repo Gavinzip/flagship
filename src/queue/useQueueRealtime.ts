@@ -8,13 +8,18 @@ export function useQueueRealtime() {
   const [snapshot, setSnapshot] = useState<QueueSnapshot | null>(null);
   const [connectionStatus, setConnectionStatus] =
     useState<QueueConnectionStatus>("connecting");
+  const [rangeUpdatesSupported, setRangeUpdatesSupported] = useState(false);
   const latestRevision = useRef(-1);
 
-  const acceptSnapshot = useCallback((next: QueueSnapshot) => {
-    if (next.revision < latestRevision.current) return;
-    latestRevision.current = next.revision;
-    setSnapshot(next);
-  }, []);
+  const acceptSnapshot = useCallback(
+    (next: QueueSnapshot, supportsRangeUpdates = true) => {
+      if (next.revision < latestRevision.current) return;
+      latestRevision.current = next.revision;
+      setSnapshot(next);
+      setRangeUpdatesSupported(supportsRangeUpdates);
+    },
+    [],
+  );
 
   useEffect(() => {
     const controller = new AbortController();
@@ -22,7 +27,9 @@ export function useQueueRealtime() {
     let events: EventSource | null = null;
 
     void fetchQueueSnapshot(controller.signal)
-      .then(acceptSnapshot)
+      .then(({ snapshot: next, rangeUpdatesSupported: supported }) => {
+        acceptSnapshot(next, supported);
+      })
       .catch(() => {
         if (!disposed) setConnectionStatus("offline");
       });
@@ -46,5 +53,10 @@ export function useQueueRealtime() {
     };
   }, [acceptSnapshot]);
 
-  return { snapshot, connectionStatus, acceptSnapshot };
+  return {
+    snapshot,
+    connectionStatus,
+    rangeUpdatesSupported,
+    acceptSnapshot,
+  };
 }

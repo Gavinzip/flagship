@@ -121,10 +121,46 @@
   gap: 14px;
 }
 
-.queue-admin-form > label {
+.queue-admin-form__range {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.queue-admin-form__range legend,
+.queue-admin-form__range-field > span:first-child {
   color: rgba(223, 233, 247, 0.82);
   font-size: 0.82rem;
   font-weight: 700;
+}
+
+.queue-admin-form__range legend {
+  margin-bottom: 10px;
+}
+
+.queue-admin-form__range-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: end;
+  gap: 12px;
+}
+
+.queue-admin-form__range-field {
+  display: grid;
+  min-width: 0;
+  gap: 7px;
+}
+
+.queue-admin-form__range-connector {
+  display: grid;
+  min-height: 104px;
+  place-items: center;
+  color: #ff6979;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
 }
 
 .queue-admin-form__input-row {
@@ -149,10 +185,17 @@
   background: transparent;
   color: white;
   font-family: var(--font-display);
-  font-size: clamp(3.8rem, 8vw, 6rem);
+  font-size: clamp(3rem, 5vw, 4.4rem);
   font-weight: 900;
   line-height: 1;
   appearance: textfield;
+}
+
+.queue-admin-form__preview {
+  min-height: 22px;
+  margin: -2px 0 0;
+  color: rgba(176, 207, 246, 0.78);
+  font-size: 0.8rem;
 }
 
 .queue-admin-form__input-row input::-webkit-inner-spin-button,

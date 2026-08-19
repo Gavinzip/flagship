@@ -1,6 +1,6 @@
 import type { ServerResponse } from "node:http";
 import type { RedisClientType } from "redis";
-import { isQueueSnapshot, type QueueSnapshot } from "../domain.js";
+import { normalizeQueueSnapshot, type QueueSnapshot } from "../domain.js";
 import { QUEUE_UPDATES_CHANNEL } from "./redisQueueRepository.js";
 
 function eventPayload(
@@ -33,8 +33,8 @@ export class QueueEventHub {
     await this.subscriber.connect();
     await this.subscriber.subscribe(QUEUE_UPDATES_CHANNEL, (message) => {
       try {
-        const snapshot: unknown = JSON.parse(message);
-        if (!isQueueSnapshot(snapshot)) {
+        const snapshot = normalizeQueueSnapshot(JSON.parse(message));
+        if (!snapshot) {
           throw new Error("Queue update payload failed validation.");
         }
         this.broadcastRaw(eventPayload("queue.updated", snapshot));
