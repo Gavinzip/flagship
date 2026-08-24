@@ -32,7 +32,7 @@ export function TicketSection() {
                 <strong>{content.tickets.toolbarDescription}</strong>
               </div>
               <a
-                href={event.ticketUrl}
+                href={event.challengeRegistrationUrl}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -42,7 +42,7 @@ export function TicketSection() {
             </header>
 
             <iframe
-              src={`https://luma.com/embed/event/${event.lumaEventId}/simple`}
+              src={`https://luma.com/embed/event/${event.challengeRegistrationEventId}/simple`}
               title={content.tickets.iframeTitle}
               allow="fullscreen; payment"
             />
