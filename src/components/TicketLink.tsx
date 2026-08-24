@@ -1,12 +1,9 @@
 import {
   type AnchorHTMLAttributes,
-  type MouseEvent,
   type ReactNode,
 } from "react";
 import { event } from "../data/event";
-import { ActionLink } from "./ActionLink";
-import { InteractiveLink } from "./InteractiveLink";
-import { useLumaCheckout } from "./LumaCheckoutProvider";
+import { LumaCheckoutLink } from "./LumaCheckoutLink";
 
 type TicketLinkProps = Omit<
   AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -23,32 +20,15 @@ export function TicketLink({
   variant = "action",
   ...props
 }: TicketLinkProps) {
-  const { openCheckout } = useLumaCheckout();
-  const openLumaCheckout = (mouseEvent: MouseEvent<HTMLAnchorElement>) => {
-    props.onClick?.(mouseEvent);
-    if (mouseEvent.defaultPrevented) return;
-
-    mouseEvent.preventDefault();
-    openCheckout();
-  };
-
-  const checkoutProps = {
-    ...props,
-    href: event.ticketUrl,
-    onClick: openLumaCheckout,
-  };
-
-  if (variant === "plain") {
-    return (
-      <InteractiveLink {...checkoutProps}>
-        {children}
-      </InteractiveLink>
-    );
-  }
-
   return (
-    <ActionLink {...checkoutProps} tone={tone}>
+    <LumaCheckoutLink
+      {...props}
+      checkoutTarget="tickets"
+      href={event.ticketUrl}
+      tone={tone}
+      variant={variant}
+    >
       {children}
-    </ActionLink>
+    </LumaCheckoutLink>
   );
 }

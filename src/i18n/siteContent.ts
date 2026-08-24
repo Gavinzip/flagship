@@ -53,6 +53,9 @@ type SiteContent = {
   calendar: {
     label: string;
   };
+  challengeRegistration: {
+    label: string;
+  };
   mobileActions: {
     label: string;
     ticket: string;
@@ -162,6 +165,7 @@ export const siteContent = {
     },
     eventPass: { dateLabel: "DATE", timeLabel: "TIME", placeLabel: "PLACE" },
     calendar: { label: "加入行事曆" },
+    challengeRegistration: { label: "報名參加挑戰賽" },
     mobileActions: {
       label: "活動快速操作",
       ticket: "立即預約",
@@ -412,6 +416,7 @@ export const siteContent = {
     },
     eventPass: { dateLabel: "DATE", timeLabel: "TIME", placeLabel: "VENUE" },
     calendar: { label: "Add to Calendar" },
+    challengeRegistration: { label: "Join the Champion Challenge" },
     mobileActions: {
       label: "Event quick actions",
       ticket: "Tickets",

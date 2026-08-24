@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Menu, Xmark } from "iconoir-react";
 import { responsiveMedia } from "../config/media";
+import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
 import { LanguageSelector } from "./LanguageSelector";
-import { TicketLink } from "./TicketLink";
+import { LumaCheckoutLink } from "./LumaCheckoutLink";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,13 @@ export function Header() {
 
         <div className="header-actions">
           <LanguageSelector />
-          <TicketLink className="header-cta">{content.header.ticketLabel}</TicketLink>
+          <LumaCheckoutLink
+            checkoutTarget="challenge"
+            className="header-cta"
+            href={event.challengeRegistrationUrl}
+          >
+            {content.challengeRegistration.label}
+          </LumaCheckoutLink>
 
           <button
             className="menu-button"
