@@ -188,7 +188,7 @@ export const siteContent = {
           english: "CHAMPION CHALLENGE",
           title: "冠軍挑戰賽",
           description:
-            "一般玩家也能登上舞台，面對頂尖選手，在現場觀眾面前完成一場高張力對戰。",
+            "帶上你的牌組，登上 FLAGSHIP 擂台！在現場觀眾面前與各路玩家正面交鋒，累積兩勝，贏取獎品！",
           alt: "紅藍燈光環繞的卡牌競賽舞台與現場觀眾",
           points: ["玩家挑戰", "舞台對戰", "活動獎品"],
         },
