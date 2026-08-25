@@ -16,7 +16,6 @@ const mediaPaths = {
   highlightPlayers: "highlight-players.webp",
   highlightTcgVendors: "highlight-tcg-vendors.webp",
   sectionHighlightsArena: "section-highlights-arena.webp",
-  sectionScheduleStage: "section-schedule-stage.webp",
   sectionVendorsGallery: "section-vendors-gallery.webp",
   sectionVenueArrival: "section-venue-arrival.webp",
   venueClapper: "venue-clapper.webp",
@@ -100,9 +99,6 @@ const cssAssetVariables = {
   "--asset-event-pass-surface": staticAssetCssUrl(mediaPaths.eventPassSurface),
   "--asset-section-highlights": staticAssetCssUrl(
     mediaPaths.sectionHighlightsArena,
-  ),
-  "--asset-section-schedule": staticAssetCssUrl(
-    mediaPaths.sectionScheduleStage,
   ),
   "--asset-section-vendors": staticAssetCssUrl(
     mediaPaths.sectionVendorsGallery,

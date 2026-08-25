@@ -71,14 +71,6 @@ type SiteContent = {
     pointsLabel: (title: string) => string;
     items: readonly HighlightCopy[];
   };
-  schedule: {
-    title: string;
-    english: string;
-    entryOpen: string;
-    comingSoon: string;
-    comingSoonDescription: string;
-    eventEnds: string;
-  };
   vendors: {
     title: string;
     english: string;
@@ -129,7 +121,6 @@ export const siteContent = {
     metaDescription: event.metaDescription,
     navigation: [
       { label: "活動亮點", href: "#highlights" },
-      { label: "節目表", href: "#schedule" },
       { label: "攤商", href: "#vendors" },
       { label: "場地地圖", href: "#venue" },
       { label: "常見問題", href: "#faq" },
@@ -210,14 +201,6 @@ export const siteContent = {
           notice: "攤商名單與攤位圖將陸續公布",
         },
       ],
-    },
-    schedule: {
-      title: "節目表",
-      english: "SCHEDULE",
-      entryOpen: "開放入場",
-      comingSoon: "完整舞台時程即將公布",
-      comingSoonDescription: "挑戰賽、互動活動與抽獎時段將陸續更新",
-      eventEnds: "活動結束",
     },
     vendors: {
       title: "合作夥伴",
@@ -332,7 +315,7 @@ export const siteContent = {
           category: "活動資訊",
           question: "如何取得最新消息？",
           answer:
-            "參展名單、門票資訊、活動時間表、交通指南及現場安排，將陸續公布於本網站及 FLAGSHIP 官方社群。",
+            "參展名單、門票資訊、交通指南及現場安排，將陸續公布於本網站及 FLAGSHIP 官方社群。",
         },
       ],
     },
@@ -360,7 +343,6 @@ export const siteContent = {
       "Flagship Card Show Taiwan 2026 takes place on September 5 at CLAPPER STUDIO, 5F, Syntrend Creative Park. Explore 30+ TCG vendors, the Champion Challenge, and on-site activities.",
     navigation: [
       { label: "Highlights", href: "#highlights" },
-      { label: "Schedule", href: "#schedule" },
       { label: "Vendors", href: "#vendors" },
       { label: "Venue", href: "#venue" },
       { label: "FAQ", href: "#faq" },
@@ -441,15 +423,6 @@ export const siteContent = {
           notice: "Vendor list and floor plan will be announced soon",
         },
       ],
-    },
-    schedule: {
-      title: "Schedule",
-      english: "EVENT PROGRAM",
-      entryOpen: "Doors open",
-      comingSoon: "Full stage schedule coming soon",
-      comingSoonDescription:
-        "Challenge matches, interactive activities, and prize-draw times will be announced soon.",
-      eventEnds: "Event ends",
     },
     vendors: {
       title: "Partners & Vendors",
@@ -564,7 +537,7 @@ export const siteContent = {
           category: "Event Info",
           question: "How do I get the latest updates?",
           answer:
-            "Exhibitor announcements, ticket information, schedules, travel guidance, and on-site arrangements will be published on this website and FLAGSHIP’s official social channels.",
+            "Exhibitor announcements, ticket information, travel guidance, and on-site arrangements will be published on this website and FLAGSHIP’s official social channels.",
         },
       ],
     },

@@ -40,11 +40,6 @@
     0 0 26px rgba(31, 116, 255, 0.26);
 }
 
-.hud-scan--schedule .hud-scan__beam {
-  animation-duration: 11.6s;
-  animation-delay: -4.2s;
-}
-
 .glare-sweep {
   position: absolute;
   top: -18%;
