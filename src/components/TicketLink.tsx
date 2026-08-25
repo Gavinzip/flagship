@@ -3,6 +3,7 @@ import {
   type ReactNode,
 } from "react";
 import { event } from "../data/event";
+import type { ActionLinkTone } from "./ActionLink";
 import { LumaCheckoutLink } from "./LumaCheckoutLink";
 
 type TicketLinkProps = Omit<
@@ -10,7 +11,7 @@ type TicketLinkProps = Omit<
   "href"
 > & {
   children: ReactNode;
-  tone?: "primary" | "secondary";
+  tone?: ActionLinkTone;
   variant?: "action" | "plain";
 };
 

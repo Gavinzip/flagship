@@ -70,7 +70,7 @@ export function EventPassContent({
         <LumaCheckoutLink
           checkoutTarget="challenge"
           href={event.challengeRegistrationUrl}
-          tone="secondary"
+          tone="blue"
         >
           {content.eventPass.challengeRegistrationLabel}
         </LumaCheckoutLink>

@@ -3,7 +3,7 @@ import {
   type MouseEvent,
   type ReactNode,
 } from "react";
-import { ActionLink } from "./ActionLink";
+import { ActionLink, type ActionLinkTone } from "./ActionLink";
 import { InteractiveLink } from "./InteractiveLink";
 import {
   type LumaCheckoutTarget,
@@ -17,7 +17,7 @@ type LumaCheckoutLinkProps = Omit<
   children: ReactNode;
   checkoutTarget: LumaCheckoutTarget;
   href: string;
-  tone?: "primary" | "secondary";
+  tone?: ActionLinkTone;
   variant?: "action" | "plain";
 };
 

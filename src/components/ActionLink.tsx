@@ -2,9 +2,11 @@ import type { AnchorHTMLAttributes, ReactNode } from "react";
 import { ArrowUpRight } from "iconoir-react";
 import { InteractiveLink } from "./InteractiveLink";
 
+export type ActionLinkTone = "primary" | "secondary" | "blue";
+
 type ActionLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode;
-  tone?: "primary" | "secondary";
+  tone?: ActionLinkTone;
 };
 
 export function ActionLink({
