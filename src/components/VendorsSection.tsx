@@ -1,6 +1,6 @@
-import { MapPin, Shop } from "iconoir-react";
-import { EnergyFrame } from "./EnergyFrame";
+import { cohost, organizer, titleSponsor, vendors } from "../data/partners";
 import { useLocale } from "../i18n/LocaleProvider";
+import { PartnerTierCard, VendorLogoCard } from "./PartnerLogoCard";
 import { SectionHeading } from "./SectionHeading";
 
 export function VendorsSection() {
@@ -14,21 +14,41 @@ export function VendorsSection() {
           english={content.vendors.english}
         />
 
-        <EnergyFrame className="vendor-announcement" data-reveal>
-          <div className="vendor-announcement__count" aria-hidden="true">
-            30<span>+</span>
+        <div className="partner-wall">
+          <div className="partner-tier-grid">
+            <PartnerTierCard
+              label={content.vendors.organizerLabel}
+              logo={organizer}
+              tone="organizer"
+            />
+            <PartnerTierCard
+              label={content.vendors.titleSponsorLabel}
+              logo={titleSponsor}
+              tone="title"
+            />
+            <PartnerTierCard
+              label={content.vendors.cohostLabel}
+              logo={cohost}
+              tone="cohost"
+            />
           </div>
-          <div className="vendor-announcement__content">
-            <Shop aria-hidden="true" />
-            <div>
-              <h3>{content.vendors.listComingSoon}</h3>
-            </div>
+
+          <div className="vendor-wall__heading" data-reveal>
+            <h3>{content.vendors.vendorLabel}</h3>
+            <span aria-hidden="true">
+              {String(vendors.length).padStart(2, "0")}
+            </span>
           </div>
-          <div className="vendor-announcement__map">
-            <MapPin aria-hidden="true" />
-            <span>{content.vendors.mapComingSoon}</span>
-          </div>
-        </EnergyFrame>
+
+          <ul
+            className="vendor-logo-grid"
+            aria-label={content.vendors.vendorLabel}
+          >
+            {vendors.map((vendor, index) => (
+              <VendorLogoCard key={vendor.name} index={index} logo={vendor} />
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

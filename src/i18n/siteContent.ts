@@ -82,8 +82,10 @@ type SiteContent = {
   vendors: {
     title: string;
     english: string;
-    listComingSoon: string;
-    mapComingSoon: string;
+    organizerLabel: string;
+    titleSponsorLabel: string;
+    cohostLabel: string;
+    vendorLabel: string;
   };
   venue: {
     title: string;
@@ -234,10 +236,12 @@ export const siteContent = {
       eventEnds: "活動結束",
     },
     vendors: {
-      title: "參展攤商",
-      english: "EXHIBITORS",
-      listComingSoon: "攤商名單陸續公布",
-      mapComingSoon: "攤位配置同步更新",
+      title: "合作夥伴",
+      english: "PARTNERS & VENDORS",
+      organizerLabel: "ORGANIZER",
+      titleSponsorLabel: "TITLE SPONSOR",
+      cohostLabel: "COHOST",
+      vendorLabel: "VENDOR",
     },
     venue: {
       title: "場地地圖",
@@ -492,10 +496,12 @@ export const siteContent = {
       eventEnds: "Event ends",
     },
     vendors: {
-      title: "Vendors",
-      english: "EXHIBITORS",
-      listComingSoon: "Vendor list coming soon",
-      mapComingSoon: "Floor assignments will be updated here",
+      title: "Partners & Vendors",
+      english: "PARTNERS & VENDORS",
+      organizerLabel: "ORGANIZER",
+      titleSponsorLabel: "TITLE SPONSOR",
+      cohostLabel: "COHOST",
+      vendorLabel: "VENDOR",
     },
     venue: {
       title: "Venue & Floor Map",
