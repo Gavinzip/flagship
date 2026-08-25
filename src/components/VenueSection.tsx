@@ -1,5 +1,4 @@
 import { Map, MapPin, Train } from "iconoir-react";
-import { media, responsiveMedia } from "../config/media";
 import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
 import { ActionLink } from "./ActionLink";
@@ -67,50 +66,6 @@ export function VenueSection() {
             </div>
           </div>
         </EnergyFrame>
-
-        <section
-          className="floor-plan"
-          id="floor-map"
-          aria-labelledby="floor-plan-title"
-          data-reveal
-        >
-          <header className="floor-plan__header">
-            <div>
-              <p>CLAPPER STUDIO · 5F</p>
-              <h3 id="floor-plan-title">{content.venue.floorPlanTitle}</h3>
-              <span>{content.venue.floorPlanDescription}</span>
-            </div>
-            <ActionLink
-              href={media.floorPlan}
-              target="_blank"
-              rel="noreferrer"
-              tone="secondary"
-            >
-              {content.venue.openFloorPlan}
-            </ActionLink>
-          </header>
-
-          <div
-            className="floor-plan__viewport"
-            role="region"
-            aria-label={content.venue.floorPlanLabel}
-            tabIndex={0}
-          >
-            <img
-              {...responsiveMedia.floorPlan}
-              width="3600"
-              height="2200"
-              alt={content.venue.floorPlanAlt}
-            />
-          </div>
-
-          <div className="floor-plan__legend" aria-label={content.venue.legendLabel}>
-            {content.venue.legend.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-
-        </section>
       </div>
     </section>
   );

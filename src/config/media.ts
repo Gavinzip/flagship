@@ -7,7 +7,6 @@ const mediaPaths = {
   eventPassFrame: "event-pass-frame.webp",
   eventPassSurface: "event-pass-surface.webp",
   flagshipLogo: "flagship-logo.webp",
-  floorPlan: "floor-plan-public.webp",
   heroArena: "hero-arena.webp",
   heroFloatingCard: "hero-floating-card-hd.webp",
   heroFloatingStage: "hero-floating-stage.webp",
@@ -15,8 +14,6 @@ const mediaPaths = {
   highlightChampionChallenge: "highlight-champion-challenge.webp",
   highlightEntryGift: "highlight-entry-gift.webp",
   highlightPlayers: "highlight-players.webp",
-  highlightRareCard: "highlight-rare-card.webp",
-  highlightRareShowcase: "highlight-rare-showcase.webp",
   highlightTcgVendors: "highlight-tcg-vendors.webp",
   sectionHighlightsArena: "section-highlights-arena.webp",
   sectionScheduleStage: "section-schedule-stage.webp",
@@ -68,15 +65,6 @@ export const responsiveMedia = {
     ],
     "(max-width: 620px) 92vw, 650px",
   ),
-  floorPlan: responsiveImage(
-    media.floorPlan,
-    [
-      ["floor-plan-public-1200.webp", 1200],
-      ["floor-plan-public-1800.webp", 1800],
-      [mediaPaths.floorPlan, 3600],
-    ],
-    "(max-width: 960px) 100vw, 1435px",
-  ),
   heroFloatingCard: responsiveImage(
     media.heroFloatingCard,
     [
@@ -90,7 +78,6 @@ export const responsiveMedia = {
 
 const responsivePreloads: Partial<Record<MediaKey, ResponsiveMedia>> = {
   flagshipLogo: responsiveMedia.flagshipLogo,
-  floorPlan: responsiveMedia.floorPlan,
   heroFloatingCard: responsiveMedia.heroFloatingCard,
 };
 

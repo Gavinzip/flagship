@@ -96,13 +96,6 @@ type SiteContent = {
     routeLabel: string;
     routeSteps: readonly string[];
     directions: string;
-    floorPlanTitle: string;
-    floorPlanDescription: string;
-    openFloorPlan: string;
-    floorPlanLabel: string;
-    floorPlanAlt: string;
-    legendLabel: string;
-    legend: readonly string[];
   };
   faq: {
     categoryLabel: string;
@@ -160,7 +153,7 @@ export const siteContent = {
       titleKicker: "台灣年度",
       title: "旗艦卡牌展",
       coverVisualAlt: "浮動的 Flagship Card Show Taiwan 橫向活動卡片",
-      featureTags: ["30+ TCG 攤商", "冠軍挑戰賽", "稀有收藏展示"],
+      featureTags: ["30+ TCG 攤商", "冠軍挑戰賽", "現場活動"],
     },
     event: {
       venue: event.venue,
@@ -208,15 +201,6 @@ export const siteContent = {
         },
         {
           number: "03",
-          english: "RARE CARD & COLLECTIBLES SHOWCASE",
-          title: "稀有卡牌與收藏展示",
-          description:
-            "走進珍稀卡牌區與收藏展示區，近距離欣賞特殊設計的卡牌與精選收藏，一次看見卡牌文化的不同面貌。",
-          alt: "參加者近距離欣賞具有特殊設計的珍稀卡牌",
-          points: ["稀有卡牌", "收藏故事", "文化藏品"],
-        },
-        {
-          number: "04",
           english: "30+ TCG VENDORS",
           title: "30+ TCG 攤商集結",
           description:
@@ -245,7 +229,7 @@ export const siteContent = {
     },
     venue: {
       title: "場地地圖",
-      english: "VENUE & FLOOR MAP",
+      english: "VENUE & DIRECTIONS",
       mapTitle: "三創生活園區 Google 地圖",
       mapRoute: "忠孝新生站 → 三創生活園區",
       transitTitle: "搭捷運最方便",
@@ -256,19 +240,6 @@ export const siteContent = {
         "進入商場後前往 5F Clapper Studio。",
       ],
       directions: "從目前位置開始導航",
-      floorPlanTitle: "會場配置圖",
-      floorPlanDescription: "入口位於左下方，舞台位於右側；手機可左右滑動查看。",
-      openFloorPlan: "展開完整地圖",
-      floorPlanLabel: "可左右滑動的會場配置圖",
-      floorPlanAlt:
-        "Clapper Studio 5F 會場配置圖；入口在左下方，攤位位於中央，展示區在上方，舞台在右側，出口在下方偏右。",
-      legendLabel: "配置圖圖例",
-      legend: [
-        "紅色：一般攤位 T01–T24",
-        "黃色：大型攤位 T30–T33",
-        "藍色：展示區",
-        "右側：舞台",
-      ],
     },
     faq: {
       categoryLabel: "常見問題分類",
@@ -278,7 +249,7 @@ export const siteContent = {
           category: "活動資訊",
           question: "FLAGSHIP Card Show Taiwan 是什麼活動？",
           answer:
-            "FLAGSHIP Card Show Taiwan 是一日制卡牌展覽，集合卡店、收藏家、玩家及品牌。現場設有卡牌市集、Champion Challenge、珍稀收藏展示及舞台活動。",
+            "FLAGSHIP Card Show Taiwan 是一日制卡牌展覽，集合卡店、收藏家、玩家及品牌。現場設有卡牌市集、Champion Challenge 及舞台活動。",
         },
         {
           category: "活動資訊",
@@ -341,12 +312,6 @@ export const siteContent = {
         },
         {
           category: "現場體驗",
-          question: "珍稀收藏展示中的卡牌可以購買嗎？",
-          answer:
-            "收藏展示品不一定對外出售。現場攤位所提供的商品、售價及交易方式，請直接向相關參展商確認。",
-        },
-        {
-          category: "現場體驗",
           question: "可以攜帶自己的卡牌到場嗎？",
           answer:
             "可以攜帶個人收藏，但請自行妥善保管。各攤位是否提供收卡、換卡或估價服務，須由參展商自行決定。",
@@ -392,7 +357,7 @@ export const siteContent = {
   },
   en: {
     metaDescription:
-      "Flagship Card Show Taiwan 2026 takes place on September 5 at CLAPPER STUDIO, 5F, Syntrend Creative Park. Explore 30+ TCG vendors, the Champion Challenge, rare-card displays, and on-site activities.",
+      "Flagship Card Show Taiwan 2026 takes place on September 5 at CLAPPER STUDIO, 5F, Syntrend Creative Park. Explore 30+ TCG vendors, the Champion Challenge, and on-site activities.",
     navigation: [
       { label: "Highlights", href: "#highlights" },
       { label: "Schedule", href: "#schedule" },
@@ -419,7 +384,7 @@ export const siteContent = {
       titleKicker: "TAIWAN'S PREMIER",
       title: "CARD SHOW",
       coverVisualAlt: "A floating landscape Flagship Card Show Taiwan event card",
-      featureTags: ["30+ TCG VENDORS", "CHAMPION CHALLENGE", "RARE SHOWCASE"],
+      featureTags: ["30+ TCG VENDORS", "CHAMPION CHALLENGE", "ON-SITE ACTIVITIES"],
     },
     event: {
       venue: event.englishVenue,
@@ -467,15 +432,6 @@ export const siteContent = {
         },
         {
           number: "03",
-          english: "RARE CARD & COLLECTIBLES SHOWCASE",
-          title: "Rare Cards & Collectibles",
-          description:
-            "Explore rare cards and curated displays up close, and discover the stories behind collectible card culture.",
-          alt: "A visitor examining a rare card up close",
-          points: ["Rare cards", "Collector stories", "Cultural collectibles"],
-        },
-        {
-          number: "04",
           english: "30+ TCG VENDORS",
           title: "30+ TCG Vendors",
           description:
@@ -516,20 +472,6 @@ export const siteContent = {
         "Enter the mall and head to CLAPPER STUDIO on the 5th floor.",
       ],
       directions: "Get Directions",
-      floorPlanTitle: "Floor Plan",
-      floorPlanDescription:
-        "The entrance is at the lower left and the stage is on the right. On mobile, scroll sideways to explore.",
-      openFloorPlan: "Open Full Map",
-      floorPlanLabel: "Horizontally scrollable floor plan",
-      floorPlanAlt:
-        "CLAPPER STUDIO 5F floor plan with the entrance at lower left, vendors in the center, displays at the top, the stage on the right, and the exit toward the lower right.",
-      legendLabel: "Floor plan legend",
-      legend: [
-        "Red: standard vendor tables T01–T24",
-        "Yellow: large vendor tables T30–T33",
-        "Blue: display area",
-        "Right: stage",
-      ],
     },
     faq: {
       categoryLabel: "FAQ categories",
@@ -539,7 +481,7 @@ export const siteContent = {
           category: "Event Info",
           question: "What is FLAGSHIP Card Show Taiwan?",
           answer:
-            "FLAGSHIP Card Show Taiwan is a one-day card show for card shops, collectors, players, and brands. It features a card market, the Champion Challenge, rare-collectible displays, and stage activities.",
+            "FLAGSHIP Card Show Taiwan is a one-day card show for card shops, collectors, players, and brands. It features a card market, the Champion Challenge, and stage activities.",
         },
         {
           category: "Event Info",
@@ -599,12 +541,6 @@ export const siteContent = {
           question: "How can I join the Champion Challenge?",
           answer:
             "Events, eligibility, rules, registration, and capacity will be announced separately. Some parts may require advance registration and may not accept walk-ins.",
-        },
-        {
-          category: "On-site Experience",
-          question: "Are cards in the rare-collectibles showcase for sale?",
-          answer:
-            "Showcase items may not be for sale. Please confirm available products, prices, and transaction methods directly with the relevant vendor.",
         },
         {
           category: "On-site Experience",

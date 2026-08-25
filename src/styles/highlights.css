@@ -5,7 +5,7 @@
 
 .event-highlights-index {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
   margin-bottom: 18px;
 }
@@ -299,6 +299,10 @@
 @media (max-width: 980px) {
   .event-highlights-index {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .event-highlights-index a:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .event-highlights__item--compact,

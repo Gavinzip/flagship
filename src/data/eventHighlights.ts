@@ -1,7 +1,7 @@
 import { media } from "../config/media";
 
 export type EventHighlight = {
-  number: `0${1 | 2 | 3 | 4 | 5}`;
+  number: `0${1 | 2 | 3}`;
   image: string;
   imagePosition: string;
   layout: "compact" | "wide" | "stage";
@@ -22,15 +22,9 @@ export const eventHighlightVisuals = [
   },
   {
     number: "03",
-    image: media.highlightRareShowcase,
-    imagePosition: "60% center",
-    layout: "wide",
-  },
-  {
-    number: "04",
     image: media.highlightTcgVendors,
     imagePosition: "center",
-    layout: "compact",
+    layout: "stage",
   },
 ] as const satisfies readonly EventHighlight[];
 
