@@ -3,9 +3,9 @@ import { Calendar, Clock, MapPin, Train } from "iconoir-react";
 import { media } from "../config/media";
 import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
-import { CalendarButton } from "./CalendarButton";
 import { LumaCheckoutLink } from "./LumaCheckoutLink";
 import { SpotlightCard } from "./SpotlightCard";
+import { TicketLink } from "./TicketLink";
 
 type EventPassContentProps = {
   showTransit?: boolean;
@@ -66,13 +66,14 @@ export function EventPassContent({
       ) : null}
 
       <div className="event-pass__actions">
+        <TicketLink>{content.eventPass.eventRegistrationLabel}</TicketLink>
         <LumaCheckoutLink
           checkoutTarget="challenge"
           href={event.challengeRegistrationUrl}
+          tone="secondary"
         >
-          {content.challengeRegistration.label}
+          {content.eventPass.challengeRegistrationLabel}
         </LumaCheckoutLink>
-        <CalendarButton />
       </div>
     </>
   );

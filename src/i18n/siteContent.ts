@@ -49,6 +49,8 @@ type SiteContent = {
     dateLabel: string;
     timeLabel: string;
     placeLabel: string;
+    eventRegistrationLabel: string;
+    challengeRegistrationLabel: string;
   };
   calendar: {
     label: string;
@@ -163,7 +165,13 @@ export const siteContent = {
       address: event.address,
       transit: event.transit,
     },
-    eventPass: { dateLabel: "DATE", timeLabel: "TIME", placeLabel: "PLACE" },
+    eventPass: {
+      dateLabel: "DATE",
+      timeLabel: "TIME",
+      placeLabel: "PLACE",
+      eventRegistrationLabel: "報名活動",
+      challengeRegistrationLabel: "報名擂台",
+    },
     calendar: { label: "加入行事曆" },
     challengeRegistration: { label: "報名參加挑戰賽" },
     mobileActions: {
@@ -414,7 +422,13 @@ export const siteContent = {
       address: event.englishAddress,
       transit: "About a 5-minute walk from Zhongxiao Xinsheng MRT Station, Exit 1",
     },
-    eventPass: { dateLabel: "DATE", timeLabel: "TIME", placeLabel: "VENUE" },
+    eventPass: {
+      dateLabel: "DATE",
+      timeLabel: "TIME",
+      placeLabel: "VENUE",
+      eventRegistrationLabel: "Register for Event",
+      challengeRegistrationLabel: "Register for Arena",
+    },
     calendar: { label: "Add to Calendar" },
     challengeRegistration: { label: "Join the Champion Challenge" },
     mobileActions: {
