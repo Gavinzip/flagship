@@ -153,7 +153,7 @@ export const siteContent = {
       titleKicker: "台灣年度",
       title: "旗艦卡牌展",
       coverVisualAlt: "浮動的 Flagship Card Show Taiwan 橫向活動卡片",
-      featureTags: ["30+ TCG 攤商", "冠軍挑戰賽", "現場活動"],
+      featureTags: ["30+ TCG 攤商", "登上激戰擂台", "現場活動"],
     },
     event: {
       venue: event.venue,
@@ -193,7 +193,7 @@ export const siteContent = {
         {
           number: "02",
           english: "CHAMPION CHALLENGE",
-          title: "冠軍挑戰賽",
+          title: "登上激戰擂台",
           description:
             "帶上你的牌組，登上 FLAGSHIP 擂台！在現場觀眾面前與各路玩家正面交鋒，累積兩勝，贏取獎品！",
           alt: "紅藍燈光環繞的卡牌競賽舞台與現場觀眾",
