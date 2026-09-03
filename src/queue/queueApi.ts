@@ -1,7 +1,7 @@
 import {
   isQueueSnapshot,
   normalizeQueueSnapshot,
-  type QueueRange,
+  type QueueCall,
   type QueueSnapshot,
 } from "../../shared/queue/domain";
 
@@ -36,7 +36,7 @@ async function readSnapshot(response: Response) {
   if (!snapshot) throw new QueueApiError("INVALID_QUEUE_STATE");
   return {
     snapshot,
-    rangeUpdatesSupported: isQueueSnapshot(payload),
+    timedUpdatesSupported: isQueueSnapshot(payload),
   };
 }
 
@@ -57,8 +57,8 @@ export async function fetchQueueSnapshot(signal?: AbortSignal) {
   return readSnapshot(response);
 }
 
-export async function updateQueueRange(
-  range: QueueRange,
+export async function updateQueueCall(
+  call: QueueCall,
   adminToken: string,
 ) {
   let response: Response;
@@ -71,7 +71,7 @@ export async function updateQueueRange(
         Authorization: `Bearer ${adminToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(range),
+      body: JSON.stringify(call),
     });
   } catch {
     throw new QueueApiError("QUEUE_NETWORK_ERROR");
@@ -84,7 +84,7 @@ export async function updateQueueRange(
 export function openQueueEvents(
   onSnapshot: (
     snapshot: QueueSnapshot,
-    rangeUpdatesSupported: boolean,
+    timedUpdatesSupported: boolean,
   ) => void,
 ) {
   const events = new EventSource(`${apiBaseUrl}/api/queue/events`);

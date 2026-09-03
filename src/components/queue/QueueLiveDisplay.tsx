@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import {
   formatQueueRange,
+  formatQueueCountdown,
   isQueueRangeActive,
   type QueueSnapshot,
 } from "../../../shared/queue/domain";
@@ -9,6 +10,7 @@ import {
   formatQueueUpdatedAt,
   queueCopy,
 } from "../../queue/queueCopy";
+import { useQueueCountdown } from "../../queue/useQueueCountdown";
 import type { QueueConnectionStatus } from "../../queue/useQueueRealtime";
 
 type QueueLiveDisplayProps = {
@@ -48,6 +50,9 @@ export function QueueLiveDisplay({
   snapshot,
 }: QueueLiveDisplayProps) {
   const content = queueCopy[locale];
+  const remainingSeconds = useQueueCountdown(snapshot);
+  const hasActiveRange = snapshot ? isQueueRangeActive(snapshot) : false;
+  const holdExpired = hasActiveRange && remainingSeconds === 0;
   const updatedAt = formatQueueUpdatedAt(snapshot?.updatedAt ?? null, locale);
   const emptyLabel = numberStateLabel(snapshot, connectionStatus, locale);
   const footerState = snapshot
@@ -107,11 +112,15 @@ export function QueueLiveDisplay({
             <span className="queue-callout__suffix">{content.numberSuffix}</span>
           ) : null}
         </div>
-        <div className="queue-callout__rule" aria-hidden="true">
-          <i />
-        </div>
-        <p className="queue-callout__guidance">
-          {content.guidance.map((line) => (
+        {snapshot && hasActiveRange && remainingSeconds !== null ? (
+          <div className="queue-callout__hold" data-expired={holdExpired}>
+            <span>{holdExpired ? content.holdExpired : content.holdRemaining}</span>
+            <strong>{formatQueueCountdown(remainingSeconds)}</strong>
+            <small>{content.holdWindow(snapshot.holdMinutes)}</small>
+          </div>
+        ) : null}
+        <p className="queue-callout__guidance" aria-live="polite">
+          {(holdExpired ? content.expiredGuidance : content.guidance).map((line) => (
             <span key={line}>{line}</span>
           ))}
         </p>

@@ -1,22 +1,28 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from "react";
 import {
   formatQueueRange,
+  isQueueCall,
+  isQueueHoldMinutes,
   isQueueRange,
   isQueueRangeActive,
+  QUEUE_HOLD_MINUTES_DEFAULT,
+  QUEUE_HOLD_MINUTES_MAX,
+  QUEUE_HOLD_MINUTES_MIN,
   QUEUE_NUMBER_MAX,
   QUEUE_NUMBER_MIN,
+  type QueueCall,
   type QueueRange,
   type QueueSnapshot,
 } from "../../../shared/queue/domain";
 import type { Locale } from "../../i18n/siteContent";
-import { QueueApiError, updateQueueRange } from "../../queue/queueApi";
+import { QueueApiError, updateQueueCall } from "../../queue/queueApi";
 import { queueCopy } from "../../queue/queueCopy";
 
 type QueueAdminPanelProps = {
   adminToken: string;
   locale: Locale;
   onSnapshot: (snapshot: QueueSnapshot) => void;
-  rangeUpdatesSupported: boolean;
+  timedUpdatesSupported: boolean;
   snapshot: QueueSnapshot | null;
 };
 
@@ -33,16 +39,26 @@ function parseDraftRange(draftStart: string, draftEnd: string) {
   return isQueueRange(range) ? range : null;
 }
 
+function parseDraftHoldMinutes(draftHoldMinutes: string) {
+  const normalized = draftHoldMinutes.trim();
+  if (!/^\d+$/.test(normalized)) return null;
+  const holdMinutes = Number(normalized);
+  return isQueueHoldMinutes(holdMinutes) ? holdMinutes : null;
+}
+
 export function QueueAdminPanel({
   adminToken,
   locale,
   onSnapshot,
-  rangeUpdatesSupported,
+  timedUpdatesSupported,
   snapshot,
 }: QueueAdminPanelProps) {
   const content = queueCopy[locale];
   const [draftStart, setDraftStart] = useState("");
   const [draftEnd, setDraftEnd] = useState("");
+  const [draftHoldMinutes, setDraftHoldMinutes] = useState(
+    String(QUEUE_HOLD_MINUTES_DEFAULT),
+  );
   const [saveState, setSaveState] =
     useState<"idle" | "saving" | "saved" | "error">("idle");
   const [error, setError] = useState("");
@@ -51,6 +67,7 @@ export function QueueAdminPanel({
     if (!snapshot) return;
     setDraftStart(String(snapshot.rangeStart));
     setDraftEnd(String(snapshot.rangeEnd));
+    setDraftHoldMinutes(String(snapshot.holdMinutes));
   }, [snapshot]);
 
   if (!adminToken) {
@@ -66,19 +83,21 @@ export function QueueAdminPanel({
     );
   }
 
-  const controlsReady = snapshot !== null && rangeUpdatesSupported;
+  const controlsReady = snapshot !== null && timedUpdatesSupported;
 
-  const save = async (range: QueueRange) => {
+  const save = async (call: QueueCall) => {
     if (!controlsReady) {
       setSaveState("error");
       setError(
-        snapshot ? content.rangeUpgradePending : content.controlsUnavailable,
+        snapshot ? content.timedUpgradePending : content.controlsUnavailable,
       );
       return;
     }
-    if (!isQueueRange(range)) {
+    if (!isQueueCall(call)) {
       setSaveState("error");
-      setError(content.invalidRange);
+      setError(
+        isQueueRange(call) ? content.invalidHoldMinutes : content.invalidRange,
+      );
       return;
     }
 
@@ -86,19 +105,23 @@ export function QueueAdminPanel({
     setError("");
 
     try {
-      const next = await updateQueueRange(range, adminToken);
+      const next = await updateQueueCall(call, adminToken);
       onSnapshot(next);
       setDraftStart(String(next.rangeStart));
       setDraftEnd(String(next.rangeEnd));
+      setDraftHoldMinutes(String(next.holdMinutes));
       setSaveState("saved");
     } catch (saveError) {
       setSaveState("error");
-      setError(
-        saveError instanceof QueueApiError &&
-          saveError.code === "QUEUE_ADMIN_UNAUTHORIZED"
-          ? content.unauthorized
-          : content.updateFailed,
-      );
+      let message: string = content.updateFailed;
+      if (saveError instanceof QueueApiError) {
+        if (saveError.code === "QUEUE_ADMIN_UNAUTHORIZED") {
+          message = content.unauthorized;
+        } else if (saveError.code === "INVALID_QUEUE_HOLD_MINUTES") {
+          message = content.invalidHoldMinutes;
+        }
+      }
+      setError(message);
     }
   };
 
@@ -110,11 +133,23 @@ export function QueueAdminPanel({
       setError(content.invalidRange);
       return;
     }
-    void save(range);
+    const holdMinutes = parseDraftHoldMinutes(draftHoldMinutes);
+    if (!holdMinutes) {
+      setSaveState("error");
+      setError(content.invalidHoldMinutes);
+      return;
+    }
+    void save({ ...range, holdMinutes });
   };
 
   const step = (amount: number) => {
     if (!snapshot) return;
+    const holdMinutes = parseDraftHoldMinutes(draftHoldMinutes);
+    if (!holdMinutes) {
+      setSaveState("error");
+      setError(content.invalidHoldMinutes);
+      return;
+    }
     const minimum = isQueueRangeActive(snapshot) ? 1 : QUEUE_NUMBER_MIN;
     const rangeStart = snapshot.rangeStart + amount;
     const rangeEnd = snapshot.rangeEnd + amount;
@@ -129,6 +164,7 @@ export function QueueAdminPanel({
     const next = {
       rangeStart,
       rangeEnd,
+      holdMinutes,
     };
     setDraftStart(String(next.rangeStart));
     setDraftEnd(String(next.rangeEnd));
@@ -137,9 +173,14 @@ export function QueueAdminPanel({
 
   const controlsDisabled = !controlsReady || saveState === "saving";
   const previewRange = parseDraftRange(draftStart, draftEnd);
+  const previewHoldMinutes = parseDraftHoldMinutes(draftHoldMinutes);
   const preview = previewRange
     ? isQueueRangeActive(previewRange)
-      ? `${formatQueueRange(previewRange)}${content.numberSuffix}`
+      ? `${formatQueueRange(previewRange)}${content.numberSuffix}${
+          previewHoldMinutes
+            ? ` · ${content.holdWindow(previewHoldMinutes)}`
+            : ""
+        }`
       : content.waiting
     : null;
 
@@ -209,14 +250,41 @@ export function QueueAdminPanel({
             </label>
           </div>
         </fieldset>
+        <label
+          className="queue-admin-form__duration"
+          htmlFor="queue-hold-minutes"
+        >
+          <span className="queue-admin-form__duration-copy">
+            <strong>{content.holdDurationLabel}</strong>
+            <small>{content.holdDurationHint}</small>
+          </span>
+          <span className="queue-admin-form__duration-input">
+            <input
+              id="queue-hold-minutes"
+              disabled={!controlsReady}
+              inputMode="numeric"
+              min={QUEUE_HOLD_MINUTES_MIN}
+              max={QUEUE_HOLD_MINUTES_MAX}
+              step="1"
+              type="number"
+              value={draftHoldMinutes}
+              onChange={(event) => {
+                setDraftHoldMinutes(event.target.value);
+                setSaveState("idle");
+                setError("");
+              }}
+            />
+            <span>{content.minutesSuffix}</span>
+          </span>
+        </label>
         <p className="queue-admin-form__preview" aria-live="polite">
           {preview ? `${content.previewLabel} ${preview}` : content.previewInvalid}
         </p>
         <div className="queue-admin-form__quick-controls">
-          <button type="button" onClick={() => step(-1)} disabled={controlsDisabled}>
+          <button type="button" onClick={() => step(-10)} disabled={controlsDisabled}>
             <span aria-hidden="true">−</span> {content.previousRange}
           </button>
-          <button type="button" onClick={() => step(1)} disabled={controlsDisabled}>
+          <button type="button" onClick={() => step(10)} disabled={controlsDisabled}>
             {content.nextRange} <span aria-hidden="true">＋</span>
           </button>
         </div>
@@ -229,8 +297,8 @@ export function QueueAdminPanel({
         </button>
         <div className="queue-admin-form__feedback" aria-live="polite">
           {!snapshot ? <p>{content.controlsUnavailable}</p> : null}
-          {snapshot && !rangeUpdatesSupported ? (
-            <p>{content.rangeUpgradePending}</p>
+          {snapshot && !timedUpdatesSupported ? (
+            <p>{content.timedUpgradePending}</p>
           ) : null}
           {saveState === "saved" ? (
             <p className="is-success">{content.saved}</p>

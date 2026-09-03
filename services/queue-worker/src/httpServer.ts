@@ -5,7 +5,10 @@ import {
 } from "node:http";
 import {
   isLegacyQueueRangeInput,
-  normalizeQueueRangeInput,
+  isQueueHoldMinutes,
+  normalizeQueueCallInput,
+  QUEUE_HOLD_MINUTES_MAX,
+  QUEUE_HOLD_MINUTES_MIN,
   QUEUE_NUMBER_MAX,
   QUEUE_NUMBER_MIN,
 } from "../domain.js";
@@ -143,23 +146,32 @@ export function createQueueHttpServer(
         }
         const input = await readJson(request);
         const source = isLegacyQueueRangeInput(input) ? "legacy" : "range";
-        const range = normalizeQueueRangeInput(input);
-        if (!range) {
+        const call = normalizeQueueCallInput(input);
+        if (!call) {
+          const hasInvalidHoldMinutes =
+            input.holdMinutes !== undefined &&
+            !isQueueHoldMinutes(input.holdMinutes);
           json(
             request,
             response,
             config,
-            {
-              code: "INVALID_QUEUE_RANGE",
-              minimum: QUEUE_NUMBER_MIN,
-              activeMinimum: 1,
-              maximum: QUEUE_NUMBER_MAX,
-              waitingRange: { rangeStart: 0, rangeEnd: 0 },
-              constraints: [
-                "RANGE_START_MUST_NOT_EXCEED_RANGE_END",
-                "ZERO_IS_ONLY_VALID_FOR_THE_WAITING_RANGE",
-              ],
-            },
+            hasInvalidHoldMinutes
+              ? {
+                  code: "INVALID_QUEUE_HOLD_MINUTES",
+                  minimum: QUEUE_HOLD_MINUTES_MIN,
+                  maximum: QUEUE_HOLD_MINUTES_MAX,
+                }
+              : {
+                  code: "INVALID_QUEUE_RANGE",
+                  minimum: QUEUE_NUMBER_MIN,
+                  activeMinimum: 1,
+                  maximum: QUEUE_NUMBER_MAX,
+                  waitingRange: { rangeStart: 0, rangeEnd: 0 },
+                  constraints: [
+                    "RANGE_START_MUST_NOT_EXCEED_RANGE_END",
+                    "ZERO_IS_ONLY_VALID_FOR_THE_WAITING_RANGE",
+                  ],
+                },
             400,
           );
           return;
@@ -168,7 +180,7 @@ export function createQueueHttpServer(
           request,
           response,
           config,
-          await repository.updateSnapshot(range, source),
+          await repository.updateSnapshot(call, source),
         );
         return;
       }

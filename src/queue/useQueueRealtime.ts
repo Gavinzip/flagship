@@ -8,15 +8,15 @@ export function useQueueRealtime() {
   const [snapshot, setSnapshot] = useState<QueueSnapshot | null>(null);
   const [connectionStatus, setConnectionStatus] =
     useState<QueueConnectionStatus>("connecting");
-  const [rangeUpdatesSupported, setRangeUpdatesSupported] = useState(false);
+  const [timedUpdatesSupported, setTimedUpdatesSupported] = useState(false);
   const latestRevision = useRef(-1);
 
   const acceptSnapshot = useCallback(
-    (next: QueueSnapshot, supportsRangeUpdates = true) => {
+    (next: QueueSnapshot, supportsTimedUpdates = true) => {
       if (next.revision < latestRevision.current) return;
       latestRevision.current = next.revision;
       setSnapshot(next);
-      setRangeUpdatesSupported(supportsRangeUpdates);
+      setTimedUpdatesSupported(supportsTimedUpdates);
     },
     [],
   );
@@ -27,7 +27,7 @@ export function useQueueRealtime() {
     let events: EventSource | null = null;
 
     void fetchQueueSnapshot(controller.signal)
-      .then(({ snapshot: next, rangeUpdatesSupported: supported }) => {
+      .then(({ snapshot: next, timedUpdatesSupported: supported }) => {
         acceptSnapshot(next, supported);
       })
       .catch(() => {
@@ -56,7 +56,7 @@ export function useQueueRealtime() {
   return {
     snapshot,
     connectionStatus,
-    rangeUpdatesSupported,
+    timedUpdatesSupported,
     acceptSnapshot,
   };
 }

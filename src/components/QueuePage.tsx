@@ -36,7 +36,7 @@ function AdminQueuePage() {
   const {
     snapshot,
     connectionStatus,
-    rangeUpdatesSupported,
+    timedUpdatesSupported,
     acceptSnapshot,
   } = useQueueRealtime();
   const adminToken = useMemo(
@@ -65,7 +65,7 @@ function AdminQueuePage() {
         adminToken={adminToken}
         snapshot={snapshot}
         onSnapshot={acceptSnapshot}
-        rangeUpdatesSupported={rangeUpdatesSupported}
+        timedUpdatesSupported={timedUpdatesSupported}
         locale={locale}
       />
     </QueueScreen>

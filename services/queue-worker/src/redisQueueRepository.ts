@@ -1,7 +1,9 @@
 import { createClient, type RedisClientType } from "redis";
 import {
+  calculateQueueExpiresAt,
   normalizeQueueSnapshot,
-  type QueueRange,
+  QUEUE_HOLD_MINUTES_DEFAULT,
+  type QueueCall,
   type QueueSnapshot,
 } from "../domain.js";
 
@@ -19,9 +21,11 @@ export class LegacyQueueUpdateConflictError extends Error {
 const DEFAULT_SNAPSHOT: QueueSnapshot = {
   rangeStart: 0,
   rangeEnd: 0,
+  holdMinutes: QUEUE_HOLD_MINUTES_DEFAULT,
   currentNumber: 0,
   revision: 0,
   updatedAt: null,
+  expiresAt: null,
 };
 
 const INITIALIZE_SCRIPT = `
@@ -75,7 +79,9 @@ local snapshot = {
   rangeEnd = tonumber(ARGV[2]),
   currentNumber = tonumber(ARGV[2]),
   revision = previous_revision + 1,
-  updatedAt = ARGV[3]
+  updatedAt = ARGV[3],
+  holdMinutes = tonumber(ARGV[5]),
+  expiresAt = ARGV[6] ~= '' and ARGV[6] or cjson.null
 }
 local encoded = cjson.encode(snapshot)
 redis.call('SET', KEYS[1], encoded)
@@ -125,16 +131,24 @@ export class RedisQueueRepository {
     return parseSnapshot(await this.client.get(STATE_KEY));
   }
 
-  async updateSnapshot(range: QueueRange, source: "range" | "legacy" = "range") {
+  async updateSnapshot(call: QueueCall, source: "range" | "legacy" = "range") {
+    const updatedAt = new Date().toISOString();
+    const expiresAt = calculateQueueExpiresAt(
+      call,
+      updatedAt,
+      call.holdMinutes,
+    );
     let value: unknown;
     try {
       value = await this.client.eval(UPDATE_STATE_SCRIPT, {
         keys: [STATE_KEY, QUEUE_UPDATES_CHANNEL],
         arguments: [
-          String(range.rangeStart),
-          String(range.rangeEnd),
-          new Date().toISOString(),
+          String(call.rangeStart),
+          String(call.rangeEnd),
+          updatedAt,
           source,
+          String(call.holdMinutes),
+          expiresAt ?? "",
         ],
       });
     } catch (error) {
