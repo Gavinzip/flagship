@@ -250,13 +250,11 @@
   position: relative;
   display: grid;
   width: min(100%, 440px);
-  grid-template:
-    "label timer" auto
-    "window timer" auto / minmax(0, 1fr) auto;
+  grid-template: "label timer" auto / minmax(0, 1fr) auto;
   align-items: center;
-  gap: 4px 24px;
+  gap: 24px;
   margin-top: clamp(22px, 4vh, 40px);
-  padding: 14px 18px;
+  padding: 16px 18px;
   overflow: hidden;
   border: 1px solid transparent;
   background:
@@ -310,12 +308,6 @@
   letter-spacing: 0.035em;
   line-height: 1;
   filter: drop-shadow(0 0 18px rgba(85, 168, 255, 0.2));
-}
-
-.queue-callout__hold > small {
-  grid-area: window;
-  color: rgba(158, 187, 226, 0.66);
-  font-size: 0.76rem;
 }
 
 .queue-callout__hold[data-expired="true"] {

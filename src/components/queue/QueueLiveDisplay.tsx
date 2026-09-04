@@ -113,17 +113,20 @@ export function QueueLiveDisplay({
           ) : null}
         </div>
         {snapshot && hasActiveRange && remainingSeconds !== null ? (
-          <div className="queue-callout__hold" data-expired={holdExpired}>
-            <span>{holdExpired ? content.holdExpired : content.holdRemaining}</span>
-            <strong>{formatQueueCountdown(remainingSeconds)}</strong>
-            <small>{content.holdWindow(snapshot.holdMinutes)}</small>
-          </div>
+          <>
+            <div className="queue-callout__hold" data-expired={holdExpired}>
+              <span>
+                {holdExpired ? content.holdExpired : content.holdRemaining}
+              </span>
+              <strong>{formatQueueCountdown(remainingSeconds)}</strong>
+            </div>
+            <p className="queue-callout__guidance" aria-live="polite">
+              {(holdExpired ? content.expiredGuidance : content.guidance).map(
+                (line) => <span key={line}>{line}</span>,
+              )}
+            </p>
+          </>
         ) : null}
-        <p className="queue-callout__guidance" aria-live="polite">
-          {(holdExpired ? content.expiredGuidance : content.guidance).map((line) => (
-            <span key={line}>{line}</span>
-          ))}
-        </p>
       </div>
 
       <div
