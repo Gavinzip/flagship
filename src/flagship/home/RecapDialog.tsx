@@ -4,7 +4,7 @@ import { Xmark } from "iconoir-react";
 import { motion, useReducedMotion } from "motion/react";
 import { homeMotion } from "./motion/homeMotion";
 import { staticAssetUrl } from "../../lib/staticAssets";
-const recapFilm = staticAssetUrl("flagship/brand-recap-video.mp4");
+const recapFilm = staticAssetUrl("flagship/taiwan-2026-official-recap.mp4");
 import { homeMedia } from "./homeMedia";
 import type { HomeCopy } from "./homeCopy";
 
@@ -33,7 +33,7 @@ export function RecapDialog({ open, close, copy: c }: { open: boolean; close: ()
     }
   }}>
     <div className="brand-film-top"><span id="brand-film-title">{c.recapCaption}</span><button className="ip-metal-control" aria-label={c.closeFilm} onClick={close}><MetalBorder /><Xmark /></button></div>
-    {showVideo && <video ref={video} src={recapFilm} controls playsInline autoPlay preload="metadata" poster={homeMedia.community} onError={() => setFailed(true)} aria-label={c.viewRecap} />}
+    {showVideo && <video ref={video} src={recapFilm} controls playsInline autoPlay preload="metadata" poster={homeMedia.recapPoster} onError={() => setFailed(true)} aria-label={c.viewRecap} />}
     {failed && <div className="brand-film-error" role="alert"><p>{c.videoError}</p><button className="ip-metal-control" onClick={() => { setFailed(false); video.current?.load(); }}><MetalBorder />{c.videoRetry}</button></div>}
   </motion.dialog>;
 }

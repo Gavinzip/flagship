@@ -52,8 +52,7 @@
 .brand-site :is(.stellar-action, .ip-metal-control):is(:focus-visible, :active) .ip-metal-border::before,
 .brand-site .ip-metal-control:has(select:focus-visible) .ip-metal-border::before { opacity: 1; }
 .brand-site :is(.stellar-action, .ip-metal-control):is(:disabled, [aria-disabled="true"]) .ip-metal-border { display: none; }
-.brand-site :is(.world-edition-choice, .brand-text-link, .ip-footer-follow).ip-metal-control { border-radius: 8px; }
-.brand-site .brand-language.ip-metal-control { border-radius: 8px; }
+.brand-site[data-theme] :is(.world-edition-choice, .ip-footer-follow, .brand-language, .brand-recap-poster, .brand-film-error button).ip-metal-control { border-radius: var(--control-radius); }
 @media (prefers-reduced-motion: reduce) {
   .brand-site .ip-metal-border::before { mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0); mask-clip: content-box, border-box; mask-composite: exclude; }
   .brand-site :is(.stellar-action, .ip-metal-control):hover .ip-metal-border::before { opacity: 1; }

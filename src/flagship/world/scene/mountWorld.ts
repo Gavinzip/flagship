@@ -126,9 +126,9 @@ export async function mountWorld(
           ? cityIllumination(alignment)
           : 0;
       city.anchor.visible = illumination > 0.015 && !entering;
-      city.core.scale.setScalar(1 + illumination * 0.45);
-      city.halo.scale.setScalar(1 + illumination * 0.65);
-      city.halo.material.opacity = 0.22 + illumination * 0.68;
+      city.core.scale.setScalar(1 + illumination * 0.15);
+      city.halo.scale.setScalar(1 + illumination * 0.12);
+      city.halo.material.opacity = 0.15 + illumination * 0.45;
       city.core.material.color
         .set(worldSpec.cities[city.id as "taiwan" | "korea"].color)
         .lerp(new T.Color("#ffffff"), illumination * 0.6);

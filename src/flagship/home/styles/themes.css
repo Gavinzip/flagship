@@ -154,18 +154,6 @@
 .brand-site[data-theme="dark"] .world-scroll {
   color: #a6bbd7;
 }
-.brand-site[data-theme="dark"] .world-city {
-  background: #112944e8;
-  color: #bdd8ff;
-  border-color: #87b8f4;
-}
-.brand-site[data-theme="dark"] .world-city small {
-  color: #a6c0e2;
-}
-.brand-site[data-theme="dark"] .world-city--taiwan {
-  color: #edb2c3;
-  border-color: #df87a2;
-}
 .brand-site[data-theme="dark"] .world-city-nav-row {
   border-color: #54729873;
 }
@@ -209,11 +197,6 @@
 }
 .brand-site[data-theme="dark"] .brand-photo-stamp em {
   color: #de91aa;
-}
-.brand-site[data-theme="dark"] .brand-story-next,
-.brand-site[data-theme="dark"] .brand-text-link {
-  color: #9abfea;
-  border-color: #5c7a9d;
 }
 .brand-site[data-theme="dark"] .brand-editions {
   background: linear-gradient(115deg, #0b192b, #0e2037);

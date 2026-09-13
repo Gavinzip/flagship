@@ -57,18 +57,6 @@
 .world-journey .world-heading > p:last-child {
   color: #344359;
 }
-.world-journey .world-city {
-  background: linear-gradient(120deg, #f9fcfff2, #e5effbd9);
-  box-shadow:
-    0 3px 15px #102c571a,
-    inset 0 1px 0 #ffffffbd;
-}
-.world-journey .world-city--korea {
-  margin-top: -44px;
-}
-.world-journey .world-city--taiwan {
-  margin-top: 10px;
-}
 @media (max-width: 600px) {
   .world-journey .world-stage {
     top: 365px;

@@ -13,7 +13,7 @@
   min-height: 52px;
   padding: 13px 19px;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: var(--control-radius);
   clip-path: none;
   background: var(--action-fill) padding-box, var(--action-rim) border-box;
   color: var(--action-text);
@@ -27,6 +27,17 @@
   transition: border-color .2s, background-color .2s, box-shadow .2s, transform .2s cubic-bezier(.16,1,.3,1);
 }
 .brand-site[data-theme="light"] .stellar-action { --action-fill:linear-gradient(115deg,#efdae4,#e9edf5 45%,#cadcf8); --action-text:#182e51; --action-rim:linear-gradient(115deg,#b95c76,#909cb58c 46%,#537bc9); }
+.brand-site[data-theme] .stellar-action--secondary {
+  --action-fill: linear-gradient(115deg, #111824, #101623);
+  --action-rim: linear-gradient(#8496b047, #8496b047);
+  --action-text: #d9e3f3;
+  box-shadow: none;
+}
+.brand-site[data-theme="light"] .stellar-action--secondary {
+  --action-fill: linear-gradient(#eef2f8, #eef2f8);
+  --action-rim: linear-gradient(#788ba266, #788ba266);
+  --action-text: #243b58;
+}
 .brand-site[data-theme] .stellar-action::before {
   content: none;
 }
@@ -45,7 +56,7 @@
   .brand-site[data-theme] .stellar-action--quiet:hover { color:var(--brand-text);border-color:#849bc442;box-shadow:none; }
 }
 @media (max-width:600px) {
-  .brand-site[data-theme] .stellar-action {min-height:46px;padding:11px 14px;gap:15px;font-size:11px;border-radius:7px;}
+  .brand-site[data-theme] .stellar-action {min-height:46px;padding:11px 14px;gap:15px;font-size:11px;}
   .brand-site[data-theme] .stellar-action--quiet {padding-inline:5px;gap:7px;font-size:10px;}
   .brand-site[data-theme] .world-actions {gap:8px;}
 }

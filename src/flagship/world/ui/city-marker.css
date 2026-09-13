@@ -1,0 +1,46 @@
+/* One style owner for the geographic marker; no old badge or text-glow layers. */
+.world-city {
+  --marker-accent: #9dc8f2;
+  --marker-gap: 30px;
+  position: absolute; top: 0; left: 0; z-index: 2;
+  visibility: hidden; opacity: 0;
+  display: grid; width: 158px; padding: 11px 13px 10px; margin: 0;
+  translate: var(--marker-gap) calc(12px - 100%);
+  border: 1px solid #adcae14a; border-radius: 12px;
+  background: linear-gradient(135deg, #182333f5, #090f1bf5 72%);
+  box-shadow: 0 8px 24px #0004, inset 0 1px 0 #e2efff0d;
+  color: #eff4fc; white-space: nowrap; text-decoration: none;
+  transition: border-color .25s, background-color .25s, box-shadow .25s;
+}
+.world-city--taiwan { --marker-accent: #e5a9bf; }
+.world-city .world-city-meta {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  color: var(--marker-accent); font-size: 8px; font-weight: 500; line-height: 1.3; letter-spacing: .1em;
+}
+.world-city-meta svg { width: 13px; height: 13px; opacity: .8; transition: transform .25s; }
+.world-city .world-city-name {
+  display: block; margin-top: 6px; font: 600 26px/1 var(--brand-display);
+  letter-spacing: .035em; color: #f1f5fb;
+}
+.world-city .world-city-status { margin-top: 4px; color: #afbccc; font-size: 9px; font-weight: 400; line-height: 1.4; }
+.world-city .world-city-coordinates {
+  display: flex; justify-content: space-between; gap: 12px; margin-top: 10px;
+  color: #8d9bae; font: 400 7px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums; letter-spacing: .02em;
+}
+.world-city-leader {
+  position: absolute; left: calc(-1 * var(--marker-gap)); bottom: 12px;
+  width: var(--marker-gap); height: 24px; overflow: visible; pointer-events: none;
+  stroke: var(--marker-accent); stroke-width: .8; opacity: .65;
+}
+.world-city:hover { border-color: #c1d7ed99; box-shadow: 0 8px 24px #0005, inset 0 1px 0 #e2efff20; }
+.world-city:hover .world-city-meta svg { transform: translate(1px,-1px); }
+.world-city:focus-visible { outline: 2px solid var(--marker-accent); outline-offset: 4px; }
+@media (max-width: 600px) {
+  .world-city { --marker-gap: 22px; width: 142px; padding: 9px 11px; }
+  .world-city .world-city-name { font-size: 23px; }
+  .world-city .world-city-coordinates { margin-top: 8px; gap: 7px; font-size: 6.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-city, .world-city-meta svg { transition: none; }
+}

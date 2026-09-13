@@ -11,6 +11,7 @@ import type { WorldRuntime } from "../scene/mountWorld";
 import type { CityId } from "../config/worldSpec";
 import type { WorldTheme } from "../config/appearance";
 import { CityNavigator } from "./CityNavigator";
+import { CityMarker } from "./CityMarker";
 import { WorldDescription } from "./WorldDescription";
 import { observeCityGestures } from "../runtime/cityGestures";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -167,14 +168,8 @@ export function WorldJourney({
                 : "Korea is the latest edition. Swipe or use left and right arrow keys to explore regions. Scroll down to discover FLAGSHIP."
           }
         >
-          <SiteLink page="taiwan" className="world-city world-city--taiwan">
-            <span>TAIPEI</span>
-            <small>{c.taiwanStatus}</small>
-          </SiteLink>
-          <SiteLink page="korea" className="world-city world-city--korea">
-            <span>KOREA</span>
-            <small>{c.koreaStatus}</small>
-          </SiteLink>
+          <CityMarker city="taiwan" status={c.taiwanStatus} action={c.taiwanCta} />
+          <CityMarker city="korea" status={c.koreaStatus} action={c.koreaCta} />
         </div>
         {!ready && !error && (
           <p className="world-loading" role="status">

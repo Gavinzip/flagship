@@ -7,7 +7,5 @@
 .brand-site[data-theme="dark"] .world-current-edition strong {color:#f3f2ee;font-size:28px;}
 .brand-site[data-theme="dark"] .world-current-edition small {color:#939aab;letter-spacing:.08em;}
 .brand-site[data-theme="dark"] .world-current-edition svg {color:#7f9fff;}
-.brand-site[data-theme="dark"] .world-journey .world-city {background:#080b13ed;border:1px solid #ffffff30;box-shadow:none;color:#f3f2ee;padding:9px 12px;}
-.brand-site[data-theme="dark"] .world-city small {color:#a9b0bf;}
 .brand-site[data-theme="dark"] .world-scroll {color:#b2b7c4;font-size:10px;letter-spacing:.1em;gap:16px;}
 .brand-site[data-theme="dark"] .world-scroll svg {height:30px;width:18px;color:#f0f2f6;}

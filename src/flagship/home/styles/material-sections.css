@@ -38,11 +38,6 @@
   backdrop-filter: none;
   box-shadow: 0 5px 20px #2945680a;
 }
-.world-journey .world-city {
-  backdrop-filter: none;
-  box-shadow: none;
-  border-radius: 0 3px 3px 0;
-}
 .brand-story {
   padding-block: 110px;
   gap: 85px;
@@ -101,22 +96,7 @@
   line-height: 2;
 }
 .brand-story-next {
-  display: inline-flex;
-  align-items: center;
-  gap: 26px;
   margin-top: 26px;
-  padding: 10px 0;
-  min-height: 44px;
-  font-size: 12px;
-  color: #315c93;
-  border-bottom: 1px solid #a9bad0;
-}
-.brand-story-next svg {
-  width: 18px;
-  transition: transform 0.25s;
-}
-.brand-story-next:hover svg {
-  transform: translate(3px, -3px);
 }
 .brand-editions {
   background: linear-gradient(115deg, #f1f3f7, #f7f9fc 55%, #edf2f9);
@@ -195,7 +175,6 @@
 }
 .brand-recap-poster img {
   border-radius: 3px;
-  aspect-ratio: 1.5;
 }
 .brand-recap-play {
   clip-path: none;
@@ -219,10 +198,6 @@
   color: #56677f;
   font-size: 14px;
   line-height: 1.9;
-}
-.brand-recap .brand-text-link {
-  color: #516c90;
-  font-size: 12px;
 }
 .brand-recap-layout .brand-photo-caption {
   font-size: 10px;

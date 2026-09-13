@@ -1,5 +1,6 @@
 /* Base controls. Shared primary actions live in ui/stellar-action.css. */
 .brand-site {
+  --control-radius: 12px;
   --control-fill: #172a46;
   --control-ink: #f6f9ff;
   --control-line: #53739c66;
@@ -62,7 +63,7 @@
   text-align: left;
   border: 0;
   border-bottom: 1px solid var(--control-line);
-  border-radius: 0;
+  border-radius: var(--control-radius);
   background: transparent;
   box-shadow: none;
   color: var(--brand-muted);

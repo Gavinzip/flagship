@@ -6,5 +6,4 @@
 .brand-site[data-theme="dark"] .brand-story-text h2 {margin:28px 0 25px;letter-spacing:-.04em;}
 .brand-site[data-theme="dark"] .brand-story-text h2 span:last-child {color:#f3f2ee;}
 .brand-site[data-theme="dark"] .brand-story-text .brand-prose p {font-size:15px;line-height:1.95;max-width:32em;}
-.brand-site[data-theme="dark"] .brand-story-next {border-color:#ffffff30;color:#f3f2ee;gap:45px;margin-top:28px;padding-bottom:12px;}
-.brand-site[data-theme="dark"] .brand-story-next svg {color:#7c9dff;}
+.brand-site[data-theme="dark"] .brand-story-next {margin-top:28px;}

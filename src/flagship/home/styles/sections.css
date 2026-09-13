@@ -46,9 +46,12 @@ html:is([lang="zh-TW"], [lang="ko"]) .brand-partner h2 { font-size: 32px; }
 .brand-recap-layout { display: grid; grid-template-columns: .85fr 1.3fr; align-items: center; gap: 80px; margin-top: 35px; }
 .brand-recap-layout h2 span:last-child { color: #34425b; }
 .brand-recap-layout p { margin: 23px 0; max-width: 400px; font-size: 15px; }
-.brand-recap .brand-text-link { display: flex; width: fit-content; }
+.brand-recap-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+@media (max-width:600px) {
+  .brand-recap-actions { flex-direction: column; align-items: stretch; width: fit-content; max-width: 100%; }
+}
 .brand-recap-poster { position: relative; display: block; width: 100%; padding: 3px; background: linear-gradient(130deg,#fff,#728399 40%,#f3f6fb 41%,#b4c0d2); border: 1px solid #8a99ae; border-radius: 0; overflow: hidden; box-shadow: none; }
-.brand-recap-poster img { width: 100%; aspect-ratio: 1.5; object-fit: cover; border-radius: 0; transition: transform .5s; }
+.brand-recap-poster img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 0; transition: transform .5s; }
 .brand-recap-poster:hover img { transform: scale(1.015); }
 .brand-recap-play { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 64px; height: 64px; border: 1px solid #d1dbe8; border-radius: 0; background: linear-gradient(120deg,#28364c,#0b1322); color: #f5f8ff; padding-left: 3px; font-size: 17px; transform: translate(-50%,-50%); box-shadow: inset 0 -3px 0 #8cabc9; clip-path: polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px); }
 .brand-recap-layout .brand-photo-caption { margin: 15px 0 0; font-size: 10px; letter-spacing: .06em; }

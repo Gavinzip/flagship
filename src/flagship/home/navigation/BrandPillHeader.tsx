@@ -4,7 +4,6 @@ import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/r
 import { ArrowUpRight } from "iconoir-react";
 import { useSiteNavigation } from "../../routing/SiteNavigation";
 import { EditionTransitionContext } from "../../routing/transition/EditionTransitionContext";
-import { homeMedia } from "../homeMedia";
 import { homeMotion } from "../motion/homeMotion";
 import { homeSections, type HomeSectionId } from "./homeSections";
 import { useHomeNavigation } from "./useHomeNavigation";
@@ -50,9 +49,6 @@ export function BrandPillHeader({ site }: { site: RefObject<HTMLDivElement | nul
     onBlurCapture={event => { if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget as Node)) setOpen(false); }}
   >
     <div className="ip-pill-bar">
-      <a className="ip-pill-brand ip-metal-control" href="#editions" onClick={closeMenu} aria-label={zh ? "返回 FLAGSHIP 地球" : ko ? "FLAGSHIP 지구로" : "Back to the FLAGSHIP globe"}>
-        <MetalBorder /><img src={homeMedia.masterLogo} alt="FLAGSHIP Card Show" width="1670" height="941" />
-      </a>
       <LayoutGroup id="ip-navigation"><nav className="ip-pill-desktop" aria-label={label}>{items.map(item => link(item))}</nav></LayoutGroup>
       <span className="ip-pill-current">{items.find(item => item.id === active)?.label}</span>
       <button className="ip-pill-toggle ip-metal-control" ref={trigger} aria-expanded={open} aria-controls="ip-mobile-links"
