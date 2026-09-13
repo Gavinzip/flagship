@@ -4,6 +4,8 @@ FLAGSHIP 的跨城市品牌主站。預設呈現 Korea 下一站，Taiwan 2026 �
 
 設計來源、維護方式與本機驗證紀錄見 [FLAGSHIP 主站說明](docs/flagship-brand-site.md)。
 
+韓國卡展素材統一從 [韓國素材資料夾](design/korea-card-show/README.md) 查找；[01–12 縮圖總覽](design/korea-card-show/index.html) 使用固定編號區分主海報、原 Logo、攤商圖、舊版延伸素材與目前連續背景。
+
 ## 本機啟動
 
 ```bash

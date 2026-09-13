@@ -1,0 +1,300 @@
+@media (min-width: 1600px) {
+  .kr-wrap {
+    width: min(1340px, calc(100% - 140px));
+  }
+}
+@media (max-width: 1100px) {
+  .kr-header {
+    padding-inline: 26px;
+    gap: 22px;
+  }
+  .kr-header-cta {
+    display: none;
+  }
+  .kr-desktop-nav {
+    gap: 20px;
+  }
+  .kr-wrap {
+    width: calc(100% - 64px);
+  }
+  .kr-highlight-copy {
+    padding: 28px;
+  }
+  .kr-faq-layout {
+    gap: 34px;
+  }
+}
+@media (max-width: 900px) {
+  .kr-desktop-nav {
+    display: none;
+  }
+  .kr-header-tools {
+    margin-left: auto;
+  }
+  .kr-menu {
+    display: grid;
+    place-items: center;
+  }
+  .kr-highlight,
+  .kr-highlight-2 {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .kr-highlight-copy h3 {
+    font-size: 27px;
+  }
+  .kr-partner-tiers {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 14px;
+  }
+  .korea-event-site .partner-tier-card {
+    min-height: 160px;
+  }
+  .korea-event-site .partner-tier-card--title {
+    order: -1;
+    min-height: 190px;
+  }
+  .korea-event-site .kr-vendor-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .kr-visit-layout {
+    grid-template-columns: 1fr;
+  }
+  .kr-map,
+  .kr-map iframe {
+    min-height: 370px;
+  }
+  .kr-faq-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .kr-registration-layout {
+    gap: 32px;
+  }
+  .kr-event-pass {
+    gap: 18px;
+  }
+  .kr-event-pass dl {
+    gap: 18px;
+  }
+  .kr-event-pass dl > div {
+    padding-left: 18px;
+  }
+}
+@media (max-width: 620px) {
+  html:has(.korea-event-site) {
+    scroll-padding-top: 80px;
+  }
+  .kr-wrap {
+    width: calc(100% - 36px);
+  }
+  .kr-section {
+    padding-block: 54px;
+  }
+  .kr-section-title {
+    grid-template-columns: 1fr;
+    margin-bottom: 26px;
+    width: 100%;
+    padding: 18px 18px 20px;
+  }
+  .kr-section-korean {
+    margin-top: 4px;
+    text-align: left;
+    font-size: 10px;
+  }
+  .kr-header {
+    height: 64px;
+    padding-inline: 18px;
+    gap: 12px;
+  }
+  .kr-home {
+    font-size: 21px;
+  }
+  .kr-header-tools {
+    gap: 10px;
+  }
+  .kr-country {
+    display: none;
+  }
+  .kr-mobile-nav {
+    top: 64px;
+  }
+  .kr-hero {
+    padding-top: 12px;
+    padding-bottom: 10px;
+  }
+  .kr-hero-scene {
+    height: 300px;
+  }
+  .korea-event-site .fs-hero-artwork-inner {
+    width: 94vw;
+  }
+  .korea-event-site .kr-frame-left,
+  .korea-event-site .kr-frame-right {
+    width: 145px;
+  }
+  .korea-event-site .kr-frame-left {
+    left: -110px;
+  }
+  .korea-event-site .kr-frame-right {
+    right: -105px;
+  }
+  .kr-hero-body {
+    display: block;
+    margin-top: 0;
+  }
+  .kr-hero-body > div:first-child {
+    padding: 18px;
+  }
+  .kr-hero-body h1 {
+    font-size: 35px;
+    line-height: 1.23;
+  }
+  .kr-hero-body p {
+    margin-top: 16px;
+    font-size: 13px;
+  }
+  .kr-hero-body .kr-button {
+    margin-top: 24px;
+    width: 100%;
+  }
+  .kr-event-pass {
+    flex-wrap: wrap;
+    gap: 16px 10px;
+    margin-top: 25px;
+    padding: 16px;
+  }
+  .kr-pass-label {
+    max-width: none;
+    width: 100%;
+  }
+  .kr-event-pass dl {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .kr-event-pass dl > div {
+    padding: 0;
+    border: 0;
+  }
+  .kr-event-pass dl > div:last-child {
+    grid-column: 1/-1;
+  }
+  .kr-event-pass dd {
+    font-size: 20px;
+  }
+  .kr-highlight,
+  .kr-highlight-2 {
+    display: flex;
+    flex-direction: column;
+  }
+  .kr-highlight-image {
+    min-height: 255px;
+  }
+  .kr-highlight-copy {
+    padding: 26px 23px;
+  }
+  .kr-highlight-copy h3 {
+    font-size: 28px;
+    margin-block: 13px 16px;
+  }
+  .kr-highlight-copy p {
+    font-size: 14px;
+  }
+  .kr-highlight-list {
+    gap: 26px;
+  }
+  .kr-highlight-image > span {
+    font-size: 62px;
+  }
+  .korea-event-site .kr-vendor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .kr-vendor-bar {
+    display: block;
+    margin-top: 28px;
+    padding: 15px;
+  }
+  .kr-partner-stage-header {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  .kr-partner-stage-header p {
+    display: grid;
+    gap: 2px;
+  }
+  .kr-partner-stage-header small {
+    grid-column: 1 / -1;
+    padding-top: 8px;
+    border-top: 1px solid #bdd3e62b;
+  }
+  .kr-vendor-bar label {
+    margin-top: 14px;
+  }
+  .kr-vendor-bar input {
+    width: 100%;
+  }
+  .kr-map {
+    margin: 10px;
+  }
+  .kr-map,
+  .kr-map iframe {
+    min-height: 310px;
+  }
+  .kr-visit-copy {
+    padding: 24px;
+  }
+  .kr-visit-copy h3 {
+    font-size: 29px;
+  }
+  .kr-visit-copy .kr-button {
+    font-size: 12px;
+    gap: 12px;
+    padding-inline: 16px;
+  }
+  .kr-faq-categories {
+    gap: 5px;
+  }
+  .kr-faq-categories button {
+    font-size: 12px;
+    padding: 10px 6px;
+  }
+  .kr-question h3 button {
+    padding: 17px 15px;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .kr-question p {
+    padding: 0 18px 22px 40px;
+    font-size: 13px;
+  }
+  .kr-registration-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .kr-registration h2 {
+    font-size: 46px;
+  }
+  .kr-registration {
+    padding-bottom: 64px;
+  }
+  .kr-footer {
+    gap: 16px;
+    padding-block: 26px;
+  }
+  .kr-footer > p {
+    width: calc(100% - 42px);
+    order: 1;
+  }
+  .kr-footer > a:last-of-type {
+    margin-left: auto;
+  }
+  .kr-footer small {
+    order: 2;
+    width: 100%;
+    flex-basis: auto !important;
+  }
+}

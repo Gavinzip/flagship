@@ -1,0 +1,390 @@
+html:has(.korea-event-site) {
+  scroll-padding-top: 100px;
+  background: #b5d9f5;
+}
+.korea-event-site {
+  --kr-ink: #0d2c4b;
+  --kr-muted: #456178;
+  --kr-red: #956573;
+  --kr-blue: #5b7d99;
+  --kr-accent-deep: #3d566c;
+  --kr-accent-warm: #7e626b;
+  --kr-line: #355c823a;
+  --kr-surface: linear-gradient(145deg, #f3f9fdea, #d4e7f5e8);
+  --kr-surface-strong: linear-gradient(145deg, #f8fcfef5, #c9e1f2f0);
+  --kr-chrome: #f7fbff;
+  --kr-depth: 0 20px 55px #0d35582b;
+  --fs-display: "Barlow Condensed", Impact, sans-serif;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: clip;
+  color: var(--kr-ink);
+  font-family:
+    Arial, "Noto Sans KR", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  line-height: 1.75;
+}
+.korea-event-site *,
+.korea-event-site *::before,
+.korea-event-site *::after {
+  box-sizing: border-box;
+}
+html[lang="ko"] .korea-event-site {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.korea-event-site h1,
+.korea-event-site h2,
+.korea-event-site h3,
+.korea-event-site p {
+  margin: 0;
+}
+.korea-event-site button,
+.korea-event-site select,
+.korea-event-site input {
+  font: inherit;
+}
+.korea-event-site button {
+  cursor: pointer;
+}
+.korea-event-site svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.korea-event-site :is(a, button, select, input):focus-visible {
+  outline: 3px solid #1c62b8;
+  outline-offset: 5px;
+}
+.kr-wrap {
+  width: min(1220px, calc(100% - 100px));
+  margin-inline: auto;
+}
+.kr-section {
+  position: relative;
+  padding-block: 85px;
+  scroll-margin-top: 20px;
+}
+.motion-ready .korea-event-site [data-reveal] {
+  opacity: 0.08;
+  filter: blur(9px);
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--reveal-index, 0) * 75ms);
+}
+.motion-ready .korea-event-site [data-reveal].is-revealed {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0);
+}
+@keyframes kr-entry-reveal {
+  from {
+    opacity: 0.08;
+    filter: blur(10px);
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.kr-header,
+.kr-hero-scene,
+.kr-hero-body > div:first-child,
+.kr-hero-body .kr-button,
+.kr-event-pass {
+  animation: kr-entry-reveal 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.kr-header {
+  animation-delay: 40ms;
+}
+.kr-hero-scene {
+  animation-delay: 130ms;
+}
+.kr-hero-body > div:first-child {
+  animation-delay: 220ms;
+}
+.kr-hero-body .kr-button {
+  animation-delay: 300ms;
+}
+.kr-event-pass {
+  animation-delay: 380ms;
+}
+.kr-environment {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  background: #a9d2f2;
+}
+.kr-environment-world {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: max(100vw, calc(100vh * 1.77778));
+  transform: translate3d(-50%, var(--kr-scene-y, 0px), 0);
+  will-change: transform;
+}
+.kr-environment-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  transition: none !important;
+}
+.kr-environment-panel:nth-of-type(2) {
+  /* Align panel 01's horizon with panel 02 at 42% of its height. */
+  margin-top: -23.625%;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 36%,
+    #000 42%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 36%,
+    #000 42%,
+    #000 100%
+  );
+}
+.kr-environment-panel:nth-of-type(3) {
+  /* Align panel 02's lower railing with panel 03 at 28% of its height. */
+  margin-top: -15.75%;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 22%,
+    #000 28%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 22%,
+    #000 28%,
+    #000 100%
+  );
+}
+.kr-environment-light {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #daecfb35,
+    transparent 20%,
+    transparent 80%,
+    #7cb9e51a
+  );
+}
+.kr-section-title {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 20px;
+  width: fit-content;
+  max-width: min(680px, 100%);
+  margin-bottom: 34px;
+  padding: 22px 26px 24px;
+  border: 1px solid var(--kr-chrome);
+  background: var(--kr-surface-strong);
+  box-shadow:
+    0 0 0 1px #668ba842,
+    -12px 18px 42px #9565730d,
+    12px 18px 42px #5b7d9910,
+    var(--kr-depth);
+  backdrop-filter: blur(14px);
+}
+.kr-section-title > span:first-child,
+.kr-label {
+  font: 700 13px var(--fs-display);
+  letter-spacing: 0.17em;
+  color: #244e72;
+}
+.kr-section-korean {
+  text-align: right;
+  color: #315977;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.kr-section-title h2 {
+  grid-column: 1 / -1;
+  font-size: clamp(32px, 4.2vw, 57px);
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  margin: 12px 0 14px;
+  white-space: pre-line;
+}
+.kr-section-title p {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  color: var(--kr-muted);
+}
+.kr-button {
+  display: inline-flex;
+  min-height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 14px 24px;
+  border: 1px solid #ffffffeb;
+  background:
+    radial-gradient(circle at 0% 50%, #b8788826, transparent 38%),
+    radial-gradient(circle at 100% 50%, #6f9bbd2b, transparent 40%),
+    #f8fbfdec;
+  box-shadow:
+    inset 0 1px #ffffff,
+    0 0 0 1px #6e8da52b,
+    -8px 11px 24px #9565730b,
+    8px 11px 24px #5b7d990d,
+    0 9px 24px #294b6514;
+  color: #183a56;
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.kr-button:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px #ffffff,
+    0 0 0 1px #6e8da53b,
+    -10px 14px 28px #95657310,
+    10px 14px 28px #5b7d9912,
+    0 14px 30px #294b651b;
+}
+.kr-text-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 0;
+  border-bottom: 1px solid var(--kr-line);
+  background: none;
+  min-height: 48px;
+  color: var(--kr-ink);
+}
+.kr-header {
+  position: sticky;
+  top: 0;
+  height: 78px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-inline: 44px;
+  background: #dfedfabf;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #6382a530;
+}
+.kr-home {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font: 800 23px var(--fs-display);
+  letter-spacing: 0.04em;
+}
+.kr-home svg {
+  width: 16px;
+}
+.kr-desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-inline: auto;
+}
+.kr-desktop-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.kr-header-tools {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.kr-country {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid #ffffffc9;
+  border-radius: 999px;
+  background: linear-gradient(110deg, #f4f9fce8, #d4e7f4dc);
+  box-shadow:
+    -5px 6px 16px #9565730b,
+    5px 6px 16px #5b7d990d;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.kr-country span {
+  font-weight: 700;
+}
+.kr-country strong {
+  font: 700 11px var(--fs-display);
+  letter-spacing: 0.14em;
+}
+.kr-header select {
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--kr-ink);
+  font-size: 13px;
+}
+.kr-header-cta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 14px;
+  border: 1px solid var(--kr-line);
+  font-size: 13px;
+}
+.kr-menu {
+  display: none;
+  border: 0;
+  background: none;
+  color: inherit;
+  width: 44px;
+  height: 44px;
+}
+.kr-mobile-nav {
+  position: absolute;
+  top: 78px;
+  left: 0;
+  right: 0;
+  padding: 12px 24px 24px;
+  background: #e3eff9;
+  border-bottom: 1px solid var(--kr-line);
+}
+.kr-mobile-nav a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--kr-line);
+}
+@media (prefers-reduced-motion: reduce) {
+  .korea-event-site *,
+  .korea-event-site *::before,
+  .korea-event-site *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .motion-ready .korea-event-site [data-reveal] {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}

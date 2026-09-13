@@ -1,5 +1,7 @@
 # Poster fragments and scene composition
 
+**Current handoff (2026-09-14):** Korea assets are indexed in [the shared Korea asset folder](../design/korea-card-show/README.md), with stable IDs 01–12 and a [thumbnail gallery](../design/korea-card-show/index.html). `data/artwork-review.json` records 09–11 as the three selected 2048 × 1152 scroll plates; the pending-selection paragraphs below describe the earlier September 11 review. See [the current page findings and implementation record](../design/korea-card-show/page-review.md).
+
 The 2026-09-11 user correction rejects a single fixed poster repeated behind the whole site and a white reading overlay. The new composition derives separate visual layers from the original supplied Korea poster. Collectible Con remains a content-only reference; its style is not part of this composition.
 
 ## Visual sequence

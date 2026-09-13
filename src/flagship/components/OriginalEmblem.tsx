@@ -1,3 +1,6 @@
+import { useId } from "react";
+import { koreaEmblemContour } from "../data/koreaEmblemContour";
+
 export function OriginalEmblem({
   src,
   label = "FLAGSHIP Card Show KOREA",
@@ -5,6 +8,7 @@ export function OriginalEmblem({
   src: string;
   label?: string;
 }) {
+  const clipId = `korea-emblem-${useId().replaceAll(":", "")}`;
   return (
     <svg
       className="fs-original-emblem"
@@ -12,10 +16,16 @@ export function OriginalEmblem({
       role="img"
       aria-label={label}
     >
+      <defs>
+        <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
+          <path d={koreaEmblemContour} />
+        </clipPath>
+      </defs>
       <image
         href={src}
         width="1672"
         height="941"
+        clipPath={`url(#${clipId})`}
       />
     </svg>
   );

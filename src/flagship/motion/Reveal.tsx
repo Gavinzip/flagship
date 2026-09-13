@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
-/** Restrained React Motion entry. Text and reading surfaces stay crisp throughout. */
+/** Shared page reveal: low nonzero fade, short travel, and blur resolving together. */
 export function Reveal({
   children,
   className = "",
@@ -15,24 +15,33 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={false}
+      initial={
+        reduced
+          ? false
+          : {
+              y: 18,
+              opacity: 0.08,
+              filter: "blur(10px)",
+            }
+      }
       whileInView={
         reduced
           ? undefined
           : {
-              y: [10, 0],
-              opacity: [0.85, 1],
+              y: 0,
+              opacity: 1,
+              filter: "blur(0px)",
             }
       }
       viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.72, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>
   );
 }
 
-/** Keep the existing segmented-heading API, with crisp motion and no blur filter. */
+/** Keep the segmented-heading API while matching the shared page reveal. */
 export function BlurText({ text }: { text: string }) {
   const reduced = useReducedMotion();
   return (
@@ -42,13 +51,18 @@ export function BlurText({ text }: { text: string }) {
           className="fs-heading-line"
           aria-hidden="true"
           key={line}
-          initial={false}
+          initial={
+            reduced
+              ? false
+              : { y: 16, opacity: 0.08, filter: "blur(8px)" }
+          }
           whileInView={
             reduced
               ? undefined
               : {
-                  y: [12, 0],
-                  opacity: [0.9, 1],
+                  y: 0,
+                  opacity: 1,
+                  filter: "blur(0px)",
                 }
           }
           viewport={{ once: true }}

@@ -1,0 +1,138 @@
+.kr-hero {
+  position: relative;
+  padding: 14px 0 40px;
+}
+.kr-hero-scene {
+  position: relative;
+  height: clamp(340px, 48svh, 500px);
+  container-type: size;
+}
+.kr-hero-scene::after {
+  position: absolute;
+  right: 4vw;
+  bottom: 22px;
+  color: #244d6f;
+  content: "37.5665° N  ·  126.9780° E";
+  font: 700 10px var(--fs-display);
+  letter-spacing: 0.2em;
+}
+.korea-event-site .fs-hero-artwork {
+  position: absolute;
+  inset: 12px 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.korea-event-site .fs-hero-artwork-inner {
+  width: min(710px, 76vw, calc((100cqh - 24px) * 1.549));
+}
+.korea-event-site .fs-hero-artwork .fs-brand {
+  display: block;
+  width: 100%;
+}
+.korea-event-site .fs-original-emblem {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1170 / 755;
+  overflow: visible;
+}
+.kr-hero-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 32px;
+  margin-top: 8px;
+}
+.kr-hero-body > div:first-child {
+  max-width: 640px;
+  padding: 24px 28px;
+  border: 1px solid var(--kr-chrome);
+  background: var(--kr-surface-strong);
+  box-shadow:
+    0 0 0 1px #668ba83d,
+    -12px 18px 42px #9565730d,
+    12px 18px 42px #5b7d9910,
+    var(--kr-depth);
+  backdrop-filter: blur(14px);
+}
+.kr-hero-body h1 {
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.18;
+  letter-spacing: -0.04em;
+  white-space: pre-line;
+}
+.kr-hero-body p {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 18px;
+  white-space: pre-line;
+}
+.kr-hero-body .kr-button {
+  margin-bottom: 4px;
+  min-width: 220px;
+}
+.kr-event-pass {
+  margin-top: 32px;
+  padding: 18px 22px;
+  border: 1px solid var(--kr-chrome);
+  background: var(--kr-surface-strong);
+  box-shadow:
+    0 0 0 1px #668ba83d,
+    -10px 18px 38px #9565730b,
+    10px 18px 38px #5b7d990d,
+    0 14px 36px #173d6024;
+  backdrop-filter: blur(14px);
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.kr-pass-label {
+  display: grid;
+  gap: 3px;
+  font: 700 11px var(--fs-display);
+  letter-spacing: 0.12em;
+  max-width: 110px;
+  color: #345876;
+}
+.kr-pass-label strong {
+  color: #a62d43;
+  font-size: 9px;
+  letter-spacing: 0.17em;
+}
+.kr-event-pass dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  flex: 1;
+  gap: 34px;
+  margin: 0;
+}
+.kr-event-pass dl > div {
+  min-height: 74px;
+  padding: 11px 15px;
+  border: 1px solid #7d9db73b;
+  background: #f7fbfd66;
+}
+.kr-event-pass dt {
+  font-size: 11px;
+  color: #3c607e;
+  margin-bottom: 5px;
+}
+.kr-event-pass dd {
+  font: 700 22px var(--fs-display);
+  margin: 0;
+}
+.kr-event-pass dd small {
+  display: inline-block;
+  font: 600 11px var(--fs-display);
+  letter-spacing: 0.04em;
+  margin-left: 8px;
+}
+.kr-event-pass dl > div:last-child dd {
+  font-family: inherit;
+  font-size: 16px;
+}
+.kr-event-pass dl > div:last-child small {
+  display: block;
+  margin: 6px 0 0;
+}

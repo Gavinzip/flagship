@@ -10,6 +10,9 @@
     "korea-city": 420000,
     "korea-card-frame": 350000,
     "korea-river": 450000,
+    "09-korea-scroll-sky": 400000,
+    "10-korea-scroll-city": 750000,
+    "11-korea-scroll-ground": 1100000,
     "flagship-master": 450000,
     "brand-crowd-hero": 360000,
     "brand-binder-exchange": 180000,
@@ -62,7 +65,13 @@
     "brand-trade-cards": 90000,
     "brand-play-table": 235000,
     "brand-connect-collectors": 245000,
-    "brand-recap-hall": 385000
+    "brand-recap-hall": 385000,
+    "taiwan-2026-gifts-720": 75000,
+    "taiwan-2026-gifts-1280": 190000,
+    "taiwan-2026-challenge-720": 70000,
+    "taiwan-2026-challenge-1280": 170000,
+    "taiwan-2026-vendors-840": 130000,
+    "taiwan-2026-vendors-1680": 430000
   },
   "totalBytes": 11000000
 }

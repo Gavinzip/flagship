@@ -1,5 +1,5 @@
 import koreaVisual from "../assets/korea-keyvisual.webp";
-import koreaEmblem from "../assets/korea-emblem-alpha.webp";
+import koreaEmblem from "../assets/korea-emblem-color.webp";
 import { staticAssetUrl } from "../../lib/staticAssets";
 import { event } from "../../data/event";
 
