@@ -1,0 +1,98 @@
+/* Base controls. Shared primary actions live in ui/stellar-action.css. */
+.brand-site {
+  --control-fill: #172a46;
+  --control-ink: #f6f9ff;
+  --control-line: #53739c66;
+  --control-accent: #285ed1;
+}
+.brand-site[data-theme="dark"] {
+  --control-fill: #eef4ff;
+  --control-ink: #13233d;
+  --control-line: #b2caec55;
+  --control-accent: #91b5ff;
+}
+.world-journey[data-chapter="taiwan"] {
+  --control-accent: #bf3d58;
+}
+.brand-site .world-city-nav-row {
+  border-top: 1px solid var(--control-line);
+  gap: 16px;
+}
+.brand-site .world-city-nav button {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border: 1px solid var(--control-line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--brand-text);
+  transition: color 180ms, border-color 180ms, background 180ms;
+}
+.brand-site .world-city-nav button:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+.brand-site .world-city-nav button:enabled:hover {
+  color: var(--control-ink);
+  background: var(--control-fill);
+  border-color: var(--control-fill);
+}
+.brand-site .world-city-nav button svg {
+  width: 19px;
+  transition: transform 200ms;
+}
+.brand-site .world-city-nav button:enabled:hover svg {
+  transform: translateX(3px);
+}
+.brand-site .world-city-nav button:first-child:enabled:hover svg {
+  transform: translateX(-3px);
+}
+.brand-site .world-current-edition {
+  position: relative;
+  padding-left: 0;
+}
+.brand-site .brand-experience-tabs button {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  min-height: 58px;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--control-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--brand-muted);
+  font: 600 24px/1.2 var(--brand-display);
+  transition: color 180ms, background 180ms;
+}
+.brand-site .brand-experience-tabs button[aria-selected="true"] {
+  background: var(--control-fill);
+  color: var(--control-ink);
+  box-shadow: none;
+}
+.brand-site .brand-experience-tabs button > span {
+  font: 500 11px/1 var(--brand-display);
+  opacity: 0.65;
+}
+.brand-site .brand-experience-tabs button svg {
+  width: 17px;
+  margin-left: auto;
+}
+.brand-site .brand-experience-tabs button:hover:not([aria-selected="true"]) {
+  color: var(--brand-text);
+  background: #849ac212;
+}
+@media (max-width: 600px) {
+  .brand-site .brand-experience-tabs button {
+    padding: 15px 12px;
+    gap: 9px;
+    font-size: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-site .world-city-nav button:enabled:hover svg { transform: none; }
+}

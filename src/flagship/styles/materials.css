@@ -1,0 +1,187 @@
+/* Material hierarchy: quiet reading faces, reflective edges, solid action labels.
+   The poster remains full detail in the hero and at the perimeter of the page. */
+.fs-site {
+  --fs-reading: linear-gradient(150deg, #f1f7fcf7, #dceaf7f7);
+  --fs-reading-edge: #f5fbfff2;
+  --fs-chrome-edge: linear-gradient(
+    135deg,
+    #fff,
+    #8daac3 24%,
+    #fff 48%,
+    #7294b2 75%,
+    #e4f3ff
+  );
+}
+/* Glass and metal are confined to the rim. No diagonal stripe crosses the face. */
+.fs-site .fs-reading-plane {
+  position: relative;
+  isolation: isolate;
+  background: var(--fs-reading);
+  border: 1px solid #e9f5ff;
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -1px 0 #7698b54d,
+    0 8px 28px -20px #163e66aa;
+  backdrop-filter: none;
+}
+.fs-site .fs-reading-plane::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--fs-chrome-edge);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+.fs-site .fs-glass-surface {
+  overflow: hidden;
+}
+.fs-glass-surface > :not(.fs-glass-reflection) {
+  position: relative;
+  z-index: 1;
+}
+.fs-site .fs-glass-reflection {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    #fff0 10%,
+    #fff 35%,
+    #769bb800 55%,
+    #fff 75%,
+    #fff0 90%
+  );
+  background-size: 220% 100%;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.85;
+}
+.fs-site .fs-glass-surface::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid #ffffff80;
+  border-bottom-color: #7195b326;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 2;
+}
+.fs-site .fs-button {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #345d83;
+  border-radius: 5px;
+  background: #153d63;
+  color: #fff !important;
+  box-shadow:
+    inset 0 1px 0 #abc8e26b,
+    0 2px 3px #163b5b1a;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.fs-site .fs-button::after {
+  content: none;
+}
+.fs-site .fs-button:hover,
+.fs-site .fs-button:focus-visible {
+  background: #204f79;
+  box-shadow:
+    inset 0 1px 0 #abc8e28c,
+    0 4px 10px #163b5b1a;
+}
+.fs-site .fs-button-light {
+  color: #153d63 !important;
+  background: #e7f1fa;
+  border-color: #91aec6;
+}
+.fs-site .fs-button-light:hover,
+.fs-site .fs-button-light:focus-visible {
+  background: #f2f8fd;
+}
+.fs-site :is(.fs-status, .fs-collection-caption) {
+  background: #e7f1fa;
+  border: 1px solid #adcadf;
+  border-radius: 4px;
+  box-shadow: inset 0 1px #fff;
+  backdrop-filter: none;
+}
+.fs-site .fs-experience-list > button.is-selected {
+  background: #cbdfee;
+}
+.fs-site .fs-experience-list > button::after {
+  height: 2px;
+  background: #224f78;
+}
+.fs-site .fs-edition-card.fs-reading-plane {
+  border-radius: 12px;
+}
+.fs-site .fs-edition-card .fs-edition-art {
+  border-radius: 5px;
+}
+.fs-site .fs-foil-sheen {
+  border-radius: 12px;
+  padding: 2px;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+.fs-site .fs-motion-toggle,
+.fs-site .fs-circle-arrow {
+  background: #e2eff9;
+  border: 1px solid #a7c1d5;
+  box-shadow: inset 0 1px #fff;
+}
+.fs-site .fs-editions-future {
+  max-width: 1120px;
+  margin: 40px auto 0;
+  padding: 24px 0;
+  border-block: 1px solid var(--fs-line);
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 1.4fr;
+  align-items: center;
+  gap: 24px;
+}
+.fs-editions-future > span {
+  font: 600 17px var(--fs-display);
+  letter-spacing: 0.16em;
+  color: var(--fs-accent);
+}
+.fs-site .fs-editions-future h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.fs-site .fs-editions-future p {
+  color: var(--fs-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+@media (max-width: 620px) {
+  .fs-site .fs-editions-future {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 28px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fs-site .fs-button {
+    transition: none;
+  }
+}
+.fs-site.fs-motion-paused .fs-button {
+  transition: none;
+}

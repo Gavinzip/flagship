@@ -1,0 +1,27 @@
+.ip-language { position: fixed; z-index: 90; top: max(19px, env(safe-area-inset-top)); right: max(24px, env(safe-area-inset-right)); }
+.ip-language[aria-hidden="true"] { visibility: hidden; }
+.brand-site .ip-language-trigger { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 50px; padding: 0 16px; border: 1px solid #8b99bb55; border-radius: 99px; background: #0b101bf2; color: #d6dce9; font-size: 11px; transition: border-color .2s, background .2s; }
+.ip-language-trigger > svg { width: 19px; height: 19px; }
+.ip-language-trigger .ip-language-chevron { width: 12px; height: 12px; transition: transform .2s; }
+.ip-language-trigger[aria-expanded="true"] .ip-language-chevron { transform: rotate(180deg); }
+.ip-language-trigger:hover { border-color: #b8cae680; background: #131d30; }
+.ip-language-menu { position: absolute; top: calc(100% + 9px); right: 0; width: 174px; padding: 7px; border: 1px solid #8b99bb44; border-radius: 18px; background: #0d1421; box-shadow: 0 14px 36px #0004; transform-origin: top right; }
+.brand-site .ip-language-menu button { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; min-height: 44px; padding: 10px 13px; border: 0; border-radius: 11px; background: transparent; color: #b8c2d5; font-size: 12px; text-align: left; }
+.brand-site .ip-language-menu button[aria-checked="true"] { background: #8ba9de16; color: #f1f5ff; }
+.brand-site .ip-language-menu button:hover { background: #8ba9de24; color: #fff; }
+.ip-language-menu svg { width: 16px; height: 16px; }
+.brand-site .ip-language :is(button):focus-visible { outline: 2px solid #a8c2f7; outline-offset: 2px; }
+.brand-site[data-theme="light"] :is(.ip-language-trigger, .ip-language-menu) { background: #f3f5fbfa; color: #35455f; border-color: #768caf66; }
+.brand-site[data-theme="light"] .ip-language-menu button { color: #42516a; }
+.brand-site[data-theme="light"] .ip-language-menu button:is([aria-checked="true"], :hover) { background: #bed1f14d; color: #162842; }
+@media (max-width: 800px) {
+  .ip-language { top: max(16px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right)); }
+  .brand-site .ip-language-trigger { min-height: 46px; padding-inline: 12px; gap: 7px; }
+  .ip-language-trigger .ip-language-chevron { display: none; }
+  .ip-pill-header { right: max(110px, calc(env(safe-area-inset-right) + 94px)); }
+  .ip-pill-mobile { width: calc(100% + 94px); }
+  .ip-pill-current { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .ip-pill-link { padding-inline: 12px; font-size: 11px; }
+}

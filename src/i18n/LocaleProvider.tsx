@@ -16,8 +16,19 @@ type LocaleContextValue = {
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("zh-TW");
+type LocaleProviderProps = { children: ReactNode } & (
+  | { locale: Locale; onLocaleChange: (locale: Locale) => void }
+  | { locale?: never; onLocaleChange?: never }
+);
+
+export function LocaleProvider({
+  children,
+  locale: selectedLocale,
+  onLocaleChange,
+}: LocaleProviderProps) {
+  const [internalLocale, setInternalLocale] = useState<Locale>("zh-TW");
+  const locale = selectedLocale ?? internalLocale;
+  const setLocale = onLocaleChange ?? setInternalLocale;
   const content = siteContent[locale];
 
   useEffect(() => {
@@ -30,10 +41,12 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo(
     () => ({ content, locale, setLocale }),
-    [content, locale],
+    [content, locale, setLocale],
   );
 
-  return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
+  return (
+    <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>
+  );
 }
 
 export function useLocale() {

@@ -1,0 +1,182 @@
+/* Regional covers borrow the thin transparent edge of a magnetic card holder. */
+.brand-chapter-grid {
+  max-width: 1080px;
+  margin: 0 auto;
+  gap: 34px;
+}
+.brand-chapter {
+  --chapter-accent: #315a95;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  isolation: isolate;
+  height: 100%;
+  min-height: 535px;
+  padding: 33px 36px 27px;
+  border: 1px solid #b4c3d6;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fff, #f5f8fc 68%, #e7edf7);
+  box-shadow:
+    inset 0 0 0 5px #ffffffb3,
+    0 12px 30px #29486c08;
+  overflow: hidden;
+}
+.brand-chapter-taiwan {
+  --chapter-accent: #a13e53;
+  background: linear-gradient(135deg, #fff, #faf7f8 68%, #f0e8ee);
+}
+.brand-chapter::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  border: 1px solid #b8c6d75c;
+  border-radius: 5px;
+}
+.brand-chapter::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: calc(50% - 3px);
+  bottom: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid #a3b3c9;
+  background: #e8eef5;
+}
+.brand-chapter-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 0.045em;
+  color: var(--chapter-accent);
+}
+.brand-chapter-meta span:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  margin-right: 8px;
+}
+.brand-chapter-meta span:last-child {
+  color: #6a7c92;
+  font-size: 9px;
+}
+.brand-chapter-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 1;
+  min-height: 255px;
+  aspect-ratio: auto;
+  overflow: visible;
+  border: 0;
+  background: none;
+}
+.brand-chapter-art > .brand-chapter-emblem {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 245px;
+  object-fit: contain;
+  transform: none !important;
+  filter: none;
+}
+.brand-chapter-korea .brand-chapter-art > .brand-chapter-emblem {
+  width: 120%;
+  max-width: 120%;
+}
+.brand-chapter-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0 0;
+}
+.brand-chapter-title h3 {
+  font: 700 47px/1 var(--brand-display) !important;
+  letter-spacing: 0.005em !important;
+  color: var(--chapter-accent);
+  text-shadow: none;
+}
+.brand-chapter-title span {
+  color: #667990;
+  font-size: 11px;
+}
+.brand-chapter p {
+  color: #52657c;
+  margin: 15px 0 0;
+  min-height: 50px;
+  font-size: 13px;
+  line-height: 1.85;
+}
+.brand-chapter-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+  margin: 20px 0 0;
+  padding: 13px 0 0;
+  border-top: 1px solid #b3c3d6;
+  color: #2e4b74;
+  font-size: 13px;
+}
+.brand-chapter-link svg {
+  color: var(--chapter-accent);
+}
+.brand-chapter:hover {
+  border-color: var(--chapter-accent);
+}
+@media (max-width: 900px) {
+  .brand-chapter-grid {
+    gap: 24px;
+  }
+  .brand-chapter {
+    padding: 30px 28px 24px;
+    min-height: 490px;
+  }
+  .brand-chapter-art {
+    min-height: 210px;
+  }
+  .brand-chapter-title h3 {
+    font-size: 40px !important;
+  }
+}
+@media (max-width: 600px) {
+  .brand-chapter-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    gap: 24px;
+  }
+  .brand-chapter {
+    min-height: 440px;
+    padding: 29px 28px 22px;
+  }
+  .brand-chapter-art {
+    min-height: 180px;
+  }
+  .brand-chapter-art > .brand-chapter-emblem {
+    max-height: 205px;
+  }
+  .brand-chapter-meta {
+    font-size: 9px;
+  }
+  .brand-chapter-meta span:last-child {
+    font-size: 8px;
+  }
+  .brand-chapter p {
+    font-size: 12px;
+    min-height: 0;
+  }
+  .brand-chapter-link {
+    margin-top: 15px;
+    font-size: 12px;
+  }
+}

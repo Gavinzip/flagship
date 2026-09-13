@@ -1,0 +1,55 @@
+/* A quiet galaxy surface; cursor-driven refraction lives in metal-border.css. */
+.brand-site[data-theme] .stellar-action {
+  --action-fill: linear-gradient(115deg, #1b1726, #131a2a 55%, #182741);
+  --action-rim: linear-gradient(#8d9bb459, #8d9bb459);
+  --action-text: #f1f4fc;
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 52px;
+  padding: 13px 19px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  clip-path: none;
+  background: var(--action-fill) padding-box, var(--action-rim) border-box;
+  color: var(--action-text);
+  box-shadow: 0 5px 18px #0002;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .035em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color .2s, background-color .2s, box-shadow .2s, transform .2s cubic-bezier(.16,1,.3,1);
+}
+.brand-site[data-theme="light"] .stellar-action { --action-fill:linear-gradient(115deg,#efdae4,#e9edf5 45%,#cadcf8); --action-text:#182e51; --action-rim:linear-gradient(115deg,#b95c76,#909cb58c 46%,#537bc9); }
+.brand-site[data-theme] .stellar-action::before {
+  content: none;
+}
+
+.brand-site[data-theme] .stellar-action-label { display: block; border:0; width:auto; height:auto; font:inherit; color:inherit; }
+.brand-site[data-theme] .stellar-action-icon { display:grid;place-items:center;flex:0 0 21px;width:21px;height:21px;border:0;color:inherit; }
+.brand-site[data-theme] .stellar-action-icon svg { width:21px;height:21px;transition:transform .28s cubic-bezier(.16,1,.3,1); }
+.brand-site[data-theme] .stellar-action--quiet { background:transparent; color:var(--brand-muted);box-shadow:none;gap:11px;padding-inline:10px; }
+.brand-site[data-theme] .stellar-action--quiet::before { content:none; }
+.brand-site[data-theme] .stellar-action--quiet .stellar-action-icon { color:var(--brand-text); }
+.brand-site[data-theme] .stellar-action:focus-visible { outline:2px solid #9abaff;outline-offset:4px;box-shadow:0 0 0 4px #080c19; }
+.brand-site[data-theme] .stellar-action:active { transform:scale(.98); }
+@media (hover:hover) and (pointer:fine) {
+  .brand-site[data-theme] .stellar-action:hover {box-shadow:inset 0 1px 0 #ffffff14,0 0 0 1px #f5f6f114;}
+  .brand-site[data-theme] .stellar-action:hover .stellar-action-icon svg { transform:translate(2px,-2px); }
+  .brand-site[data-theme] .stellar-action--quiet:hover { color:var(--brand-text);border-color:#849bc442;box-shadow:none; }
+}
+@media (max-width:600px) {
+  .brand-site[data-theme] .stellar-action {min-height:46px;padding:11px 14px;gap:15px;font-size:11px;border-radius:7px;}
+  .brand-site[data-theme] .stellar-action--quiet {padding-inline:5px;gap:7px;font-size:10px;}
+  .brand-site[data-theme] .world-actions {gap:8px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .brand-site[data-theme] .stellar-action, .brand-site[data-theme] .stellar-action-icon svg {transition:none;}
+  .brand-site[data-theme] .stellar-action:is(:hover,:active), .brand-site[data-theme] .stellar-action:hover .stellar-action-icon svg {transform:none;}
+}

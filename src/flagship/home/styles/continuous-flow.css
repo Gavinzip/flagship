@@ -1,0 +1,47 @@
+/* Geography is the single edition selector. The rest of the IP shares its galaxy. */
+.brand-site[data-theme] .world-journey { height: 160svh; }
+.brand-site[data-theme] .world-anchor { top: 0; }
+.brand-site[data-theme] :is(.brand-section, .brand-footer, .brand-footer-bottom, .brand-footer-bottom nav, .brand-preferences, .brand-partner-layout) {
+  border: 0;
+}
+.brand-site[data-theme] :is(.brand-story, .brand-partner, .brand-footer)::before { content: none; }
+.brand-site[data-theme] .world-city-nav-row { border: 0; padding-top: 0; gap: 20px; }
+.brand-site[data-theme] .world-city-nav { width: 370px; }
+.brand-site[data-theme] .world-city-nav > p { text-align: left; margin-bottom: 8px; font-size: 10px; line-height: 1.6; }
+.brand-site[data-theme] .world-city-nav .world-edition-choice {
+  flex: 1;
+  width: auto;
+  height: 58px;
+  min-width: 0;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  color: var(--brand-muted);
+  opacity: 1;
+}
+.brand-site[data-theme] .world-edition-choice span { display: grid; gap: 2px; text-align: left; }
+.brand-site[data-theme] .world-edition-choice small { font-size: 9px; letter-spacing: .05em; }
+.brand-site[data-theme] .world-edition-choice strong { font: 600 28px/1.05 var(--brand-display); }
+.brand-site[data-theme] .world-edition-choice[aria-pressed="true"] { color: var(--brand-text); }
+.brand-site[data-theme] .world-edition-choice[aria-pressed="true"] svg { opacity: .2; }
+.brand-site[data-theme] .world-city-nav .world-edition-choice:enabled:hover {
+  color: var(--brand-red);
+  background: transparent;
+}
+.brand-site[data-theme] .world-edition-choice:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.brand-site[data-theme] .world-edition-choice svg { width: 18px; height: 18px; flex-shrink: 0; }
+@media (max-width: 600px) {
+  .brand-site[data-theme] .world-journey { height: 145svh; }
+  .brand-site[data-theme] .world-city-nav { width: auto; }
+  .brand-site[data-theme] .world-city-nav > p { text-align: center; font-size: 8px; }
+  .brand-site[data-theme] .world-city-nav-row { gap: 24px; }
+  .brand-site[data-theme] .world-edition-choice strong { font-size: 24px; }
+}
+@media (max-width: 1000px) and (min-width: 601px) {
+  .brand-site[data-theme] .world-city-nav > p { text-align: center; }
+}

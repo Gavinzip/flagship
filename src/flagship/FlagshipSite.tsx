@@ -1,0 +1,56 @@
+import { lazy, Suspense, useContext } from "react";
+import { BrandHome } from "./home/BrandHome";
+import {
+  SiteLink,
+  SiteNavigationProvider,
+  useSiteNavigation,
+} from "./routing/SiteNavigation";
+import { PageMetadata } from "./routing/PageMetadata";
+import { RouteBoundary, RouteStatus } from "./routing/RouteBoundary";
+
+import { preloadEdition } from "./routing/preloadEdition";
+import { EditionTransition } from "./routing/transition/EditionTransition";
+import { EditionTransitionContext } from "./routing/transition/EditionTransitionContext";
+const EditionSite = lazy(preloadEdition);
+
+function Site() {
+  const { location } = useSiteNavigation();
+  const retaining =
+    useContext(EditionTransitionContext)?.retainingWorld ?? false;
+  return (
+    <>
+      <PageMetadata />
+      {(location.page === "home" || retaining) && (
+        <div className="brand-world-retainer" data-transferring={retaining}>
+          <BrandHome />
+        </div>
+      )}
+      {location.page !== "home" &&
+        (location.page === "not-found" ? (
+          <main className="brand-route-status">
+            <p>404</p>
+            <h1>Page not found</h1>
+            <SiteLink page="home">Back to Flagship ↗</SiteLink>
+          </main>
+        ) : (
+          <div className="edition-route-plane" data-transferring={retaining}>
+            <RouteBoundary key={location.page} language={location.language}>
+              <Suspense fallback={<RouteStatus language={location.language} />}>
+                <EditionSite />
+              </Suspense>
+            </RouteBoundary>
+          </div>
+        ))}
+    </>
+  );
+}
+
+export function FlagshipSite() {
+  return (
+    <SiteNavigationProvider>
+      <EditionTransition>
+        <Site />
+      </EditionTransition>
+    </SiteNavigationProvider>
+  );
+}

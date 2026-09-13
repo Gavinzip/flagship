@@ -1,0 +1,1065 @@
+.world-journey {
+  height: 260svh;
+  position: relative;
+  background: #f5f5f3;
+}
+.world-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 700px;
+  overflow: clip;
+  isolation: isolate;
+}
+.world-light {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 75% 38%, #fff 0%, #fff9 27%, transparent 58%),
+    radial-gradient(ellipse at 100% 85%, #cbdcf8 0%, transparent 55%),
+    radial-gradient(ellipse at 0% 20%, #f5e4e7 0%, transparent 45%);
+}
+.world-stage {
+  position: absolute;
+  left: 37%;
+  right: auto;
+  top: 6%;
+  width: 70%;
+  height: 89%;
+  opacity: 0;
+  transition: opacity 0.7s;
+}
+.world-stage[data-ready="true"] {
+  opacity: 1;
+}
+.world-stage canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.world-copy {
+  position: absolute;
+  left: max(56px, calc((100% - 1256px) / 2));
+  top: 16%;
+  width: 43%;
+  max-width: 565px;
+}
+.world-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #657188 !important;
+}
+.world-logo {
+  display: block;
+  width: min(100%, 450px);
+  height: auto;
+  margin: 12px 0 20px -10px;
+}
+.world-status {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #5d6c83 !important;
+  margin-bottom: 14px !important;
+}
+.world-heading h1 {
+  font: 700 clamp(38px, 4vw, 58px) / 1.02 var(--brand-display);
+  letter-spacing: -0.01em;
+  color: #1d293b;
+}
+.world-heading h1 span {
+  display: block;
+}
+.world-heading > p:last-child {
+  font-size: 14px;
+  max-width: 400px;
+  margin-top: 20px;
+}
+.world-heading {
+  animation: brand-entry 0.4s ease both;
+}
+.world-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 28px;
+}
+.world-editions {
+  position: absolute;
+  right: max(56px, calc((100% - 1256px) / 2));
+  bottom: 55px;
+  display: flex;
+  gap: 30px;
+}
+.world-editions a {
+  display: grid;
+  gap: 3px;
+  min-width: 162px;
+  border-top: 1px solid #8da1b661;
+  padding-top: 14px;
+}
+.world-editions small {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: #68778a;
+}
+.world-editions strong {
+  font: 600 30px/1.2 var(--brand-display);
+  letter-spacing: 0.025em;
+}
+.world-editions span {
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  color: #738298;
+}
+.world-editions a[aria-current] {
+  border-color: #275ed4;
+}
+.world-scroll {
+  position: absolute;
+  left: max(56px, calc((100% - 1256px) / 2));
+  bottom: 55px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  min-height: 44px;
+}
+.world-scroll svg {
+  width: 17px;
+}
+.world-anchor {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  scroll-margin-top: 0;
+}
+.world-anchor--taiwan {
+  top: 32%;
+}
+.world-anchor--korea {
+  top: 32%;
+}
+.world-loading {
+  position: absolute;
+  right: 22%;
+  top: 50%;
+  font-size: 12px;
+  z-index: 2;
+  text-align: center;
+}
+.world-loading span {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #5277b9;
+  margin: 15px auto;
+}
+html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
+  font-size: clamp(29px, 2.7vw, 40px);
+  line-height: 1.4;
+}
+@media (max-width: 900px) {
+  .world-copy {
+    left: 40px;
+    width: 46%;
+  }
+  .world-logo {
+    max-width: 360px;
+  }
+  .world-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .world-stage {
+    left: 36%;
+    width: 82%;
+  }
+  .world-editions {
+    right: 40px;
+    gap: 20px;
+  }
+  .world-scroll {
+    left: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .world-sticky {
+    min-height: 740px;
+  }
+  .world-copy {
+    left: 24px;
+    top: 100px;
+    width: calc(100% - 48px);
+    max-width: none;
+    text-align: center;
+  }
+  .world-logo {
+    width: 215px;
+    margin: 8px auto 5px;
+  }
+  .world-eyebrow {
+    font-size: 8px;
+  }
+  .world-heading h1,
+  html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
+    font-size: 25px;
+    line-height: 1.25;
+  }
+  .world-heading h1 span {
+    display: inline;
+  }
+  .world-heading > p:last-child {
+    font-size: 12px;
+    margin: 10px auto 0;
+    max-width: 320px;
+  }
+  .world-status {
+    font-size: 8px;
+    margin-bottom: 8px !important;
+  }
+  .world-actions {
+    margin-top: 14px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 18px;
+  }
+  .world-stage {
+    width: 116%;
+    height: 430px;
+    left: -8%;
+    top: 340px;
+  }
+  .world-editions {
+    left: 24px;
+    right: 24px;
+    bottom: 60px;
+    justify-content: space-between;
+    gap: 26px;
+  }
+  .world-editions a {
+    min-width: 0;
+    flex: 1;
+    padding-top: 10px;
+  }
+  .world-editions strong {
+    font-size: 23px;
+  }
+  .world-editions small,
+  .world-editions span {
+    font-size: 8px;
+  }
+  .world-scroll {
+    left: 24px;
+    bottom: 12px;
+    font-size: 8px;
+  }
+  .world-loading {
+    top: 62%;
+    right: 0;
+    left: 0;
+  }
+  .world-journey {
+    height: 300svh;
+  }
+}
+.world-city {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  visibility: hidden;
+  padding: 4px 14px;
+  margin: 8px 0 0 10px;
+  line-height: 1.4;
+  border: 1px solid #96a8c166;
+  color: #2a4265;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+.world-city span {
+  font: 700 18px var(--brand-display);
+  letter-spacing: 0.05em;
+}
+.world-city small {
+  font-size: 8px;
+  letter-spacing: 0.05em;
+}
+.world-city--taiwan {
+  color: #8d2c43;
+}
+.world-city[data-active="true"] span {
+  text-shadow: 0 0 14px #ffffff;
+}
+.world-city:hover span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+/* Material pass: photographic chrome reflections tie the world to the approved mark. */
+.world-material {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.52;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  mask-image: linear-gradient(90deg, transparent 1%, #000 68%);
+}
+.brand-site:has(.world-journey) .brand-header {
+  top: 18px;
+  height: 66px;
+  padding: 0 24px;
+  border: 1px solid #ffffffd9;
+  border-radius: 14px;
+  background: linear-gradient(125deg, #ffffff80, #e9eff666);
+  backdrop-filter: blur(18px) saturate(1.15);
+  box-shadow:
+    0 5px 24px #71849b0c,
+    inset 0 1px 0 white,
+    inset 0 -1px 0 #a4b2c64d;
+}
+.brand-site:has(.world-journey) .brand-header::after {
+  display: none;
+}
+.brand-site:has(.world-journey) .brand-header-logo {
+  width: 100px;
+}
+.world-editions {
+  gap: 0;
+  border: 1px solid #fff;
+  border-radius: 13px;
+  padding: 17px 22px;
+  background: linear-gradient(125deg, #ffffffa8, #e6edf780);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    inset 0 -1px 0 #91a9c74d,
+    0 12px 34px #5874930c;
+  bottom: 35px;
+}
+.world-editions a {
+  border: 0;
+  padding: 0 24px 0 0;
+}
+.world-editions a + a {
+  border-left: 1px solid #96a8c144;
+  padding: 0 0 0 24px;
+}
+
+@media (max-width: 600px) {
+  .brand-site:has(.world-journey) .brand-header {
+    top: 12px;
+    left: 16px;
+    right: 16px;
+    height: 62px;
+    padding: 0 14px;
+    border-radius: 12px;
+  }
+  .world-editions {
+    left: 18px;
+    right: 18px;
+    bottom: 55px;
+    padding: 12px 18px;
+    border-radius: 10px;
+  }
+  .world-editions a {
+    padding-right: 14px;
+  }
+  .world-editions a + a {
+    padding-left: 18px;
+  }
+  .world-material {
+    opacity: 0.35;
+    mask-image: linear-gradient(180deg, transparent 20%, #000 65%);
+  }
+}
+.world-journey:not([data-chapter="world"]) .world-logo {
+  width: 340px;
+  margin-bottom: 38px;
+}
+.world-logo {
+  transition:
+    width 0.5s,
+    margin 0.5s;
+}
+.world-journey .world-country {
+  font: 700 clamp(64px, 7vw, 100px) / 0.95 var(--brand-display) !important;
+  letter-spacing: 0.01em;
+  margin: 0 0 16px -3px;
+  color: #2b4360;
+}
+.world-journey[data-chapter="taiwan"] .world-country {
+  color: #96334c;
+}
+.world-journey[data-chapter="korea"] .world-country {
+  color: #2b55a9;
+}
+.world-heading {
+  min-height: 206px;
+}
+.world-journey:not([data-chapter="world"]) .world-heading h1 {
+  font-size: 27px !important;
+}
+.world-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #ffffff70;
+}
+.world-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+  transform: scaleX(var(--world-progress, 0));
+  background: linear-gradient(90deg, #b73553, #88a6dd 55%, #275adb);
+}
+.world-status::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #285dc0;
+  box-shadow: 0 0 0 4px #387bca12;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+.world-journey[data-chapter="taiwan"] .world-status::before {
+  background: #b33050;
+  box-shadow: 0 0 0 4px #b3305012;
+}
+@media (max-width: 600px) {
+  .world-heading {
+    min-height: 0;
+  }
+  .world-journey:not([data-chapter="world"]) .world-logo {
+    width: 175px;
+    margin-bottom: 12px;
+  }
+  .world-journey .world-country {
+    font-size: 40px !important;
+    margin: 0 0 6px;
+    display: block;
+  }
+  .world-journey:not([data-chapter="world"]) .world-heading h1 {
+    font-size: 20px !important;
+  }
+  .world-city span {
+    font-size: 14px;
+  }
+  .world-city small {
+    font-size: 7px;
+  }
+}
+@media (max-width: 600px) {
+  .brand-site:has(.world-journey) .brand-menu-button {
+    border-radius: 8px;
+    border: 1px solid #a7b8ce;
+    background: linear-gradient(125deg, #fff, #dce6f3);
+    box-shadow: inset 0 1px white;
+    color: #325274 !important;
+  }
+  .brand-site:has(.world-journey) .brand-header select {
+    border-radius: 7px;
+    height: 40px;
+    background: #eef3fa8c;
+    border-color: #c1cfdf;
+    font-size: 11px;
+  }
+  .world-copy {
+    top: 96px;
+    left: 22px;
+    width: calc(100% - 44px);
+  }
+  .world-logo {
+    width: 180px;
+    margin: 7px auto 9px;
+  }
+  .world-eyebrow {
+    font-size: 7px;
+    letter-spacing: 0.13em;
+  }
+  .world-heading h1,
+  html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
+    font-size: 23px;
+    line-height: 1.35;
+  }
+  .world-heading > p:last-child {
+    font-size: 11px;
+    line-height: 1.8;
+    max-width: 300px;
+    margin-top: 10px;
+  }
+  .world-status {
+    font-size: 8px;
+    letter-spacing: 0.07em;
+  }
+  .world-status::before {
+    width: 4px;
+    height: 4px;
+    margin-right: 8px;
+  }
+  .world-actions {
+    gap: 20px;
+    margin-top: 15px;
+  }
+  .world-stage {
+    top: 355px;
+    height: 390px;
+    width: 118%;
+    left: -9%;
+  }
+  .world-editions {
+    bottom: 58px;
+    padding: 15px 18px;
+  }
+  .world-editions strong {
+    font-size: 25px;
+  }
+  .world-scroll {
+    bottom: 9px;
+  }
+}
+.brand-site:has(.world-journey) .brand-header {
+  position: fixed;
+}
+.world-dock-item {
+  position: relative;
+  min-width: 154px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 22px;
+}
+.world-dock-item + .world-dock-item {
+  border-left: 1px solid #96a8c144;
+  padding: 0 0 0 22px;
+}
+.world-editions .world-dock-item > a {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+.world-editions .world-dock-enter {
+  display: grid;
+  place-items: center;
+  min-width: 34px;
+  width: 34px;
+  height: 44px;
+  color: #466993;
+}
+.world-dock-enter:hover svg {
+  transform: translate(2px, -2px);
+}
+.world-dock-enter svg {
+  width: 20px;
+  transition: transform 0.25s;
+}
+.world-dock-item[data-active="true"] strong {
+  color: #285bab;
+}
+.world-dock-item:first-child[data-active="true"] strong {
+  color: #a6314c;
+}
+@media (max-width: 600px) {
+  .world-city {
+    margin: 10px 0 0 8px;
+    padding: 4px 9px;
+    min-height: 44px;
+  }
+  .world-city span {
+    font-size: 16px;
+  }
+  .world-city small {
+    font-size: 8px;
+  }
+  .world-city--korea {
+    margin-top: -40px;
+  }
+  .world-city--taiwan {
+    margin-top: 8px;
+  }
+  .world-editions {
+    padding: 13px 15px;
+    gap: 0;
+  }
+  .world-dock-item {
+    min-width: 0;
+    flex: 1;
+    padding-right: 12px;
+    gap: 4px;
+  }
+  .world-dock-item + .world-dock-item {
+    padding-left: 14px;
+  }
+  .world-editions .world-dock-enter {
+    min-width: 27px;
+    width: 27px;
+  }
+  .world-dock-enter svg {
+    width: 17px;
+  }
+  .world-editions strong {
+    font-size: 24px;
+  }
+  .world-editions small {
+    font-size: 7px;
+  }
+  .world-editions span {
+    font-size: 7px;
+  }
+}
+@media (min-width: 601px) and (max-width: 1000px) and (min-height: 800px) {
+  .world-editions span {
+    white-space: nowrap;
+  }
+  .world-copy {
+    top: 116px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 96px);
+    max-width: 600px;
+    text-align: center;
+  }
+  .world-eyebrow {
+    font-size: 9px;
+  }
+  .world-logo {
+    width: 220px;
+    margin: 8px auto 10px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-logo {
+    width: 200px;
+    margin: 8px auto 12px;
+  }
+  .world-heading {
+    min-height: 0;
+  }
+  .world-heading h1 {
+    font-size: 33px;
+    line-height: 1.1;
+  }
+  .world-heading h1 span {
+    display: inline;
+  }
+  .world-heading h1 span + span::before {
+    content: " ";
+  }
+  .world-heading > p:last-child {
+    font-size: 12px;
+    max-width: 455px;
+    margin: 12px auto 0;
+  }
+  .world-status {
+    font-size: 9px;
+    margin-bottom: 10px !important;
+  }
+  .world-actions {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+    gap: 25px;
+  }
+  .world-stage {
+    top: 444px;
+    left: 0;
+    right: auto;
+    width: 100%;
+    height: 440px;
+  }
+  .world-journey .world-country {
+    font-size: 58px !important;
+    margin: 0 0 5px;
+    display: block;
+  }
+  .world-journey:not([data-chapter="world"]) .world-heading h1 {
+    font-size: 23px !important;
+  }
+  .world-editions {
+    bottom: 50px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 470px;
+  }
+  .world-scroll {
+    bottom: 8px;
+    left: 40px;
+    font-size: 8px;
+  }
+  .brand-site:has(.world-journey) .brand-header {
+    height: 64px;
+    left: 30px;
+    right: 30px;
+    padding: 0 20px;
+  }
+  .brand-desktop-nav {
+    gap: 21px;
+  }
+  .brand-desktop-nav a {
+    font-size: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .world-stage {
+    top: 365px;
+    height: 370px;
+  }
+}
+.world-city {
+  background: linear-gradient(125deg, #ffffffda, #e3edf8bc);
+  backdrop-filter: blur(8px);
+  border-radius: 5px;
+  box-shadow: 0 3px 12px #172f5a10;
+}
+.world-city small {
+  color: #5b708b;
+}
+@media (max-width: 600px) {
+  .world-city {
+    padding: 5px 10px;
+  }
+  .world-city small {
+    font-size: 7px;
+  }
+}
+html:has(.brand-site) {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+.world-anchor {
+  scroll-margin-top: 0;
+}
+.world-stage:not([data-ready="true"]) .world-city {
+  visibility: hidden !important;
+}
+.world-loading {
+  left: auto;
+  right: 13%;
+  width: 40%;
+  top: 48%;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #596f8d;
+}
+.world-loading span {
+  width: 44px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #b33851, #95b0d5, #2a63b9);
+  animation: world-load-light 1.3s ease-in-out infinite alternate;
+}
+.world-loading button {
+  margin-top: 16px;
+  padding: 10px 20px;
+  min-height: 44px;
+  border: 1px solid #a5b8d0;
+  background: linear-gradient(125deg, #fff, #dce7f5);
+  border-radius: 7px;
+  font-size: 12px;
+}
+@keyframes world-load-light {
+  from {
+    opacity: 0.35;
+    transform: scaleX(0.55);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+@media (max-width: 1000px) and (min-height: 800px) {
+  .world-loading {
+    left: 15%;
+    right: 15%;
+    width: 70%;
+    top: 62%;
+  }
+}
+@media (max-width: 600px) {
+  .world-loading {
+    left: 10%;
+    right: 10%;
+    width: 80%;
+    top: 61%;
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(.brand-site) {
+    scroll-behavior: auto;
+  }
+  .world-loading span {
+    animation: none;
+  }
+  .world-logo,
+  .world-stage,
+  .world-city {
+    transition: none !important;
+  }
+}
+@media (min-width: 1001px) and (max-height: 800px) {
+  .world-sticky {
+    min-height: 620px;
+  }
+  .world-copy {
+    top: 108px;
+  }
+  .world-logo {
+    width: 350px;
+    margin: 8px 0 12px -8px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-logo {
+    width: 270px;
+    margin-bottom: 20px;
+  }
+  .world-heading {
+    min-height: 160px;
+  }
+  .world-heading h1 {
+    font-size: 43px;
+  }
+  html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
+    font-size: 31px;
+  }
+  .world-journey .world-country {
+    font-size: 72px !important;
+    margin-bottom: 10px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-heading h1 {
+    font-size: 24px !important;
+  }
+  .world-heading > p:last-child {
+    font-size: 13px;
+    margin-top: 14px;
+  }
+  .world-status {
+    margin-bottom: 10px !important;
+  }
+  .world-actions {
+    margin-top: 20px;
+  }
+  .world-editions {
+    bottom: 24px;
+  }
+  .world-scroll {
+    bottom: 30px;
+  }
+}
+@media (max-width: 600px) and (max-height: 750px) {
+  .world-sticky {
+    min-height: 630px;
+  }
+  .world-copy {
+    top: 88px;
+  }
+  .world-logo {
+    width: 142px;
+    margin: 5px auto 6px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-logo {
+    width: 134px;
+    margin: 5px auto 7px;
+  }
+  .world-heading h1,
+  html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
+    font-size: 20px;
+  }
+  .world-journey .world-country {
+    font-size: 32px !important;
+  }
+  .world-journey:not([data-chapter="world"]) .world-heading h1 {
+    font-size: 18px !important;
+  }
+  .world-heading > p:last-child {
+    font-size: 10px;
+    margin-top: 7px;
+    line-height: 1.7;
+  }
+  .world-status {
+    margin-bottom: 6px !important;
+  }
+  .world-actions {
+    margin-top: 10px;
+    gap: 16px;
+  }
+  .world-stage {
+    top: 285px;
+    height: 320px;
+  }
+  .world-editions {
+    bottom: 38px;
+    padding: 10px 14px;
+  }
+  .world-scroll {
+    bottom: 0;
+    font-size: 7px;
+  }
+  .world-editions strong {
+    font-size: 22px;
+  }
+  .world-city span {
+    font-size: 14px;
+  }
+}
+@media (min-width: 601px) and (max-height: 600px) {
+  .world-city--korea {
+    margin-top: -40px;
+  }
+  .world-city--taiwan {
+    margin-top: 6px;
+  }
+  .world-city {
+    min-height: 36px;
+  }
+  .world-sticky {
+    min-height: 390px;
+  }
+  .world-copy {
+    top: 83px;
+    left: 28px;
+    width: 41%;
+  }
+  .world-eyebrow {
+    display: none;
+  }
+  .world-logo {
+    width: 155px;
+    margin: 0 0 7px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-logo {
+    width: 130px;
+    margin: 0 0 8px;
+  }
+  .world-heading {
+    min-height: 0;
+  }
+  .world-status {
+    font-size: 7px;
+    margin-bottom: 6px !important;
+  }
+  .world-heading h1 {
+    font-size: 27px;
+  }
+  html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
+    font-size: 23px;
+  }
+  .world-heading > p:last-child {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+  .world-journey .world-country {
+    font-size: 42px !important;
+    margin-bottom: 4px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-heading h1 {
+    font-size: 19px !important;
+  }
+  .world-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .world-stage {
+    top: 30px;
+    left: 44%;
+    width: 56%;
+    height: 330px;
+  }
+  .world-editions {
+    bottom: 9px;
+    right: 22px;
+    padding: 9px 14px;
+  }
+  .world-editions span {
+    display: none;
+  }
+  .world-editions strong {
+    font-size: 23px;
+  }
+  .world-editions small {
+    font-size: 7px;
+  }
+  .world-dock-item {
+    min-width: 135px;
+    gap: 8px;
+    padding-right: 14px;
+  }
+  .world-dock-item + .world-dock-item {
+    padding-left: 14px;
+  }
+  .world-scroll {
+    display: none;
+  }
+  .brand-site:has(.world-journey) .brand-header {
+    height: 54px;
+    top: 12px;
+    left: 22px;
+    right: 22px;
+  }
+  .brand-header-logo {
+    width: 84px !important;
+  }
+  .brand-desktop-nav a {
+    font-size: 10px;
+  }
+}
+.world-editions .world-dock-enter {
+  flex: 0 0 34px;
+}
+.world-dock-item > a:first-child {
+  flex: 1;
+}
+@media (max-width: 600px) {
+  .world-editions .world-dock-enter {
+    flex: 0 0 27px;
+  }
+  .world-editions small {
+    line-height: 1.4;
+  }
+  .world-editions span {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 600px) and (max-height: 750px) {
+  .world-stage {
+    top: 337px;
+    height: 248px;
+  }
+  .world-editions {
+    min-height: 75px;
+  }
+  .world-material {
+    opacity: 0.23;
+  }
+  .world-city {
+    min-height: 32px;
+    padding: 6px 9px;
+    margin-left: 6px;
+  }
+  .world-city small {
+    display: none;
+  }
+  .world-city--korea {
+    margin-top: -33px;
+  }
+  .world-city--taiwan {
+    margin-top: 6px;
+  }
+  .world-city span {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,152 @@
+/* Keep the actual world mounted across the route change. No replacement canvas or opaque cover. */
+.brand-world-retainer[data-transferring="true"] {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+}
+.brand-world-retainer[data-transferring="true"] .brand-site {
+  background: transparent;
+}
+.brand-world-retainer[data-transferring="true"]
+  .brand-site
+  > main
+  > :not(.world-journey),
+.brand-world-retainer[data-transferring="true"] .brand-footer {
+  display: none;
+}
+.brand-world-retainer[data-transferring="true"] .world-journey {
+  height: 100svh;
+  background: transparent;
+}
+.brand-world-retainer[data-transferring="true"] .world-sticky {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100svh;
+  min-height: 0;
+}
+.brand-world-retainer[data-transferring="true"] .world-stage {
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  transition:
+    left 0.75s,
+    top 0.75s,
+    width 0.75s,
+    height 0.75s;
+}
+.brand-world-retainer[data-transferring="true"] .world-copy {
+  transform: translate(-50px, -30px);
+  opacity: 0;
+  transition:
+    transform 0.55s,
+    opacity 0.3s;
+}
+.brand-world-retainer[data-transferring="true"] .world-city-nav,
+.brand-world-retainer[data-transferring="true"] .world-loading,
+.brand-world-retainer[data-transferring="true"] .world-scroll,
+.brand-world-retainer[data-transferring="true"] .world-progress {
+  visibility: hidden;
+}
+.edition-route-plane[data-transferring="true"] {
+  visibility: hidden;
+}
+.edition-route-plane[data-transferring="true"] .fs-hero-artwork-inner,
+.edition-route-plane[data-transferring="true"] .hero__intro {
+  transform: none !important;
+  opacity: 1 !important;
+}
+.edition-route-plane[data-transferring="true"] .fs-hero-artwork-inner {
+  animation: none !important;
+}
+/* Taiwan's CSS entrance must finish while covered, not restart on release. */
+.geographic-transfer {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  perspective: 1400px;
+}
+.geographic-transfer-mark {
+  position: absolute;
+  transform-origin: center;
+  will-change: transform;
+  opacity: 0;
+}
+.geographic-transfer-mark img,
+.geographic-transfer-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 22px #06152624);
+}
+.geographic-transfer-status {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  white-space: nowrap;
+  font: 11px/1.5 system-ui;
+  letter-spacing: 0.07em;
+  color: #e0e9fa;
+  text-shadow: 0 1px 5px #0009;
+}
+.geographic-transfer-status button {
+  pointer-events: auto;
+  border: 1px solid #92afce77;
+  color: inherit;
+  background: #0a192bbf;
+  padding: 9px 16px;
+  border-radius: 3px;
+}
+.geographic-transfer[data-theme="light"] .geographic-transfer-status {
+  color: #274368;
+  text-shadow: 0 1px 6px #fff9;
+}
+.geographic-transfer[data-theme="light"] .geographic-transfer-status button {
+  background: #eef4fccf;
+}
+.geographic-transfer[data-phase="handoff"] .geographic-transfer-status {
+  visibility: hidden;
+}
+.brand-world-retainer[data-transferring="true"] .world-city {
+  transition: opacity 0.2s;
+}
+body:has(
+    .geographic-transfer:is([data-phase="geographic"], [data-phase="handoff"])
+  )
+  .brand-world-retainer
+  .world-city {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.geographic-transfer[data-phase="error"] .geographic-transfer-status {
+  background: #14253bea;
+  padding: 20px;
+  color: #fff;
+  white-space: normal;
+}
+@media (max-width: 600px) {
+  .geographic-transfer-status {
+    width: calc(100% - 32px);
+    justify-content: center;
+    bottom: 20px;
+    font-size: 9px;
+    gap: 10px;
+  }
+  .geographic-transfer-status button {
+    padding: 8px 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-world-retainer[data-transferring="true"] * {
+    transition: none !important;
+  }
+}

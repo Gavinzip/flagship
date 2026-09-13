@@ -2,10 +2,16 @@
   root * /usr/share/caddy
   encode zstd gzip
 
-  @immutable path /assets/*
+  @immutable {
+    path_regexp ^/assets/[^/]+-[A-Za-z0-9_-]{8,}\.(js|css|webp|woff2?)$
+    file {path}
+  }
   header @immutable Cache-Control "public, max-age=31536000, immutable"
 
-  @noCache not path /assets/*
+  @noCache not {
+    path_regexp ^/assets/[^/]+-[A-Za-z0-9_-]{8,}\.(js|css|webp|woff2?)$
+    file {path}
+  }
   header @noCache Cache-Control "no-cache"
 
   import /etc/caddy/Caddyfile.csp
@@ -16,6 +22,13 @@
   header Permissions-Policy "camera=(), microphone=(), geolocation=()"
   header Referrer-Policy "strict-origin-when-cross-origin"
 
-  try_files {path} /index.html
-  file_server
+  # Missing immutable files must return 404, never the SPA document.
+  handle /assets/* {
+    file_server
+  }
+
+  handle {
+    try_files {path} /index.html
+    file_server
+  }
 }

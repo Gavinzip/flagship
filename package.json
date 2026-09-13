@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5174 --strictPort",
-    "build": "tsc --noEmit && vite build && node scripts/generate-csp.mjs && npm run assets:assert-build",
+    "build": "tsc --noEmit && vite build && node scripts/generate-site-pages.mjs && node scripts/generate-csp.mjs && npm run assets:assert-build",
+    "build:art-review": "tsc --noEmit && FLAGSHIP_ART_REVIEW_BUILD=1 vite build && node scripts/generate-site-pages.mjs --dist work/site-review-build && node scripts/generate-csp.mjs --dist work/site-review-build --output work/site-review-build.csp && node scripts/r2-static-assets.mjs assert-build --dist work/site-review-build --review-build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "queue:typecheck": "npm --prefix services/queue-worker run typecheck",
@@ -20,8 +21,10 @@
   "dependencies": {
     "@fontsource/barlow-condensed": "^5.3.0",
     "iconoir-react": "^7.11.1",
+    "motion": "^13.2.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "three": "0.185.1"
   },
   "devDependencies": {
     "@emnapi/core": "2.0.0-alpha.3",
@@ -29,6 +32,7 @@
     "@types/node": "^26.1.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@types/three": "0.185.4",
     "@vitejs/plugin-react": "^6.0.4",
     "typescript": "^7.0.2",
     "vite": "^8.1.5"

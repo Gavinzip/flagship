@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Menu, Xmark } from "iconoir-react";
 import { responsiveMedia } from "../config/media";
 import { event } from "../data/event";
@@ -6,7 +6,7 @@ import { useLocale } from "../i18n/LocaleProvider";
 import { LanguageSelector } from "./LanguageSelector";
 import { LumaCheckoutLink } from "./LumaCheckoutLink";
 
-export function Header() {
+export function Header({ editionControl }: { editionControl?: ReactNode }) {
   const [open, setOpen] = useState(false);
   const { content } = useLocale();
 
@@ -24,7 +24,11 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="site-shell site-header__inner">
-        <a className="brand-link" href="#top" aria-label={content.header.homeLabel}>
+        <a
+          className="brand-link"
+          href="#top"
+          aria-label={content.header.homeLabel}
+        >
           <img
             {...responsiveMedia.flagshipLogo}
             width="900"
@@ -33,7 +37,10 @@ export function Header() {
           />
         </a>
 
-        <nav className="desktop-nav" aria-label={content.header.primaryNavLabel}>
+        <nav
+          className="desktop-nav"
+          aria-label={content.header.primaryNavLabel}
+        >
           {content.navigation.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
@@ -42,6 +49,7 @@ export function Header() {
         </nav>
 
         <div className="header-actions">
+          {editionControl}
           <LanguageSelector />
           <LumaCheckoutLink
             checkoutTarget="challenge"
@@ -57,7 +65,9 @@ export function Header() {
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={
-              open ? content.header.closeMenuLabel : content.header.openMenuLabel
+              open
+                ? content.header.closeMenuLabel
+                : content.header.openMenuLabel
             }
             onClick={() => setOpen((current) => !current)}
           >

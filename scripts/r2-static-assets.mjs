@@ -175,10 +175,7 @@ async function buildInventory(filePaths, corpus) {
       const relativeToPublic = relative(publicRoot, filePath)
         .split(sep)
         .join("/");
-      if (
-        relativeToPublic.startsWith("../") ||
-        relativeToPublic === ".."
-      ) {
+      if (relativeToPublic.startsWith("../") || relativeToPublic === "..") {
         throw new Error(`${filePath} is outside ${publicRoot}`);
       }
 
@@ -351,9 +348,7 @@ async function runWrangler(args, attempt = 1) {
     console.warn(
       `Transient Cloudflare upload error; retrying in ${delayMs}ms (attempt ${attempt + 1}/3).`,
     );
-    await new Promise((resolvePromise) =>
-      setTimeout(resolvePromise, delayMs),
-    );
+    await new Promise((resolvePromise) => setTimeout(resolvePromise, delayMs));
     await runWrangler(args, attempt + 1);
   }
 }
@@ -449,9 +444,55 @@ async function assertBuild() {
   const copiedMedia = distFiles.filter((filePath) =>
     MEDIA_EXTENSIONS.has(extname(filePath).toLowerCase()),
   );
-  if (copiedMedia.length) {
+  const reviewBuild = options["review-build"] === true;
+  const relativeOutput = relative(projectRoot, distDirectory)
+    .split(sep)
+    .join("/");
+  if (reviewBuild && relativeOutput !== "work/site-review-build") {
     throw new Error(
-      `Build still contains local media files:\n${copiedMedia.map((filePath) => relative(projectRoot, filePath)).join("\n")}`,
+      "Unapproved artwork can only be verified in work/site-review-build.",
+    );
+  }
+  const selection = JSON.parse(
+    await readFile(
+      resolve(projectRoot, "src/flagship/data/artwork-review.json"),
+      "utf8",
+    ),
+  );
+  if (!reviewBuild && selection.status !== "approved") {
+    throw new Error("Production artwork still requires the user's selection.");
+  }
+  const budget = JSON.parse(
+    await readFile(
+      resolve(projectRoot, "src/flagship/data/artwork-budget.json"),
+      "utf8",
+    ),
+  );
+  const rules = Object.entries(budget.files).map(([name, value]) => {
+    const rule = typeof value === "number" ? { maxBytes: value, extension: "webp", reviewOnly: false } : value;
+    if (!["webp", "mp4"].includes(rule.extension)) throw new Error(`Invalid asset extension: ${name}`);
+    return { name, ...rule, pattern: new RegExp(`^assets/${name}-[a-zA-Z0-9_-]+\\.${rule.extension}$`) };
+  });
+  // Production permits only named, hashed WebP assets. Review builds may also
+  // contain bounded MP4 previews; source art and candidate PNGs cannot pass.
+  let mediaBytes = 0;
+  for (const filePath of copiedMedia) {
+    const path = relative(distDirectory, filePath).split(sep).join("/");
+    const rule = rules.find(({ pattern }) => pattern.test(path));
+    if (!rule)
+      throw new Error(`Build contains unapproved local media: ${path}`);
+    if (rule.reviewOnly && !reviewBuild) throw new Error(`${path} must be moved to immutable CDN delivery before production.`);
+    const size = (await stat(filePath)).size;
+    if (size > rule.maxBytes) {
+      throw new Error(
+        `${path} is ${size} bytes, exceeding its ${rule.maxBytes}-byte budget.`,
+      );
+    }
+    mediaBytes += size;
+  }
+  if (mediaBytes > budget.totalBytes) {
+    throw new Error(
+      `Combined artwork is ${mediaBytes} bytes, exceeding ${budget.totalBytes}.`,
     );
   }
 
@@ -461,9 +502,17 @@ async function assertBuild() {
   const text = (
     await Promise.all(textFiles.map((filePath) => readFile(filePath, "utf8")))
   ).join("\n");
+  let offloadedText = text;
+  for (const filePath of copiedMedia) {
+    const path = relative(distDirectory, filePath).split(sep).join("/");
+    offloadedText = offloadedText.replaceAll(`/${path}`, "bundled-edition-art");
+  }
+  if (/\/(?:work\/generated-images|@fs)\//.test(text)) {
+    throw new Error("Build contains a source or candidate filesystem URL.");
+  }
   if (
     /["'(]\/assets\/[^"')]+\.(?:avif|gif|jpe?g|mp4|png|svg|webm|webp)/i.test(
-      text,
+      offloadedText,
     )
   ) {
     throw new Error("Build still contains a local /assets media URL.");
@@ -473,7 +522,7 @@ async function assertBuild() {
   }
 
   console.log(
-    "Build asset check passed: production media is CDN-only and no offloaded image was copied into dist.",
+    `${reviewBuild ? "Review" : "Production"} asset check passed: ${copiedMedia.length} named hashed media files, ${mediaBytes} bytes within named and total budgets; other media stays on CDN.`,
   );
 }
 

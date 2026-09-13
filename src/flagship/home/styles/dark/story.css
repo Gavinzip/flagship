@@ -1,0 +1,10 @@
+.brand-site[data-theme="dark"] .brand-story {grid-template-columns:1.08fr 1fr;gap:100px;padding-block:135px;align-items:center;}
+.brand-site[data-theme="dark"] .brand-story-media {padding:0;position:relative;}
+.brand-site[data-theme="dark"] .brand-story-media figure {position:relative;padding:0;border:1px solid #ffffff30;border-radius:2px;background:#0c1018;box-shadow:0 24px 60px #0008;overflow:hidden;}
+.brand-site[data-theme="dark"] .brand-story-media figure img {aspect-ratio:1.5;border-radius:0;object-fit:cover;}
+.brand-site[data-theme="dark"] .brand-story-media figcaption {padding:14px 18px;display:flex;justify-content:space-between;gap:15px;color:#a6acb8;font-size:9px;}
+.brand-site[data-theme="dark"] .brand-story-text h2 {margin:28px 0 25px;letter-spacing:-.04em;}
+.brand-site[data-theme="dark"] .brand-story-text h2 span:last-child {color:#f3f2ee;}
+.brand-site[data-theme="dark"] .brand-story-text .brand-prose p {font-size:15px;line-height:1.95;max-width:32em;}
+.brand-site[data-theme="dark"] .brand-story-next {border-color:#ffffff30;color:#f3f2ee;gap:45px;margin-top:28px;padding-bottom:12px;}
+.brand-site[data-theme="dark"] .brand-story-next svg {color:#7c9dff;}

@@ -1,0 +1,30 @@
+{
+  "status": "approved",
+  "candidateDirectory": "work/generated-images/2026-09-11-poster-fragments",
+  "reviewCandidates": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "excludedCandidates": [],
+  "unusedCandidates": [],
+  "previousReview": {
+    "candidateDirectory": "work/generated-images/2026-09-10-poster-world",
+    "reviewCandidates": [
+      1
+    ],
+    "excludedCandidates": [
+      3
+    ],
+    "unusedCandidates": [
+      2,
+      4
+    ]
+  },
+  "approval": {
+    "date": "2026-09-13",
+    "scope": "Current dark version and its existing Korea artwork, requested for Flagship Test deployment. Other candidates retained locally.",
+    "delivery": "public/assets/flagship via immutable Cloudflare R2 release"
+  }
+}

@@ -1,0 +1,29 @@
+/* Motion owns panel transforms; CSS owns layout and persistent state. */
+.brand-site .brand-experience-tabs button {position:relative;isolation:isolate;}
+.brand-experience-selection {position:absolute;inset:0;z-index:-1;border:1px solid #8b99b12b;border-radius:6px;background:#8292b010;pointer-events:none;}
+.brand-experience-preload {position:absolute;inset:0;opacity:0;pointer-events:none;}
+.brand-experience-copy-slot {display:grid;width:100%;min-height:226px;}
+.brand-experience-copy {grid-area:1 / 1;align-self:center;}
+.brand-experience-copy-measure {visibility:hidden;pointer-events:none;}
+.brand-site[data-theme] .brand-experience-photo {aspect-ratio:1.5;}
+.brand-site[data-theme] .brand-story-media figure img {aspect-ratio:1.5;object-position:center;}
+.brand-site[data-theme] .brand-story-media::before {content:none;}
+.brand-site[data-theme] .brand-experience-tabs button {border-bottom:0;}
+.brand-site[data-theme] .brand-experience-tabs button[aria-selected="true"] {background:transparent;color:var(--brand-text);box-shadow:none;}
+.brand-site[data-theme] .brand-recap-play {width:58px;height:58px;border-radius:50%;clip-path:none;border:1px solid #d5e3ffc4;background:#101725ed;color:#f4f7ff;box-shadow:0 8px 30px #0004;padding:0;}
+.brand-recap-play svg {width:24px;height:24px;}
+.brand-site[data-theme] .brand-film-dialog {border-radius:10px;border-color:#829fca66;}
+.brand-film-dialog::backdrop {transition:opacity .2s;}
+.brand-film-dialog[data-state="closing"]::backdrop {opacity:0;}
+.brand-site[data-theme] .brand-film-top button {border-radius:50%;background:transparent;border-color:#8196b64d;transition:background .2s,transform .2s;}
+.brand-site[data-theme] .brand-film-top button:hover {background:#859fc322;transform:rotate(90deg);}
+.brand-site[data-theme] .brand-film-top button:active {transform:rotate(90deg) scale(.94);}
+.brand-site[data-theme] :is(.brand-story-next,.brand-text-link) svg {transition:transform .24s cubic-bezier(.16,1,.3,1);}
+.brand-site[data-theme] :is(.brand-story-next,.brand-text-link):hover svg {transform:translate(2px,-2px);}
+@media (max-width:600px) {.brand-experience-copy-slot {min-height:185px;}}
+@media (prefers-reduced-motion:reduce) {
+  .brand-site[data-theme] :is(.brand-recap-poster img,.brand-recap-play,.brand-film-top button,.brand-story-next svg,.brand-text-link svg) {transition:none;}
+  .brand-site[data-theme] .brand-film-top button:is(:hover,:active) {transform:none;}
+}
+
+.brand-site[data-theme="dark"] .brand-preferences {color:#a5aec3;}

@@ -1,23 +1,28 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { defineConfig, loadEnv, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import event from "./src/config/event.json";
+import brand from "./src/config/brand.json";
+import site from "./src/config/site.json";
+import worldMaterialReview from "./src/flagship/world/config/materials-review.json";
+import artworkReview from "./src/flagship/data/artwork-review.json";
 import { STATIC_ASSET_RELEASE } from "./src/generated/staticAssetRelease";
 
 const projectRoot = fileURLToPath(new URL(".", import.meta.url));
-const canonicalUrl = "https://tcgflagship.com/";
+const canonicalUrl = new URL(site.url).href;
 
 function buildRobots() {
+  if (!site.indexable) return "User-agent: *\nDisallow: /\n";
   return `User-agent: *\nAllow: /\n\nSitemap: ${new URL("sitemap.xml", canonicalUrl)}\n`;
 }
 
 function buildLlms() {
-  return `# ${event.name}\n\n> Taiwan's annual flagship trading card show, held at ${event.englishVenue} in Taipei.\n\n## Event\n\n- Date: ${event.dateIso}\n- Time: ${event.startTime}-${event.endTime} (UTC${event.timezone})\n- Venue: ${event.englishVenue}, ${event.room}\n- Address: ${event.englishAddress}\n\n## Official links\n\n- Website: ${canonicalUrl}\n- Registration: ${event.ticketUrl}\n- Calendar: ${new URL(event.calendarEnglishFilename, canonicalUrl)}\n`;
+  return `# ${brand.name}\n\n> ${brand.description}\n\n## Current chapter: Korea\n\n- Date, venue, exhibitors and ticketing: not yet announced.\n- Do not use Taiwan registration links for Korea.\n\n## Past edition: Taiwan 2026\n\n- Date: ${event.dateIso} (event concluded)\n- Venue: ${event.englishVenue}, ${event.room}\n- Archive: ${canonicalUrl}taiwan/\n\n## Official links\n\n- Website: ${canonicalUrl}\n- Organizer: ${brand.organizerUrl}\n`;
 }
 
 function buildSitemap() {
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${canonicalUrl}</loc>\n  </url>\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${canonicalUrl}</loc>\n  </url>\n  <url><loc>${canonicalUrl}taiwan/</loc></url>\n  <url><loc>${canonicalUrl}korea/</loc></url>\n</urlset>\n`;
 }
 
 const publicTextAssets = {
@@ -91,7 +96,9 @@ function buildCalendar(locale: "zh-TW" | "en") {
     "END:VEVENT",
     "END:VCALENDAR",
     "",
-  ].map(foldCalendarLine).join("\r\n");
+  ]
+    .map(foldCalendarLine)
+    .join("\r\n");
 }
 
 function productionAssetResolver(mode: string, rawCdnBase: string) {
@@ -116,6 +123,7 @@ function productionAssetResolver(mode: string, rawCdnBase: string) {
 }
 
 function analyticsMeasurementId(mode: string, rawMeasurementId: string) {
+  if (!site.analyticsEnabled) return "";
   const measurementId = rawMeasurementId.trim();
 
   if (mode !== "production" && !measurementId) {
@@ -154,30 +162,21 @@ function eventAssets(
   assetUrl: (path: string) => string,
   measurementId: string,
 ): Plugin {
-  const ogDescription = `${event.date} ${event.weekday} · ${event.startTime}—${event.endTime} · ${event.venue} ${event.room}`;
+  const ogDescription = brand.description;
   const calendar = buildCalendar("zh-TW");
   const englishCalendar = buildCalendar("en");
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Event",
-    name: event.name,
-    startDate: `${event.dateIso}T${event.startTime}:00${event.timezone}`,
-    endDate: `${event.dateIso}T${event.endTime}:00${event.timezone}`,
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    eventStatus: "https://schema.org/EventScheduled",
-    location: {
-      "@type": "Place",
-      name: `${event.venue} ${event.room}`,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: event.streetAddress,
-        addressLocality: event.addressLocality,
-        addressRegion: event.addressRegion,
-        addressCountry: event.addressCountry,
-      },
+    "@type": "WebSite",
+    name: brand.name,
+    url: canonicalUrl,
+    description: brand.description,
+    inLanguage: ["en", "ko", "zh-TW"],
+    publisher: {
+      "@type": "Organization",
+      name: brand.organizerName,
+      url: brand.organizerUrl,
     },
-    image: assetUrl("/assets/hero-arena.webp"),
-    description: event.description,
   };
 
   return {
@@ -208,7 +207,11 @@ function eventAssets(
       if (config.command !== "serve") return;
       const publicDir = new URL("./public/", import.meta.url);
       mkdirSync(publicDir, { recursive: true });
-      writeFileSync(new URL(event.calendarFilename, publicDir), calendar, "utf8");
+      writeFileSync(
+        new URL(event.calendarFilename, publicDir),
+        calendar,
+        "utf8",
+      );
       writeFileSync(
         new URL(event.calendarEnglishFilename, publicDir),
         englishCalendar,
@@ -234,40 +237,70 @@ function eventAssets(
         });
       }
     },
-    transformIndexHtml(html) {
-      const heroStageUrl = assetUrl("/assets/hero-floating-stage.webp");
-      const assetCdnOrigin = new URL(heroStageUrl, canonicalUrl).origin;
-      const flagshipLogoSrcSet = [
-        ["/assets/flagship-logo-360.webp", 360],
-        ["/assets/flagship-logo-600.webp", 600],
-        ["/assets/flagship-logo.webp", 900],
-      ]
-        .map(([path, width]) => `${assetUrl(String(path))} ${width}w`)
-        .join(", ");
+    transformIndexHtml: {
+      order: "post",
+      handler(html, context) {
+        // Use the emitted filename so shared previews follow the same immutable asset as the site.
+        const socialImagePath = context.bundle
+          ? Object.keys(context.bundle).find((filename) =>
+              /^assets\/flagship-master-[a-zA-Z0-9_-]+\.webp$/.test(filename),
+            )
+          : "/src/flagship/assets/brand/flagship-master.webp";
+        if (!socialImagePath) {
+          throw new Error(
+            "The approved Flagship master logo is missing from the production bundle.",
+          );
+        }
+        const assetCdnOrigin = new URL(
+          assetUrl("/assets/app-icon.png"),
+          canonicalUrl,
+        ).origin;
 
-      return html
-        .replaceAll("__EVENT_TITLE__", event.seoTitle)
-        .replaceAll("__EVENT_META_DESCRIPTION__", event.metaDescription)
-        .replaceAll("__EVENT_OG_DESCRIPTION__", ogDescription)
-        .replaceAll("__EVENT_CANONICAL_URL__", canonicalUrl)
-        .replaceAll("__GA_MEASUREMENT_ID__", measurementId)
-        .replaceAll("__ASSET_CDN_ORIGIN__", assetCdnOrigin)
-        .replaceAll("__ASSET_APP_ICON__", assetUrl("/assets/app-icon.png"))
-        .replaceAll(
-          "__ASSET_FLAGSHIP_LOGO__",
-          assetUrl("/assets/flagship-logo.webp"),
-        )
-        .replaceAll("__ASSET_FLAGSHIP_LOGO_SRCSET__", flagshipLogoSrcSet)
-        .replaceAll("__ASSET_HERO_STAGE__", heroStageUrl)
-        .replace(
-          "__EVENT_STRUCTURED_DATA__",
-          JSON.stringify(structuredData).replace(/</g, "\\u003c"),
-        );
+        return html
+          .replaceAll("__SITE_ROBOTS__", site.indexable ? "index,follow" : "noindex,nofollow")
+          .replaceAll("__EVENT_TITLE__", brand.seoTitle)
+          .replaceAll("__EVENT_META_DESCRIPTION__", brand.description)
+          .replaceAll("__EVENT_OG_DESCRIPTION__", ogDescription)
+          .replaceAll("__EVENT_CANONICAL_URL__", canonicalUrl)
+          .replaceAll(
+            "__SOCIAL_IMAGE_URL__",
+            new URL(socialImagePath, canonicalUrl).href,
+          )
+          .replaceAll("__GA_MEASUREMENT_ID__", measurementId)
+          .replaceAll("__ASSET_CDN_ORIGIN__", assetCdnOrigin)
+          .replaceAll("__ASSET_APP_ICON__", assetUrl("/assets/app-icon.png"))
+          .replace(
+            "__EVENT_STRUCTURED_DATA__",
+            JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          );
+      },
     },
   };
 }
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
+  const artReviewBuild = process.env.FLAGSHIP_ART_REVIEW_BUILD === "1";
+  if (command === "build" && !artReviewBuild && worldMaterialReview.status !== "approved") throw new Error("World material candidates need user selection and promotion out of work/ before release.");
+  if (
+    command === "build" &&
+    !artReviewBuild &&
+    artworkReview.status !== "approved"
+  ) {
+    throw new Error(
+      "FLAGSHIP artwork is awaiting user selection. Review candidates 1, 2 and 4 locally; approve and move the selected optimized assets out of work/ before building a release.",
+    );
+  }
+  if (command === "build" && !artReviewBuild) {
+    const artworkModule = readFileSync(
+      `${projectRoot}/src/flagship/data/artwork.ts`,
+      "utf8",
+    );
+    if (/from\s+["'][^"']*\/work\//.test(artworkModule)) {
+      throw new Error(
+        "Selected artwork must be moved to the maintained assets directory before a production build.",
+      );
+    }
+  }
   const environment = loadEnv(mode, projectRoot, "VITE_");
   const assetUrl = productionAssetResolver(
     mode,
@@ -287,6 +320,7 @@ export default defineConfig(({ mode }) => {
     root: projectRoot,
     plugins: [eventAssets(assetUrl, measurementId), react()],
     build: {
+      outDir: artReviewBuild ? "work/site-review-build" : "dist",
       copyPublicDir: false,
       cssCodeSplit: true,
       sourcemap: false,

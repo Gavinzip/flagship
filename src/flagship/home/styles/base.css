@@ -1,0 +1,67 @@
+html:has(.brand-site), body:has(.brand-site), #root:has(.brand-site) { background: #edf1f6; }
+html:has(.brand-site) { scroll-padding-top: 24px; }
+.brand-site {
+  --brand-bg: #edf1f6;
+  --brand-surface: #f7f9fccc;
+  --brand-text: #161d2b;
+  --brand-muted: #454f60;
+  --brand-line: #18263d30;
+  --brand-red: #b82740;
+  --brand-blue: #245ac1;
+  --brand-display: "Barlow Condensed", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  color: var(--brand-text);
+  background: #eef1f5;
+  font: 400 16px/1.8 Arial, "PingFang TC", "Noto Sans KR", sans-serif;
+  overflow: clip;
+  isolation: isolate;
+}
+.brand-site h1, .brand-site h2, .brand-site h3, .brand-site p, .brand-site figure { margin: 0; }
+.brand-site button, .brand-site select { font: inherit; color: inherit; cursor: pointer; }
+.brand-site svg { width: 21px; height: 21px; flex-shrink: 0; stroke-width: 1.6; }
+.brand-site :is(a, button, select):focus-visible { outline: 2px solid #3d63a0; outline-offset: 5px; }
+.brand-site h2 { font: 700 clamp(40px, 4.4vw, 66px)/1.06 var(--brand-display); letter-spacing: -.015em; text-wrap: balance; }
+.brand-site :is(h1, h2) > span { display: block; }
+.brand-site p { color: var(--brand-muted); text-wrap: pretty; }
+html:is([lang="zh-TW"], [lang="ko"]) .brand-site :is(h1, h2, h3) { font-family: Arial, "PingFang TC", "Noto Sans KR", sans-serif; font-weight: 650; line-height: 1.4; letter-spacing: -.02em; word-break: keep-all; overflow-wrap: anywhere; }
+html:is([lang="zh-TW"], [lang="ko"]) .brand-site h2 { font-size: clamp(29px, 3.2vw, 44px); }
+.brand-container { width: min(100% - 112px, 1256px); margin-inline: auto; }
+.brand-section { padding-block: 100px; scroll-margin-top: 0; }
+.brand-section-label { display: flex; align-items: center; gap: 15px; color: #475468; font-size: 11px; font-weight: 700; letter-spacing: .12em; line-height: 1.6; }
+.brand-section-label > :first-child:not(:only-child) { font: italic 700 18px var(--brand-display); color: #a7253e; }
+.brand-section-intro { display: grid; grid-template-columns: 1.35fr 1fr; align-items: end; gap: 80px; margin-top: 25px; margin-bottom: 42px; }
+.brand-section-intro p { max-width: 390px; font-size: 15px; }
+.brand-prose p + p { margin-top: 20px; }
+.brand-text-link svg { transition: transform .25s; }
+.brand-text-link:hover svg { transform: translate(2px,-2px); }
+.brand-text-link { display: inline-flex; align-items: center; gap: 24px; min-height: 46px; border-bottom: 1px solid #8b9cb15e; font-size: 13px; color: #365a86; }
+.brand-skip { position: fixed; top: 8px; left: 8px; z-index: 100; padding: 10px 18px; background: white; color: #203249; transform: translateY(-180%); }
+.brand-skip:focus { transform: none; }
+.brand-header { height: 82px; position: absolute; top: 0; left: max(56px, calc((100% - 1256px) / 2)); right: max(56px, calc((100% - 1256px) / 2)); z-index: 30; border: 0; border-bottom: 1px solid #8d9aad55; border-radius: 0; background: transparent; box-shadow: none; }
+.brand-header-inner { display: flex; width: 100%; height: 100%; align-items: center; gap: 38px; }
+.brand-header-logo { width: 120px; flex-shrink: 0; }
+.brand-header-logo img { width: 100%; height: auto; }
+.brand-desktop-nav { display: flex; align-items: center; gap: 33px; margin-left: auto; }
+.brand-desktop-nav a { display: flex; align-items: center; min-height: 44px; position: relative; font-size: 12px; font-weight: 700; color: #1b263a; transition: color .2s; }
+.brand-desktop-nav a:hover { color: #a0445b; }
+.brand-header-actions { display: flex; gap: 12px; align-items: center; }
+.brand-header select { background: #e2e7ef66; color: #253349; border: 1px solid #9ba9bc77; border-radius: 0; font-size: 12px; height: 38px; padding: 0 12px; }
+.brand-header select option { background: #f4f7fc; color: #203249; }
+.brand-menu-button { display: none; align-items: center; justify-content: center; color: #eff5ff !important; background: linear-gradient(120deg,#2c3a50,#101a2b); border: 1px solid #9aaac1; border-radius: 0; width: 44px; height: 44px; }
+.brand-mobile-nav { background: linear-gradient(115deg,#223047,#0e1829); margin-top: 0; padding: 12px 22px; display: flex; flex-direction: column; border: 1px solid #a5b3c8; border-top: 2px solid #bb465b; border-radius: 0; box-shadow: 0 14px 28px #15243833; }
+.brand-mobile-nav a { display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 12px 0; border-bottom: 1px solid #b4c7e333; font-size: 16px; color: #edf3ff; }
+.brand-route-status { min-height: 100svh; padding: 20vh 8vw; background: #edf1f6; color: #243d59; }
+.brand-route-status h1 { font-size: clamp(26px, 5vw, 54px); margin-block: 30px; }
+.brand-route-status a, .brand-route-status button { display: inline-flex; margin: 24px 20px 0 0; padding: 12px 20px; border: 1px solid #9aafc4; background: #ffffff70; border-radius: 8px; }
+.brand-tilt { perspective: 1200px; height: 100%; }
+.brand-tilt-inner { height: 100%; transform-style: preserve-3d; }
+@keyframes brand-entry { from { opacity: .7; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .brand-site *, .brand-site *::before, .brand-site *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+.brand-header::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 120px; height: 2px; background: linear-gradient(90deg,#ad213b,#a4b4c9 52%,#335dcc); }
+.brand-desktop-nav a::after { content: ""; position: absolute; inset: auto 0 3px; height: 2px; background: #a92c43; transform: scaleX(0); transform-origin: left; transition: transform .22s; }
+.brand-desktop-nav a:hover::after { transform: scaleX(1); }
+
+.brand-mobile-nav a:last-child { border-bottom: 0; }
+.brand-mobile-nav svg { color: #a5c0fb; width: 18px; }

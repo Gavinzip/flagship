@@ -10,3 +10,10 @@ private/
 
 # Local design specifications must never ship with the production site.
 design/concepts/
+
+# Local review sources, recordings, and the separate venue study.
+work/
+outputs/
+videos/
+flagship-venue-3d/
+design/promo/

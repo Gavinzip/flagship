@@ -1,0 +1,19 @@
+/* Local card tilt and a directional reflected highlight. Material surfaces live in surfaces.css. */
+.fs-tilt {
+  perspective: 1200px;
+  height: 100%;
+}
+.fs-tilt-inner {
+  height: 100%;
+  transform-style: preserve-3d;
+  position: relative;
+}
+.fs-foil-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.fs-home-link { width: auto; gap: 6px; display: flex; }
+.fs-home-link span { font: 700 16px "Barlow Condensed", sans-serif; letter-spacing: .04em; }

@@ -1,0 +1,64 @@
+/* Renaiss football TournamentArena: accepted border-only BorderGlow ring mask.
+   Preserve the purple / pink / cyan refraction and cursor-directed white edge. */
+.brand-site :is(.stellar-action, .ip-metal-control),
+.brand-site [data-metal-surface] { position: relative; isolation: isolate; }
+.brand-site .ip-metal-border {
+  --metal-cone: 25;
+  --metal-a: #c084fc;
+  --metal-b: #f472b6;
+  --metal-c: #38bdf8;
+  position: absolute; inset: -1px; z-index: 3; display: block;
+  border-radius: inherit; pointer-events: none; font-style: normal;
+}
+.brand-site .ip-metal-border::before,
+.brand-site .ip-metal-edge {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  pointer-events: none; opacity: 0; transition: opacity .65s ease-in-out;
+}
+.brand-site .ip-metal-border::before {
+  padding: 1px;
+  background:
+    radial-gradient(at 80% 55%, var(--metal-a) 0, transparent 50%),
+    radial-gradient(at 69% 34%, var(--metal-b) 0, transparent 50%),
+    radial-gradient(at 8% 6%, var(--metal-c) 0, transparent 50%),
+    radial-gradient(at 41% 38%, var(--metal-a) 0, transparent 50%),
+    radial-gradient(at 86% 85%, var(--metal-b) 0, transparent 50%),
+    radial-gradient(at 82% 18%, var(--metal-c) 0, transparent 50%),
+    radial-gradient(at 51% 4%, var(--metal-b) 0, transparent 50%),
+    linear-gradient(var(--metal-a) 0 100%);
+  -webkit-mask-image: conic-gradient(from var(--metal-cursor-angle, 45deg), #000 25%, transparent 40%, transparent 60%, #000 75%), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  -webkit-mask-clip: border-box, content-box, border-box;
+  -webkit-mask-composite: source-in, xor;
+  mask-image: conic-gradient(from var(--metal-cursor-angle, 45deg), #000 25%, transparent 40%, transparent 60%, #000 75%), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-clip: border-box, content-box, border-box;
+  mask-composite: intersect, exclude;
+}
+.brand-site .ip-metal-edge {
+  inset: -8px;
+  mask-image: conic-gradient(from var(--metal-cursor-angle, 45deg), #000 2.5%, transparent 10%, transparent 90%, #000 97.5%);
+}
+.brand-site .ip-metal-edge::before {
+  content: ""; position: absolute; inset: 8px; border-radius: inherit;
+  box-shadow: inset 0 0 0 1px #fafaf6b8, inset 0 0 2px #fafaf661, 0 0 2px #fafaf638;
+}
+.brand-site .is-metal-active > .ip-metal-border::before {
+  opacity: clamp(0, calc((var(--metal-edge-proximity, 0) - 50) / 50), 1);
+  transition-duration: .18s;
+}
+.brand-site .is-metal-active > .ip-metal-border > .ip-metal-edge {
+  opacity: clamp(0, calc((var(--metal-edge-proximity, 0) - 30) / 70), 1);
+  transition-duration: .18s;
+}
+.brand-site :is(.stellar-action, .ip-metal-control):is(:focus-visible, :active) .ip-metal-border::before,
+.brand-site .ip-metal-control:has(select:focus-visible) .ip-metal-border::before { opacity: 1; }
+.brand-site :is(.stellar-action, .ip-metal-control):is(:disabled, [aria-disabled="true"]) .ip-metal-border { display: none; }
+.brand-site :is(.world-edition-choice, .brand-text-link, .ip-footer-follow).ip-metal-control { border-radius: 8px; }
+.brand-site .brand-language.ip-metal-control { border-radius: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  .brand-site .ip-metal-border::before { mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0); mask-clip: content-box, border-box; mask-composite: exclude; }
+  .brand-site :is(.stellar-action, .ip-metal-control):hover .ip-metal-border::before { opacity: 1; }
+  .brand-site .ip-metal-edge { display: none; }
+}
+@media (forced-colors: active) {
+  .brand-site .ip-metal-border { display: none; }
+}

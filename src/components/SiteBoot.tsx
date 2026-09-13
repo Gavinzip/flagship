@@ -4,14 +4,20 @@ import { LoadingScreen } from "./LoadingScreen";
 
 type SiteBootProps = {
   children: ReactNode;
+  onReady?: () => void;
+  coveredByTransition?: boolean;
 };
 
 const EXIT_DURATION_MS = 620;
 
-export function SiteBoot({ children }: SiteBootProps) {
+export function SiteBoot({ children, onReady, coveredByTransition = false }: SiteBootProps) {
   const readiness = useSiteReadiness();
   const [visible, setVisible] = useState(true);
   const exiting = readiness.status === "ready";
+
+  useEffect(() => {
+    if (!visible) onReady?.();
+  }, [visible, onReady]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("site-is-loading", visible);
@@ -26,10 +32,10 @@ export function SiteBoot({ children }: SiteBootProps) {
 
     const timer = window.setTimeout(() => {
       setVisible(false);
-    }, EXIT_DURATION_MS);
+    }, coveredByTransition ? 0 : EXIT_DURATION_MS);
 
     return () => window.clearTimeout(timer);
-  }, [exiting]);
+  }, [exiting, coveredByTransition]);
 
   return (
     <>

@@ -1,0 +1,291 @@
+/* One continuous source scene; the central brand panel keeps its original ratio. */
+.fs-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: minmax(360px, 1fr) auto auto;
+  min-height: 620px;
+  height: 100svh;
+  padding-bottom: 16px;
+}
+.fs-hero-scene {
+  position: relative;
+  container-type: size;
+  display: grid;
+  align-items: end;
+  min-height: 0;
+  padding-bottom: 24px;
+}
+.fs-hero-artwork {
+  position: absolute;
+  inset: 80px 0 97px;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.fs-hero-artwork-inner {
+  width: min(780px, 78vw, calc((100cqh - 177px) * 1.549));
+}
+.fs-hero-artwork .fs-brand {
+  width: 100%;
+}
+.fs-site .fs-original-emblem {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.fs-hero-statement {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.fs-hero-statement p {
+  font: 600 13px/1.5 var(--fs-display);
+  letter-spacing: 0.28em;
+}
+.fs-hero-statement > span {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--fs-muted);
+}
+.fs-hero-information {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.8fr 1.8fr auto;
+  align-items: center;
+  gap: 48px;
+  padding-block: 20px;
+  border-block: 1px solid var(--fs-line);
+}
+.fs-hero-chapter > span,
+.fs-hero-facts dt {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--fs-muted);
+}
+.fs-hero h1 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font: 600 38px/1.15 var(--fs-display);
+  margin-top: 5px;
+}
+.fs-hero h1 small {
+  font: 500 12px/1 var(--fs-display);
+  letter-spacing: 0.1em;
+  color: var(--fs-accent);
+}
+.fs-hero-facts {
+  display: grid;
+  grid-template-columns: 0.8fr 1.4fr;
+  gap: 32px;
+  margin: 0;
+}
+.fs-hero-facts dd {
+  margin: 9px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 600;
+}
+.fs-hero-information .fs-button {
+  min-height: 48px;
+  border-radius: 2px;
+  box-shadow: none;
+  padding-inline: 20px;
+  gap: 30px;
+}
+.fs-hero-footer {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  padding-top: 18px;
+  min-height: 54px;
+}
+.fs-scroll-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  width: fit-content;
+}
+.fs-scroll-link svg {
+  width: 16px;
+}
+.fs-organizer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fs-organizer > span:first-child {
+  font-size: 8px;
+  color: var(--fs-muted);
+  letter-spacing: 0.12em;
+}
+.fs-organizer-name {
+  font-size: 20px;
+  letter-spacing: -0.04em;
+}
+.fs-motion-toggle {
+  justify-self: end;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--fs-line);
+  border-radius: 50%;
+  background: transparent;
+}
+.fs-motion-toggle svg {
+  width: 13px;
+  height: 13px;
+}
+@media (min-height: 900px) and (min-width: 901px) {
+  .fs-hero-scene {
+    padding-bottom: 40px;
+  }
+  .fs-hero-information {
+    padding-block: 28px;
+  }
+}
+@media (max-width: 900px) {
+  .fs-hero {
+    height: auto;
+    min-height: 0;
+    min-height: 100svh;
+    grid-template-rows: minmax(440px, 1fr) auto auto;
+  }
+  .fs-hero-information {
+    grid-template-columns: 0.65fr 1.4fr;
+    gap: 20px 32px;
+  }
+  .fs-hero-information .fs-button {
+    grid-column: 1/-1;
+  }
+  .fs-hero-facts {
+    gap: 24px;
+  }
+  .fs-hero-facts dd {
+    font-size: 12px;
+  }
+  .fs-organizer {
+    gap: 7px;
+  }
+  .fs-organizer-name {
+    font-size: 18px;
+  }
+}
+@media (max-width: 620px) {
+  .fs-hero {
+    grid-template-rows: calc(84vw + 100px) auto auto;
+    padding-bottom: 18px;
+  }
+  .fs-hero-scene {
+    padding-bottom: 28px;
+  }
+  .fs-hero-statement p {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+  .fs-hero-statement > span {
+    margin-top: 8px;
+    font-size: 11px;
+  }
+  .fs-hero-information {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-block: 20px;
+  }
+  .fs-hero-chapter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .fs-hero h1 {
+    margin: 0;
+    font-size: 28px;
+    gap: 10px;
+  }
+  .fs-hero h1 small {
+    font-size: 10px;
+  }
+  .fs-hero-facts {
+    grid-template-columns: 0.85fr 1.4fr;
+    gap: 20px;
+  }
+  .fs-hero-facts dt,
+  .fs-hero-chapter > span {
+    font-size: 9px;
+  }
+  .fs-hero-facts dd {
+    margin-top: 6px;
+    font-size: 12px;
+  }
+  .fs-hero-information .fs-button {
+    min-height: 44px;
+    font-size: 11px;
+  }
+  .fs-hero-footer {
+    gap: 14px;
+    grid-template-columns: 1fr auto 30px;
+    padding-top: 16px;
+  }
+  .fs-scroll-link {
+    gap: 7px;
+    font-size: 8px;
+  }
+  .fs-organizer {
+    flex-direction: column;
+    gap: 1px;
+    align-items: flex-start;
+  }
+  .fs-organizer > span:first-child {
+    font-size: 7px;
+  }
+  .fs-organizer-name {
+    font-size: 16px;
+  }
+  .fs-motion-toggle {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (min-width: 901px) and (max-height: 650px) {
+  .fs-hero {
+    min-height: 560px;
+  }
+  .fs-hero-scene {
+    padding-bottom: 18px;
+  }
+  .fs-hero-information {
+    padding-block: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .fs-hero-artwork {
+    inset: 80px 0 65px;
+  }
+  .fs-hero-artwork-inner {
+    width: min(760px, 88vw, calc((100cqh - 145px) * 1.549));
+  }
+}
+@media (max-width: 620px) {
+  .fs-hero {
+    min-height: 100svh;
+    grid-template-rows: minmax(380px, 1fr) auto auto;
+  }
+  .fs-hero-artwork {
+    inset: 74px 0 84px;
+  }
+  .fs-hero-artwork-inner {
+    width: min(96vw, calc((100cqh - 158px) * 1.549));
+  }
+}

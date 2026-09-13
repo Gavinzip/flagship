@@ -1,0 +1,68 @@
+{
+  "files": {
+    "korea-world-detail": 563200,
+    "korea-keyvisual": 256000,
+    "korea-emblem": 600000,
+    "korea-world": 358400,
+    "acrylic-collection": 307200,
+    "glass-ribbons": 153600,
+    "korea-sky": 300000,
+    "korea-city": 420000,
+    "korea-card-frame": 350000,
+    "korea-river": 450000,
+    "flagship-master": 450000,
+    "brand-crowd-hero": 360000,
+    "brand-binder-exchange": 180000,
+    "brand-players-table": 100000,
+    "brand-grail-display": 150000,
+    "brand-handshake": 140000,
+    "brand-community-group": 330000,
+    "01-pearl-card-galaxy-review": {
+      "maxBytes": 360000,
+      "extension": "webp",
+      "reviewOnly": true
+    },
+    "02-chrome-glass-ribbons-review": {
+      "maxBytes": 100000,
+      "extension": "webp",
+      "reviewOnly": true
+    },
+    "03-satin-glass-slab-review": {
+      "maxBytes": 20000,
+      "extension": "webp",
+      "reviewOnly": true
+    },
+    "brand-hero-film": {
+      "maxBytes": 3500000,
+      "extension": "mp4",
+      "reviewOnly": true
+    },
+    "brand-recap-video": {
+      "maxBytes": 6500000,
+      "extension": "mp4",
+      "reviewOnly": true
+    },
+    "02-pearl-galaxy-review": {
+      "maxBytes": 60000,
+      "extension": "webp",
+      "reviewOnly": true
+    },
+    "01-midnight-galaxy-review": {
+      "maxBytes": 50000,
+      "extension": "webp",
+      "reviewOnly": true
+    },
+    "03-stellar-galaxy-review": {
+      "maxBytes": 270000,
+      "extension": "webp",
+      "reviewOnly": true
+    },
+    "brand-story-collectors": 320000,
+    "brand-collect-slabs": 190000,
+    "brand-trade-cards": 90000,
+    "brand-play-table": 235000,
+    "brand-connect-collectors": 245000,
+    "brand-recap-hall": 385000
+  },
+  "totalBytes": 11000000
+}

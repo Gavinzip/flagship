@@ -1,0 +1,12 @@
+.brand-site[data-theme="dark"] .brand-recap {padding-block:120px;}
+.brand-site[data-theme="dark"] .brand-recap-layout {grid-template-columns:.8fr 1.2fr;gap:90px;align-items:center;margin-top:42px;}
+.brand-site[data-theme="dark"] .brand-recap-layout h2 span:last-child {color:#f3f2ee;}
+.brand-site[data-theme="dark"] .brand-recap-layout p {font-size:15px;line-height:1.9;max-width:30em;margin-top:28px;}
+.brand-site[data-theme="dark"] .brand-recap-poster {padding:0;border:1px solid #ffffff30;border-radius:2px;background:#090c13;box-shadow:0 25px 70px #0006;}
+.brand-site[data-theme="dark"] .brand-recap-poster img {aspect-ratio:1.5;border-radius:0;filter:brightness(.87);transition:filter .35s,transform .6s;}
+.brand-site[data-theme="dark"] .brand-recap-poster:hover img {filter:brightness(1);}
+.brand-site[data-theme="dark"] .brand-recap-layout .brand-photo-caption {font-size:9px;letter-spacing:.12em;color:#8992a5;margin-top:16px;}
+.brand-site[data-theme="dark"] .brand-footer {padding-top:95px;background:linear-gradient(180deg,transparent,#050609ed);border-color:#ffffff25;}
+.brand-site[data-theme="dark"] .brand-footer-bottom {padding-top:24px;border-color:#ffffff22;}
+.brand-site[data-theme="dark"] .brand-footer-bottom :is(span,nav a) {color:#999faf;}
+.brand-site[data-theme="dark"] .brand-preferences {border-color:#ffffff18;}

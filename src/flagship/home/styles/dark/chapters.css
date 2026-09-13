@@ -1,0 +1,19 @@
+.brand-site[data-theme="dark"] .brand-chapter-grid {max-width:none;grid-template-columns:1.08fr 1fr;gap:28px;}
+.brand-site[data-theme="dark"] .brand-chapter {--chapter-accent:#819fff;min-height:545px;padding:30px 36px 26px;border-radius:3px;border:1px solid #ffffff25;background:radial-gradient(ellipse at 75% 5%,#3c68e522,transparent 62%),#090c14;box-shadow:none;}
+.brand-site[data-theme="dark"] .brand-chapter-taiwan {--chapter-accent:#ed7186;background:radial-gradient(ellipse at 75% 5%,#c92e4720,transparent 62%),#0c0b10;}
+.brand-site[data-theme="dark"] .brand-chapter::before {inset:7px;border-radius:0;border-color:#ffffff0e;}
+.brand-site[data-theme="dark"] .brand-chapter::after {top:0;left:36px;width:65px;height:2px;border:0;border-radius:0;background:var(--chapter-accent);}
+.brand-site[data-theme="dark"] .brand-chapter-art {min-height:240px;}
+.brand-site[data-theme="dark"] .brand-chapter-art::before {content:'02';position:absolute;right:0;bottom:-18px;font:700 190px/.85 var(--brand-display);letter-spacing:-.05em;color:#ffffff04;-webkit-text-stroke:1px #ffffff0e;z-index:-1;}
+.brand-site[data-theme="dark"] .brand-chapter-taiwan .brand-chapter-art::before {content:'01';}
+.brand-site[data-theme="dark"] .brand-chapter-title h3 {font-size:60px !important;color:#f3f2ee;}
+.brand-site[data-theme="dark"] .brand-chapter-title span {color:#9298a7;}
+.brand-site[data-theme="dark"] .brand-chapter-meta span:first-child {color:var(--chapter-accent);border:1px solid #ffffff26;padding:5px 9px;font-size:9px;}
+.brand-site[data-theme="dark"] .brand-chapter-meta span:last-child {color:#808795;letter-spacing:.14em;}
+.brand-site[data-theme="dark"] .brand-chapter-link {color:#dcdfe7;margin-top:25px;border-color:#ffffff26;min-height:54px;font-size:12px;}
+.brand-site[data-theme="dark"] .brand-chapter-link svg {height:32px;width:32px;padding:6px;background:#ffffff08;transition:background .2s,transform .2s;}
+.brand-site[data-theme="dark"] .brand-chapter:hover {border-color:var(--chapter-accent);}
+.brand-site[data-theme="dark"] .brand-chapter:hover .brand-chapter-link svg {background:var(--chapter-accent);color:#090c14;transform:translate(2px,-2px);}
+.brand-site[data-theme="dark"] .brand-next-cities {color:#9399a7;margin-top:26px;}
+
+.brand-site[data-theme="dark"] .brand-chapter-taiwan .brand-chapter-art > .brand-chapter-emblem {width:82%;max-width:82%;}

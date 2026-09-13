@@ -1,0 +1,360 @@
+/* FLAGSHIP surfaces: clear card edges, quiet silver fields, original red/blue marks. */
+.brand-site:has(.world-journey) {
+  background: #f7f8fa;
+}
+.brand-site:has(.world-journey) .brand-header {
+  background: #fafbfdf2;
+  backdrop-filter: none;
+  border: 1px solid #c8d2df80;
+  border-radius: 5px;
+  box-shadow: 0 3px 18px #1e375607;
+}
+.brand-site:has(.world-journey) .brand-header select,
+.brand-site:has(.world-journey) .brand-menu-button {
+  background: #f8fafc;
+  border: 1px solid #bdc9d8;
+  border-radius: 3px;
+  box-shadow: none;
+  color: #294260 !important;
+}
+.brand-mobile-nav {
+  background: #fafbfd;
+  border: 1px solid #c4cedd;
+  border-radius: 4px;
+  box-shadow: 0 14px 30px #172f5914;
+}
+.brand-mobile-nav a {
+  color: #294260;
+  border-color: #ced7e3;
+  font-size: 14px;
+}
+.brand-mobile-nav svg {
+  color: #315b94;
+}
+.world-journey .world-editions {
+  background: #f7f9fcf0;
+  border: 1px solid #aebed2a6;
+  border-radius: 5px;
+  backdrop-filter: none;
+  box-shadow: 0 5px 20px #2945680a;
+}
+.world-journey .world-city {
+  backdrop-filter: none;
+  box-shadow: none;
+  border-radius: 0 3px 3px 0;
+}
+.brand-story {
+  padding-block: 110px;
+  gap: 85px;
+  position: relative;
+}
+.brand-story-media {
+  padding-right: 10px;
+}
+.brand-story-media figure {
+  padding: 6px;
+  border: 1px solid #c4cedb;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 30px #233e590a;
+}
+.brand-story-media figure img {
+  display: block;
+  aspect-ratio: 1.08;
+  border: 0;
+  border-radius: 4px;
+  padding: 0;
+  background: none;
+}
+.brand-story-media figcaption {
+  margin: 0;
+  padding: 14px 10px 8px;
+  color: #56677c;
+  font-size: 10px;
+}
+.brand-photo-stamp {
+  clip-path: none;
+  bottom: 74px;
+  right: -10px;
+  padding: 15px 23px;
+  background: #f8fafc;
+  color: #273d5c;
+  border: 1px solid #bccadb;
+  border-radius: 4px;
+  box-shadow: 0 5px 16px #1b335519;
+  font-size: 27px;
+  line-height: 1.05;
+  transform: rotate(-3deg);
+}
+.brand-photo-stamp em {
+  color: #a13c54;
+}
+.brand-story-text h2 {
+  margin: 24px 0 28px;
+}
+.brand-story-text h2 span:last-child {
+  color: #365b87;
+}
+.brand-story-text .brand-prose p {
+  color: #526176;
+  font-size: 14px;
+  line-height: 2;
+}
+.brand-story-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 26px;
+  margin-top: 26px;
+  padding: 10px 0;
+  min-height: 44px;
+  font-size: 12px;
+  color: #315c93;
+  border-bottom: 1px solid #a9bad0;
+}
+.brand-story-next svg {
+  width: 18px;
+  transition: transform 0.25s;
+}
+.brand-story-next:hover svg {
+  transform: translate(3px, -3px);
+}
+.brand-editions {
+  background: linear-gradient(115deg, #f1f3f7, #f7f9fc 55%, #edf2f9);
+  border-block: 1px solid #d7dfea;
+}
+.brand-experience-tabs {
+  gap: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid #bdcbdc;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 28px;
+}
+.brand-experience-panel {
+  padding: 0;
+  border: 1px solid #c8d3e0;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: none;
+  overflow: hidden;
+}
+.brand-experience-photo {
+  border-radius: 0;
+  aspect-ratio: 1.3;
+  background: #dae4ef;
+}
+.brand-experience-photo img { visibility: visible; transition: none; }
+.brand-experience-photo img[data-active="true"] { z-index: 1; }
+.brand-experience-description {
+  padding: 40px;
+  border: 0;
+  background: #f6f8fb;
+}
+.brand-experience-description h3 {
+  color: #29466a;
+  margin: 22px 0;
+}
+.brand-experience-description p {
+  color: #53647a;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.brand-experience-description small {
+  font-size: 10px;
+  color: #748398;
+}
+.brand-partner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: 100px;
+  background: #edf2f9;
+  border-block: 1px solid #d7e0eb;
+}
+.brand-partner h2 {
+  color: #29466b;
+  margin-bottom: 22px;
+}
+.brand-partner .brand-prose p {
+  color: #526982;
+  font-size: 14px;
+  line-height: 1.95;
+}
+.brand-recap-layout {
+  gap: 85px;
+  grid-template-columns: 0.9fr 1.25fr;
+}
+.brand-recap-poster {
+  padding: 5px;
+  border: 1px solid #c1cddd;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 10px 28px #29456b0a;
+}
+.brand-recap-poster img {
+  border-radius: 3px;
+  aspect-ratio: 1.5;
+}
+.brand-recap-play {
+  clip-path: none;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background: #f8fafcf2;
+  border: 1px solid #fff;
+  color: #294e7f;
+  box-shadow: 0 5px 18px #172d5a20;
+  font-size: 20px;
+  transition: transform 0.25s;
+}
+.brand-recap-poster:hover .brand-recap-play {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+.brand-recap-layout h2 span:last-child {
+  color: #345f94;
+}
+.brand-recap-layout p {
+  color: #56677f;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.brand-recap .brand-text-link {
+  color: #516c90;
+  font-size: 12px;
+}
+.brand-recap-layout .brand-photo-caption {
+  font-size: 10px;
+  margin-top: 14px;
+}
+.brand-film-dialog {
+  border-radius: 7px;
+  border: 1px solid #c3cede;
+  padding: 18px;
+  background: #f5f8fc;
+  color: #243c60;
+  box-shadow: 0 30px 100px #22365355;
+}
+.brand-film-dialog::backdrop {
+  background: #172b4ca8;
+}
+.brand-film-top {
+  font:
+    500 12px/1.6 Arial,
+    sans-serif;
+  padding-left: 8px;
+}
+.brand-film-top button {
+  background: #fff;
+  border: 1px solid #bacbdf;
+  color: #314e73;
+  border-radius: 4px;
+}
+.brand-film-dialog video {
+  border-radius: 3px;
+}
+.brand-footer {
+  isolation: isolate;
+  overflow: hidden;
+  background: #eef3fa;
+  color: #253e60;
+  border-top: 1px solid #c5d1e1;
+  padding: 75px 0 24px;
+}
+.brand-footer::before {
+  height: 1px;
+  background: linear-gradient(90deg, #b9405a70, #fff, #2860b770);
+}
+.brand-footer-bottom {
+  border-color: #b4c5db;
+  gap: 28px;
+  padding-top: 22px;
+}
+.brand-footer-bottom > a img {
+  width: 140px;
+}
+.brand-footer-bottom > span {
+  color: #657992;
+  font-size: 10px;
+}
+.brand-footer-bottom nav {
+  gap: 26px;
+  font-size: 11px;
+}
+.brand-footer-bottom nav a {
+  color: #3d597d;
+}
+@media (max-width: 900px) {
+  .brand-story {
+    gap: 48px;
+    padding-block: 90px;
+  }
+  .brand-photo-stamp {
+    right: -4px;
+    padding: 15px 20px;
+    font-size: 23px;
+  }
+  .brand-experience-description {
+    padding: 28px;
+  }
+  .brand-recap-layout {
+    gap: 42px;
+  }
+}
+@media (max-width: 600px) {
+  .brand-section {
+    padding-top: 94px;
+  }
+  .brand-story {
+    padding-block: 94px 65px;
+    gap: 35px;
+  }
+  .brand-story-media figure img {
+    aspect-ratio: 1.2;
+  }
+  .brand-story-media figcaption {
+    font-size: 9px;
+  }
+  .brand-photo-stamp {
+    right: 0;
+    bottom: 60px;
+    font-size: 23px;
+  }
+  .brand-story-text .brand-prose p {
+    font-size: 13px;
+  }
+  .brand-experience-description {
+    padding: 26px 22px;
+  }
+  .brand-experience-description p {
+    font-size: 13px;
+  }
+  .brand-partner {
+    padding-block: 65px;
+  }
+  .brand-partner .brand-prose p {
+    font-size: 13px;
+  }
+  .brand-recap-layout {
+    gap: 30px;
+  }
+  .brand-recap-play {
+    width: 60px;
+    height: 60px;
+    font-size: 17px;
+  }
+  .brand-film-dialog {
+    width: calc(100vw - 24px);
+    padding: 12px;
+  }
+  .brand-footer {
+    padding-top: 55px;
+  }
+  .brand-footer-bottom {
+    gap: 14px;
+  }
+  .brand-footer-bottom > a img {
+    width: 110px;
+  }
+}

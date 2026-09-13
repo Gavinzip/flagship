@@ -1,0 +1,160 @@
+.world-galaxy {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #eaf0f9;
+  pointer-events: none;
+}
+.world-galaxy > img {
+  position: absolute;
+  width: 100%;
+  height: 110%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  transform: translate3d(0, calc(var(--world-progress, 0) * -6%), 0);
+}
+.world-galaxy > img[data-active="true"] {
+  opacity: 0.88;
+}
+.world-galaxy::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 20%;
+  background: linear-gradient(transparent, var(--world-ground));
+}
+.world-galaxy-legibility {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #f8faff9e 0%,
+    #f8faff85 32%,
+    #edf3fb18 60%,
+    transparent 100%
+  );
+}
+.world-galaxy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 3% 66%, #bc234e2b, transparent 54%),
+    radial-gradient(ellipse at 92% 32%, #286aff39, transparent 57%);
+  mix-blend-mode: multiply;
+}
+.brand-site[data-theme="dark"] .world-galaxy::before {
+  background:
+    radial-gradient(ellipse at 0% 56%, #b6254938, transparent 58%),
+    radial-gradient(ellipse at 90% 25%, #2f5edf3d, transparent 62%);
+  mix-blend-mode: screen;
+}
+.world-journey .world-heading > p:last-child {
+  color: #344359;
+}
+.world-journey .world-city {
+  background: linear-gradient(120deg, #f9fcfff2, #e5effbd9);
+  box-shadow:
+    0 3px 15px #102c571a,
+    inset 0 1px 0 #ffffffbd;
+}
+.world-journey .world-city--korea {
+  margin-top: -44px;
+}
+.world-journey .world-city--taiwan {
+  margin-top: 10px;
+}
+@media (max-width: 600px) {
+  .world-journey .world-stage {
+    top: 365px;
+    height: 375px;
+    transition:
+      top 0.65s ease,
+      height 0.65s ease;
+  }
+  .world-journey:not([data-chapter="world"]) .world-city-nav {
+    bottom: 28px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-scroll {
+    display: none;
+  }
+  .world-galaxy > img {
+    object-position: 62% center;
+  }
+  .world-galaxy-legibility {
+    background: linear-gradient(
+      180deg,
+      #f6f9ffe0,
+      #f6f9ffcf 37%,
+      #f6f9ff28 63%,
+      #eef4ff24
+    );
+  }
+}
+@media (max-width: 600px) and (max-height: 750px) {
+  .world-journey .world-stage {
+    top: 305px;
+    height: 320px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-stage {
+    top: 326px;
+    height: 270px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-logo {
+    width: 108px;
+    margin: 4px auto;
+  }
+  .world-journey:not([data-chapter="world"]) .world-city-nav {
+    bottom: 14px;
+  }
+}
+@media (max-width: 600px) and (min-height: 751px) {
+  .world-journey:not([data-chapter="world"]) .world-stage {
+    top: 384px;
+    height: 353px;
+  }
+  .world-journey:not([data-chapter="world"]) .world-logo {
+    width: 132px;
+  }
+}
+@media (min-width: 1001px) {
+  .world-city-nav {
+    left: 6.4%;
+    right: auto;
+  }
+  .world-journey:not([data-chapter="world"]) .world-scroll {
+    left: auto;
+    right: 6.4%;
+    bottom: 27px;
+  }
+}
+@media (min-width: 601px) and (max-width: 1000px) and (min-height: 800px) {
+  .world-galaxy > img {
+    object-position: 62% center;
+  }
+  .world-galaxy-legibility {
+    background: linear-gradient(
+      180deg,
+      #f6f9ffe0,
+      #f6f9ffcf 40%,
+      #f6f9ff28 65%,
+      #eef4ff24
+    );
+  }
+}
+@media (min-width: 601px) and (max-height: 600px) {
+  .world-journey .world-stage {
+    top: 50px;
+    height: 285px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-galaxy > img {
+    transform: none;
+  }
+}
