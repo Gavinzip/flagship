@@ -1,0 +1,48 @@
+/* The accepted football BorderGlow mask, widened for a geographic destination.
+   A separate ring blooms behind the opaque panel, leaving the content clear. */
+.world-city-aura {
+  position: absolute; inset: -4px; z-index: 0; border-radius: 16px;
+  pointer-events: none; filter: blur(10px); opacity: .48;
+  transition: opacity .3s ease;
+}
+.world-city-aura::before {
+  content: ""; position: absolute; inset: 0; padding: 8px; border-radius: inherit;
+  background: conic-gradient(from var(--metal-cursor-angle), #83d5ff, #c1a4ff 22%, #f496b8 42%, #89b6ff 70%, #83d5ff);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+.brand-site .world-city > .ip-metal-border {
+  --metal-a: #b89bfa;
+  --metal-b: #fa9abd;
+  --metal-c: #80d8ff;
+  inset: -1px;
+}
+.brand-site .world-city > .ip-metal-border::before {
+  opacity: .72; padding: 1.25px;
+  -webkit-mask-image: conic-gradient(from var(--metal-cursor-angle), #000 34%, transparent 47%, transparent 53%, #000 66%), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-image: conic-gradient(from var(--metal-cursor-angle), #000 34%, transparent 47%, transparent 53%, #000 66%), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+}
+.brand-site .world-city > .ip-metal-border > .ip-metal-edge {
+  opacity: .35;
+  mask-image: conic-gradient(from var(--metal-cursor-angle), #000 5%, transparent 20%, transparent 80%, #000 95%);
+}
+.brand-site .world-city:is(:hover, :focus-visible) > .ip-metal-border::before,
+.brand-site .world-city:is(:hover, :focus-visible) > .ip-metal-border > .ip-metal-edge { opacity: 1; }
+.world-city:is(:hover, :focus-visible) .world-city-aura { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .world-city-aura { transition: none; }
+  .brand-site .world-city > .ip-metal-border::before {
+    -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+    -webkit-mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+    mask-clip: content-box, border-box;
+    mask-composite: exclude;
+  }
+}
+@media (forced-colors: active) {
+  .world-city-aura { display: none; }
+  .world-city-panel { outline: 1px solid ButtonText; }
+}

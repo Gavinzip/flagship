@@ -1,4 +1,3 @@
-import { MetalBorder } from "../../home/ui/MetalBorder";
 import { ArrowLeft, ArrowRight } from "iconoir-react";
 import type { CityId } from "../config/worldSpec";
 import type { HomeCopy } from "../../home/homeCopy";
@@ -27,12 +26,11 @@ export function CityNavigator({
       </p>
       <div className="world-city-nav-row">
         <button
-          className="world-edition-choice ip-metal-control"
+          className="world-edition-choice"
           aria-label={zh ? "最新卡展：韓國" : ko ? "최신 행사: 한국" : "Latest edition: Korea"}
           aria-pressed={city === "korea"}
           onClick={() => select("korea")}
         >
-          <MetalBorder />
           <ArrowLeft />
           <span>
             <small>{c.koreaStatus}</small>
@@ -40,12 +38,11 @@ export function CityNavigator({
           </span>
         </button>
         <button
-          className="world-edition-choice ip-metal-control"
+          className="world-edition-choice"
           aria-label={zh ? "前一次卡展：台灣" : ko ? "이전 행사: 대만" : "Previous edition: Taiwan"}
           aria-pressed={city === "taiwan"}
           onClick={() => select("taiwan")}
         >
-          <MetalBorder />
           <span>
             <small>{zh ? "回看歷屆 · 2026" : ko ? "이전 행사 · 2026" : "PREVIOUS · 2026"}</small>
             <strong>TAIWAN</strong>
