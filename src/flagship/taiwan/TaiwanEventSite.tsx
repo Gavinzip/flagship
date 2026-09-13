@@ -13,6 +13,7 @@ import { VendorsSection } from "../../components/VendorsSection";
 import { VenueSection } from "../../components/VenueSection";
 import { LocaleProvider } from "../../i18n/LocaleProvider";
 import { useFlagship } from "../FlagshipContext";
+import { ChapterHomeLink } from "../components/ChapterHomeLink";
 import { TaiwanEditionControl } from "./TaiwanEditionControl";
 import { EditionTransitionContext } from "../routing/transition/EditionTransitionContext";
 import "./taiwan-navigation.css";
@@ -32,7 +33,7 @@ export function TaiwanEventSite({ onReady }: { onReady?: () => void }) {
         <SiteBoot onReady={onReady} coveredByTransition={coveredByTransition}>
           <div className="taiwan-event-site">
             <MotionDirector />
-            <Header editionControl={<TaiwanEditionControl />} />
+            <Header brandControl={<ChapterHomeLink />} editionControl={<TaiwanEditionControl />} />
             <main id="main">
               <Hero />
               <MobileActionBar />

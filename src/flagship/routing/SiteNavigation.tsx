@@ -1,13 +1,15 @@
-import { createContext, useContext, useEffect, useLayoutEffect, useState, type ReactNode, type AnchorHTMLAttributes } from "react";
+import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type AnchorHTMLAttributes } from "react";
 import type { SiteLanguage } from "../data/copy";
 import { readSiteLocation, siteHref, type SiteLocation, type SitePage } from "./siteRoutes";
 
 import { EditionTransitionContext } from "./transition/EditionTransitionContext";
 
+type HistoryTransition = (from: SiteLocation, to: SiteLocation, commit: () => void) => boolean;
 type Navigation = {
   location: SiteLocation;
   navigate: (page: SitePage, language?: SiteLanguage, hash?: string) => void;
   setLanguage: (language: SiteLanguage) => void;
+  registerHistoryTransition: (handler: HistoryTransition) => () => void;
 };
 const Context = createContext<Navigation | null>(null);
 
@@ -22,10 +24,21 @@ function preserveAppearance(href: string) {
 export function SiteNavigationProvider({ children }: { children: ReactNode }) {
   const [location, setLocation] = useState(() => readSiteLocation(new URL(window.location.href)));
   const [revision, setRevision] = useState(0);
+  const current = useRef(location);
+  current.current = location;
+  const historyTransition = useRef<HistoryTransition | null>(null);
+  const registerHistoryTransition = useCallback((handler: HistoryTransition) => {
+    historyTransition.current = handler;
+    return () => { if (historyTransition.current === handler) historyTransition.current = null; };
+  }, []);
   useEffect(() => {
     const sync = () => {
-      setLocation(readSiteLocation(new URL(window.location.href)));
-      setRevision(value => value + 1);
+      const next = readSiteLocation(new URL(window.location.href));
+      const commit = () => {
+        setLocation(next);
+        setRevision(value => value + 1);
+      };
+      if (!historyTransition.current?.(current.current, next, commit)) commit();
     };
     window.addEventListener("popstate", sync);
     return () => window.removeEventListener("popstate", sync);
@@ -51,7 +64,7 @@ export function SiteNavigationProvider({ children }: { children: ReactNode }) {
     setLocation(readSiteLocation(new URL(window.location.href)));
     setRevision(value => value + 1);
   };
-  return <Context.Provider value={{ location, navigate, setLanguage: language => {
+  return <Context.Provider value={{ location, navigate, registerHistoryTransition, setLanguage: language => {
     if (location.page === "not-found") return;
     window.history.pushState(null, "", preserveAppearance(siteHref(location.page, language, window.location.hash.slice(1))));
     setLocation(readSiteLocation(new URL(window.location.href)));
@@ -72,6 +85,7 @@ export function SiteLink({ page, hash, children, onClick, ...props }: Omit<Ancho
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || props.target === "_blank" || props.download) return;
     event.preventDefault();
     if(location.page === "home" && (page === "korea" || page === "taiwan") && transition) transition.enter(page,()=>navigate(page,location.language,hash));
+    else if(page === "home" && (location.page === "korea" || location.page === "taiwan") && transition) transition.returnHome(location.page,()=>navigate("home",location.language,`world-${location.page}`));
     else navigate(page, location.language, hash);
   }}>{children}</a>;
 }

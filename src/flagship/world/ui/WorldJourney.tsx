@@ -1,5 +1,6 @@
 import { MetalBorder } from "../../home/ui/MetalBorder";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { EditionTransitionContext } from "../../routing/transition/EditionTransitionContext";
 import { ArrowDown } from "iconoir-react";
 import { StellarActionContent } from "../../home/ui/StellarActionContent";
 import { homeMotion } from "../../home/motion/homeMotion";
@@ -33,8 +34,9 @@ export function WorldJourney({
     host = useRef<HTMLDivElement>(null),
     runtime = useRef<WorldRuntime | null>(null),
     progress = useRef(0);
-  const initialCity: CityId =
-    window.location.hash === "#world-taiwan" ? "taiwan" : "korea";
+  const returningCity = useContext(EditionTransitionContext)?.returnEdition;
+  const initialCity: CityId = returningCity ??
+    (window.location.hash === "#world-taiwan" ? "taiwan" : "korea");
   const [city, setCity] = useState<CityId>(initialCity);
   const cityRef = useRef(city);
   const themeRef = useRef(theme);

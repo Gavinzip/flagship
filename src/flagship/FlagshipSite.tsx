@@ -15,13 +15,14 @@ const EditionSite = lazy(preloadEdition);
 
 function Site() {
   const { location } = useSiteNavigation();
-  const retaining =
-    useContext(EditionTransitionContext)?.retainingWorld ?? false;
+  const transition = useContext(EditionTransitionContext);
+  const retaining = transition?.retainingWorld ?? false;
+  const transferring = retaining && transition?.returnPhase !== "settling";
   return (
     <>
       <PageMetadata />
       {(location.page === "home" || retaining) && (
-        <div className="brand-world-retainer" data-transferring={retaining}>
+        <div className="brand-world-retainer" data-transferring={transferring} data-return-phase={transition?.returnPhase}>
           <BrandHome />
         </div>
       )}
@@ -33,7 +34,7 @@ function Site() {
             <SiteLink page="home">Back to Flagship ↗</SiteLink>
           </main>
         ) : (
-          <div className="edition-route-plane" data-transferring={retaining}>
+          <div className="edition-route-plane" data-transferring={transferring} data-return-phase={transition?.returnPhase}>
             <RouteBoundary key={location.page} language={location.language}>
               <Suspense fallback={<RouteStatus language={location.language} />}>
                 <EditionSite />

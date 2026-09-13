@@ -332,17 +332,6 @@ html:is([lang="zh-TW"], [lang="ko"]) .fs-site h2 {
 .fs-header[data-open="true"]::before {
   opacity: 1;
 }
-.fs-home-link {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  min-height: 44px;
-  flex-shrink: 0;
-}
-.fs-home-link svg {
-  width: 18px;
-  height: 18px;
-}
 .fs-brand {
   display: block;
   width: 170px;

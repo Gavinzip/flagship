@@ -1,13 +1,11 @@
 import { NavArrowDown } from "iconoir-react";
 import { useFlagship } from "../FlagshipContext";
 import { editionList, isEditionId } from "../data/editions";
-import { SiteLink } from "../routing/SiteNavigation";
 
 export function TaiwanEditionControl() {
-  const { edition, content, selectEdition, language } = useFlagship();
+  const { edition, content, selectEdition } = useFlagship();
   return (
     <div className="taiwan-chapter-navigation">
-      <SiteLink className="taiwan-brand-home" page="home">{language === "zh-TW" ? "主站" : "Home"}<span aria-hidden="true">↗</span></SiteLink>
       <div className="taiwan-edition-control">
       <select
         aria-label={content.editionLabel}

@@ -11,6 +11,7 @@ import { sampleFlight, type GlobeFlight } from "../runtime/flightRig";
 import type { GeographicAnchor } from "../runtime/entryBridge";
 import { createDepartureRig } from "../runtime/departureRig";
 import { entryMotion } from "../config/entryMotion";
+import { cameraFitForSize } from "../runtime/cameraFraming";
 export type WorldRuntime = {
   update: (progress: number, city: CityId) => void;
   dispose: () => void;
@@ -18,6 +19,7 @@ export type WorldRuntime = {
   flyTo: (city: CityId, signal: AbortSignal) => Promise<GeographicAnchor>;
   resume: () => void;
   depart: (signal: AbortSignal, advance: (progress: number) => void) => Promise<void>;
+  retreat: (city: CityId, signal: AbortSignal, advance: (progress: number) => void) => Promise<void>;
 };
 export async function mountWorld(
   host: HTMLElement,
@@ -139,12 +141,7 @@ export async function mountWorld(
     if (!width || !height) return;
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
-    const fittedDistance =
-      worldSpec.camera.minimumFrameDiameter /
-      (2 *
-        Math.tan((worldSpec.camera.fov * Math.PI) / 360) *
-        Math.min(1, camera.aspect));
-    cameraFit = Math.max(1, fittedDistance / worldSpec.arrivalDistance);
+    cameraFit = cameraFitForSize(width, height);
     camera.updateProjectionMatrix();
   };
   size();
@@ -354,6 +351,14 @@ export async function mountWorld(
         wake();
       },
       depart: (travelSignal, advance) => departure.run(travelSignal, reduced.matches, advance),
+      retreat: (city, travelSignal, advance) => {
+        entering = true;
+        selectedCity = city;
+        target = smooth = 0;
+        flight = null;
+        Object.assign(view, journeyPose(0, city));
+        return departure.run(travelSignal, reduced.matches, advance, true);
+      },
       setTheme: (theme) => {
         themeTarget = theme === "dark" ? 1 : 0;
         wake();

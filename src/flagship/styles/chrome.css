@@ -15,5 +15,3 @@
   pointer-events: none;
   mix-blend-mode: screen;
 }
-.fs-home-link { width: auto; gap: 6px; display: flex; }
-.fs-home-link span { font: 700 16px "Barlow Condensed", sans-serif; letter-spacing: .04em; }

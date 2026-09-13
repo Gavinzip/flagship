@@ -19,6 +19,16 @@ export function useWorldEntry(
   useEffect(() => {
     if (!registration) return;
     let previous = city.current;
+    const ready = async (signal: AbortSignal) => {
+      const started = performance.now();
+      while (!runtime.current) {
+        if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+        if (failed.current || performance.now() - started > 15000)
+          throw new Error("The Protocol globe is not ready.");
+        await nextPaint();
+      }
+      return runtime.current;
+    };
     return registration({
       prepare: (destination) => {
         previous = city.current;
@@ -31,14 +41,13 @@ export function useWorldEntry(
         }
       },
       flyTo: async (destination, signal) => {
-        const started = performance.now();
-        while (!runtime.current) {
-          if (signal.aborted) throw new DOMException("Aborted", "AbortError");
-          if (failed.current || performance.now() - started > 15000)
-            throw new Error("The Protocol globe is not ready.");
-          await nextPaint();
-        }
-        return runtime.current.flyTo(destination, signal);
+        return (await ready(signal)).flyTo(destination, signal);
+      },
+      retreat: async (destination, signal, advance) =>
+        (await ready(signal)).retreat(destination, signal, advance),
+      release: () => {
+        paused.current = false;
+        runtime.current?.resume();
       },
       restore: () => {
         paused.current = false;

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp, ArrowUpRight, Menu, Xmark } from "iconoir-react";
+import { ArrowUpRight, Menu, Xmark } from "iconoir-react";
 import { useMotionValueEvent, useScroll } from "motion/react";
 import { useFlagship } from "../FlagshipContext";
 import type { SiteLanguage } from "../data/copy";
 import { editionList, isEditionId } from "../data/editions";
-import { SiteLink } from "../routing/SiteNavigation";
+import { ChapterHomeLink } from "./ChapterHomeLink";
 
 const sections = ["experience", "editions", "show-info", "questions"];
 export function SiteHeader() {
@@ -50,14 +50,7 @@ export function SiteHeader() {
       data-open={open}
       data-concealed={concealed && !open}
     >
-      <SiteLink
-        className="fs-home-link"
-        page="home"
-        aria-label={language === "zh-TW" ? "返回 Flagship 主站" : language === "ko" ? "Flagship 홈으로" : "Back to Flagship home"}
-        onClick={() => setOpen(false)}
-      >
-        <ArrowUp /><span>FLAGSHIP</span>
-      </SiteLink>
+      <ChapterHomeLink onClick={() => setOpen(false)} />
       <nav className="fs-desktop-nav" aria-label="Main navigation">
         {sections.map((id, i) => (
           <a href={`#${id}`} key={id}>

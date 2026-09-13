@@ -20,6 +20,7 @@ import {
   nextPaint,
 } from "./transferRuntime";
 import { geographicHandoff } from "./geographicHandoff";
+import { useWorldReturn } from "./useWorldReturn";
 import "./transition.css";
 
 type Transfer = {
@@ -31,7 +32,7 @@ type Transfer = {
 };
 
 export function EditionTransition({ children }: { children: ReactNode }) {
-  const { location } = useSiteNavigation();
+  const { location, registerHistoryTransition } = useSiteNavigation();
   const zh = location.language === "zh-TW";
   const [transfer, setTransfer] = useState<Transfer | null>(null);
   const active = useRef<AbortController | null>(null),
@@ -39,6 +40,19 @@ export function EditionTransition({ children }: { children: ReactNode }) {
     mark = useRef<HTMLDivElement>(null),
     opener = useRef<HTMLElement | null>(null),
     scroll = useRef(0);
+  const { returning, returnMark, returnHome, cancelReturn, interruptReturn, running } = useWorldReturn(world, active);
+  useEffect(() => registerHistoryTransition((from, to, commit) => {
+    if (running.current) { interruptReturn(); return false; }
+    if (active.current || to.page !== "home" || (from.page !== "korea" && from.page !== "taiwan")) return false;
+    returnHome(from.page, () => {
+      // Keep the country that was just visited selected when native history returns.
+      const url = new URL(window.location.href);
+      url.hash = `world-${from.page}`;
+      window.history.replaceState(window.history.state, "", url);
+      commit();
+    });
+    return true;
+  }), [registerHistoryTransition, returnHome, interruptReturn]);
   const registerWorld = useCallback((bridge: WorldEntryBridge) => {
     world.current = bridge;
     return () => {
@@ -65,7 +79,7 @@ export function EditionTransition({ children }: { children: ReactNode }) {
     });
   }, []);
   useEffect(() => {
-    const back = () => cancel();
+    const back = () => { if (!running.current) cancel(); };
     window.addEventListener("popstate", back);
     return () => {
       window.removeEventListener("popstate", back);
@@ -73,19 +87,22 @@ export function EditionTransition({ children }: { children: ReactNode }) {
     };
   }, [cancel]);
   useEffect(() => {
-    if (!transfer) return;
+    if (!transfer && !returning) return;
     const root = document.documentElement,
       previous = root.style.overflow;
     root.style.overflow = "hidden";
     const key = (event: KeyboardEvent) => {
-      if (event.key === "Escape") cancel();
+      if (event.key === "Escape") {
+        if (returning) cancelReturn();
+        else cancel();
+      }
     };
     window.addEventListener("keydown", key);
     return () => {
       root.style.overflow = previous;
       window.removeEventListener("keydown", key);
     };
-  }, [!!transfer, cancel]);
+  }, [!!transfer, !!returning, cancel, cancelReturn]);
   const run = async (value: Transfer) => {
     active.current?.abort();
     const controller = new AbortController();
@@ -152,9 +169,24 @@ export function EditionTransition({ children }: { children: ReactNode }) {
   const height = width / (transfer?.edition === "taiwan" ? 900 / 493 : 1170 / 755);
   return (
     <EditionTransitionContext.Provider
-      value={{ enter, retainingWorld: !!transfer, registerWorld }}
+      value={{ enter, returnHome, retainingWorld: !!transfer || !!returning,
+        returnPhase: returning?.phase, returnEdition: returning?.edition, registerWorld }}
     >
-      <div inert={transfer ? true : undefined}>{children}</div>
+      <div inert={transfer || returning ? true : undefined}>{children}</div>
+      {returning && (
+        <div className="geographic-transfer geographic-return" data-phase={returning.phase}
+          role="dialog" aria-modal="true" aria-label={zh ? "返回 FLAGSHIP 世界" : "Returning to the FLAGSHIP world"}>
+          <div className="geographic-transfer-mark" ref={returnMark}>
+            {returning.edition === "korea" ? <OriginalEmblem src={editions.korea.emblem} /> :
+              <img src={editions.taiwan.emblem} alt="FLAGSHIP Card Show Taiwan" />}
+          </div>
+          {returning.phase === "error" && <div className="geographic-transfer-status" role="alert">
+            <span>{zh ? "地球載入失敗，請重試。" : "The globe could not be loaded."}</span>
+            <button onClick={() => returnHome(returning.edition, returning.navigate)}>{zh ? "重試" : "Retry"}</button>
+            <button onClick={cancelReturn}>{zh ? "留在此頁" : "Stay here"}</button>
+          </div>}
+        </div>
+      )}
       {transfer && (
         <div
           className="geographic-transfer"
