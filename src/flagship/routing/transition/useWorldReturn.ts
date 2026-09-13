@@ -3,7 +3,7 @@ import { flushSync } from "react-dom";
 import type { EditionId } from "../../data/editions";
 import type { WorldEntryBridge } from "../../world/runtime/entryBridge";
 import { nextPaint } from "./transferRuntime";
-import { returnHandoff, settleReturnedWorld } from "./returnHandoff";
+import { returnHandoff } from "./returnHandoff";
 
 type ReturnJourney = {
   edition: EditionId;
@@ -46,13 +46,13 @@ export function useWorldReturn(
         bridge.prepare(edition);
         setReturning({ ...value, phase: "retreating" });
         await nextPaint();
-        restore = await returnHandoff(edition, returnMark.current, signal,
+        restore = await returnHandoff(edition, returnMark.current,
           advance => bridge.retreat(edition, signal, advance));
         if (signal.aborted) return;
-        await settleReturnedWorld(() => flushSync(() => {
+        flushSync(() => {
           navigate();
           setReturning({ ...value, phase: "settling" });
-        }), signal);
+        });
         bridge.release();
         restore();
         setReturning(null);

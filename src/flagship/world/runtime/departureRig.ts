@@ -26,7 +26,7 @@ export function createDepartureRig(wake: () => void) {
       }
       return progress;
     },
-    run(signal: AbortSignal, reduced: boolean, onProgress: (progress: number) => void, returning = false) {
+    run(signal: AbortSignal, reduced: boolean, onProgress: (progress: number) => void) {
       return new Promise<void>((resolve, reject) => {
         interrupt?.();
         if (signal.aborted) {
@@ -34,12 +34,12 @@ export function createDepartureRig(wake: () => void) {
           return;
         }
         elapsed = 0;
-        from = returning ? 1 : 0;
-        to = returning ? 0 : 1;
+        from = 0;
+        to = 1;
         progress = from;
         advance = onProgress;
         advance(0);
-        duration = reduced ? 0 : returning ? 1.65 : entryMotion.pushSeconds;
+        duration = reduced ? 0 : entryMotion.pushSeconds;
         const clear = () => {
           signal.removeEventListener("abort", abort);
           finish = interrupt = null;

@@ -33,10 +33,10 @@
   width: 100% !important;
   height: 100% !important;
   transition:
-    left 0.75s,
-    top 0.75s,
-    width 0.75s,
-    height 0.75s;
+    left var(--world-frame-duration),
+    top var(--world-frame-duration),
+    width var(--world-frame-duration),
+    height var(--world-frame-duration);
 }
 .brand-world-retainer[data-transferring="true"] .world-copy {
   transform: translate(-50px, -30px);
@@ -134,11 +134,15 @@ body:has(
   white-space: normal;
 }
 /* Returning starts over the visible country; the same globe wakes behind it. */
+.brand-world-retainer[data-return-phase] {
+  position: fixed; inset: 0; z-index: 9990; pointer-events: none;
+}
+.brand-world-retainer[data-return-phase] .brand-site > main > :not(.world-journey),
+.brand-world-retainer[data-return-phase] .brand-footer { display: none; }
 .edition-route-plane[data-return-phase] { visibility: visible; }
 .brand-world-retainer[data-return-phase="preparing"],
 .brand-world-retainer[data-return-phase="retreating"],
 .brand-world-retainer[data-return-phase="error"] { opacity: 0; }
-.brand-world-retainer[data-return-phase]:not([data-return-phase="settling"]) .world-city { visibility: hidden !important; }
 .brand-world-retainer[data-return-phase]:not([data-return-phase="settling"]) :is(.ip-pill-header, .ip-language) { visibility: hidden; }
 .brand-world-retainer[data-return-phase] .world-stage { transition: none; }
 .geographic-return .geographic-transfer-mark img,

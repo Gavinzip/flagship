@@ -39,7 +39,7 @@
   color: #8498b2; font: 400 7px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
   font-variant-numeric: tabular-nums; letter-spacing: .01em;
 }
-.world-city-leader {
+.world-city .world-city-leader {
   position: absolute; left: calc(-1 * var(--marker-gap)); bottom: 12px;
   width: var(--marker-gap); height: 24px; overflow: visible; pointer-events: none;
   stroke: var(--marker-accent); stroke-width: .8; opacity: .7;
@@ -52,7 +52,7 @@
   /* Center the panel above its geographic anchor so the full halo fits on
      narrow screens. The vertical leader still ends at the projected city. */
   .brand-site .world-stage .world-city { width: 126px; translate: -50% calc(-18px - 100%); }
-  .world-city-leader { left: calc(50% - 15px); bottom: -18px; width: 30px; height: 18px; }
+  .world-city .world-city-leader { left: calc(50% - 15px); bottom: -18px; width: 30px; height: 18px; }
   .world-city-leader-side { display: none; }
   .world-city-leader-above { display: inline; }
   .world-city-panel { padding: 9px 10px; }

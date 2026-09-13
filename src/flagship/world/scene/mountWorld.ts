@@ -10,6 +10,7 @@ import { journeyPose, cityIllumination } from "../runtime/journeyPose";
 import { sampleFlight, type GlobeFlight } from "../runtime/flightRig";
 import type { GeographicAnchor } from "../runtime/entryBridge";
 import { createDepartureRig } from "../runtime/departureRig";
+import { createReturnRig, type ReturnFrame } from "../runtime/returnRig";
 import { entryMotion } from "../config/entryMotion";
 import { cameraFitForSize } from "../runtime/cameraFraming";
 export type WorldRuntime = {
@@ -19,7 +20,7 @@ export type WorldRuntime = {
   flyTo: (city: CityId, signal: AbortSignal) => Promise<GeographicAnchor>;
   resume: () => void;
   depart: (signal: AbortSignal, advance: (progress: number) => void) => Promise<void>;
-  retreat: (city: CityId, signal: AbortSignal, advance: (progress: number) => void) => Promise<void>;
+  retreat: (city: CityId, signal: AbortSignal, advance: (frame: ReturnFrame) => void) => Promise<void>;
 };
 export async function mountWorld(
   host: HTMLElement,
@@ -68,6 +69,7 @@ export async function mountWorld(
   let completeFlight: (() => void) | null = null;
   let interruptFlight: ((error: Error) => void) | null = null;
   const departure = createDepartureRig(() => wake());
+  const returning = createReturnRig(() => wake());
   const atmosphere = model.root.getObjectByName("atmosphere") as T.Mesh<
     T.SphereGeometry,
     T.ShaderMaterial
@@ -81,6 +83,13 @@ export async function mountWorld(
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   let cameraFit = 1;
   const pose = (dt = 1) => {
+    const reverse = returning.active ? returning.update(dt) : null;
+    if (reverse) {
+      view.distance = T.MathUtils.lerp(worldSpec.opening.distance, entryMotion.approachDistance, reverse.approach);
+      // The viewport and camera share this frame. Resize before projecting the
+      // globe, just as the forward flight does during its CSS expansion.
+      size();
+    }
     const desired = flight
       ? sampleFlight(flight, reduced.matches ? 100 : dt)
       : entering
@@ -108,7 +117,7 @@ export async function mountWorld(
       -Math.PI / 2 - (view.longitude * Math.PI) / 180,
       0,
     );
-    const leaving = departure.update(dt);
+    const leaving = reverse ? reverse.departure : departure.update(dt);
     camera.position.z = T.MathUtils.lerp(
       view.distance * cameraFit,
       entryMotion.surfaceDistance,
@@ -136,9 +145,12 @@ export async function mountWorld(
         .lerp(new T.Color("#ffffff"), illumination * 0.6);
     }
   };
+  let renderWidth = 0, renderHeight = 0;
   const size = () => {
     const { width, height } = host.getBoundingClientRect();
-    if (!width || !height) return;
+    if (!width || !height || (width === renderWidth && height === renderHeight)) return;
+    renderWidth = width;
+    renderHeight = height;
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     cameraFit = cameraFitForSize(width, height);
@@ -219,6 +231,7 @@ export async function mountWorld(
       !reduced.matches &&
       (flight ||
         departure.active ||
+        returning.active ||
         Math.abs(smooth - target) > 0.0001 ||
         moving > 0.001 ||
         Math.abs(themeBlend - themeTarget) > 0.001)
@@ -245,11 +258,20 @@ export async function mountWorld(
     }
   });
   observer.observe(host);
+  let compiling = true, graphicsDisposed = false;
+  const disposeGraphics = () => {
+    if (graphicsDisposed) return;
+    graphicsDisposed = true;
+    disposeObject(model.root);
+    renderer.dispose();
+    if (!renderer.getContext().isContextLost()) renderer.forceContextLoss();
+  };
   const dispose = () => {
     if (disposed) return;
     disposed = true;
     interruptFlight?.(new Error("The Protocol globe was interrupted."));
     departure.reset();
+    returning.reset();
     cancelAnimationFrame(frame);
     resize.disconnect();
     observer.disconnect();
@@ -257,9 +279,9 @@ export async function mountWorld(
     reduced.removeEventListener("change", wake);
     signal.removeEventListener("abort", dispose);
     canvas.removeEventListener("webglcontextlost", lost);
-    disposeObject(model.root);
-    renderer.dispose();
-    if (!renderer.getContext().isContextLost()) renderer.forceContextLoss();
+    // compileAsync still polls these shader programs. Stop the scene now,
+    // but release its GPU resources only after that pending work settles.
+    if (!compiling) disposeGraphics();
     canvas.remove();
   };
   const lost = (event: Event) => {
@@ -272,7 +294,12 @@ export async function mountWorld(
   document.addEventListener("visibilitychange", wake);
   reduced.addEventListener("change", wake);
   try {
-    await renderer.compileAsync(scene, camera);
+    try {
+      await renderer.compileAsync(scene, camera);
+    } finally {
+      compiling = false;
+      if (disposed) disposeGraphics();
+    }
     if (signal.aborted) {
       dispose();
       throw new DOMException("Aborted", "AbortError");
@@ -348,6 +375,7 @@ export async function mountWorld(
         flight = null;
         completeFlight = null;
         departure.reset();
+        returning.reset();
         wake();
       },
       depart: (travelSignal, advance) => departure.run(travelSignal, reduced.matches, advance),
@@ -357,7 +385,7 @@ export async function mountWorld(
         target = smooth = 0;
         flight = null;
         Object.assign(view, journeyPose(0, city));
-        return departure.run(travelSignal, reduced.matches, advance, true);
+        return returning.run(travelSignal, reduced.matches, advance);
       },
       setTheme: (theme) => {
         themeTarget = theme === "dark" ? 1 : 0;
