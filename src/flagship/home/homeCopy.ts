@@ -62,13 +62,13 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
       },
       {
         "name": "TRADE",
-        "title": "A card changes hands. A conversation begins.",
+        "title": "Add that missing card to your collection.",
         "body": "Meet collectors and card shops, compare collections and discover something new across the table.",
         "alt": "Collectors examining cards across a counter at Flagship Taiwan 2026"
       },
       {
         "name": "PLAY",
-        "title": "Bring your deck. Pull up a chair.",
+        "title": "Challenge skilled players.",
         "body": "Meet another player, talk strategy and enjoy the game together. The next connection might be sitting opposite you.",
         "alt": "Players with their cards at Flagship Taiwan 2026"
       },
@@ -147,13 +147,13 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
       },
       {
         "name": "交易",
-        "title": "從一張卡，聊到下一份收藏。",
+        "title": "入手你收藏中缺的那張卡。",
         "body": "認識收藏家與卡店，交流版本、卡況與收藏心得，也尋找一直想收入卡冊的那張卡。",
         "alt": "Flagship 台灣卡展的收藏家在櫃檯前交換、欣賞卡牌"
       },
       {
         "name": "對戰",
-        "title": "帶上牌組，坐下來打一場。",
+        "title": "與高手們切磋。",
         "body": "和玩家切磋牌技、聊聊策略，享受一起玩牌的時間。各站的對戰活動以當地公告為準。",
         "alt": "Flagship 台灣卡展的玩家現場對戰"
       },
@@ -232,13 +232,13 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
       },
       {
         "name": "거래",
-        "title": "카드를 건네며 대화를 시작하세요.",
+        "title": "컬렉션에 빠진 그 한 장을 손에 넣으세요.",
         "body": "컬렉터와 카드숍을 만나 컬렉션을 비교하고, 테이블 건너편에서 새로운 발견을 해보세요.",
         "alt": "Flagship 대만 행사에서 카드를 살펴보는 컬렉터"
       },
       {
         "name": "게임",
-        "title": "덱을 가져와 함께 앉으세요.",
+        "title": "고수들과 실력을 겨뤄보세요.",
         "body": "새로운 플레이어와 전략을 나누고 게임을 즐겨보세요. 다음 친구는 바로 맞은편에 있을지도 모릅니다.",
         "alt": "Flagship 대만 행사에서 카드를 즐기는 플레이어"
       },
