@@ -10,10 +10,10 @@ Keep the current dark galaxy IP design and deploy it as an independent Zeabur pr
 - Server: **Tencent Tokyo 4C 8GB**, ID `6a0a6c754b1a018c4f76569f`.
 - Environment: `6aa69a7d29e2f8785ee12cbc`.
 - Website service: `flagship-test`, ID `6aa69aae305ae4dcaafe948c`.
-- Domain attached: `flagship-test.zeabur.app`. **Not yet deployed or verified live.**
-- Service is prepared without a Git trigger. Root `/`; `spec.source.dockerfile` confirmed `null`.
+- Domain: `flagship-test.zeabur.app`; trusted HTTPS is provisioned. Deployment verification is in progress; final results will be appended below.
+- Service source is **GITHUB**, Git trigger `Test`, root `/`; `spec.source.dockerfile` confirmed `null`.
 - GitHub: `Gavinzip/flagship`, repo ID `1319020887`. Intended branch: `Test`.
-- **Push approval is still required. No Git push has occurred in this turn.**
+- User explicitly authorized **push** on 2026-09-13. `2dcf2a2` was pushed to origin/Test. A scoped CSP correction is being deployed under the same authorization.
 - Existing production project `6a6d8ed2d3dbd8abbc454a05` and its website/queue/Redis services were not changed.
 
 ## Prepared release
@@ -31,7 +31,7 @@ Keep the current dark galaxy IP design and deploy it as an independent Zeabur pr
 - Clean staged-file checkout build also passed without work/ or unused local assets. CDN recap video loaded readyState 4, duration 30.058 seconds.
 - Local production preview on port 4178; browser checked dark-only URL normalization, globe, images and Korea entry. Deployment must still receive live browser/header/timing verification.
 
-## Next step after explicit push approval
+## Release verification procedure
 
 1. Confirm `git status`, prepared local commit and branch `Test`. Push only `Test` to origin; never push main implicitly.
 2. Configure new service's Git trigger with repo ID `1319020887`, branch `Test`, environment ID above. Keep root `/`, Dockerfile override `null`. Use repository root Dockerfile; never deploy_from_specification with a Dockerfile path/content override.
@@ -49,3 +49,9 @@ Keep the current dark galaxy IP design and deploy it as an independent Zeabur pr
 - Existing `.env.production` still references the existing public queue API; this task did not clone queue infrastructure or use queue administration controls.
 - No new application fallback was introduced.
 - Dedicated Zeabur connector calls were slow. Authenticated public GraphQL using the user's existing CLI credentials succeeded; do not expose credential values or save them in the repo.
+
+## Deployment correction on 2026-09-13
+
+The initially empty service had source type LOCAL. Updating only the Git trigger did not change that type; deploy picked main. Two attempts were canceled. Source is now GITHUB, with repo/branch bound through updateGitTrigger. Do not use deploy on a LOCAL-source service for this GitHub release.
+
+Deployment `6aa69f288eb543d8d10c254a` correctly built Test commit `2dcf2a2`, cloned GitHub, loaded the repository Dockerfile, and reached RUNNING. Live QA exposed a hash-CSP gap: dynamic imports lacked integrity-bearing module preloads and were blocked by script-src-elem. `scripts/generate-csp.mjs` now declares SHA-384 for every split JS module and emits integrity-bearing modulepreload links. Strict-dynamic, Trusted Types and the inline-script restrictions remain enabled. Local reproduction under the exact production CSP passed globe initialization and both Korea/Taiwan geographic entry transitions. No application fallback was added.

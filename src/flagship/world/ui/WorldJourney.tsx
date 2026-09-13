@@ -98,8 +98,9 @@ export function WorldJourney({
     const controller = new AbortController();
     setReady(false);
     setError(false);
-    const fail = () => {
+    const fail = (cause: unknown) => {
       if (!controller.signal.aborted) {
+        console.error("[FLAGSHIP] Globe initialization failed.", cause);
         runtime.current = null;
         setError(true);
         setReady(false);

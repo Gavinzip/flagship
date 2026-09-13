@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
@@ -29,6 +29,15 @@ function hashContent(algorithm, content) {
 const scriptHashes = new Set();
 const securedPages = [];
 const integrityBySource = new Map();
+// Every split ES module needs an integrity-bearing preload under hash-based CSP.
+// Dynamic imports do not carry an integrity attribute of their own.
+for (const filename of await readdir(resolve(distDirectory, "assets"))) {
+  if (!filename.endsWith(".js")) continue;
+  const source = `/assets/${filename}`;
+  const integrity = hashContent("sha384", await readFile(resolve(distDirectory, `.${source}`)));
+  integrityBySource.set(source, integrity);
+  scriptHashes.add(integrity);
+}
 for (const relativePath of ["index.html", "korea/index.html", "taiwan/index.html"]) {
   const htmlPath = resolve(distDirectory, relativePath);
   let html = await readFile(htmlPath, "utf8");
@@ -50,6 +59,12 @@ for (const relativePath of ["index.html", "korea/index.html", "taiwan/index.html
     if (!/\btype="application\/ld\+json"/.test(attributes)) throw new Error(`Executable inline script in ${htmlPath}.`);
     scriptHashes.add(hashContent("sha256", content));
   }
+  const entrySources = new Set(externalScripts.map(match => match[2]));
+  const modulePreloads = [...integrityBySource]
+    .filter(([source]) => !entrySources.has(source))
+    .map(([source, integrity]) => `<link rel="modulepreload" href="${source}" crossorigin="anonymous" integrity="${integrity}" />`)
+    .join("\n    ");
+  html = html.replace("</head>", `    ${modulePreloads}\n  </head>`);
   securedPages.push({ path: htmlPath, html });
 }
 
