@@ -19,7 +19,7 @@ const koreaImage = files.find(name => /^korea-emblem-[\w-]+\.webp$/.test(name) &
 if (!koreaImage || !release) throw new Error("Cannot generate event metadata without the published Taiwan release and Korea emblem.");
 const escape = text => String(text).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 const pages = {
-  korea: { title: "FLAGSHIP Card Show — KOREA · The next chapter", description: "Explore FLAGSHIP Korea. Dates, venue, exhibitors and tickets will be announced through our official channels.", image: new URL(`assets/${koreaImage}`, siteUrl).href, theme: "#edf3fa" },
+  korea: { title: "FLAGSHIP Card Show — KOREA · Seoul 2026", description: "FLAGSHIP Korea takes place at TEX+FA HALL in Seoul on 29 September 2026, from 1–8 PM. Ticket and lineup updates will follow.", image: new URL(`assets/${koreaImage}`, siteUrl).href, theme: "#edf3fa" },
   taiwan: { title: "FLAGSHIP Taiwan 2026｜活動回顧", description: "Revisit FLAGSHIP Taiwan, held on September 5, 2026. Real photographs capture on-site surprises, Champion Challenge matches and 30+ TCG vendors.", image: `${cdn}/${release}/assets/flagship-logo.webp`, theme: "#090a0e" },
 };
 for (const [page, data] of Object.entries(pages)) {

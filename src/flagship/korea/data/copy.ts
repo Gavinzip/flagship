@@ -4,6 +4,8 @@ import { koreaDeckEvent } from "./koreaDeck";
 
 export const koreaPageCopy = {
   "zh-TW": {
+    metaDescription:
+      "FLAGSHIP 韓國卡展將於 2026 年 9 月 29 日 13:00–20:00，在首爾 TEX+FA HALL 舉行。票務與正式陣容將陸續公布。",
     event: taiwanPreview["zh-TW"],
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
@@ -69,6 +71,8 @@ export const koreaPageCopy = {
     footer: "收藏、交易、對戰，現場見。",
   },
   en: {
+    metaDescription:
+      "FLAGSHIP Korea takes place at TEX+FA HALL in Seoul on 29 September 2026, from 1–8 PM. Ticket and lineup updates will follow.",
     event: taiwanPreview.en,
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
@@ -137,6 +141,8 @@ export const koreaPageCopy = {
     footer: "Collect. Trade. Play. See you at the show.",
   },
   ko: {
+    metaDescription:
+      "FLAGSHIP KOREA는 2026년 9월 29일 13:00–20:00, 서울 TEX+FA HALL에서 열립니다. 티켓과 최종 라인업은 추후 공개됩니다.",
     event: koreanPreview,
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {

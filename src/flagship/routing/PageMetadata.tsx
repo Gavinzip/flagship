@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import site from "../../config/site.json";
 import { taiwanArchiveContent as siteContent } from "../../i18n/taiwanArchiveContent";
-import { copy } from "../data/copy";
 import { homeCopy } from "../home/homeCopy";
 import { homeMedia } from "../home/homeMedia";
+import { koreaPageCopy } from "../korea/data/copy";
 import koreaEmblem from "../assets/korea-emblem.webp";
 import { staticAssetUrl } from "../../lib/staticAssets";
 import { useSiteNavigation } from "./SiteNavigation";
@@ -11,8 +11,8 @@ import { useSiteNavigation } from "./SiteNavigation";
 export function PageMetadata() {
   const { location: { page, language } } = useSiteNavigation();
   useEffect(() => {
-    const title = page === "home" ? "FLAGSHIP Card Show — Collecting culture. Connecting people." : page === "taiwan" ? siteContent[language === "zh-TW" ? "zh-TW" : "en"].pageTitle : page === "korea" ? "FLAGSHIP Card Show — KOREA · The next chapter" : "Page not found — FLAGSHIP";
-    const description = page === "home" ? homeCopy[language].aboutParagraphs[0] : page === "taiwan" ? siteContent[language === "zh-TW" ? "zh-TW" : "en"].metaDescription : page === "korea" ? copy[language].heroDescription : "The requested page could not be found.";
+    const title = page === "home" ? "FLAGSHIP Card Show — Collecting culture. Connecting people." : page === "taiwan" ? siteContent[language === "zh-TW" ? "zh-TW" : "en"].pageTitle : page === "korea" ? "FLAGSHIP Card Show — KOREA · Seoul 2026" : "Page not found — FLAGSHIP";
+    const description = page === "home" ? homeCopy[language].aboutParagraphs[0] : page === "taiwan" ? siteContent[language === "zh-TW" ? "zh-TW" : "en"].metaDescription : page === "korea" ? koreaPageCopy[language].metaDescription : "The requested page could not be found.";
     const url = new URL(page === "home" || page === "not-found" ? "" : `${page}/`, site.url).href;
     const image = new URL(page === "home" ? homeMedia.masterLogo : page === "korea" ? koreaEmblem : staticAssetUrl("flagship-logo.webp"), site.url).href;
     document.title = title;
