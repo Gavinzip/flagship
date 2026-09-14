@@ -2,6 +2,10 @@ import { useCallback, useRef, useState, type RefObject } from "react";
 import { flushSync } from "react-dom";
 import type { EditionId } from "../../data/editions";
 import type { WorldEntryBridge } from "../../world/runtime/entryBridge";
+import {
+  directEntryOrigin,
+  type WorldEntryOrigin,
+} from "../../world/runtime/entryOrigin";
 import { nextPaint } from "./transferRuntime";
 import { returnHandoff } from "./returnHandoff";
 
@@ -9,11 +13,13 @@ type ReturnJourney = {
   edition: EditionId;
   phase: "preparing" | "retreating" | "settling" | "error";
   navigate: () => void;
+  origin: WorldEntryOrigin;
 };
 
 export function useWorldReturn(
   world: RefObject<WorldEntryBridge | null>,
   active: RefObject<AbortController | null>,
+  entryOrigin: RefObject<WorldEntryOrigin | undefined>,
 ) {
   const [returning, setReturning] = useState<ReturnJourney | null>(null);
   const current = useRef(returning);
@@ -29,7 +35,12 @@ export function useWorldReturn(
     running.current = true;
     nativeReturn.current = window.location.pathname === "/";
     opener.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    const value: ReturnJourney = { edition, navigate, phase: "preparing" };
+    const value: ReturnJourney = {
+      edition,
+      navigate,
+      phase: "preparing",
+      origin: entryOrigin.current ?? directEntryOrigin(edition),
+    };
     setReturning(value);
     void (async () => {
       let restore: (() => void) | undefined;
@@ -47,12 +58,19 @@ export function useWorldReturn(
         setReturning({ ...value, phase: "retreating" });
         await nextPaint();
         restore = await returnHandoff(edition, returnMark.current,
-          advance => bridge.retreat(edition, signal, advance));
+          advance => bridge.retreat(edition, signal, advance, value.origin),
+          value.origin,
+        );
         if (signal.aborted) return;
         flushSync(() => {
           navigate();
           setReturning({ ...value, phase: "settling" });
         });
+        // The country link intentionally carries a city hash for direct links.
+        // A journey that began in the outer world must instead land at the
+        // original scroll position, or the last frame changes scale after the
+        // reverse camera path has already finished.
+        window.scrollTo({ top: value.origin.scrollY, behavior: "instant" });
         bridge.release();
         restore();
         setReturning(null);
@@ -73,7 +91,7 @@ export function useWorldReturn(
         }
       }
     })();
-  }, [active, world]);
+  }, [active, entryOrigin, world]);
   const stopReturn = useCallback((restoreHistory: boolean) => {
     if (!current.current) return;
     active.current?.abort();

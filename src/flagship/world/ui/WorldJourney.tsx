@@ -1,4 +1,3 @@
-import { MetalBorder } from "../../home/ui/MetalBorder";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { EditionTransitionContext } from "../../routing/transition/EditionTransitionContext";
 import { ArrowDown } from "iconoir-react";
@@ -17,6 +16,30 @@ import { WorldDescription } from "./WorldDescription";
 import { observeCityGestures } from "../runtime/cityGestures";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useWorldEntry } from "../runtime/useWorldEntry";
+import { preloadImage, nextPaint } from "../../routing/preloadImage";
+import { warmEdition } from "../../routing/prepareEdition";
+import { worldMaterials } from "../config/materials";
+import { WorldAdmission } from "./WorldAdmission";
+
+type AdmissionStage = "assets" | "module" | "renderer";
+
+const admissionCopy = {
+  en: {
+    assets: "PREPARING THE GALAXY",
+    module: "PREPARING THE WORLD",
+    renderer: "LIGHTING THE GLOBE",
+  },
+  "zh-TW": {
+    assets: "正在準備銀河背景",
+    module: "正在準備 FLAGSHIP 世界",
+    renderer: "正在點亮地球",
+  },
+  ko: {
+    assets: "은하 배경을 준비하는 중",
+    module: "FLAGSHIP 세계를 준비하는 중",
+    renderer: "지구를 밝히는 중",
+  },
+} as const;
 
 export function WorldJourney({
   copy: c,
@@ -34,7 +57,9 @@ export function WorldJourney({
     host = useRef<HTMLDivElement>(null),
     runtime = useRef<WorldRuntime | null>(null),
     progress = useRef(0);
-  const returningCity = useContext(EditionTransitionContext)?.returnEdition;
+  const transition = useContext(EditionTransitionContext);
+  const returningCity = transition?.returnEdition;
+  const returnOrigin = transition?.returnOrigin;
   const initialCity: CityId = returningCity ??
     (window.location.hash === "#world-taiwan" ? "taiwan" : "korea");
   const [city, setCity] = useState<CityId>(initialCity);
@@ -44,7 +69,11 @@ export function WorldJourney({
   const reduced = useReducedMotion();
   const [ready, setReady] = useState(false),
     [error, setError] = useState(false),
-    [attempt, setAttempt] = useState(0);
+    [attempt, setAttempt] = useState(0),
+    [admissionVisible, setAdmissionVisible] = useState(true),
+    [admissionProgress, setAdmissionProgress] = useState(0),
+    [admissionStage, setAdmissionStage] =
+      useState<AdmissionStage>("assets");
   const selectEntryCity = useCallback((value: CityId) => {
     cityRef.current = value;
     setCity(value);
@@ -53,6 +82,9 @@ export function WorldJourney({
   const retry = useCallback(() => {
     setError(false);
     setReady(false);
+    setAdmissionVisible(true);
+    setAdmissionProgress(0);
+    setAdmissionStage("assets");
     setAttempt((value) => value + 1);
   }, []);
   const entering = useWorldEntry(
@@ -99,8 +131,19 @@ export function WorldJourney({
     const node = host.current;
     if (!node) return;
     const controller = new AbortController();
+    const admissionTotal = 5;
+    let admissionCompleted = 0;
+    const completeAdmissionStep = () => {
+      admissionCompleted += 1;
+      setAdmissionProgress(
+        Math.min(99, Math.round((admissionCompleted / admissionTotal) * 99)),
+      );
+    };
     setReady(false);
     setError(false);
+    setAdmissionVisible(true);
+    setAdmissionProgress(0);
+    setAdmissionStage("assets");
     const fail = (cause: unknown) => {
       if (!controller.signal.aborted) {
         console.error("[FLAGSHIP] Globe initialization failed.", cause);
@@ -109,10 +152,19 @@ export function WorldJourney({
         setReady(false);
       }
     };
-    import("../scene/mountWorld")
-      .then(async ({ mountWorld }) => {
+    const assets = Promise.all([
+      preloadImage({ src: worldMaterials.environment }).then(
+        completeAdmissionStep,
+      ),
+      preloadImage({ src: homeMedia.masterLogo }).then(completeAdmissionStep),
+      document.fonts.ready.then(completeAdmissionStep),
+    ]);
+    setAdmissionStage("module");
+    const scene = import("../scene/mountWorld").then(({ mountWorld }) => {
         if (controller.signal.aborted) return;
-        const value = await mountWorld(
+        completeAdmissionStep();
+        setAdmissionStage("renderer");
+        return mountWorld(
           node,
           controller.signal,
           fail,
@@ -120,7 +172,12 @@ export function WorldJourney({
           progress.current,
           cityRef.current,
           themeRef.current,
+          returnOrigin,
         );
+      });
+    Promise.all([assets, scene])
+      .then(async ([, value]) => {
+        if (!value) return;
         if (controller.signal.aborted) {
           value.dispose();
           return;
@@ -128,6 +185,13 @@ export function WorldJourney({
         runtime.current = value;
         value.update(progress.current, cityRef.current);
         value.setTheme(themeRef.current);
+        completeAdmissionStep();
+        await nextPaint();
+        if (controller.signal.aborted) {
+          value.dispose();
+          return;
+        }
+        setAdmissionProgress(100);
         setReady(true);
       })
       .catch(fail);
@@ -136,7 +200,24 @@ export function WorldJourney({
       runtime.current?.dispose();
       runtime.current = null;
     };
+  // returnOrigin only defines this mount's starting pose. It must not restart
+  // the globe when the return transition clears its context after landing.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [attempt]);
+  useEffect(() => {
+    if (!ready) return;
+    const timer = window.setTimeout(() => setAdmissionVisible(false), 460);
+    return () => window.clearTimeout(timer);
+  }, [ready]);
+  useEffect(() => {
+    if (!ready) return;
+    const timer = window.setTimeout(() => {
+      void warmEdition("korea")
+        .then(() => warmEdition("taiwan"))
+        .catch((cause) => console.warn("[FLAGSHIP] Route warmup failed.", cause));
+    }, 280);
+    return () => window.clearTimeout(timer);
+  }, [ready]);
   const title =
     city === "taiwan"
       ? [
@@ -154,6 +235,7 @@ export function WorldJourney({
       className="world-journey"
       data-chapter={city}
       aria-label="FLAGSHIP global editions"
+      aria-busy={!ready}
     >
       <div className="world-sticky">
         <div
@@ -161,7 +243,8 @@ export function WorldJourney({
           ref={host}
           data-ready={ready}
           role="group"
-          tabIndex={0}
+          tabIndex={ready ? 0 : -1}
+          inert={ready ? undefined : true}
           aria-label={
             zh
               ? "左右滑動或使用方向鍵切換地區，向下捲動繼續認識 FLAGSHIP"
@@ -173,91 +256,85 @@ export function WorldJourney({
           <CityMarker city="taiwan" status={c.taiwanStatus} action={c.taiwanCta} />
           <CityMarker city="korea" status={c.koreaStatus} action={c.koreaCta} />
         </div>
-        {!ready && !error && (
-          <p className="world-loading" role="status">
-            {zh
-              ? "正在點亮 FLAGSHIP 世界"
-              : ko
-                ? "FLAGSHIP 세계를 여는 중"
-                : "Opening the FLAGSHIP world"}
-            <span />
-          </p>
-        )}
-        {error && (
-          <div className="world-loading" role="alert">
-            <p>
-              {zh ? "地球載入失敗，請重試。" : "The globe could not be loaded."}
-            </p>
-            <button className="ip-metal-control" onClick={() => setAttempt((v) => v + 1)}>
-              <MetalBorder />{c.videoRetry}
-            </button>
-          </div>
-        )}
-        <div className="world-copy">
-          <p className="world-eyebrow">
-            COLLECTING CULTURE. CONNECTING PEOPLE.
-          </p>
-          <img
-            className="world-logo"
-            src={homeMedia.masterLogo}
-            width="1670"
-            height="941"
-            alt="FLAGSHIP Card Show"
-            fetchPriority="high"
+        {admissionVisible && (
+          <WorldAdmission
+            progress={admissionProgress}
+            stage={admissionCopy[location.language][admissionStage]}
+            error={error}
+            exiting={ready && !error}
+            retry={retry}
+            language={location.language}
           />
-          <div className="world-heading-slot">
-            <AnimatePresence mode="sync" initial={false}>
-              <motion.div
-                className="world-heading"
-                key={city}
-                initial={{ opacity: 0, x: reduced ? 0 : city === "taiwan" ? 16 : -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: reduced ? 0 : city === "taiwan" ? -12 : 12 }}
-                transition={{
-                  duration: reduced ? 0 : homeMotion.change,
-                  ease: homeMotion.ease,
-                }}
-              >
-                <p className="world-status">
-                  {city === "taiwan" ? c.taiwanStatus : c.koreaStatus}
-                </p>
-                <h1>
-                  {title.map((line, index) => (
-                    <span
-                      className={index === 0 ? "world-country" : ""}
-                      key={line}
-                    >
-                      {line}
-                    </span>
-                  ))}
-                </h1>
-                <WorldDescription text={city === "taiwan" ? c.taiwanDescription : c.koreaDescription} />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-          <div className="world-actions">
-            <SiteLink page={city} className="world-enter stellar-action">
-              <StellarActionContent>{city === "taiwan" ? c.taiwanCta : c.koreaCta}</StellarActionContent>
-            </SiteLink>
-            <button className="stellar-action stellar-action--quiet" onClick={onWatch}>
-              <StellarActionContent play>{c.viewRecap}</StellarActionContent>
-            </button>
-          </div>
-        </div>
-        <CityNavigator
-          city={city}
-          select={selectCity}
-          copy={c}
-          language={location.language}
-        />
-        <a className="world-scroll" href="#about">
-          <ArrowDown />
-          {zh
-            ? "繼續下滑，認識 FLAGSHIP"
-            : ko
-              ? "스크롤하여 FLAGSHIP을 만나보세요"
-              : "SCROLL TO DISCOVER FLAGSHIP"}
-        </a>
+        )}
+        {ready && (
+          <>
+            <div className="world-copy">
+              <p className="world-eyebrow">
+                COLLECTING CULTURE. CONNECTING PEOPLE.
+              </p>
+              <img
+                className="world-logo"
+                src={homeMedia.masterLogo}
+                width="1670"
+                height="941"
+                alt="FLAGSHIP Card Show"
+                fetchPriority="high"
+              />
+              <div className="world-heading-slot">
+                <AnimatePresence mode="sync" initial={false}>
+                  <motion.div
+                    className="world-heading"
+                    key={city}
+                    initial={{ opacity: 0, x: reduced ? 0 : city === "taiwan" ? 16 : -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: reduced ? 0 : city === "taiwan" ? -12 : 12 }}
+                    transition={{
+                      duration: reduced ? 0 : homeMotion.change,
+                      ease: homeMotion.ease,
+                    }}
+                  >
+                    <p className="world-status">
+                      {city === "taiwan" ? c.taiwanStatus : c.koreaStatus}
+                    </p>
+                    <h1>
+                      {title.map((line, index) => (
+                        <span
+                          className={index === 0 ? "world-country" : ""}
+                          key={line}
+                        >
+                          {line}
+                        </span>
+                      ))}
+                    </h1>
+                    <WorldDescription text={city === "taiwan" ? c.taiwanDescription : c.koreaDescription} />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              <div className="world-actions">
+                <SiteLink page={city} className="world-enter stellar-action">
+                  <StellarActionContent>{city === "taiwan" ? c.taiwanCta : c.koreaCta}</StellarActionContent>
+                </SiteLink>
+                <button className="stellar-action stellar-action--quiet" onClick={onWatch}>
+                  <StellarActionContent play>{c.viewRecap}</StellarActionContent>
+                </button>
+              </div>
+            </div>
+            <CityNavigator
+              city={city}
+              select={selectCity}
+              copy={c}
+              language={location.language}
+            />
+            <a className="world-scroll" href="#about">
+              <ArrowDown />
+              {zh
+                ? "繼續下滑，認識 FLAGSHIP"
+                : ko
+                  ? "스크롤하여 FLAGSHIP을 만나보세요"
+                  : "SCROLL TO DISCOVER FLAGSHIP"}
+            </a>
+          </>
+        )}
       </div>
       <span className="world-anchor world-anchor--taiwan" id="world-taiwan" />
       <span className="world-anchor world-anchor--korea" id="world-korea" />

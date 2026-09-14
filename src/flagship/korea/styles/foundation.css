@@ -24,6 +24,10 @@ html:has(.korea-event-site) {
     Arial, "Noto Sans KR", "PingFang TC", "Microsoft JhengHei", sans-serif;
   line-height: 1.75;
 }
+.korea-event-site > .edition-admission {
+  position: fixed;
+  z-index: 10000;
+}
 .korea-event-site *,
 .korea-event-site *::before,
 .korea-event-site *::after {

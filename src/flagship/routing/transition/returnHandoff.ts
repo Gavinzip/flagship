@@ -1,6 +1,7 @@
 import type { EditionId } from "../../data/editions";
 import { entryMotion } from "../../world/config/entryMotion";
 import type { ReturnFrame } from "../../world/runtime/returnRig";
+import type { WorldEntryOrigin } from "../../world/runtime/entryOrigin";
 import { prepareReturnHomeFrame } from "./returnHomeFrame";
 
 const range = (value: number, start: number, end: number) => {
@@ -14,6 +15,7 @@ export async function returnHandoff(
   edition: EditionId,
   mark: HTMLElement,
   retreat: (advance: (frame: ReturnFrame) => void) => Promise<void>,
+  origin: WorldEntryOrigin,
 ) {
   const world = document.querySelector<HTMLElement>(".brand-world-retainer");
   const route = document.querySelector<HTMLElement>(".edition-route-plane");
@@ -32,6 +34,8 @@ export async function returnHandoff(
   const nodes = [world, route, target, mark, ...followers, ...(content ? [content] : [])];
   const previous = new Map(nodes.map(node => [node, node.getAttribute("style")]));
   const home = prepareReturnHomeFrame(world, stage);
+  world.style.setProperty("--return-home-copy-opacity", "0");
+  world.style.setProperty("--return-home-city-opacity", "0");
   const restore = () => {
     home.restore();
     previous.forEach((style, node) => {
@@ -41,12 +45,24 @@ export async function returnHandoff(
   };
   const smallWidth = 120;
   const smallHeight = smallWidth / (edition === "taiwan" ? 900 / 493 : 1170 / 755);
-  const anchorX = innerWidth / 2, anchorY = innerHeight / 2;
+  const { x: anchorX, y: anchorY } = origin.anchor;
   mark.style.cssText = `left:0;top:0;width:${from.width}px;height:${from.height}px;transform-origin:0 0;opacity:0;`;
   try {
     await retreat(frame => {
       home.update(frame);
       const p = frame.departure;
+      const homeProgress = 1 - frame.approach;
+      // The outer interface belongs to the shrinking final frame only. Keeping
+      // it on the retainer makes this deterministic even when React re-renders
+      // the region beneath the return overlay.
+      world.style.setProperty(
+        "--return-home-copy-opacity",
+        String(range(homeProgress, 0.48, 1)),
+      );
+      world.style.setProperty(
+        "--return-home-city-opacity",
+        String(range(homeProgress, 0.66, 1)),
+      );
       target.style.visibility = "hidden";
       world.style.opacity = String(1 - range(p, entryMotion.revealStart, entryMotion.revealEnd));
       world.style.filter = `blur(${range(p, .42, .9) * 8}px)`;

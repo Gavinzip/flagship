@@ -144,21 +144,6 @@
 .world-anchor--korea {
   top: 32%;
 }
-.world-loading {
-  position: absolute;
-  right: 22%;
-  top: 50%;
-  font-size: 12px;
-  z-index: 2;
-  text-align: center;
-}
-.world-loading span {
-  display: block;
-  width: 30px;
-  height: 2px;
-  background: #5277b9;
-  margin: 15px auto;
-}
 html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
   font-size: clamp(29px, 2.7vw, 40px);
   line-height: 1.4;
@@ -259,11 +244,6 @@ html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
     left: 24px;
     bottom: 12px;
     font-size: 8px;
-  }
-  .world-loading {
-    top: 62%;
-    right: 0;
-    left: 0;
   }
   .world-journey {
     height: 300svh;
@@ -672,64 +652,102 @@ html:has(.brand-site) {
 .world-stage:not([data-ready="true"]) .world-city {
   visibility: hidden !important;
 }
-.world-loading {
-  left: auto;
-  right: 13%;
-  width: 40%;
-  top: 48%;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: #596f8d;
+.world-admission {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #edf4ff;
+  background:
+    radial-gradient(circle at 50% 50%, #10264d4a 0, transparent 28%),
+    linear-gradient(90deg, #01050a99, transparent 28%, transparent 72%, #01050a99);
+  transition:
+    opacity 460ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 460ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.world-loading span {
-  width: 44px;
-  height: 3px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #b33851, #95b0d5, #2a63b9);
-  animation: world-load-light 1.3s ease-in-out infinite alternate;
+.world-admission--exiting {
+  visibility: hidden;
+  opacity: 0.01;
 }
-.world-loading button {
-  margin-top: 16px;
-  padding: 10px 20px;
-  min-height: 44px;
-  border: 1px solid #a5b8d0;
-  background: linear-gradient(125deg, #fff, #dce7f5);
-  border-radius: 7px;
-  font-size: 12px;
+.world-admission__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(300px, calc(100vw - 48px));
+  justify-items: center;
+  gap: clamp(18px, 2vw, 26px);
+  text-align: center;
+  transform: translateY(-3vh);
 }
-@keyframes world-load-light {
-  from {
-    opacity: 0.35;
-    transform: scaleX(0.55);
-  }
-  to {
-    opacity: 1;
-    transform: scaleX(1);
-  }
+.world-admission__logo {
+  width: clamp(196px, 18vw, 280px);
+  height: auto;
+  filter: drop-shadow(0 12px 26px #01050aa8);
 }
-@media (max-width: 1000px) and (min-height: 800px) {
-  .world-loading {
-    left: 15%;
-    right: 15%;
-    width: 70%;
-    top: 62%;
-  }
+.world-admission__copy {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  gap: 8px;
+  text-align: center;
+  text-shadow: 0 2px 16px #01050ad9;
+}
+.world-admission__copy > span,
+.world-admission__copy small {
+  color: #c9d8ecaa;
+  font: 700 9px/1.5 var(--font-display, system-ui);
+  letter-spacing: 0.17em;
+}
+.world-admission__copy strong {
+  font: 700 clamp(22px, 2vw, 30px)/1 var(--font-display, system-ui);
+  letter-spacing: 0.08em;
+}
+.world-admission__rail {
+  width: 100%;
+  height: 1px;
+  margin-top: 7px;
+  overflow: hidden;
+  background: #c1d7f02b;
+}
+.world-admission__rail i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+  background: linear-gradient(90deg, #ff405f, #d9eaff 46%, #598eff);
+  box-shadow: 0 0 15px #6b9fff;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.world-admission__copy button {
+  min-height: 38px;
+  margin-top: 8px;
+  padding: 8px 18px;
+  border: 1px solid #b8d6ff7a;
+  border-radius: 999px;
+  background: #09172ab8;
+  color: inherit;
+  font: 700 11px var(--font-display, system-ui);
+  letter-spacing: 0.08em;
 }
 @media (max-width: 600px) {
-  .world-loading {
-    left: 10%;
-    right: 10%;
-    width: 80%;
-    top: 61%;
-    font-size: 10px;
+  .world-admission__content {
+    width: min(264px, calc(100vw - 44px));
+    gap: 15px;
+    transform: translateY(-2vh);
+  }
+  .world-admission__logo {
+    width: clamp(170px, 52vw, 220px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
   html:has(.brand-site) {
     scroll-behavior: auto;
   }
-  .world-loading span {
-    animation: none;
+  .world-admission,
+  .world-admission__rail i {
+    transition-duration: 1ms;
   }
   .world-logo,
   .world-stage {

@@ -8,28 +8,47 @@ import {
 import { editions, type EditionId } from "../../data/editions";
 import { OriginalEmblem } from "../../components/OriginalEmblem";
 import { useSiteNavigation } from "../SiteNavigation";
-import { preloadEdition } from "../preloadEdition";
 import { EditionTransitionContext } from "./EditionTransitionContext";
 import type {
   GeographicAnchor,
   WorldEntryBridge,
 } from "../../world/runtime/entryBridge";
+import type { WorldEntryOrigin } from "../../world/runtime/entryOrigin";
 import {
   editionFrame,
-  loadTransferImage,
   nextPaint,
 } from "./transferRuntime";
 import { geographicHandoff } from "./geographicHandoff";
 import { useWorldReturn } from "./useWorldReturn";
+import { observeEditionPreparation } from "../prepareEdition";
+import { EditionAdmissionStatus } from "./EditionAdmissionStatus";
 import "./transition.css";
 
 type Transfer = {
   edition: EditionId;
-  phase: "aligning" | "geographic" | "handoff" | "error";
+  phase: "preparing" | "aligning" | "geographic" | "handoff" | "error";
   theme: "dark" | "light";
   navigate: () => void;
   anchor?: GeographicAnchor;
+  progress: number;
 };
+
+function waitForPreparation<T>(promise: Promise<T>, signal: AbortSignal) {
+  return new Promise<T>((resolve, reject) => {
+    const abort = () => reject(new DOMException("Aborted", "AbortError"));
+    signal.addEventListener("abort", abort, { once: true });
+    promise.then(
+      (value) => {
+        signal.removeEventListener("abort", abort);
+        resolve(value);
+      },
+      (error) => {
+        signal.removeEventListener("abort", abort);
+        reject(error);
+      },
+    );
+  });
+}
 
 export function EditionTransition({ children }: { children: ReactNode }) {
   const { location, registerHistoryTransition } = useSiteNavigation();
@@ -39,8 +58,9 @@ export function EditionTransition({ children }: { children: ReactNode }) {
     world = useRef<WorldEntryBridge | null>(null),
     mark = useRef<HTMLDivElement>(null),
     opener = useRef<HTMLElement | null>(null),
-    scroll = useRef(0);
-  const { returning, returnMark, returnHome, cancelReturn, interruptReturn, running } = useWorldReturn(world, active);
+    scroll = useRef(0),
+    entryOrigin = useRef<WorldEntryOrigin | undefined>(undefined);
+  const { returning, returnMark, returnHome, cancelReturn, interruptReturn, running } = useWorldReturn(world, active, entryOrigin);
   useEffect(() => registerHistoryTransition((from, to, commit) => {
     if (running.current) { interruptReturn(); return false; }
     if (active.current || to.page !== "home" || (from.page !== "korea" && from.page !== "taiwan")) return false;
@@ -112,22 +132,44 @@ export function EditionTransition({ children }: { children: ReactNode }) {
       const bridge = world.current;
       if (!bridge) throw new Error("The Protocol globe is not ready.");
       bridge.prepare(value.edition);
-      setTransfer({ ...value, phase: "aligning", anchor: undefined });
+      let initialProgress = 0;
+      const preparation = observeEditionPreparation(
+        value.edition,
+        (snapshot) => {
+          initialProgress = snapshot.progress;
+          setTransfer((current) =>
+            current?.edition === value.edition && current.phase === "preparing"
+              ? { ...current, progress: snapshot.progress }
+              : current,
+          );
+        },
+      );
+      setTransfer({
+        ...value,
+        phase: "preparing",
+        anchor: undefined,
+        progress: initialProgress,
+      });
       await nextPaint();
+      try {
+        await waitForPreparation(preparation.promise, signal);
+      } finally {
+        preparation.stop();
+      }
       if (signal.aborted) return;
+      setTransfer({ ...value, phase: "aligning", anchor: undefined, progress: 100 });
       const mounted = editionFrame(value.edition, signal);
       value.navigate();
-      const [anchor] = await Promise.all([
+      const [arrival] = await Promise.all([
         bridge.flyTo(value.edition, signal),
         mounted,
-        preloadEdition(),
-        loadTransferImage(editions[value.edition].emblem, signal),
       ]);
       if (signal.aborted) return;
-      setTransfer({ ...value, phase: "geographic", anchor });
+      entryOrigin.current = arrival.origin;
+      setTransfer({ ...value, phase: "geographic", anchor: arrival, progress: 100 });
       await nextPaint();
       if (signal.aborted) return;
-      setTransfer({ ...value, phase: "handoff", anchor });
+      setTransfer({ ...value, phase: "handoff", anchor: arrival, progress: 100 });
       await nextPaint();
       await geographicHandoff(value.edition, mark.current, signal, (advance) =>
         bridge.depart(signal, advance),
@@ -158,6 +200,7 @@ export function EditionTransition({ children }: { children: ReactNode }) {
       edition,
       navigate,
       phase: "aligning",
+      progress: 0,
       theme:
         document.querySelector(".brand-site")?.getAttribute("data-theme") ===
         "dark"
@@ -170,7 +213,9 @@ export function EditionTransition({ children }: { children: ReactNode }) {
   return (
     <EditionTransitionContext.Provider
       value={{ enter, returnHome, retainingWorld: !!transfer || !!returning,
-        returnPhase: returning?.phase, returnEdition: returning?.edition, registerWorld }}
+        entryPhase: transfer?.phase, returnPhase: returning?.phase,
+        returnEdition: returning?.edition, returnOrigin: returning?.origin,
+        registerWorld }}
     >
       <div inert={transfer || returning ? true : undefined}>{children}</div>
       {returning && (
@@ -213,6 +258,14 @@ export function EditionTransition({ children }: { children: ReactNode }) {
                 <img src={editions.taiwan.emblem} alt="FLAGSHIP Card Show Taiwan" />
               )}
             </div>
+          )}
+          {transfer.phase === "preparing" && (
+            <EditionAdmissionStatus
+              edition={transfer.edition}
+              progress={transfer.progress}
+              language={location.language}
+              cancel={cancel}
+            />
           )}
           <div
             className="geographic-transfer-status"

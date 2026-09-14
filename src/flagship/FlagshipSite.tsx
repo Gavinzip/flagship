@@ -18,7 +18,10 @@ function Site() {
   const { location } = useSiteNavigation();
   const transition = useContext(EditionTransitionContext);
   const retaining = transition?.retainingWorld ?? false;
-  const transferring = retaining && !transition?.returnPhase;
+  const transferring =
+    retaining &&
+    !transition?.returnPhase &&
+    transition?.entryPhase !== "preparing";
   return (
     <>
       <PageMetadata />

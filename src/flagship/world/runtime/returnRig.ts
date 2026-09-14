@@ -14,7 +14,9 @@ export function sampleReturn(elapsed: number): ReturnFrame {
     departure: MathUtils.smootherstep(
       (remaining - entryMotion.approachSeconds) / entryMotion.pushSeconds, 0, 1,
     ),
-    approach: MathUtils.smootherstep(remaining / entryMotion.approachSeconds, 0, 1),
+    // Keep this raw: the flight sampler owns the same easing as entry, so its
+    // route can be replayed backward without applying the curve twice.
+    approach: MathUtils.clamp(remaining / entryMotion.approachSeconds, 0, 1),
     frameMilliseconds: Math.min(remaining, entryMotion.frameSeconds) * 1000,
   };
 }

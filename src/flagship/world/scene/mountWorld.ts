@@ -8,19 +8,25 @@ import {
 } from "../config/worldSpec";
 import { journeyPose, cityIllumination } from "../runtime/journeyPose";
 import { sampleFlight, type GlobeFlight } from "../runtime/flightRig";
-import type { GeographicAnchor } from "../runtime/entryBridge";
+import type { GeographicArrival } from "../runtime/entryBridge";
 import { createDepartureRig } from "../runtime/departureRig";
 import { createReturnRig, type ReturnFrame } from "../runtime/returnRig";
+import type { WorldEntryOrigin } from "../runtime/entryOrigin";
 import { entryMotion } from "../config/entryMotion";
 import { cameraFitForSize } from "../runtime/cameraFraming";
 export type WorldRuntime = {
   update: (progress: number, city: CityId) => void;
   dispose: () => void;
   setTheme: (theme: WorldTheme) => void;
-  flyTo: (city: CityId, signal: AbortSignal) => Promise<GeographicAnchor>;
+  flyTo: (city: CityId, signal: AbortSignal) => Promise<GeographicArrival>;
   resume: () => void;
   depart: (signal: AbortSignal, advance: (progress: number) => void) => Promise<void>;
-  retreat: (city: CityId, signal: AbortSignal, advance: (frame: ReturnFrame) => void) => Promise<void>;
+  retreat: (
+    city: CityId,
+    signal: AbortSignal,
+    advance: (frame: ReturnFrame) => void,
+    origin: WorldEntryOrigin,
+  ) => Promise<void>;
 };
 export async function mountWorld(
   host: HTMLElement,
@@ -30,6 +36,7 @@ export async function mountWorld(
   initialProgress = 0,
   initialCity: CityId = "korea",
   initialTheme: WorldTheme = "light",
+  initialReturnOrigin?: WorldEntryOrigin,
 ): Promise<WorldRuntime> {
   const renderer = new T.WebGLRenderer({
     alpha: true,
@@ -63,7 +70,9 @@ export async function mountWorld(
   let selectedCity = initialCity;
   let themeTarget = initialTheme === "dark" ? 1 : 0;
   let themeBlend = themeTarget;
-  const view = journeyPose(initialProgress, selectedCity);
+  const view = {
+    ...(initialReturnOrigin?.pose ?? journeyPose(initialProgress, selectedCity)),
+  };
   let flight: GlobeFlight | null = null;
   let entering = false;
   let completeFlight: (() => void) | null = null;
@@ -85,7 +94,6 @@ export async function mountWorld(
   const pose = (dt = 1) => {
     const reverse = returning.active ? returning.update(dt) : null;
     if (reverse) {
-      view.distance = T.MathUtils.lerp(worldSpec.opening.distance, entryMotion.approachDistance, reverse.approach);
       // The viewport and camera share this frame. Resize before projecting the
       // globe, just as the forward flight does during its CSS expansion.
       size();
@@ -331,6 +339,7 @@ export async function mountWorld(
             reject(new DOMException("Aborted", "AbortError"));
             return;
           }
+          const originPose = { ...view };
           entering = true;
           selectedCity = city;
           target = smooth = Math.max(smooth, 0.65);
@@ -354,9 +363,18 @@ export async function mountWorld(
               .getWorldPosition(new T.Vector3())
               .project(camera);
             const bounds = host.getBoundingClientRect();
-            resolve({
+            const anchor = {
               x: bounds.left + (point.x * 0.5 + 0.5) * bounds.width,
               y: bounds.top + (-point.y * 0.5 + 0.5) * bounds.height,
+            };
+            resolve({
+              ...anchor,
+              origin: {
+                pose: originPose,
+                anchor,
+                progress: smooth,
+                scrollY: window.scrollY,
+              },
             });
           };
           flight = {
@@ -379,13 +397,44 @@ export async function mountWorld(
         wake();
       },
       depart: (travelSignal, advance) => departure.run(travelSignal, reduced.matches, advance),
-      retreat: (city, travelSignal, advance) => {
+      retreat: (city, travelSignal, advance, origin) => {
         entering = true;
         selectedCity = city;
-        target = smooth = 0;
+        // Finish at the precise world progress that existed when this journey
+        // began. Returning to a hard-coded opening pose makes the last frame
+        // jump whenever someone entered after scrolling through the globe.
+        target = smooth = origin.progress;
         flight = null;
-        Object.assign(view, journeyPose(0, city));
-        return returning.run(travelSignal, reduced.matches, advance);
+        const destination = worldSpec.cities[city];
+        const approachDistance = Math.min(
+          origin.pose.distance,
+          entryMotion.approachDistance,
+        );
+        Object.assign(view, {
+          longitude: destination.longitude,
+          latitude: destination.latitude,
+          distance: approachDistance,
+        });
+        return returning.run(travelSignal, reduced.matches, (frame) => {
+          const turn = T.MathUtils.smootherstep(frame.approach, 0, 0.72);
+          const distance = T.MathUtils.smootherstep(frame.approach, 0, 1);
+          view.longitude = T.MathUtils.lerp(
+            origin.pose.longitude,
+            destination.longitude,
+            turn,
+          );
+          view.latitude = T.MathUtils.lerp(
+            origin.pose.latitude,
+            destination.latitude,
+            turn,
+          );
+          view.distance = T.MathUtils.lerp(
+            origin.pose.distance,
+            approachDistance,
+            distance,
+          );
+          advance(frame);
+        });
       },
       setTheme: (theme) => {
         themeTarget = theme === "dark" ? 1 : 0;

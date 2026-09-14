@@ -3,6 +3,7 @@ import { EditionTransitionContext } from "../../routing/transition/EditionTransi
 import { nextPaint } from "../../routing/transition/transferRuntime";
 import type { WorldRuntime } from "../scene/mountWorld";
 import type { CityId } from "../config/worldSpec";
+import type { WorldEntryOrigin } from "./entryOrigin";
 
 /** The route transition borrows the mounted globe, never a copied scene or screenshot. */
 export function useWorldEntry(
@@ -43,8 +44,8 @@ export function useWorldEntry(
       flyTo: async (destination, signal) => {
         return (await ready(signal)).flyTo(destination, signal);
       },
-      retreat: async (destination, signal, advance) =>
-        (await ready(signal)).retreat(destination, signal, advance),
+      retreat: async (destination, signal, advance, origin: WorldEntryOrigin) =>
+        (await ready(signal)).retreat(destination, signal, advance, origin),
       release: () => {
         paused.current = false;
         runtime.current?.resume();
