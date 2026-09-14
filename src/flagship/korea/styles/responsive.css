@@ -25,6 +25,9 @@
   }
 }
 @media (max-width: 900px) {
+  .kr-hero {
+    min-height: 0;
+  }
   .kr-desktop-nav {
     display: none;
   }
@@ -40,9 +43,6 @@
     grid-column: 1 / -1;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-  }
-  .kr-info-board {
-    grid-template-columns: 1fr;
   }
   .kr-highlight-copy h3 {
     font-size: 27px;
@@ -73,14 +73,63 @@
     grid-template-columns: 1fr;
     gap: 0;
   }
-  .kr-event-pass {
-    gap: 18px;
+  .kr-hero-scene {
+    display: grid;
+    height: auto;
+    grid-template-columns: 1fr;
+    /* The desktop scene uses size containment for cqw/cqh positioning.
+       At this breakpoint the card becomes part of document flow, so only
+       contain inline size; otherwise the grid's block height collapses and
+       the highlights section paints underneath the hero. */
+    container-type: inline-size;
   }
-  .kr-event-pass dl {
-    gap: 18px;
+  .kr-hero-art {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 390px;
   }
-  .kr-event-pass dl > div {
-    padding-left: 18px;
+  .korea-event-site .kr-hero-art .fs-hero-artwork-inner {
+    width: min(585px, 75%);
+    transform: translate3d(-1%, -4%, 0);
+  }
+  .kr-hero-coordinates {
+    bottom: 18px;
+    left: 5%;
+  }
+  .kr-event-card-stack {
+    position: relative;
+    top: auto;
+    right: auto;
+    height: auto;
+    transform: none;
+    width: min(610px, 92%);
+    margin: -28px 1% 0 auto;
+  }
+  .kr-event-card {
+    height: auto;
+    min-height: 0;
+    padding: 34px 30px 26px;
+  }
+}
+@media (max-width: 760px) {
+  .kr-hero-art {
+    height: 308px;
+  }
+  .korea-event-site .kr-hero-art .fs-hero-artwork-inner {
+    width: min(500px, 84%);
+  }
+  .kr-hero-coordinates {
+    bottom: 13px;
+    left: 4%;
+    font-size: 9px;
+  }
+  .kr-event-card-stack {
+    width: min(500px, 94%);
+    margin-top: -22px;
+  }
+  .kr-event-card {
+    padding: 34px 26px 24px;
   }
 }
 @media (max-width: 620px) {
@@ -122,67 +171,58 @@
     top: 64px;
   }
   .kr-hero {
-    padding-top: 12px;
-    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 30px;
   }
-  .kr-hero-scene {
-    height: 300px;
+  .kr-hero-art {
+    height: 246px;
   }
-  .korea-event-site .fs-hero-artwork-inner {
-    width: 94vw;
+  .korea-event-site .kr-hero-art .fs-hero-artwork-inner {
+    width: min(440px, 88%);
   }
-  .korea-event-site .kr-frame-left,
-  .korea-event-site .kr-frame-right {
-    width: 145px;
+  .kr-event-card-stack {
+    width: 100%;
+    margin-top: -13px;
   }
-  .korea-event-site .kr-frame-left {
-    left: -110px;
+  .kr-event-card {
+    padding: 26px 18px 18px;
   }
-  .korea-event-site .kr-frame-right {
-    right: -105px;
+  .kr-event-card-header {
+    font-size: 10px;
   }
-  .kr-hero-body {
-    display: block;
-    margin-top: 0;
+  .kr-event-card-header span:last-child {
+    font-size: 9px;
   }
-  .kr-hero-body > div:first-child {
-    padding: 18px;
+  .kr-event-card-copy {
+    padding: 15px 0;
   }
-  .kr-hero-body h1 {
+  .kr-event-card-copy h1 {
     font-size: 35px;
-    line-height: 1.23;
+    line-height: 1.16;
   }
-  .kr-hero-body p {
-    margin-top: 16px;
+  .kr-event-card-copy p {
+    margin-top: 11px;
     font-size: 13px;
   }
-  .kr-hero-body .kr-button {
-    margin-top: 24px;
-    width: 100%;
+  .kr-event-card-facts > div {
+    min-height: 70px;
+    padding: 11px 10px 10px 0;
   }
-  .kr-event-pass {
-    flex-wrap: wrap;
-    gap: 16px 10px;
-    margin-top: 25px;
-    padding: 16px;
+  .kr-event-card-facts > div + div {
+    padding-left: 10px;
   }
-  .kr-pass-label {
-    max-width: none;
-    width: 100%;
+  .kr-event-card-facts > .kr-event-card-venue {
+    min-height: 67px;
+    padding-right: 0;
   }
-  .kr-event-pass dl {
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  .kr-event-pass dl > div {
-    padding: 0;
-    border: 0;
-  }
-  .kr-event-pass dl > div:last-child {
-    grid-column: 1/-1;
-  }
-  .kr-event-pass dd {
+  .kr-event-card-facts dd {
     font-size: 20px;
+  }
+  .kr-event-card-registration {
+    padding: 12px 0 14px;
+  }
+  .kr-event-card .kr-button {
+    width: 100%;
   }
   .kr-highlight,
   .kr-highlight-2 {
@@ -207,20 +247,6 @@
   }
   .kr-highlight-number {
     font-size: 62px;
-  }
-  .kr-info-confirmed {
-    padding: 18px;
-  }
-  .kr-info-facts {
-    grid-template-columns: 1fr;
-  }
-  .kr-info-facts > div {
-    min-height: 92px;
-    padding: 17px;
-  }
-  .kr-info-detail-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
   }
   .korea-event-site .kr-vendor-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

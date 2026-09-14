@@ -1,19 +1,13 @@
-import { taiwanRecapMedia } from "../../../config/taiwanRecapMedia";
 import { Reveal } from "../../motion/Reveal";
 import type { KoreaPageCopy } from "../data/copy";
-
-const visuals = [
-  taiwanRecapMedia.highlightEntryGift,
-  taiwanRecapMedia.highlightChampionChallenge,
-  taiwanRecapMedia.highlightTcgVendors,
-];
+import { koreaEventMedia } from "../data/media";
 
 export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
   return (
     <section id="highlights" className="kr-section kr-highlights">
       <div className="kr-wrap">
         <Reveal className="kr-section-title">
-          <span>02 / {c.event.highlights.english}</span>
+          <span>01 / {c.event.highlights.english}</span>
           <span className="kr-section-korean" lang="ko">
             서울 카드 컬처
           </span>
@@ -21,7 +15,7 @@ export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
         </Reveal>
         <div className="kr-highlight-list">
           {c.event.highlights.items.map((item, i) => {
-            const visual = visuals[i];
+            const visual = koreaEventMedia[i];
             return (
               <Reveal
                 key={item.number}
@@ -30,7 +24,7 @@ export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
               >
                 <a
                   className="kr-highlight-image"
-                  href={i === 2 ? "#vendors" : "#event-info"}
+                  href={i === 2 ? "#vendors" : "#highlights"}
                 >
                   <img
                     {...visual}
@@ -45,7 +39,7 @@ export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
                 <div className="kr-highlight-copy">
                   <span className="kr-highlight-korean" lang="ko">
                     {i === 0
-                      ? "카드 마켓"
+                      ? "무료 카드팩"
                       : i === 1
                         ? "컬렉터 커뮤니티"
                         : "브랜드 경험"}

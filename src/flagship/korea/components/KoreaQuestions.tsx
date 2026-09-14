@@ -18,9 +18,9 @@ export function KoreaQuestions({ c }: { c: KoreaPageCopy }) {
     <section id="faq" className="kr-section kr-faq">
       <div className="kr-wrap kr-faq-layout">
         <div className="kr-section-title" data-reveal>
-          <span>05 / FAQ</span>
+          <span>04 / FAQ</span>
           <span className="kr-section-korean" lang="ko">
-            방문 전 안내
+            자주 묻는 질문
           </span>
           <h2>{c.faqTitle}</h2>
         </div>

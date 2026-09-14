@@ -22,7 +22,7 @@ export function KoreaPartners({ c }: { c: KoreaPageCopy }) {
     <section id="vendors" className="kr-section kr-partners">
       <div className="kr-wrap">
         <Reveal className="kr-section-title">
-          <span>03 / {c.event.vendors.english}</span>
+          <span>02 / {c.event.vendors.english}</span>
           <span className="kr-section-korean" lang="ko">
             서울에서 이어지는 파트너
           </span>

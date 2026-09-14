@@ -55,12 +55,12 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
       items: [
         {
           number: "01",
-          english: "CARD MARKET & DISCOVERY",
-          title: "卡牌交流與選品",
+          english: "FREE CARD PACK",
+          title: "現場可領取免費卡包",
           description:
-            "活動規劃包含卡牌交易與卡店選品，讓不同收藏方向在現場交流。實際參與內容將依正式公告更新。",
-          alt: "卡牌展會中進行交流的參與者",
-          points: ["卡牌交易", "卡店選品", "收藏交流"],
+            "完成現場報到後，即可免費領取活動卡包，展開當日的收藏體驗。",
+          alt: "參與者從卡包桌免費領取活動卡包",
+          points: ["現場報到", "免費卡包", "開包體驗"],
         },
         {
           number: "02",
@@ -123,6 +123,12 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         },
         {
           category: "入場資訊",
+          question: "完成報到後可以領取卡包嗎？",
+          answer:
+            "可以。完成現場報到後可領取活動卡包；詳細領取方式與數量將依正式公告說明。",
+        },
+        {
+          category: "入場資訊",
           question: "是否提供現場售票？",
           answer:
             "現場售票安排尚未確認。請於活動前查看本網站或 FLAGSHIP 官方社群的最新公告。",
@@ -167,12 +173,12 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
       items: [
         {
           number: "01",
-          english: "CARD MARKET & DISCOVERY",
-          title: "Card Market & Discovery",
+          english: "FREE CARD PACK",
+          title: "Free Card Pack on Site",
           description:
-            "The programme includes card trading and card-shop selections, creating a place for different collecting interests to meet. Final participation details will follow official announcements.",
-          alt: "Attendees connecting at a card show",
-          points: ["Card trading", "Card-shop selections", "Collector exchange"],
+            "Complete on-site registration to receive a complimentary event card pack and begin the day's collecting experience.",
+          alt: "An attendee receiving a complimentary event card pack at a card-show table",
+          points: ["On-site registration", "Free card pack", "Pack-opening moment"],
         },
         {
           number: "02",
@@ -235,6 +241,12 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         },
         {
           category: "Entry information",
+          question: "Will I receive a card pack after registering?",
+          answer:
+            "Yes. An event card pack is available after on-site registration. Final collection instructions and quantities will be announced officially.",
+        },
+        {
+          category: "Entry information",
           question: "Will tickets be available at the venue?",
           answer:
             "On-site ticket availability has not yet been confirmed. Please check this website or FLAGSHIP's official social channels before the event.",
@@ -279,12 +291,12 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
       items: [
         {
           number: "01",
-          english: "CARD MARKET & DISCOVERY",
-          title: "카드 거래와 셀렉션",
+          english: "FREE CARD PACK",
+          title: "현장 무료 카드팩 증정",
           description:
-            "카드 거래와 카드 숍 셀렉션을 중심으로 다양한 수집 분야가 만나는 자리를 준비하고 있습니다. 최종 참여 내용은 공식 공지를 통해 안내됩니다.",
-          alt: "카드 쇼에서 교류하는 참가자",
-          points: ["카드 거래", "카드 숍 셀렉션", "컬렉터 교류"],
+            "현장 등록을 완료하면 무료 행사 카드팩을 받을 수 있으며, 당일 컬렉팅 경험을 바로 시작할 수 있습니다.",
+          alt: "카드 쇼 테이블에서 무료 행사 카드팩을 받는 참가자",
+          points: ["현장 등록", "무료 카드팩", "팩 개봉 경험"],
         },
         {
           number: "02",
@@ -344,6 +356,12 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           question: "티켓과 입장 정보는 어디에서 확인할 수 있나요?",
           answer:
             "티켓, 입장 방식, 관련 링크는 아직 공개되지 않았습니다. 확정된 정보는 이 웹사이트와 FLAGSHIP 공식 소셜 채널을 통해 안내됩니다.",
+        },
+        {
+          category: "입장 정보",
+          question: "현장 등록 후 카드 팩을 받을 수 있나요?",
+          answer:
+            "네. 현장 등록을 완료하면 행사 카드 팩을 받을 수 있습니다. 최종 수령 방법과 수량은 공식 공지로 안내됩니다.",
         },
         {
           category: "입장 정보",

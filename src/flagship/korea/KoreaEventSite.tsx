@@ -5,7 +5,6 @@ import { koreaPageCopy } from "./data/copy";
 import { KoreaEnvironment } from "./components/KoreaEnvironment";
 import { KoreaHeader } from "./components/KoreaHeader";
 import { KoreaHero } from "./components/KoreaHero";
-import { KoreaEventInfo } from "./components/KoreaEventInfo";
 import { KoreaHighlights } from "./components/KoreaHighlights";
 import { KoreaPartners } from "./components/KoreaPartners";
 import { KoreaVisit } from "./components/KoreaVisit";
@@ -75,7 +74,6 @@ export function KoreaEventSite({ onReady }: { onReady: () => void }) {
         <KoreaHeader c={c} />
         <main id="main">
           <KoreaHero c={c} />
-          <KoreaEventInfo c={c} />
           <KoreaHighlights c={c} />
           <KoreaPartners c={c} />
           <KoreaVisit c={c} />

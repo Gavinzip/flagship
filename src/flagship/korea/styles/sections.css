@@ -343,40 +343,48 @@
   color: var(--kr-accent-warm);
   letter-spacing: 0.035em;
 }
-.kr-venue-pending {
-  margin: 24px 0;
-  padding: 16px;
-  border: 1px solid #c2b78f7a;
-  background: #fff9e88a;
-}
-.kr-venue-pending p {
-  margin: 0;
-  color: #5d5f59;
-  font-size: 13px;
-  line-height: 1.6;
-}
 .kr-visit-copy .kr-button {
   width: 100%;
 }
 .kr-faq-layout {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 70px;
+  grid-template-columns: minmax(270px, 0.66fr) minmax(0, 1.34fr);
+  align-items: start;
+  gap: clamp(32px, 4.5vw, 64px);
+}
+.kr-faq .kr-section-title {
+  align-self: start;
+  width: 100%;
+  max-width: none;
+  padding: 28px 30px 32px;
 }
 .kr-faq .kr-section-title h2 {
-  font-size: clamp(30px, 3.6vw, 49px);
+  margin: 34px 0 0;
+  font-size: clamp(38px, 3.8vw, 54px);
+  line-height: 1.1;
+}
+.kr-faq-browser {
+  padding: 14px;
+  border: 1px solid #ffffffd9;
+  background:
+    linear-gradient(120deg, #f6fbffd9, #dceefa9c),
+    #eaf5f9d1;
+  box-shadow:
+    inset 0 1px #ffffffcc,
+    0 18px 42px #143b5d1f;
+  backdrop-filter: blur(18px) saturate(1.08);
 }
 .kr-faq-categories {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .kr-faq-categories button {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: 52px;
+  min-height: 56px;
   border: 1px solid #7194b669;
   background: #e4eff7e8;
   color: #254967;

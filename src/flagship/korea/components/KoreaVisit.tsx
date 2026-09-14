@@ -8,7 +8,7 @@ export function KoreaVisit({ c }: { c: KoreaPageCopy }) {
     <section id="venue" className="kr-section kr-visit">
       <div className="kr-wrap">
         <Reveal className="kr-section-title">
-          <span>04 / {c.event.venue.english}</span>
+          <span>03 / {c.event.venue.english}</span>
           <span className="kr-section-korean" lang="ko">
             도시에서 현장까지
           </span>
@@ -28,9 +28,6 @@ export function KoreaVisit({ c }: { c: KoreaPageCopy }) {
             <MapPin />
             <h3>{c.koreaEvent.venue}</h3>
             <strong>{c.koreaEvent.venueDetail}</strong>
-            <div className="kr-venue-pending">
-              <p>{c.venueDetailsPending}</p>
-            </div>
             <a
               className="kr-button"
               href={koreaDeckMapUrl()}
