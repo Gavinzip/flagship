@@ -1,9 +1,8 @@
-import { MetalBorder } from "./ui/MetalBorder";
 import { HomeReveal } from "./motion/HomeReveal";
 import { SiteLink } from "../routing/SiteNavigation";
-import { homeMedia } from "./homeMedia";
 import type { HomeCopy } from "./homeCopy";
 import { StellarActionContent } from "./ui/StellarActionContent";
+import { RecapMediaStack } from "./RecapMediaStack";
 
 export function BrandRecap({ copy: c, onWatch }: { copy: HomeCopy; onWatch: () => void }) {
   return <section id="recap" className="brand-section brand-container brand-recap" aria-labelledby="brand-recap-title">
@@ -17,7 +16,18 @@ export function BrandRecap({ copy: c, onWatch }: { copy: HomeCopy; onWatch: () =
           <SiteLink page="taiwan" className="stellar-action stellar-action--secondary"><StellarActionContent>{c.taiwanCta}</StellarActionContent></SiteLink>
         </div>
       </HomeReveal>
-      <HomeReveal delay={0.12}><button className="brand-recap-poster ip-metal-control" onClick={onWatch} aria-label={c.viewRecap}><MetalBorder /><img src={homeMedia.recapPoster} width="1200" height="675" alt="FLAGSHIP Taiwan 2026" loading="lazy" /><span className="brand-recap-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m9 5 11 7-11 7V5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /></svg></span></button><p className="brand-photo-caption">{c.recapCaption}</p></HomeReveal>
+      <HomeReveal className="brand-recap-visual" delay={0.12}>
+        <div className="brand-recap-archive">
+          <span className="brand-recap-ghost" aria-hidden="true">TAIWAN / 2026</span>
+          <RecapMediaStack copy={c} onWatch={onWatch} />
+          <div className="brand-recap-meta" aria-label={c.recapArchiveLabel}>
+            <span>{c.recapArchiveLabel}</span>
+            <span>{c.recapLocation}</span>
+            <span>2026.09.05</span>
+          </div>
+          <p className="brand-photo-caption">{c.recapCaption}</p>
+        </div>
+      </HomeReveal>
     </div>
   </section>;
 }

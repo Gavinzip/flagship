@@ -3,13 +3,16 @@ import type { SiteLanguage } from "../data/copy";
 export type HomeCopy = {
   nav: [string, string, string]; menu: string; close: string; language: string; skip: string;
   headline: [string, string]; introduction: string; explore: string; viewRecap: string;
-  aboutTitle: [string, string]; aboutParagraphs: [string, string]; aboutCaption: string; aboutAlt: string;
+  aboutTitle: string[]; aboutParagraphs: [string, string]; aboutCaption: string; aboutAlt: string;
   editionsTitle: string; editionsIntro: string; taiwanStatus: string; koreaStatus: string;
   taiwanDescription: string; koreaDescription: string; taiwanCta: string; koreaCta: string; moreCities: string;
   experienceTitle: string; experienceIntro: string;
   experiences: { name: string; title: string; body: string; alt: string }[];
   sponsorLabel: string; sponsorTitle: string; sponsorBody: string; organizerLabel: string;
   recapTitle: [string, string]; recapBody: string; recapCaption: string; follow: string;
+  recapArchiveLabel: string; recapLocation: string;
+  recapCrowdCaption: string; recapCrowdAlt: string; recapPlayersCaption: string; recapPlayersAlt: string;
+  recapBringForward: string; recapNextImage: string;
   footerTitle: string; footerBody: string; footerHome: string; official: string;
   pause: string; play: string; videoError: string; videoRetry: string; closeFilm: string;
 };
@@ -33,8 +36,7 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     "explore": "Explore the editions",
     "viewRecap": "Watch Taiwan 2026",
     "aboutTitle": [
-      "A shared passion.",
-      "A real connection."
+      "THE BEGINNING OF FLAGSHIP"
     ],
     "aboutParagraphs": [
       "FLAGSHIP began with a simple idea: cards give people a reason to meet. We bring collectors, players, card shops and brands into one space, where a shared interest becomes a conversation.",
@@ -51,7 +53,7 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     "taiwanCta": "Explore Taiwan",
     "koreaCta": "Explore Korea",
     "moreCities": "More cities. More connections. The story continues.",
-    "experienceTitle": "COME FOR THE CARDS. STAY FOR THE PEOPLE.",
+    "experienceTitle": "WHAT YOU'LL EXPERIENCE",
     "experienceIntro": "Four ways to be part of FLAGSHIP. One shared love of collecting.",
     "experiences": [
       {
@@ -89,6 +91,14 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     ],
     "recapBody": "A room full of cards. Conversations across the table. The people who made our first chapter what it was.",
     "recapCaption": "FLAGSHIP TAIWAN · SEPTEMBER 5, 2026",
+    "recapArchiveLabel": "FIRST CHAPTER / 01",
+    "recapLocation": "TAIPEI · CLAPPER STUDIO",
+    "recapCrowdCaption": "THE ROOM",
+    "recapCrowdAlt": "The crowd gathered around the card show floor at FLAGSHIP Taiwan 2026",
+    "recapPlayersCaption": "THE MATCH",
+    "recapPlayersAlt": "Players competing across a card table at FLAGSHIP Taiwan 2026",
+    "recapBringForward": "Bring this image forward",
+    "recapNextImage": "Show the next image",
     "follow": "Follow the next chapter",
     "footerTitle": "SEE YOU AT FLAGSHIP.",
     "footerBody": "Collecting culture. Connecting people.",
@@ -118,8 +128,7 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     "explore": "探索各地卡展",
     "viewRecap": "觀看台灣 2026 回顧",
     "aboutTitle": [
-      "把共同的熱愛，",
-      "帶到同一個現場。"
+      "FLAGSHIP 的開始"
     ],
     "aboutParagraphs": [
       "FLAGSHIP 是為卡牌收藏與交流而建立的卡展。我們把收藏家、玩家、卡店與品牌聚在一起，翻開卡冊、分享收藏，認識志同道合的朋友。",
@@ -136,7 +145,7 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     "taiwanCta": "進入台灣卡展",
     "koreaCta": "進入韓國卡展",
     "moreCities": "更多地區的展會消息，將透過官方管道公布。",
-    "experienceTitle": "收藏的樂趣，在現場一起發現。",
+    "experienceTitle": "你即將體驗到",
     "experienceIntro": "逛卡店、分享收藏、打一場牌，也認識新的朋友。",
     "experiences": [
       {
@@ -174,6 +183,14 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     ],
     "recapBody": "2026 年 9 月 5 日，我們在台北三創因卡牌相聚。一起回看現場的收藏、對戰與交流。",
     "recapCaption": "FLAGSHIP TAIWAN · 2026 年 9 月 5 日",
+    "recapArchiveLabel": "活動紀錄 / 01",
+    "recapLocation": "台北 · 三創 CLAPPER STUDIO",
+    "recapCrowdCaption": "卡展全場",
+    "recapCrowdAlt": "FLAGSHIP 台灣 2026 卡展現場聚集的參觀者",
+    "recapPlayersCaption": "現場對戰",
+    "recapPlayersAlt": "FLAGSHIP 台灣 2026 玩家在牌桌前對戰",
+    "recapBringForward": "顯示這張照片",
+    "recapNextImage": "切換下一張照片",
     "follow": "追蹤最新展會消息",
     "footerTitle": "我們在 FLAGSHIP 見。",
     "footerBody": "讓收藏文化，連結更多人。",
@@ -203,8 +220,7 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     "explore": "각 지역 행사 둘러보기",
     "viewRecap": "Taiwan 2026 영상 보기",
     "aboutTitle": [
-      "함께하는 열정.",
-      "진정한 만남."
+      "FLAGSHIP의 시작"
     ],
     "aboutParagraphs": [
       "FLAGSHIP은 카드가 사람을 만나게 한다는 생각에서 시작되었습니다. 컬렉터, 플레이어, 카드숍과 브랜드가 한 공간에 모여 컬렉션을 공유하고 카드를 교환하며 함께 게임을 즐깁니다.",
@@ -221,7 +237,7 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     "taiwanCta": "대만 행사 보기",
     "koreaCta": "한국 행사 보기",
     "moreCities": "더 많은 도시, 더 많은 만남. 이야기는 계속됩니다.",
-    "experienceTitle": "카드로 모여, 사람으로 이어지다.",
+    "experienceTitle": "FLAGSHIP에서 경험할 것",
     "experienceIntro": "수집, 거래, 게임, 교류. FLAGSHIP에 참여하는 네 가지 방법.",
     "experiences": [
       {
@@ -259,6 +275,14 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     ],
     "recapBody": "테이블 가득한 카드, 끝없는 대화, 첫 챕터를 함께 만든 사람들. 그날의 만남을 돌아보세요.",
     "recapCaption": "FLAGSHIP TAIWAN · 2026년 9월 5일",
+    "recapArchiveLabel": "첫 번째 기록 / 01",
+    "recapLocation": "타이베이 · CLAPPER STUDIO",
+    "recapCrowdCaption": "행사 현장",
+    "recapCrowdAlt": "FLAGSHIP Taiwan 2026 카드쇼 현장에 모인 관람객들",
+    "recapPlayersCaption": "현장 대전",
+    "recapPlayersAlt": "FLAGSHIP Taiwan 2026 카드 테이블에서 대전하는 플레이어들",
+    "recapBringForward": "이 사진 보기",
+    "recapNextImage": "다음 사진 보기",
     "follow": "다음 챕터 소식 보기",
     "footerTitle": "FLAGSHIP에서 만나요.",
     "footerBody": "수집 문화로 사람을 연결합니다.",

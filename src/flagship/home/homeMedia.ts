@@ -7,6 +7,19 @@ const play = staticAssetUrl("flagship/brand-play-table.webp");
 const collect = staticAssetUrl("flagship/brand-collect-slabs.webp");
 const connect = staticAssetUrl("flagship/brand-connect-collectors.webp");
 const recapPoster = staticAssetUrl("flagship/taiwan-2026-official-recap-poster.webp");
+const recapCrowd = staticAssetUrl("flagship/brand-recap-hall.webp");
+const recapPlayers = staticAssetUrl("flagship/brand-play-table.webp");
 
 /** Optimized derivatives of the actual Taiwan 2026 event photographs. */
-export const homeMedia = { masterLogo, crowd, story, exchange, play, collect, connect, recapPoster };
+export const homeMedia = {
+  masterLogo,
+  crowd,
+  story,
+  exchange,
+  play,
+  collect,
+  connect,
+  recapPoster,
+  recapCrowd,
+  recapPlayers,
+};
