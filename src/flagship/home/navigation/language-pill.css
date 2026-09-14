@@ -18,9 +18,6 @@
   .ip-language { top: max(16px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right)); }
   .brand-site .ip-language-trigger { min-height: 46px; padding-inline: 12px; gap: 7px; }
   .ip-language-trigger .ip-language-chevron { display: none; }
-  .ip-pill-header { right: max(110px, calc(env(safe-area-inset-right) + 94px)); }
-  .ip-pill-mobile { width: calc(100% + 94px); }
-  .ip-pill-current { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
 @media (min-width: 801px) and (max-width: 1100px) {
   .ip-pill-link { padding-inline: 12px; font-size: 11px; }

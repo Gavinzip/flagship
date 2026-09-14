@@ -23,21 +23,20 @@ html:has(.brand-site) {scroll-padding-top:100px;}
 }
 @media (max-width:800px) {
   html:has(.brand-site) {scroll-padding-top:92px;}
-  .ip-pill-header {left:max(16px,env(safe-area-inset-left));right:max(16px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top));}
-  .ip-pill-bar {padding:4px 6px 4px 18px;border:1px solid #8193b455;border-radius:32px;background:#0c101bf5;box-shadow:0 8px 28px #0004;gap:12px;}
+  .ip-pill-header {top:max(12px,env(safe-area-inset-top));right:max(110px,calc(env(safe-area-inset-right) + 94px));left:auto;width:44px;}
+  .ip-pill-bar {padding:0;border:0;background:transparent;box-shadow:none;gap:0;}
   .ip-pill-desktop {display:none;}
-  .ip-pill-current {display:block;margin-right:auto;color:#bec5d1;font-size:11px;}
+  .ip-pill-current {display:none;}
   .ip-pill-toggle {display:flex;flex-direction:column;justify-content:center;gap:5px;align-items:center;flex-shrink:0;width:44px;height:44px;border:1px solid #96a7c238;border-radius:50%;background:#151d2c;}
   .ip-pill-toggle span {width:16px;height:1px;background:#e2e6f1;transition:transform .26s cubic-bezier(.16,1,.3,1);}
   .ip-pill-toggle[aria-expanded="true"] span:first-of-type {transform:translateY(3px) rotate(45deg);}
   .ip-pill-toggle[aria-expanded="true"] span:last-of-type {transform:translateY(-3px) rotate(-45deg);}
-  .ip-pill-mobile {display:block;overflow:hidden;border-radius:23px;background:#0c101bf8;box-shadow:0 12px 30px #0005;margin-top:8px;}
+  .ip-pill-mobile {position:absolute;top:calc(100% + 8px);right:0;display:block;width:min(320px,calc(100vw - 32px));overflow:hidden;border-radius:23px;background:#0c101bf8;box-shadow:0 12px 30px #0005;}
   .ip-pill-mobile nav {padding:10px;border:1px solid #8193b43d;border-radius:23px;}
   .ip-pill-mobile .ip-pill-link {justify-content:space-between;min-height:48px;margin:3px 0;padding-inline:18px;font-size:13px;}
   .ip-pill-mobile .ip-pill-link[aria-current] {background:linear-gradient(115deg,#4c253f85,#243b7573);}
   .ip-pill-mobile svg {width:16px;height:16px;opacity:.65;}
-  .brand-site[data-theme="light"] :is(.ip-pill-bar,.ip-pill-mobile) {background:#f3f5fbfa;}
-  .brand-site[data-theme="light"] .ip-pill-current {color:#42516a;}
+  .brand-site[data-theme="light"] .ip-pill-mobile {background:#f3f5fbfa;}
   .brand-site[data-theme="light"] .ip-pill-mobile .ip-pill-link[aria-current] {background:linear-gradient(115deg,#eadce6,#d7e1fb);}
 }
 @media (prefers-reduced-motion:reduce) {

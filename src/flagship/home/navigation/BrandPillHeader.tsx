@@ -11,9 +11,9 @@ import { useHomeNavigation } from "./useHomeNavigation";
 /** Pill Nav motion adapted to this site's existing Motion and native anchor navigation. */
 export function BrandPillHeader({ site }: { site: RefObject<HTMLDivElement | null> }) {
   const { location } = useSiteNavigation();
-  const { visible: scrolled, active } = useHomeNavigation(site);
+  const { active } = useHomeNavigation(site);
   const transferring = useContext(EditionTransitionContext)?.retainingWorld;
-  const visible = scrolled && !transferring;
+  const visible = !transferring;
   const reduced = useReducedMotion();
   const items = homeSections(location.language);
   const [open, setOpen] = useState(false);

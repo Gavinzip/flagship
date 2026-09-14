@@ -2,9 +2,9 @@
 
 The global IP website introduces the lasting FLAGSHIP brand, connects collectors, players, stores and partners, and opens the existing regional event sites. The entire IP page shares one continuous galaxy backdrop, including the story, editions, experiences, sponsor and footer. Both light and dark appearances retain recognisable stellar dust lanes and red/blue brand light. The galaxy and globe belong only to the global IP page; neither remains after entry into a regional site.
 
-## Headerless IP navigation
+## IP navigation
 
-The IP home has no header at any scroll position. Its content and event links are available along the page and through the globe. Appearance and language controls are kept in a compact footer preferences module. Each regional site retains its original navigation. Canvas resize is deferred into the render frame and followed immediately by drawing, so the expanding entry canvas does not expose a cleared buffer.
+The IP home keeps its compact navigation visible from the opening globe through the final section. It provides direct access to the globe, brand story, experience, partners, and Taiwan recap without obscuring the regional entry controls. Appearance and language controls are kept in a compact footer preferences module. Each regional site retains its original navigation. Canvas resize is deferred into the render frame and followed immediately by drawing, so the expanding entry canvas does not expose a cleared buffer.
 
 ## Original globe
 
