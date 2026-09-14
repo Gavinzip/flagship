@@ -32,8 +32,8 @@ export function KoreaPartners({ c }: { c: KoreaPageCopy }) {
         <div className="kr-partner-stage" data-reveal>
           <header className="kr-partner-stage-header">
             <p>
-              <span lang="ko">파트너 프리뷰</span>
-              <strong>SEOUL CHAPTER · PARTNER LINEUP</strong>
+              <span lang="ko">파트너 정보</span>
+              <strong>SEOUL CHAPTER · PARTNER INFORMATION</strong>
             </p>
           </header>
           <div className="kr-partner-tiers">

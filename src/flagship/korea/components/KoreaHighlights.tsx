@@ -30,7 +30,7 @@ export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
               >
                 <a
                   className="kr-highlight-image"
-                  href={i === 2 ? "#vendors" : "#tickets"}
+                  href={i === 2 ? "#vendors" : "#event-info"}
                 >
                   <img
                     {...visual}
@@ -45,10 +45,10 @@ export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
                 <div className="kr-highlight-copy">
                   <span className="kr-highlight-korean" lang="ko">
                     {i === 0
-                      ? "현장 경험"
+                      ? "카드 마켓"
                       : i === 1
-                        ? "챔피언 스테이지"
-                        : "카드 마켓"}
+                        ? "컬렉터 커뮤니티"
+                        : "브랜드 경험"}
                   </span>
                   <span className="kr-label">{item.english}</span>
                   <h3>{item.title}</h3>

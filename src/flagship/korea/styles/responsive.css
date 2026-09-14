@@ -73,9 +73,6 @@
     grid-template-columns: 1fr;
     gap: 0;
   }
-  .kr-registration-layout {
-    gap: 32px;
-  }
   .kr-event-pass {
     gap: 18px;
   }
@@ -287,16 +284,6 @@
   .kr-question p {
     padding: 0 18px 22px 40px;
     font-size: 13px;
-  }
-  .kr-registration-layout {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .kr-registration h2 {
-    font-size: 46px;
-  }
-  .kr-registration {
-    padding-bottom: 64px;
   }
   .kr-footer {
     gap: 16px;

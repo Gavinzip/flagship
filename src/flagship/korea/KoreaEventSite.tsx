@@ -10,7 +10,7 @@ import { KoreaHighlights } from "./components/KoreaHighlights";
 import { KoreaPartners } from "./components/KoreaPartners";
 import { KoreaVisit } from "./components/KoreaVisit";
 import { KoreaQuestions } from "./components/KoreaQuestions";
-import { KoreaClosing } from "./components/KoreaClosing";
+import { KoreaFooter } from "./components/KoreaFooter";
 import "./styles/index.css";
 import { loadWithDeadline } from "../routing/RouteBoundary";
 import { editions } from "../data/editions";
@@ -80,7 +80,7 @@ export function KoreaEventSite({ onReady }: { onReady: () => void }) {
           <KoreaPartners c={c} />
           <KoreaVisit c={c} />
           <KoreaQuestions c={c} />
-          <KoreaClosing c={c} />
+          <KoreaFooter c={c} />
         </main>
       </div>
       {!ready && (

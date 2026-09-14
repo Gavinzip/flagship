@@ -1,12 +1,11 @@
-import { taiwanPreview } from "./taiwanPreview";
-import { koreanPreview } from "./koreanPreview";
+import { koreaEventContent } from "./koreaEventContent";
 import { koreaDeckEvent } from "./koreaDeck";
 
 export const koreaPageCopy = {
   "zh-TW": {
     metaDescription:
       "FLAGSHIP 韓國卡展將於 2026 年 9 月 29 日 13:00–20:00，在首爾 TEX+FA HALL 舉行。票務與正式陣容將陸續公布。",
-    event: taiwanPreview["zh-TW"],
+    event: koreaEventContent["zh-TW"],
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
       date: koreaDeckEvent.date["zh-TW"],
@@ -22,7 +21,7 @@ export const koreaPageCopy = {
       korean: "행사 정보",
       title: "首爾站，\n目前確定的活動資訊。",
       intro:
-        "收藏、交流與品牌體驗將在首爾匯聚。先查看日期、時間與活動規模，準備前往現場。",
+        "活動日期、時間、場地與規劃規模已確認；其餘資訊將依正式公告更新。",
       facts: [
         { label: "日期", value: koreaDeckEvent.date["zh-TW"] },
         { label: "時間", value: koreaDeckEvent.time },
@@ -41,39 +40,33 @@ export const koreaPageCopy = {
         "品牌體驗、活動與收藏品",
       ],
     },
-    headline: "在首爾相見，\n讓收藏開始交流。",
-    intro: "沿著漢江的天際線走進卡牌現場。\n卡店、收藏家與玩家，在 FLAGSHIP KOREA 相遇。",
-    explore: "進入首爾篇章",
-    participate: "參加資訊",
+    headline: "在首爾相見，\n讓收藏持續交流。",
+    intro:
+      "FLAGSHIP KOREA 將在首爾舉行，連結卡店、收藏家、玩家與品牌。活動資訊將依官方公告持續更新。",
+    explore: "查看活動資訊",
     menu: "開啟選單",
     navigation: "活動導覽",
-    search: "搜尋攤商",
-    noResults: "找不到符合的攤商，請試試其他名稱。",
+    search: "搜尋合作夥伴",
+    noResults: "找不到符合的合作夥伴，請試試其他名稱。",
     home: "返回 FLAGSHIP",
     date: "日期",
     time: "時間",
     venue: "場地",
     pause: "暫停裝飾動畫",
     resume: "播放裝飾動畫",
-    partnersNote: "合作夥伴與參展陣容預覽。",
-    visitNote: "首爾江南區 TEX+FA HALL，交通與入口資訊將持續更新。",
-    venueDetailsPending: "完整地址、最近車站與入口動線即將公布。",
+    partnersNote: "合作夥伴資訊將依正式公告更新。",
+    visitNote:
+      "TEX+FA HALL 位於首爾江南區；完整地址、交通與入場資訊將依正式公告更新。",
+    venueDetailsPending: "完整地址、最近車站與入口動線將於確認後公告。",
     close: "關閉",
-    faqTitle: "出發前，\n你想知道的事。",
-    registrationTitle: "準備好，\n一起上場。",
-    registrationText:
-      "韓國場已確定於 2026 年 9 月 29 日 13:00–20:00 舉行。門票價格、入場方式、報名連結與挑戰賽規則仍待確認。",
-    admission: "入場預約",
-    challenge: "挑戰賽報名",
-    pending: "報名資訊即將公布",
-    updates: "追蹤官方公告",
+    faqTitle: "行前資訊，\n以正式公告為準。",
     back: "回到頂部",
-    footer: "收藏、交易、對戰，現場見。",
+    footer: "收藏、交流與探索，期待在首爾相見。",
   },
   en: {
     metaDescription:
       "FLAGSHIP Korea takes place at TEX+FA HALL in Seoul on 29 September 2026, from 1–8 PM. Ticket and lineup updates will follow.",
-    event: taiwanPreview.en,
+    event: koreaEventContent.en,
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
       date: koreaDeckEvent.date.en,
@@ -89,7 +82,7 @@ export const koreaPageCopy = {
       korean: "행사 정보",
       title: "What is confirmed\nfor Seoul.",
       intro:
-        "Collecting, community, and brand experiences meet in Seoul. Start with the date, time, and planned scale of the show.",
+        "The date, time, venue, and planned scale are confirmed. Remaining information will be updated through official announcements.",
       facts: [
         { label: "Date", value: koreaDeckEvent.date.en },
         { label: "Time", value: koreaDeckEvent.time },
@@ -108,42 +101,34 @@ export const koreaPageCopy = {
         "Brand experiences and collectibles",
       ],
     },
-    headline: "Meet in Seoul.\nLet every card connect.",
+    headline: "Meet in Seoul.\nLet collecting stay connected.",
     intro:
-      "Follow the Han River skyline into the card show.\nShops, collectors, and players meet at FLAGSHIP KOREA.",
-    explore: "Enter the Seoul chapter",
-    participate: "Plan your visit",
+      "FLAGSHIP KOREA takes place in Seoul, connecting card shops, collectors, players, and brands. Information will continue to be updated through official announcements.",
+    explore: "View event information",
     menu: "Open menu",
     navigation: "Event navigation",
-    search: "Search vendors",
-    noResults: "No matching vendors. Try another name.",
+    search: "Search partners",
+    noResults: "No matching partners. Try another name.",
     home: "Back to FLAGSHIP",
     date: "Date",
     time: "Time",
     venue: "Venue",
     pause: "Pause decorative motion",
     resume: "Resume decorative motion",
-    partnersNote: "A preview of partners and exhibitors.",
+    partnersNote: "Partner information will be updated through official announcements.",
     visitNote:
-      "TEX+FA HALL in Gangnam, Seoul. Transit and entrance information will be updated here.",
+      "TEX+FA HALL is in Gangnam, Seoul. The full address, transit, and entry information will be updated through official announcements.",
     venueDetailsPending:
-      "The full address, nearest station, and entrance route are coming soon.",
+      "The full address, nearest station, and entrance route will be announced once confirmed.",
     close: "Close",
-    faqTitle: "Before you go,\na few good answers.",
-    registrationTitle: "Ready to join\nthe show?",
-    registrationText:
-      "Korea is confirmed for 29 September 2026, 1–8 PM. Ticket price, admission method, booking link, and challenge rules are still pending.",
-    admission: "Event admission",
-    challenge: "Champion Challenge",
-    pending: "Registration details coming soon",
-    updates: "Follow official updates",
+    faqTitle: "Event information,\nsubject to official announcements.",
     back: "Back to top",
-    footer: "Collect. Trade. Play. See you at the show.",
+    footer: "A place for collecting, exchange, and discovery in Seoul.",
   },
   ko: {
     metaDescription:
       "FLAGSHIP KOREA는 2026년 9월 29일 13:00–20:00, 서울 TEX+FA HALL에서 열립니다. 티켓과 최종 라인업은 추후 공개됩니다.",
-    event: koreanPreview,
+    event: koreaEventContent.ko,
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
       date: koreaDeckEvent.date.ko,
@@ -159,7 +144,7 @@ export const koreaPageCopy = {
       korean: "행사 정보",
       title: "서울 행사,\n현재 확정된 정보.",
       intro:
-        "컬렉팅과 커뮤니티, 브랜드 경험이 서울에서 만납니다. 날짜, 시간과 행사 규모를 먼저 확인하세요.",
+        "행사 날짜, 시간, 장소와 기획 규모가 확정되었습니다. 그 밖의 정보는 공식 공지를 통해 안내됩니다.",
       facts: [
         { label: "날짜", value: koreaDeckEvent.date.ko },
         { label: "시간", value: koreaDeckEvent.time },
@@ -178,35 +163,28 @@ export const koreaPageCopy = {
         "브랜드 체험과 컬렉터블",
       ],
     },
-    headline: "서울에서 만나,\n카드로 이어지다.",
+    headline: "서울에서 만나,\n컬렉팅으로 이어지다.",
     intro:
-      "한강의 스카이라인을 따라 카드 쇼로 들어오세요.\n카드 숍과 컬렉터, 플레이어가 FLAGSHIP KOREA에서 만납니다.",
-    explore: "서울 챕터 들어가기",
-    participate: "참가 안내",
+      "FLAGSHIP KOREA는 서울에서 카드 숍, 컬렉터, 플레이어, 브랜드를 연결합니다. 행사 정보는 공식 공지를 통해 계속 업데이트됩니다.",
+    explore: "행사 정보 보기",
     menu: "메뉴 열기",
     navigation: "행사 메뉴",
-    search: "참가 업체 검색",
-    noResults: "일치하는 업체가 없습니다. 다른 이름으로 검색해 주세요.",
+    search: "파트너 검색",
+    noResults: "일치하는 파트너가 없습니다. 다른 이름으로 검색해 주세요.",
     home: "FLAGSHIP으로 돌아가기",
     date: "날짜",
     time: "시간",
     venue: "장소",
     pause: "장식 애니메이션 일시 정지",
     resume: "장식 애니메이션 재생",
-    partnersNote: "파트너와 참가 업체 라인업 미리보기입니다.",
-    visitNote: "서울 강남구 TEX+FA HALL의 교통 및 입구 정보는 계속 업데이트됩니다.",
-    venueDetailsPending: "전체 주소, 가까운 역과 입구 동선은 곧 공개됩니다.",
+    partnersNote: "파트너 정보는 공식 공지를 통해 업데이트됩니다.",
+    visitNote:
+      "TEX+FA HALL은 서울 강남구에 있습니다. 전체 주소, 교통 및 입장 정보는 공식 공지를 통해 안내됩니다.",
+    venueDetailsPending: "전체 주소, 가까운 역과 입구 동선은 확정 후 안내됩니다.",
     close: "닫기",
-    faqTitle: "방문 전에,\n궁금한 이야기.",
-    registrationTitle: "준비되셨나요?\n현장에서 만나요.",
-    registrationText:
-      "한국 행사는 2026년 9월 29일 13:00–20:00로 확정되었습니다. 티켓 가격, 입장 방식, 예매 링크와 챌린지 규정은 확인 중입니다.",
-    admission: "입장 예약",
-    challenge: "챔피언 챌린지",
-    pending: "신청 정보가 곧 공개됩니다",
-    updates: "공식 소식 확인",
+    faqTitle: "방문 전 안내,\n공식 공지 기준.",
     back: "맨 위로",
-    footer: "수집하고, 거래하고, 대결하세요. 현장에서 만나요.",
+    footer: "서울에서 만나는 컬렉팅과 교류의 장.",
   },
 };
 export type KoreaPageCopy = (typeof koreaPageCopy)[keyof typeof koreaPageCopy];

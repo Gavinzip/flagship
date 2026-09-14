@@ -299,8 +299,7 @@
     12px 20px 46px #5b7d990d,
     0 20px 55px #11365730;
 }
-.kr-visit-layout > [data-reveal]:nth-child(2),
-.kr-registration-layout > [data-reveal]:nth-child(2) {
+.kr-visit-layout > [data-reveal]:nth-child(2) {
   --reveal-index: 1;
 }
 .kr-map {
@@ -500,77 +499,6 @@
   white-space: pre-line;
   padding: 0 24px 24px 55px;
   color: #294a65;
-}
-.kr-registration {
-  padding-bottom: 100px;
-}
-.kr-registration-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 80px;
-  align-items: center;
-}
-.kr-registration-copy {
-  padding: 30px;
-  background: linear-gradient(115deg, #e1effaf5, #d3e7f4d9);
-  border: 1px solid var(--kr-chrome);
-  box-shadow:
-    0 0 0 1px #668ba83d,
-    -12px 18px 38px #9565730c,
-    12px 18px 38px #5b7d990f,
-    var(--kr-depth);
-}
-.kr-registration-korean {
-  display: block;
-  margin-top: 9px;
-  color: var(--kr-accent-warm);
-  font-size: 13px;
-  font-weight: 750;
-  letter-spacing: 0.13em;
-}
-.kr-registration h2 {
-  font-size: clamp(40px, 5.3vw, 70px);
-  line-height: 1.12;
-  white-space: pre-line;
-  letter-spacing: -0.045em;
-  margin: 18px 0 24px;
-}
-.kr-registration-layout > div > p {
-  font-size: 14px;
-  max-width: 480px;
-  margin-bottom: 28px;
-}
-.kr-admission-options {
-  border: 1px solid #b8d1e6;
-  background: #d6e6f1e8;
-  box-shadow:
-    0 0 0 1px #ffffff8a,
-    -10px 16px 34px #9565730a,
-    10px 16px 34px #5b7d990c,
-    0 16px 38px #11365724;
-}
-.kr-admission-options > div {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 4px 20px;
-  padding: 28px 32px;
-}
-.kr-admission-options > div + div {
-  border-top: 1px solid var(--kr-line);
-}
-.kr-admission-options span {
-  font: 700 32px var(--fs-display);
-  grid-row: span 2;
-  color: var(--kr-blue);
-}
-.kr-admission-options h3 {
-  font-size: 21px;
-}
-.kr-admission-options p {
-  display: grid;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--kr-muted);
 }
 .kr-footer {
   display: flex;

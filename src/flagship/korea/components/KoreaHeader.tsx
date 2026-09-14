@@ -46,10 +46,6 @@ export function KoreaHeader({ c }: { c: KoreaPageCopy }) {
           <option value="en">EN</option>
           <option value="ko">한국어</option>
         </select>
-        <a className="kr-header-cta" href="#tickets">
-          {c.participate}
-          <ArrowUpRight />
-        </a>
         <button
           ref={toggle}
           className="kr-menu"
@@ -85,7 +81,6 @@ export function KoreaHeader({ c }: { c: KoreaPageCopy }) {
             {[
               { label: c.info.nav, href: "#event-info" },
               ...c.event.navigation,
-              { label: c.participate, href: "#tickets" },
             ].map((n) => (
               <a key={n.href} href={n.href} onClick={() => setOpen(false)}>
                 {n.label}
