@@ -18,12 +18,11 @@ export function KoreaQuestions({ c }: { c: KoreaPageCopy }) {
     <section id="faq" className="kr-section kr-faq">
       <div className="kr-wrap kr-faq-layout">
         <div className="kr-section-title" data-reveal>
-          <span>04 / FAQ</span>
+          <span>05 / FAQ</span>
           <span className="kr-section-korean" lang="ko">
             방문 전 안내
           </span>
           <h2>{c.faqTitle}</h2>
-          <p>{c.source}</p>
         </div>
         <div className="kr-faq-browser" data-reveal>
           <LayoutGroup id="kr-faq-categories">
@@ -95,8 +94,12 @@ export function KoreaQuestions({ c }: { c: KoreaPageCopy }) {
                                 }))
                               }
                             >
-                              <span>0{i + 1}</span>
-                              {item.question}
+                              <span className="kr-question-number">
+                                0{i + 1}
+                              </span>
+                              <span className="kr-question-copy">
+                                {item.question}
+                              </span>
                               <NavArrowDown />
                             </button>
                           </h3>

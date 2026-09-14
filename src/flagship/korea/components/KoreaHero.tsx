@@ -1,5 +1,4 @@
 import { ArrowDown } from "iconoir-react";
-import { event } from "../../../data/event";
 import { HeroArtwork } from "../../components/HeroArtwork";
 import type { KoreaPageCopy } from "../data/copy";
 
@@ -14,34 +13,30 @@ export function KoreaHero({ c }: { c: KoreaPageCopy }) {
           <h1 id="kr-title">{c.headline}</h1>
           <p>{c.intro}</p>
         </div>
-        <a className="kr-button" href="#highlights">
+        <a className="kr-button" href="#event-info">
           {c.explore}
           <ArrowDown />
         </a>
       </div>
       <div className="kr-event-pass kr-wrap">
-        <span className="kr-pass-label">
-          <strong>EVENT REFERENCE</strong>
-          {c.source}
-        </span>
         <dl>
           <div>
             <dt>{c.date}</dt>
             <dd>
-              {event.date} <small>{event.weekday}</small>
+              {c.koreaEvent.date}
             </dd>
           </div>
           <div>
             <dt>{c.time}</dt>
             <dd>
-              {event.startTime} — {event.endTime}
+              {c.koreaEvent.time}
             </dd>
           </div>
           <div>
             <dt>{c.venue}</dt>
             <dd>
-              {c.event.event.venue}
-              <small>{event.room}</small>
+              {c.koreaEvent.venue}
+              <small>{c.koreaEvent.venueDetail}</small>
             </dd>
           </div>
         </dl>

@@ -8,7 +8,7 @@ export function KoreaClosing({ c }: { c: KoreaPageCopy }) {
       <section id="tickets" className="kr-section kr-registration">
         <div className="kr-wrap kr-registration-layout">
           <div className="kr-registration-copy" data-reveal>
-            <span className="kr-label">05 / JOIN THE SHOW</span>
+            <span className="kr-label">06 / JOIN THE SHOW</span>
             <span className="kr-registration-korean" lang="ko">
               서울에서 만나요
             </span>

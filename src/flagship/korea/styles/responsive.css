@@ -41,6 +41,9 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
   }
+  .kr-info-board {
+    grid-template-columns: 1fr;
+  }
   .kr-highlight-copy h3 {
     font-size: 27px;
   }
@@ -205,8 +208,22 @@
   .kr-highlight-list {
     gap: 26px;
   }
-  .kr-highlight-image > span {
+  .kr-highlight-number {
     font-size: 62px;
+  }
+  .kr-info-confirmed {
+    padding: 18px;
+  }
+  .kr-info-facts {
+    grid-template-columns: 1fr;
+  }
+  .kr-info-facts > div {
+    min-height: 92px;
+    padding: 17px;
+  }
+  .kr-info-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
   .korea-event-site .kr-vendor-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

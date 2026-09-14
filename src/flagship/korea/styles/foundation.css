@@ -262,17 +262,6 @@ html[lang="ko"] .korea-event-site {
     10px 14px 28px #5b7d9912,
     0 14px 30px #294b651b;
 }
-.kr-text-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  border: 0;
-  border-bottom: 1px solid var(--kr-line);
-  background: none;
-  min-height: 48px;
-  color: var(--kr-ink);
-}
 .kr-header {
   position: sticky;
   top: 0;

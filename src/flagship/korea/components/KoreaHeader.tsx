@@ -26,7 +26,7 @@ export function KoreaHeader({ c }: { c: KoreaPageCopy }) {
     <header className="kr-header">
       <ChapterHomeLink onClick={() => setOpen(false)} />
       <nav className="kr-desktop-nav" aria-label={c.navigation}>
-        {c.event.navigation.map((n) => (
+        {[{ label: c.info.nav, href: "#event-info" }, ...c.event.navigation].map((n) => (
           <a key={n.href} href={n.href}>
             {n.label}
           </a>
@@ -83,6 +83,7 @@ export function KoreaHeader({ c }: { c: KoreaPageCopy }) {
             }}
           >
             {[
+              { label: c.info.nav, href: "#event-info" },
               ...c.event.navigation,
               { label: c.participate, href: "#tickets" },
             ].map((n) => (
