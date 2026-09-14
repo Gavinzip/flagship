@@ -63,6 +63,8 @@ html:is([lang="zh-TW"], [lang="ko"]) .brand-footer-top h2 { font-size: 36px; }
 .brand-footer-bottom nav { margin-left: auto; display: flex; gap: 30px; font-size: 12px; }
 .brand-footer-bottom nav a { display: flex; align-items: center; gap: 8px; min-height: 44px; }
 .brand-footer-bottom nav svg { width: 14px; }
+.brand-footer-bottom nav .brand-footer-social { justify-content: center; width: 32px; gap: 0; }
+.brand-footer-bottom nav .brand-footer-social svg { width: 17px; height: 17px; }
 .brand-film-dialog { background: #0c1320; color: #e8effa; border: 1px solid #99a9c2; border-radius: 0; width: min(960px,calc(100vw - 40px)); padding: 22px; max-height: 95svh; box-shadow: 0 24px 90px #06101f66; }
 .brand-film-dialog::backdrop { background: #101827cf; }
 .brand-film-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 17px; font-size: 13px; }

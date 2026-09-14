@@ -1,5 +1,5 @@
 import { MetalBorder } from "./ui/MetalBorder";
-import { ArrowUpRight } from "iconoir-react";
+import { ArrowUpRight, Instagram, X } from "iconoir-react";
 import { officialLinks } from "../data/editions";
 import { SiteLink } from "../routing/SiteNavigation";
 import { homeMedia } from "./homeMedia";
@@ -49,13 +49,11 @@ export function BrandFooter({
           <nav aria-label="Footer">
             <SiteLink page="taiwan">Taiwan</SiteLink>
             <SiteLink page="korea">Korea</SiteLink>
-            <a href={officialLinks.flagshipX} target="_blank" rel="noreferrer" aria-label="X @flagshiptcg">
-              X @flagshiptcg
-              <ArrowUpRight />
+            <a className="brand-footer-social" href={officialLinks.flagshipX} target="_blank" rel="noreferrer" aria-label="X @flagshiptcg" title="X @flagshiptcg">
+              <X aria-hidden="true" />
             </a>
-            <a href={officialLinks.instagram} target="_blank" rel="noreferrer" aria-label="FLAGSHIP Card Show on Instagram">
-              Instagram
-              <ArrowUpRight />
+            <a className="brand-footer-social" href={officialLinks.instagram} target="_blank" rel="noreferrer" aria-label="FLAGSHIP Card Show on Instagram" title="Instagram">
+              <Instagram aria-hidden="true" />
             </a>
             <a href={officialLinks.website} target="_blank" rel="noreferrer">
               Renaiss
