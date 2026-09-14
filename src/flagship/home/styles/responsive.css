@@ -87,7 +87,8 @@
   html:is([lang="zh-TW"], [lang="ko"]) .brand-footer-top h2 { font-size: 29px; }
   .brand-footer-bottom { flex-wrap: wrap; gap: 16px; }
   .brand-footer-bottom > a img { width: 96px; }
-  .brand-footer-bottom nav { margin-left: 0; width: 100%; border-top: 1px solid #a2b3ce38; padding-top: 10px; justify-content: space-between; }
+  .brand-footer-bottom nav { margin-left: 0; width: 100%; flex-wrap: wrap; column-gap: 16px; row-gap: 2px; border-top: 1px solid #a2b3ce38; padding-top: 10px; justify-content: flex-start; }
+  .brand-footer-bottom nav a { white-space: nowrap; }
   .brand-film-dialog { padding: 12px; width: calc(100vw - 20px); }
   .brand-film-top { margin-bottom: 10px; font-size: 10px; }
 }

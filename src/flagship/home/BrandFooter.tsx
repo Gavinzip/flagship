@@ -49,6 +49,14 @@ export function BrandFooter({
           <nav aria-label="Footer">
             <SiteLink page="taiwan">Taiwan</SiteLink>
             <SiteLink page="korea">Korea</SiteLink>
+            <a href={officialLinks.flagshipX} target="_blank" rel="noreferrer" aria-label="X @flagshiptcg">
+              X @flagshiptcg
+              <ArrowUpRight />
+            </a>
+            <a href={officialLinks.instagram} target="_blank" rel="noreferrer" aria-label="FLAGSHIP Card Show on Instagram">
+              Instagram
+              <ArrowUpRight />
+            </a>
             <a href={officialLinks.website} target="_blank" rel="noreferrer">
               Renaiss
               <ArrowUpRight />

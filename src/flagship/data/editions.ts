@@ -48,6 +48,8 @@ export function isEditionId(value: string | null): value is EditionId {
 export const officialLinks = {
   website: "https://www.renaiss.xyz/",
   updates: "https://x.com/renaissxyz",
+  flagshipX: "https://x.com/flagshiptcg",
+  instagram: "https://www.instagram.com/flagshipcardshow?stkn=MzdzamkzZXJhYnY1",
 };
 export const experienceImages = [
   "highlight-rare-showcase.webp",
