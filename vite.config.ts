@@ -268,6 +268,7 @@ function eventAssets(
           )
           .replaceAll("__GA_MEASUREMENT_ID__", measurementId)
           .replaceAll("__ASSET_CDN_ORIGIN__", assetCdnOrigin)
+          .replaceAll("/__ASSET_APP_ICON__", assetUrl("/assets/app-icon.png"))
           .replaceAll("__ASSET_APP_ICON__", assetUrl("/assets/app-icon.png"))
           .replace(
             "__EVENT_STRUCTURED_DATA__",

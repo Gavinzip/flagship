@@ -2,7 +2,7 @@ import { media } from "../config/media";
 
 export type EventHighlight = {
   number: `0${1 | 2 | 3}`;
-  image: string;
+  image: { src: string };
   imagePosition: string;
   layout: "compact" | "wide" | "stage";
 };
@@ -10,19 +10,19 @@ export type EventHighlight = {
 export const eventHighlightVisuals = [
   {
     number: "01",
-    image: media.highlightEntryGift,
+    image: { src: media.highlightEntryGift },
     imagePosition: "50% center",
     layout: "compact",
   },
   {
     number: "02",
-    image: media.highlightChampionChallenge,
+    image: { src: media.highlightChampionChallenge },
     imagePosition: "center",
     layout: "wide",
   },
   {
     number: "03",
-    image: media.highlightTcgVendors,
+    image: { src: media.highlightTcgVendors },
     imagePosition: "center",
     layout: "stage",
   },
