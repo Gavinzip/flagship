@@ -1,9 +1,8 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Menu, Xmark } from "iconoir-react";
-import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
 import { LanguageSelector } from "./LanguageSelector";
-import { LumaCheckoutLink } from "./LumaCheckoutLink";
+import { ActionLink } from "./ActionLink";
 
 export function Header({ brandControl, editionControl }: { brandControl: ReactNode; editionControl?: ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -39,13 +38,12 @@ export function Header({ brandControl, editionControl }: { brandControl: ReactNo
         <div className="header-actions">
           {editionControl}
           <LanguageSelector />
-          <LumaCheckoutLink
-            checkoutTarget="challenge"
+          <ActionLink
             className="header-cta"
-            href={event.challengeRegistrationUrl}
+            href="#highlights"
           >
-            {content.challengeRegistration.label}
-          </LumaCheckoutLink>
+            {content.archive.recap}
+          </ActionLink>
 
           <button
             className="menu-button"

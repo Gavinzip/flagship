@@ -6,7 +6,8 @@ import {
   useMemo,
   useState,
 } from "react";
-import { siteContent, type Locale } from "./siteContent";
+import type { Locale } from "./siteContent";
+import { taiwanArchiveContent as siteContent } from "./taiwanArchiveContent";
 
 type LocaleContextValue = {
   content: (typeof siteContent)[Locale];

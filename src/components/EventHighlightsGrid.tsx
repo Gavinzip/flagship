@@ -1,8 +1,6 @@
 import type { CSSProperties } from "react";
-import { WarningTriangle } from "iconoir-react";
-import { eventHighlightVisuals } from "../data/eventHighlights";
+import { eventHighlightVisuals } from "../flagship/taiwan/data/highlights";
 import { useLocale } from "../i18n/LocaleProvider";
-import { GlareSweep } from "./GlareSweep";
 import { SpotlightCard } from "./SpotlightCard";
 
 type RevealStyle = CSSProperties & {
@@ -50,15 +48,13 @@ export function EventHighlightsGrid() {
               >
                 <div className="event-highlight-card__media">
                   <img
-                    src={highlight.image}
+                    {...highlight.image}
                     alt={highlight.alt}
                     decoding="async"
+                    width="1680"
+                    height="1120"
                   />
-                  <span
-                    className="event-highlight-card__shade"
-                    aria-hidden="true"
-                  />
-                  <GlareSweep />
+                  <span className="event-highlight-card__dateline">TAIWAN · 05 SEP 2026</span>
                 </div>
 
                 <div className="event-highlight-card__content">
@@ -70,7 +66,7 @@ export function EventHighlightsGrid() {
                       {highlight.number}
                     </span>
                     <span className="event-highlight-card__label">
-                      EVENT HIGHLIGHT
+                      {content.highlights.cardLabel}
                     </span>
                   </header>
 
@@ -96,13 +92,6 @@ export function EventHighlightsGrid() {
                       <li key={point}>{point}</li>
                     ))}
                   </ul>
-
-                  {"notice" in highlight ? (
-                    <p className="event-highlight-card__notice">
-                      <WarningTriangle aria-hidden="true" />
-                      <span>{highlight.notice}</span>
-                    </p>
-                  ) : null}
                 </div>
               </SpotlightCard>
             </li>

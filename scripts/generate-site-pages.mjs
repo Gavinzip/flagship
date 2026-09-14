@@ -20,7 +20,7 @@ if (!koreaImage || !release) throw new Error("Cannot generate event metadata wit
 const escape = text => String(text).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 const pages = {
   korea: { title: "FLAGSHIP Card Show — KOREA · The next chapter", description: "Explore FLAGSHIP Korea. Dates, venue, exhibitors and tickets will be announced through our official channels.", image: new URL(`assets/${koreaImage}`, siteUrl).href, theme: "#edf3fa" },
-  taiwan: { title: event.seoTitle, description: "Revisit FLAGSHIP Card Show Taiwan 2026, held on September 5 at Syntrend Creative Park. Explore the original event website, activities and exhibitors.", image: `${cdn}/${release}/assets/flagship-logo.webp`, theme: "#090a0e" },
+  taiwan: { title: "FLAGSHIP Taiwan 2026｜活動回顧", description: "Revisit FLAGSHIP Taiwan, held on September 5, 2026. Real photographs capture on-site surprises, Champion Challenge matches and 30+ TCG vendors.", image: `${cdn}/${release}/assets/flagship-logo.webp`, theme: "#090a0e" },
 };
 for (const [page, data] of Object.entries(pages)) {
   const url = new URL(`${page}/`, siteUrl).href;

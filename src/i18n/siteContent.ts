@@ -116,7 +116,7 @@ type SiteContent = {
   };
 };
 
-export const siteContent = {
+export const siteContent: Record<Locale, SiteContent> = {
   "zh-TW": {
     metaDescription: event.metaDescription,
     navigation: [

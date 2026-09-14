@@ -4,21 +4,21 @@ import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { Hero } from "../../components/Hero";
 import { HighlightsSection } from "../../components/HighlightsSection";
-import { LumaCheckoutProvider } from "../../components/LumaCheckoutProvider";
 import { MobileActionBar } from "../../components/MobileActionBar";
 import { MotionDirector } from "../../components/MotionDirector";
 import { SiteBoot } from "../../components/SiteBoot";
-import { TicketSection } from "../../components/TicketSection";
 import { VendorsSection } from "../../components/VendorsSection";
 import { VenueSection } from "../../components/VenueSection";
 import { LocaleProvider } from "../../i18n/LocaleProvider";
 import { useFlagship } from "../FlagshipContext";
-import { ChapterHomeLink } from "../components/ChapterHomeLink";
 import { TaiwanEditionControl } from "./TaiwanEditionControl";
+import { ChapterHomeLink } from "../components/ChapterHomeLink";
 import { EditionTransitionContext } from "../routing/transition/EditionTransitionContext";
 import "./taiwan-navigation.css";
+import "./taiwan-recap.css";
+import { TaiwanRecapClosing } from "./TaiwanRecapClosing";
 
-/** Compose the original Taiwan event page and its original loading/checkout providers. */
+/** The completed Taiwan edition, retaining its event identity and real on-site record. */
 export function TaiwanEventSite({ onReady }: { onReady?: () => void }) {
   const { language, setLanguage } = useFlagship();
   const coveredByTransition = useContext(EditionTransitionContext)?.retainingWorld ?? false;
@@ -29,24 +29,22 @@ export function TaiwanEventSite({ onReady }: { onReady?: () => void }) {
   }
   return (
     <LocaleProvider locale={language} onLocaleChange={setLanguage}>
-      <LumaCheckoutProvider>
-        <SiteBoot onReady={onReady} coveredByTransition={coveredByTransition}>
-          <div className="taiwan-event-site">
-            <MotionDirector />
-            <Header brandControl={<ChapterHomeLink />} editionControl={<TaiwanEditionControl />} />
-            <main id="main">
-              <Hero />
-              <MobileActionBar />
-              <HighlightsSection />
-              <VendorsSection />
-              <VenueSection />
-              <FaqSection />
-              <TicketSection />
-            </main>
-            <Footer />
-          </div>
-        </SiteBoot>
-      </LumaCheckoutProvider>
+      <SiteBoot onReady={onReady} coveredByTransition={coveredByTransition}>
+        <div className="taiwan-event-site">
+          <MotionDirector />
+          <Header brandControl={<ChapterHomeLink />} editionControl={<TaiwanEditionControl />} />
+          <main id="main">
+            <Hero />
+            <MobileActionBar />
+            <HighlightsSection />
+            <VendorsSection />
+            <VenueSection />
+            <FaqSection />
+            <TaiwanRecapClosing />
+          </main>
+          <Footer />
+        </div>
+      </SiteBoot>
     </LocaleProvider>
   );
 }
