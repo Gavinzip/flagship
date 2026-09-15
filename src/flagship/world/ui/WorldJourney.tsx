@@ -12,6 +12,7 @@ import type { CityId } from "../config/worldSpec";
 import type { WorldTheme } from "../config/appearance";
 import { CityNavigator } from "./CityNavigator";
 import { CityMarker } from "./CityMarker";
+import { WorldTicketAction } from "./WorldTicketAction";
 import { WorldDescription } from "./WorldDescription";
 import { observeCityGestures } from "../runtime/cityGestures";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -310,13 +311,29 @@ export function WorldJourney({
                   </motion.div>
                 </AnimatePresence>
               </div>
-              <div className="world-actions">
-                <SiteLink page={city} className="world-enter stellar-action">
-                  <StellarActionContent>{city === "taiwan" ? c.taiwanCta : c.koreaCta}</StellarActionContent>
-                </SiteLink>
-                <button className="stellar-action stellar-action--quiet" onClick={onWatch}>
-                  <StellarActionContent play>{c.viewRecap}</StellarActionContent>
-                </button>
+              <div className={`world-actions${city === "korea" ? " world-actions--with-ticket" : ""}`}>
+                {city === "korea" ? (
+                  <>
+                    <div className="world-primary-actions">
+                      <SiteLink page={city} className="world-enter stellar-action stellar-action--secondary">
+                        <StellarActionContent>{c.koreaCta}</StellarActionContent>
+                      </SiteLink>
+                      <WorldTicketAction label={c.ticketCta} />
+                    </div>
+                    <button className="stellar-action stellar-action--quiet" onClick={onWatch}>
+                      <StellarActionContent play>{c.viewRecap}</StellarActionContent>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <SiteLink page={city} className="world-enter stellar-action">
+                      <StellarActionContent>{c.taiwanCta}</StellarActionContent>
+                    </SiteLink>
+                    <button className="stellar-action stellar-action--quiet" onClick={onWatch}>
+                      <StellarActionContent play>{c.viewRecap}</StellarActionContent>
+                    </button>
+                  </>
+                )}
               </div>
             </div>
             <CityNavigator

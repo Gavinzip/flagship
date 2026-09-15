@@ -85,6 +85,25 @@
   gap: 22px;
   margin-top: 28px;
 }
+.world-primary-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 22px);
+}
+.brand-site[data-theme] .world-actions.world-actions--with-ticket {
+  /* The ticket and Korea entry share the primary row beneath the centered heading. */
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 0;
+}
+.brand-site[data-theme] .world-actions.world-actions--with-ticket .world-primary-actions {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.brand-site[data-theme] .world-actions.world-actions--with-ticket .world-enter {
+  min-width: 160px;
+}
 .world-editions {
   position: absolute;
   right: max(56px, calc((100% - 1256px) / 2));

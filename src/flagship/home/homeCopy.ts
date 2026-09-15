@@ -2,7 +2,7 @@ import type { SiteLanguage } from "../data/copy";
 
 export type HomeCopy = {
   nav: [string, string, string]; menu: string; close: string; language: string; skip: string;
-  headline: [string, string]; introduction: string; explore: string; viewRecap: string;
+  headline: [string, string]; introduction: string; explore: string; ticketCta: string; viewRecap: string;
   aboutTitle: string[]; aboutParagraphs: [string, string]; aboutCaption: string; aboutAlt: string;
   editionsTitle: string; editionsIntro: string; taiwanStatus: string; koreaStatus: string;
   taiwanDescription: string; koreaDescription: string; taiwanCta: string; koreaCta: string; moreCities: string;
@@ -34,6 +34,7 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     ],
     "introduction": "Collect, trade and play. Meet the people who love cards as much as you do, at FLAGSHIP.",
     "explore": "Explore the editions",
+    "ticketCta": "Get tickets",
     "viewRecap": "Watch Taiwan 2026",
     "aboutTitle": [
       "THE BEGINNING OF FLAGSHIP"
@@ -126,6 +127,7 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     ],
     "introduction": "收藏、交換、對戰。在 FLAGSHIP，和喜歡卡牌的人面對面相聚。",
     "explore": "探索各地卡展",
+    "ticketCta": "拿票",
     "viewRecap": "觀看台灣 2026 回顧",
     "aboutTitle": [
       "FLAGSHIP 的開始"
@@ -218,6 +220,7 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     ],
     "introduction": "수집하고, 교환하고, 함께 즐기세요. FLAGSHIP에서 같은 취미를 가진 사람들을 만나보세요.",
     "explore": "각 지역 행사 둘러보기",
+    "ticketCta": "티켓 받기",
     "viewRecap": "Taiwan 2026 영상 보기",
     "aboutTitle": [
       "FLAGSHIP의 시작"
