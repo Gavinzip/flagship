@@ -41,7 +41,6 @@ export function KoreaPartners({ c }: { c: KoreaPageCopy }) {
               label={c.event.vendors.organizerLabel}
               logo={organizer}
               tone="organizer"
-              preserveLeadingMarkColor
               revealIndex={1}
             />
             <PartnerTierCard

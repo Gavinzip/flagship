@@ -60,6 +60,12 @@
   --tier-accent: #d39149;
 }
 
+.partner-tier-card--organizer .partner-tier-card__stage {
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: linear-gradient(135deg, #ffffff, #edf4fa);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.92), 0 12px 28px rgba(0, 0, 0, 0.14);
+}
+
 .partner-tier-card--title {
   --tier-accent: var(--color-red);
   background: radial-gradient(circle at 50% 64%, rgba(255, 36, 59, 0.075), transparent 58%);

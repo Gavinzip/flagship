@@ -202,19 +202,6 @@
 }
 .korea-event-site .partner-tier-card--organizer .partner-tier-card__stage > img {
   width: min(82%, 300px);
-  filter: brightness(0) drop-shadow(0 8px 16px #173d5824);
-}
-.korea-event-site
-  .partner-tier-card--organizer
-  .partner-tier-card__stage--preserve-leading-mark
-  > img {
-  grid-area: 1 / 1;
-}
-.korea-event-site
-  .partner-tier-card--organizer
-  .partner-tier-card__stage
-  > .partner-tier-card__mark-layer {
-  clip-path: inset(0 84.25% 0 0);
   filter: drop-shadow(0 8px 16px #173d5824);
 }
 .korea-event-site .partner-tier-card--title .partner-tier-card__stage > img {
