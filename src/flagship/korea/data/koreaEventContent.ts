@@ -1,8 +1,7 @@
-import type { EventHighlightNumber } from "../../../data/eventHighlights";
-
 type HighlightCopy = {
-  number: EventHighlightNumber;
+  number: "01" | "02" | "03" | "04" | "05";
   english: string;
+  korean: string;
   title: string;
   description: string;
   alt: string;
@@ -20,6 +19,7 @@ export type KoreaEventContent = {
   highlights: {
     title: string;
     english: string;
+    intro: string;
     items: readonly HighlightCopy[];
   };
   vendors: {
@@ -43,41 +43,66 @@ export type KoreaEventContent = {
 export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent> = {
   "zh-TW": {
     navigation: [
-      { label: "活動亮點", href: "#highlights" },
+      { label: "卡展現場", href: "#highlights" },
       { label: "合作夥伴", href: "#vendors" },
       { label: "場地資訊", href: "#venue" },
       { label: "常見問題", href: "#faq" },
     ],
     highlights: {
-      title: "活動亮點",
-      english: "EVENT HIGHLIGHTS",
+      title: "FLAGSHIP TAIWAN 現場",
+      english: "FLAGSHIP TAIWAN / 2026",
+      intro:
+        "這五個片段拍在 FLAGSHIP TAIWAN。看卡、交流、對戰，都是那一天現場正在發生的事。",
       items: [
         {
           number: "01",
-          english: "CARDS, CULTURE & CONNECTION",
-          title: "因卡牌而聚在一起",
+          english: "GATHER AROUND CARDS",
+          korean: "카드로 모이다",
+          title: "因卡相聚",
           description:
-            "FLAGSHIP KOREA 以卡牌收藏、交流與現場互動為核心；完整活動內容將依官方公告確認。",
-          alt: "卡牌活動現場的收藏與交流空間",
-          points: ["收藏", "交流", "現場互動"],
+            "因為卡，大家來到這裡。因卡相聚，也是一種緣分；一張卡就能讓原本不認識的人停下腳步，開始認識彼此。",
+          alt: "玩家圍著桌子看卡與對戰",
+          points: ["卡冊", "對戰桌"],
         },
         {
           number: "02",
           english: "COLLECTOR COMMUNITY",
-          title: "收藏家交流與社群互動",
+          korean: "컬렉터의 만남",
+          title: "收藏家相遇",
           description:
-            "FLAGSHIP KOREA 規劃讓收藏家、玩家與社群在首爾相聚；現場活動安排將於確認後公布。",
-          alt: "卡牌活動現場的交流空間",
-          points: ["收藏家交流", "社群互動", "玩家連結"],
+            "喜歡同一套卡、收著同樣的收藏，話題就接上了。卡冊一攤開，大家交流收藏，也慢慢認識彼此。",
+          alt: "收藏家在卡展中分享卡牌與收藏",
+          points: ["收藏卡", "卡冊"],
         },
         {
           number: "03",
-          english: "BRAND EXPERIENCES",
+          english: "BRAND EXPERIENCES & COLLECTIBLES",
+          korean: "브랜드 경험과 컬렉터블",
           title: "品牌體驗與收藏品",
           description:
-            "品牌展位、現場體驗與收藏品展示為本次活動規劃方向。合作陣容與細節將以官方公告為準。",
-          alt: "卡牌展會中的品牌展示區",
-          points: ["品牌展位", "現場體驗", "收藏品展示"],
+            "攤位上有商品，也有展示、互動和各式收藏品。走到喜歡的攤位，停下來看看，也和身邊的人聊幾句。",
+          alt: "卡展中的品牌攤位與收藏品展示",
+          points: ["展示", "互動"],
+        },
+        {
+          number: "04",
+          english: "ON-SITE ATMOSPHERE",
+          korean: "현장의 분위기",
+          title: "現場的氛圍",
+          description:
+            "不管是小獎還是大獎，只要有了結果，旁邊的人都會跟著一起歡呼。",
+          alt: "卡展人群舉手歡呼的瞬間",
+          points: ["抽獎", "對戰結果"],
+        },
+        {
+          number: "05",
+          english: "THE CARD SHOW FLOOR",
+          korean: "카드 쇼 현장",
+          title: "卡展現場",
+          description:
+            "從入口、攤位到舞台，每個角落都聚著喜歡卡牌的人。",
+          alt: "FLAGSHIP TAIWAN 的卡展人潮與場內攤位",
+          points: ["入口", "攤位與舞台"],
         },
       ],
     },
@@ -213,41 +238,66 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
   },
   en: {
     navigation: [
-      { label: "Highlights", href: "#highlights" },
+      { label: "Card show", href: "#highlights" },
       { label: "Partners", href: "#vendors" },
       { label: "Venue", href: "#venue" },
       { label: "FAQ", href: "#faq" },
     ],
     highlights: {
-      title: "Event highlights",
-      english: "EVENT HIGHLIGHTS",
+      title: "FLAGSHIP TAIWAN, on the day",
+      english: "FLAGSHIP TAIWAN / 2026",
+      intro:
+        "These five clips were filmed at FLAGSHIP TAIWAN: looking through cards, sharing collections, and playing a match.",
       items: [
         {
           number: "01",
-          english: "CARDS, CULTURE & CONNECTION",
+          english: "GATHER AROUND CARDS",
+          korean: "카드로 모이다",
           title: "Gather Around Cards",
           description:
-            "FLAGSHIP KOREA is centred on collecting, exchange, and shared moments on site. The final programme will be confirmed through official announcements.",
-          alt: "A space for collecting and exchange at a card-show event",
-          points: ["Collecting", "Exchange", "On-site moments"],
+            "Cards brought people here. Meeting through cards is a kind of connection; one card can make strangers stop, talk, and get to know one another.",
+          alt: "Players gathered around a table to look at cards and play",
+          points: ["Binders", "Match tables"],
         },
         {
           number: "02",
           english: "COLLECTOR COMMUNITY",
-          title: "Collector Community",
+          korean: "컬렉터의 만남",
+          title: "Collectors Meet",
           description:
-            "FLAGSHIP KOREA is planned as a meeting point for collectors, players, and the wider community in Seoul. On-site programming will be announced when confirmed.",
-          alt: "A shared space at a card-show event",
-          points: ["Collector exchange", "Community interaction", "Player connections"],
+            "People who love the same cards and collect similar things already have something to talk about. Once a binder opens, the conversation begins.",
+          alt: "Collectors sharing cards and their collections at a card show",
+          points: ["Collectible cards", "Binders"],
         },
         {
           number: "03",
-          english: "BRAND EXPERIENCES",
+          english: "BRAND EXPERIENCES & COLLECTIBLES",
+          korean: "브랜드 경험과 컬렉터블",
           title: "Brand Experiences & Collectibles",
           description:
-            "Brand booths, on-site experiences, and collectible displays form the event direction. Partner information and final details will be provided through official announcements.",
-          alt: "A brand display at a card show",
-          points: ["Brand booths", "On-site experiences", "Collectible displays"],
+            "Booths feature products, displays, interactive moments, and collectibles. They give people something to look at and talk about.",
+          alt: "Brand booths and collectible displays at a card show",
+          points: ["Displays", "Interactive moments"],
+        },
+        {
+          number: "04",
+          english: "ON-SITE ATMOSPHERE",
+          korean: "현장의 분위기",
+          title: "The Feel of the Floor",
+          description:
+            "Small prize or big prize, once there is a result, the people nearby cheer along.",
+          alt: "A cheering crowd at a card show",
+          points: ["Prize draw", "Match result"],
+        },
+        {
+          number: "05",
+          english: "THE CARD SHOW FLOOR",
+          korean: "카드 쇼 현장",
+          title: "The Card Show Floor",
+          description:
+            "From the entrance and booths to the stage, every corner has people who love cards.",
+          alt: "Crowds and booths at FLAGSHIP TAIWAN",
+          points: ["Entrance", "Booths and stage"],
         },
       ],
     },
@@ -384,41 +434,66 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
   },
   ko: {
     navigation: [
-      { label: "행사 하이라이트", href: "#highlights" },
+      { label: "카드 쇼 현장", href: "#highlights" },
       { label: "파트너", href: "#vendors" },
       { label: "행사장 정보", href: "#venue" },
       { label: "자주 묻는 질문", href: "#faq" },
     ],
     highlights: {
-      title: "행사 하이라이트",
-      english: "EVENT HIGHLIGHTS",
+      title: "FLAGSHIP TAIWAN 현장",
+      english: "FLAGSHIP TAIWAN / 2026",
+      intro:
+        "이 다섯 장면은 FLAGSHIP TAIWAN에서 담았습니다. 카드를 보고, 컬렉션을 나누고, 한 판을 즐기던 그날의 현장입니다.",
       items: [
         {
           number: "01",
-          english: "CARDS, CULTURE & CONNECTION",
-          title: "카드로 함께 모이는 자리",
+          english: "GATHER AROUND CARDS",
+          korean: "카드로 모이다",
+          title: "카드로 모이다",
           description:
-            "FLAGSHIP KOREA는 컬렉팅, 교류, 현장 경험을 중심으로 준비하고 있습니다. 최종 프로그램은 공식 공지를 통해 안내됩니다.",
-          alt: "카드 쇼 현장에서 이뤄지는 컬렉팅과 교류",
-          points: ["컬렉팅", "교류", "현장 경험"],
+            "카드가 사람들을 이곳으로 모았습니다. 카드로 만난 인연은 특별합니다. 카드 한 장이 낯선 사람들의 발걸음을 멈추게 하고, 대화를 시작하게 합니다.",
+          alt: "테이블에 모여 카드를 보고 게임을 하는 사람들",
+          points: ["바인더", "대결 테이블"],
         },
         {
           number: "02",
           english: "COLLECTOR COMMUNITY",
-          title: "컬렉터 커뮤니티",
+          korean: "컬렉터의 만남",
+          title: "컬렉터의 만남",
           description:
-            "FLAGSHIP KOREA는 서울에서 컬렉터, 플레이어, 커뮤니티가 교류하는 장을 지향합니다. 현장 프로그램은 확정 후 안내됩니다.",
-          alt: "카드 쇼의 커뮤니티 공간",
-          points: ["컬렉터 교류", "커뮤니티 소통", "플레이어 연결"],
+            "같은 카드를 좋아하고 비슷한 컬렉션을 모으면, 이미 할 이야기가 있습니다. 바인더가 펼쳐지면 대화가 시작됩니다.",
+          alt: "카드 쇼에서 카드와 컬렉션을 나누는 컬렉터들",
+          points: ["컬렉터블 카드", "바인더"],
         },
         {
           number: "03",
-          english: "BRAND EXPERIENCES",
+          english: "BRAND EXPERIENCES & COLLECTIBLES",
+          korean: "브랜드 경험과 컬렉터블",
           title: "브랜드 경험과 컬렉터블",
           description:
-            "브랜드 부스, 현장 경험, 컬렉터블 전시는 이번 행사의 기획 방향입니다. 파트너 정보와 세부 내용은 공식 공지를 기준으로 안내됩니다.",
-          alt: "카드 쇼의 브랜드 전시 공간",
-          points: ["브랜드 부스", "현장 경험", "컬렉터블 전시"],
+            "부스에는 상품과 함께 전시, 체험, 다양한 컬렉터블이 놓입니다. 둘러보다가 멈춰 서서 이야기를 나누게 됩니다.",
+          alt: "카드 쇼의 브랜드 부스와 컬렉터블 전시",
+          points: ["전시", "체험"],
+        },
+        {
+          number: "04",
+          english: "ON-SITE ATMOSPHERE",
+          korean: "현장의 분위기",
+          title: "현장의 분위기",
+          description:
+            "작은 경품이든 큰 경품이든 결과가 나오면, 주변 사람들도 함께 환호합니다.",
+          alt: "카드 쇼에서 함께 환호하는 사람들",
+          points: ["경품 추첨", "대결 결과"],
+        },
+        {
+          number: "05",
+          english: "THE CARD SHOW FLOOR",
+          korean: "카드 쇼 현장",
+          title: "카드 쇼 현장",
+          description:
+            "입구, 부스, 무대까지. 행사장 곳곳에 카드를 좋아하는 사람들이 모여 있습니다.",
+          alt: "FLAGSHIP TAIWAN의 카드 쇼 관람객과 부스",
+          points: ["입구", "부스와 무대"],
         },
       ],
     },

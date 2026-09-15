@@ -1,15 +1,35 @@
-import entryPack from "../../../assets/korea-entry-pack-1280.webp";
-import entryPackSmall from "../../../assets/korea-entry-pack-720.webp";
-import { taiwanRecapMedia } from "../../../config/taiwanRecapMedia";
+import { staticAssetUrl } from "../../../lib/staticAssets";
 
-// The entry-pack photograph is a Drive-sourced real event image selected for
-// Korea's temporary programme preview. The remaining previews retain the
-// existing real-event photography until Korea-specific source photos arrive.
-export const koreaEventMedia = [
+export type KoreaHighlightMedia = {
+  src: string;
+  poster: string;
+};
+
+// These five quiet, 720p previews come from the FLAGSHIP TAIWAN 2026 event.
+// They are hosted as immutable CDN media, rather than bundled into the Korea
+// page, because they are used as an atmosphere preview for the Seoul edition.
+const koreaHighlightAsset = (name: string) =>
+  staticAssetUrl(`flagship/korea-highlights/${name}`);
+
+export const koreaHighlightMedia: readonly KoreaHighlightMedia[] = [
   {
-    src: entryPack,
-    srcSet: `${entryPackSmall} 720w, ${entryPack} 1280w`,
+    src: koreaHighlightAsset("01-gather-around-cards-720p.web.mp4"),
+    poster: koreaHighlightAsset("01-gather-around-cards-poster.webp"),
   },
-  taiwanRecapMedia.highlightChampionChallenge,
-  taiwanRecapMedia.highlightTcgVendors,
-] as const;
+  {
+    src: koreaHighlightAsset("02-collector-community-720p.web.mp4"),
+    poster: koreaHighlightAsset("02-collector-community-poster.webp"),
+  },
+  {
+    src: koreaHighlightAsset("03-brand-experiences-collectibles-720p.web.mp4"),
+    poster: koreaHighlightAsset("03-brand-experiences-collectibles-poster.webp"),
+  },
+  {
+    src: koreaHighlightAsset("04-on-site-atmosphere-720p.web.mp4"),
+    poster: koreaHighlightAsset("04-on-site-atmosphere-poster.webp"),
+  },
+  {
+    src: koreaHighlightAsset("05-card-show-floor-720p.web.mp4"),
+    poster: koreaHighlightAsset("05-card-show-floor-poster.webp"),
+  },
+];
