@@ -4,14 +4,16 @@ import { koreaEmblemContour } from "../data/koreaEmblemContour";
 export function OriginalEmblem({
   src,
   label = "FLAGSHIP Card Show KOREA",
+  className,
 }: {
   src: string;
   label?: string;
+  className?: string;
 }) {
   const clipId = `korea-emblem-${useId().replaceAll(":", "")}`;
   return (
     <svg
-      className="fs-original-emblem"
+      className={["fs-original-emblem", className].filter(Boolean).join(" ")}
       viewBox="220 90 1170 755"
       role="img"
       aria-label={label}

@@ -36,13 +36,6 @@
   grid-column: 1 / -1;
   grid-template-columns: 1.15fr 0.85fr;
 }
-.kr-highlight-intro {
-  max-width: 54ch;
-  margin-top: 18px;
-  color: #31536e;
-  font-size: 14px;
-  line-height: 1.8;
-}
 .kr-highlight-image {
   position: relative;
   display: block;
@@ -111,14 +104,6 @@
 .kr-highlight-1 .kr-highlight-copy,
 .kr-highlight-2 .kr-highlight-copy {
   align-self: stretch;
-}
-.kr-highlight-korean {
-  display: block;
-  margin-bottom: 7px;
-  color: var(--kr-accent-warm);
-  font-size: 11px;
-  font-weight: 750;
-  letter-spacing: 0.12em;
 }
 .kr-highlight-copy h3 {
   font-size: clamp(26px, 2.7vw, 38px);

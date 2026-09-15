@@ -1,7 +1,6 @@
 type HighlightCopy = {
   number: "01" | "02" | "03" | "04" | "05";
   english: string;
-  korean: string;
   title: string;
   description: string;
   alt: string;
@@ -19,7 +18,6 @@ export type KoreaEventContent = {
   highlights: {
     title: string;
     english: string;
-    intro: string;
     items: readonly HighlightCopy[];
   };
   vendors: {
@@ -49,15 +47,12 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
       { label: "常見問題", href: "#faq" },
     ],
     highlights: {
-      title: "FLAGSHIP TAIWAN 現場",
-      english: "FLAGSHIP TAIWAN / 2026",
-      intro:
-        "這五個片段拍在 FLAGSHIP TAIWAN。看卡、交流、對戰，都是那一天現場正在發生的事。",
+      title: "活動亮點",
+      english: "EVENT HIGHLIGHTS",
       items: [
         {
           number: "01",
           english: "GATHER AROUND CARDS",
-          korean: "카드로 모이다",
           title: "因卡相聚",
           description:
             "因為卡，大家來到這裡。因卡相聚，也是一種緣分；一張卡就能讓原本不認識的人停下腳步，開始認識彼此。",
@@ -67,7 +62,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "02",
           english: "COLLECTOR COMMUNITY",
-          korean: "컬렉터의 만남",
           title: "收藏家相遇",
           description:
             "喜歡同一套卡、收著同樣的收藏，話題就接上了。卡冊一攤開，大家交流收藏，也慢慢認識彼此。",
@@ -77,7 +71,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "03",
           english: "BRAND EXPERIENCES & COLLECTIBLES",
-          korean: "브랜드 경험과 컬렉터블",
           title: "品牌體驗與收藏品",
           description:
             "攤位上有商品，也有展示、互動和各式收藏品。走到喜歡的攤位，停下來看看，也和身邊的人聊幾句。",
@@ -87,7 +80,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "04",
           english: "ON-SITE ATMOSPHERE",
-          korean: "현장의 분위기",
           title: "現場的氛圍",
           description:
             "不管是小獎還是大獎，只要有了結果，旁邊的人都會跟著一起歡呼。",
@@ -97,7 +89,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "05",
           english: "THE CARD SHOW FLOOR",
-          korean: "카드 쇼 현장",
           title: "卡展現場",
           description:
             "從入口、攤位到舞台，每個角落都聚著喜歡卡牌的人。",
@@ -244,15 +235,12 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
       { label: "FAQ", href: "#faq" },
     ],
     highlights: {
-      title: "FLAGSHIP TAIWAN, on the day",
-      english: "FLAGSHIP TAIWAN / 2026",
-      intro:
-        "These five clips were filmed at FLAGSHIP TAIWAN: looking through cards, sharing collections, and playing a match.",
+      title: "Event highlights",
+      english: "EVENT HIGHLIGHTS",
       items: [
         {
           number: "01",
           english: "GATHER AROUND CARDS",
-          korean: "카드로 모이다",
           title: "Gather Around Cards",
           description:
             "Cards brought people here. Meeting through cards is a kind of connection; one card can make strangers stop, talk, and get to know one another.",
@@ -262,7 +250,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "02",
           english: "COLLECTOR COMMUNITY",
-          korean: "컬렉터의 만남",
           title: "Collectors Meet",
           description:
             "People who love the same cards and collect similar things already have something to talk about. Once a binder opens, the conversation begins.",
@@ -272,7 +259,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "03",
           english: "BRAND EXPERIENCES & COLLECTIBLES",
-          korean: "브랜드 경험과 컬렉터블",
           title: "Brand Experiences & Collectibles",
           description:
             "Booths feature products, displays, interactive moments, and collectibles. They give people something to look at and talk about.",
@@ -282,7 +268,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "04",
           english: "ON-SITE ATMOSPHERE",
-          korean: "현장의 분위기",
           title: "The Feel of the Floor",
           description:
             "Small prize or big prize, once there is a result, the people nearby cheer along.",
@@ -292,7 +277,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "05",
           english: "THE CARD SHOW FLOOR",
-          korean: "카드 쇼 현장",
           title: "The Card Show Floor",
           description:
             "From the entrance and booths to the stage, every corner has people who love cards.",
@@ -440,15 +424,12 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
       { label: "자주 묻는 질문", href: "#faq" },
     ],
     highlights: {
-      title: "FLAGSHIP TAIWAN 현장",
-      english: "FLAGSHIP TAIWAN / 2026",
-      intro:
-        "이 다섯 장면은 FLAGSHIP TAIWAN에서 담았습니다. 카드를 보고, 컬렉션을 나누고, 한 판을 즐기던 그날의 현장입니다.",
+      title: "행사 하이라이트",
+      english: "EVENT HIGHLIGHTS",
       items: [
         {
           number: "01",
           english: "GATHER AROUND CARDS",
-          korean: "카드로 모이다",
           title: "카드로 모이다",
           description:
             "카드가 사람들을 이곳으로 모았습니다. 카드로 만난 인연은 특별합니다. 카드 한 장이 낯선 사람들의 발걸음을 멈추게 하고, 대화를 시작하게 합니다.",
@@ -458,7 +439,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "02",
           english: "COLLECTOR COMMUNITY",
-          korean: "컬렉터의 만남",
           title: "컬렉터의 만남",
           description:
             "같은 카드를 좋아하고 비슷한 컬렉션을 모으면, 이미 할 이야기가 있습니다. 바인더가 펼쳐지면 대화가 시작됩니다.",
@@ -468,7 +448,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "03",
           english: "BRAND EXPERIENCES & COLLECTIBLES",
-          korean: "브랜드 경험과 컬렉터블",
           title: "브랜드 경험과 컬렉터블",
           description:
             "부스에는 상품과 함께 전시, 체험, 다양한 컬렉터블이 놓입니다. 둘러보다가 멈춰 서서 이야기를 나누게 됩니다.",
@@ -478,7 +457,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "04",
           english: "ON-SITE ATMOSPHERE",
-          korean: "현장의 분위기",
           title: "현장의 분위기",
           description:
             "작은 경품이든 큰 경품이든 결과가 나오면, 주변 사람들도 함께 환호합니다.",
@@ -488,7 +466,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
         {
           number: "05",
           english: "THE CARD SHOW FLOOR",
-          korean: "카드 쇼 현장",
           title: "카드 쇼 현장",
           description:
             "입구, 부스, 무대까지. 행사장 곳곳에 카드를 좋아하는 사람들이 모여 있습니다.",

@@ -10,10 +10,9 @@ export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
         <Reveal className="kr-section-title">
           <span>01 / {c.event.highlights.english}</span>
           <span className="kr-section-korean" lang="ko">
-            카드 쇼의 순간들
+            서울 카드 컬처
           </span>
           <h2>{c.event.highlights.title}</h2>
-          <p className="kr-highlight-intro">{c.event.highlights.intro}</p>
         </Reveal>
         <div className="kr-highlight-list">
           {c.event.highlights.items.map((item, i) => {
@@ -29,7 +28,6 @@ export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
                   <span className="kr-highlight-number">{item.number}</span>
                 </div>
                 <div className="kr-highlight-copy">
-                  <span className="kr-highlight-korean" lang="ko">{item.korean}</span>
                   <span className="kr-label">{item.english}</span>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>

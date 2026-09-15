@@ -43,6 +43,7 @@ export function KoreaHeader({ c }: { c: KoreaPageCopy }) {
           <ArrowUpRight aria-hidden="true" />
         </a>
         <select
+          className="kr-header-language"
           aria-label="Language"
           value={language}
           onChange={(e) => setLanguage(e.target.value as SiteLanguage)}
@@ -89,6 +90,18 @@ export function KoreaHeader({ c }: { c: KoreaPageCopy }) {
                 <ArrowUpRight />
               </a>
             ))}
+            <label className="kr-mobile-language">
+              <span>Language</span>
+              <select
+                aria-label="Language"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as SiteLanguage)}
+              >
+                <option value="zh-TW">繁中</option>
+                <option value="en">EN</option>
+                <option value="ko">한국어</option>
+              </select>
+            </label>
           </motion.nav>
         )}
       </AnimatePresence>

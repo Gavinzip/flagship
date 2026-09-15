@@ -61,6 +61,15 @@
 .edition-route-plane[data-transferring="true"] .fs-hero-artwork-inner {
   animation: none !important;
 }
+/* A direct chapter visit stays behind the admission panel until its first frame is complete.
+   Do not replay Korea's page-enter animation after that panel has gone away. */
+.edition-route-plane[data-direct-entry="true"] .kr-header,
+.edition-route-plane[data-direct-entry="true"] .kr-hero-art,
+.edition-route-plane[data-direct-entry="true"] .kr-event-card-stack {
+  animation: none;
+  filter: none;
+  opacity: 1;
+}
 /* Taiwan's CSS entrance must finish while covered, not restart on release. */
 .geographic-transfer {
   position: fixed;
@@ -136,6 +145,99 @@
   background: #071425ad;
   color: #edf4ff;
   font: inherit;
+}
+.edition-direct-admission {
+  --edition-admission-sky: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #c7e4f7;
+  isolation: isolate;
+  transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.edition-direct-admission.is-exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+.edition-direct-admission::before,
+.edition-direct-admission::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+.edition-direct-admission::before {
+  z-index: -2;
+  background-image: var(--edition-admission-sky);
+  background-position: center;
+  background-size: cover;
+  filter: saturate(1.05) contrast(1.02);
+  transform: scale(1.025);
+  animation: edition-admission-sky-settle 1.4s cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+.edition-direct-admission::after {
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 50%, #eaf7ff29 0 20%, #3a70942b 70%, #12385647),
+    linear-gradient(125deg, #b7e4ff24, #fff2 46%, #d8c0ff26);
+}
+.edition-direct-admission .edition-admission {
+  position: fixed;
+  top: 50svh;
+  left: 50vw;
+  box-sizing: border-box;
+  width: min(316px, calc(100vw - 48px));
+  gap: 12px;
+  padding: 28px 30px 24px;
+  border: 1px solid #f8fdffb8;
+  background: linear-gradient(145deg, #f4fbffe0, #cce9f1cd);
+  box-shadow:
+    inset 0 1px #ffffffcc,
+    0 24px 58px #164f7a42;
+  color: #143c60;
+  text-shadow: 0 1px 5px #f5fcffb3;
+  transform: translate3d(-50%, -50%, 0);
+  backdrop-filter: blur(12px);
+  animation: edition-admission-panel-enter 540ms cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+.edition-direct-admission .edition-admission__logo {
+  width: min(170px, 48vw);
+  max-height: 108px;
+  filter: drop-shadow(0 9px 16px #173d584d);
+}
+.edition-direct-admission .edition-admission p span,
+.edition-direct-admission .edition-admission__footer {
+  color: #345e7db3;
+}
+.edition-direct-admission .edition-admission p strong {
+  color: #123959;
+}
+.edition-direct-admission .edition-admission__meter {
+  background: #2f658836;
+}
+.edition-direct-admission .edition-admission__meter i {
+  box-shadow: 0 0 15px #5e9eff8c;
+}
+@keyframes edition-admission-sky-settle {
+  from { opacity: 0.35; transform: scale(1.08); }
+  to { opacity: 1; transform: scale(1.025); }
+}
+@keyframes edition-admission-panel-enter {
+  from { opacity: 0; transform: translate3d(-50%, calc(-50% + 14px), 0) scale(0.98); }
+  to { opacity: 1; transform: translate3d(-50%, -50%, 0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .edition-direct-admission {
+    transition-duration: 1ms;
+  }
 }
 .geographic-transfer-mark {
   position: absolute;

@@ -1,6 +1,7 @@
 import type { EditionId } from "../../data/editions";
 import type { SiteLanguage } from "../../data/copy";
 import { editions } from "../../data/editions";
+import { OriginalEmblem } from "../../components/OriginalEmblem";
 
 const copy = {
   en: { preparing: "PREPARING", back: "Back" },
@@ -8,7 +9,7 @@ const copy = {
   ko: { preparing: "준비 중", back: "뒤로" },
 } as const;
 
-/** Holds the real globe while the destination's first view becomes presentable. */
+/** Shared admission status for both a direct edition visit and a world transfer. */
 export function EditionAdmissionStatus({
   edition,
   progress,
@@ -23,11 +24,18 @@ export function EditionAdmissionStatus({
   const text = copy[language];
   return (
     <div className="edition-admission" role="status" aria-live="polite">
-      <img
-        className="edition-admission__logo"
-        src={editions[edition].emblem}
-        alt={`FLAGSHIP ${edition.toUpperCase()}`}
-      />
+      {edition === "korea" ? (
+        <OriginalEmblem
+          className="edition-admission__logo"
+          src={editions.korea.emblem}
+        />
+      ) : (
+        <img
+          className="edition-admission__logo"
+          src={editions[edition].emblem}
+          alt={`FLAGSHIP ${edition.toUpperCase()}`}
+        />
+      )}
       <p>
         <span>{text.preparing}</span>
         <strong>{edition.toUpperCase()}</strong>

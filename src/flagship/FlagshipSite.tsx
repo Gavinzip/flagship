@@ -1,4 +1,4 @@
-import { lazy, Suspense, useContext, type CSSProperties } from "react";
+import { lazy, Suspense, useContext, useEffect, useRef, useState, type CSSProperties } from "react";
 import { BrandHome } from "./home/BrandHome";
 import {
   SiteLink,
@@ -6,13 +6,96 @@ import {
   useSiteNavigation,
 } from "./routing/SiteNavigation";
 import { PageMetadata } from "./routing/PageMetadata";
-import { RouteBoundary, RouteStatus } from "./routing/RouteBoundary";
+import { RouteBoundary } from "./routing/RouteBoundary";
 
 import { preloadEdition } from "./routing/preloadEdition";
 import { EditionTransition } from "./routing/transition/EditionTransition";
 import { EditionTransitionContext } from "./routing/transition/EditionTransitionContext";
 import { entryMotion } from "./world/config/entryMotion";
+import { observeEditionPreparation, type EditionPreparation } from "./routing/prepareEdition";
+import { EditionRouteLoading } from "./routing/EditionRouteLoading";
+import type { EditionId } from "./data/editions";
 const EditionSite = lazy(preloadEdition);
+const minimumDirectAdmissionMs = 700;
+const directAdmissionExitMs = 260;
+
+function DirectEditionRoute({
+  edition,
+  language,
+}: {
+  edition: EditionId;
+  language: "en" | "ko" | "zh-TW";
+}) {
+  const [preparation, setPreparation] = useState<EditionPreparation | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+  const [admissionPhase, setAdmissionPhase] = useState<"loading" | "exiting" | "hidden">("loading");
+  const admissionStartedAt = useRef(0);
+
+  useEffect(() => {
+    let active = true;
+    admissionStartedAt.current = performance.now();
+    setPreparation(null);
+    setError(null);
+    setAdmissionPhase("loading");
+    const observed = observeEditionPreparation(edition, (snapshot) => {
+      if (active) setPreparation(snapshot);
+    });
+    observed.promise.catch((cause) => {
+      if (active)
+        setError(cause instanceof Error ? cause : new Error(String(cause)));
+    });
+    return () => {
+      active = false;
+      observed.stop();
+    };
+  }, [edition]);
+
+  useEffect(() => {
+    let exitTimer: number | undefined;
+    let hideTimer: number | undefined;
+    let readyReceived = false;
+    const markPresented = () => {
+      if (readyReceived) return;
+      readyReceived = true;
+      const elapsed = performance.now() - admissionStartedAt.current;
+      exitTimer = window.setTimeout(() => {
+        setAdmissionPhase("exiting");
+        hideTimer = window.setTimeout(
+          () => setAdmissionPhase("hidden"),
+          directAdmissionExitMs,
+        );
+      }, Math.max(0, minimumDirectAdmissionMs - elapsed));
+    };
+    document.addEventListener("flagship:edition-ready", markPresented);
+    return () => {
+      document.removeEventListener("flagship:edition-ready", markPresented);
+      if (exitTimer) window.clearTimeout(exitTimer);
+      if (hideTimer) window.clearTimeout(hideTimer);
+    };
+  }, [edition]);
+
+  if (error) throw error;
+  const editionModuleReady = preparation?.status === "ready";
+
+  return (
+    <>
+      {editionModuleReady && (
+        <Suspense fallback={null}>
+          <EditionSite />
+        </Suspense>
+      )}
+      {admissionPhase !== "hidden" && (
+        <EditionRouteLoading
+          key="edition-direct-admission"
+          edition={edition}
+          language={language}
+          progress={editionModuleReady ? 100 : preparation?.progress ?? 0}
+          phase={admissionPhase}
+        />
+      )}
+    </>
+  );
+}
 
 function Site() {
   const { location } = useSiteNavigation();
@@ -39,11 +122,17 @@ function Site() {
             <SiteLink page="home">Back to Flagship ↗</SiteLink>
           </main>
         ) : (
-          <div className="edition-route-plane" data-transferring={transferring} data-return-phase={transition?.returnPhase}>
+          <div
+            className="edition-route-plane"
+            data-direct-entry={transferring ? undefined : "true"}
+            data-transferring={transferring}
+            data-return-phase={transition?.returnPhase}
+          >
             <RouteBoundary key={location.page} language={location.language}>
-              <Suspense fallback={<RouteStatus language={location.language} />}>
-                <EditionSite />
-              </Suspense>
+              <DirectEditionRoute
+                edition={location.page}
+                language={location.language}
+              />
             </RouteBoundary>
           </div>
         ))}

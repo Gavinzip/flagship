@@ -3,6 +3,9 @@
     width: min(1340px, calc(100% - 140px));
   }
 }
+.kr-mobile-language {
+  display: none;
+}
 @media (max-width: 1100px) {
   .kr-header {
     padding-inline: 26px;
@@ -151,9 +154,32 @@
     font-size: 21px;
   }
   .kr-header-tools {
-    gap: 10px;
+    gap: 8px;
   }
-  .kr-header-ticket { min-height: 38px; padding: 7px 12px; font-size: 11px; }
+  .kr-header-ticket { min-height: 38px; gap: 7px; padding: 7px 11px; font-size: 11px; }
+  .kr-header-language { display: none; }
+  .kr-mobile-language {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 12px;
+    padding-top: 13px;
+    border-top: 1px solid var(--kr-line);
+    color: var(--kr-muted);
+    font: 700 11px var(--fs-display);
+    letter-spacing: 0.12em;
+  }
+  .kr-mobile-language select {
+    min-height: 34px;
+    min-width: 78px;
+    padding: 0 3px;
+    border: 0;
+    background: transparent;
+    color: var(--kr-ink);
+    font: inherit;
+    text-align: right;
+  }
   .kr-mobile-nav {
     top: 64px;
   }
@@ -162,78 +188,91 @@
     padding-bottom: 30px;
   }
   .kr-hero-art {
-    height: 246px;
+    height: 210px;
   }
   .korea-event-site .kr-hero-art .fs-hero-artwork-inner {
-    width: min(440px, 88%);
+    width: min(350px, 72%);
   }
   .kr-event-card-stack {
     width: 100%;
-    margin-top: -13px;
+    margin-top: -8px;
   }
   .kr-event-card {
-    padding: 26px 18px 18px;
+    padding: 20px 17px 14px;
   }
   .kr-event-card-header {
     font-size: 10px;
+    padding-bottom: 10px;
   }
   .kr-event-card-header span:last-child {
     font-size: 9px;
   }
   .kr-event-card-copy {
-    padding: 15px 0;
+    padding: 12px 0 10px;
   }
   .kr-event-card-copy h1 {
-    font-size: 35px;
-    line-height: 1.16;
+    font-size: 31px;
+    line-height: 1.12;
   }
   .kr-event-card-copy p {
-    margin-top: 11px;
-    font-size: 13px;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.65;
   }
   .kr-event-card-facts > div {
-    min-height: 70px;
-    padding: 11px 10px 10px 0;
+    min-height: 58px;
+    padding: 9px 8px 8px 0;
   }
   .kr-event-card-facts > div + div {
     padding-left: 10px;
   }
   .kr-event-card-facts > .kr-event-card-venue {
-    min-height: 67px;
+    min-height: 56px;
     padding-right: 0;
   }
   .kr-event-card-facts dd {
-    font-size: 20px;
+    margin-top: 4px;
+    font-size: 18px;
   }
+  .kr-event-card-facts .kr-event-card-venue dd { font-size: 15px; }
+  .kr-event-card-facts dd small { margin-top: 3px; font-size: 9px; }
   .kr-event-card-registration {
-    padding: 12px 0 14px;
+    gap: 10px;
+    padding: 10px 0 11px;
   }
-  .kr-event-card .kr-button {
-    width: 100%;
+  .kr-event-card-registration strong { font-size: 11px; }
+  .kr-event-card-actions { gap: 8px; }
+  .kr-event-card .kr-button { min-height: 45px; padding-block: 9px; }
+  .kr-event-card-links { grid-template-columns: 1fr 1.22fr; }
+  .kr-event-card-links a + a {
+    padding-left: 8px;
+    border-top: 0;
+    border-left: 1px solid #6f91ab58;
   }
+  .kr-event-card-links a { min-height: 32px; font-size: 9px; }
   .kr-highlight,
   .kr-highlight-2 {
     display: flex;
     flex-direction: column;
   }
   .kr-highlight-image {
-    min-height: 255px;
+    min-height: 220px;
   }
   .kr-highlight-copy {
-    padding: 26px 23px;
+    padding: 22px 20px;
   }
   .kr-highlight-copy h3 {
     font-size: 28px;
     margin-block: 13px 16px;
   }
   .kr-highlight-copy p {
-    font-size: 14px;
+    font-size: 13px;
   }
   .kr-highlight-list {
-    gap: 26px;
+    gap: 18px;
   }
   .kr-highlight-number {
-    font-size: 62px;
+    font-size: 54px;
   }
   .kr-partner-status { margin-top: 22px; padding: 22px 18px; }
   .kr-partner-stage-header {
@@ -255,7 +294,7 @@
   }
   .kr-map,
   .kr-map iframe {
-    min-height: 310px;
+    min-height: 270px;
   }
   .kr-visit-copy {
     padding: 24px;
