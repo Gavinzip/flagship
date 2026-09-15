@@ -16,7 +16,7 @@ export type PartnerLogo = {
 
 export const organizer: PartnerLogo = {
   name: "Renaiss Protocol",
-  src: partnerAssetUrl("renaiss-protocol.png"),
+  src: partnerAssetUrl("renaiss-protocol.webp"),
 };
 
 export const titleSponsor: PartnerLogo = {
