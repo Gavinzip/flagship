@@ -140,7 +140,7 @@
 }
 .kr-partner-tiers {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   gap: 0;
   padding: 20px 24px 26px;
@@ -182,9 +182,6 @@
 .korea-event-site .partner-tier-card--title .partner-tier-card__header h3::after {
   content: "타이틀 파트너";
 }
-.korea-event-site .partner-tier-card--cohost .partner-tier-card__header h3::after {
-  content: "공동 주최";
-}
 .korea-event-site .partner-tier-card__stage {
   min-height: 120px;
   margin-top: 19px;
@@ -207,17 +204,13 @@
 .korea-event-site .partner-tier-card--title .partner-tier-card__stage > img {
   width: min(80%, 340px);
 }
-.korea-event-site .partner-tier-card--cohost .partner-tier-card__stage > img {
-  width: min(78%, 270px);
-  filter: brightness(0) drop-shadow(0 8px 16px #173d5824);
-}
-.kr-vendor-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 25px;
-  margin: 36px 0 20px;
-  padding: 16px 20px;
+.kr-partner-status {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 310px);
+  align-items: end;
+  gap: 36px;
+  margin-top: 28px;
+  padding: 26px 28px;
   border: 1px solid var(--kr-chrome);
   background: var(--kr-surface-strong);
   box-shadow:
@@ -227,54 +220,25 @@
     0 12px 30px #173d601f;
   backdrop-filter: blur(12px);
 }
-.korea-event-site .vendor-logo-card__media img {
-  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+.kr-partner-status > div > span {
+  color: #547590;
+  font: 700 10px var(--fs-display);
+  letter-spacing: 0.17em;
 }
-.korea-event-site .vendor-logo-card:hover .vendor-logo-card__media img {
-  transform: scale(1.045);
+.kr-partner-status h3 {
+  margin-top: 9px;
+  color: #163b59;
+  font-size: clamp(24px, 2.3vw, 34px);
+  line-height: 1.2;
 }
-.kr-vendor-bar h3 {
-  font: 700 26px var(--fs-display);
-  letter-spacing: 0.1em;
+.kr-partner-status p {
+  max-width: 52em;
+  margin-top: 12px;
+  color: #31536e;
+  font-size: 13px;
+  line-height: 1.8;
 }
-.kr-vendor-bar h3 span {
-  font-size: 12px;
-  letter-spacing: 0.03em;
-  margin-left: 12px;
-}
-.kr-vendor-bar label {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  border-bottom: 1px solid #355c8270;
-}
-.kr-vendor-bar input {
-  width: 190px;
-  min-height: 44px;
-  border: 0;
-  background: none;
-  color: #16364f;
-  outline-offset: 2px;
-}
-.kr-vendor-bar input::placeholder {
-  color: #365f7d;
-}
-.korea-event-site .kr-vendor-grid {
-  gap: 14px;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-.korea-event-site .vendor-logo-card {
-  background: linear-gradient(135deg, #edf5fb, #bfd3e5);
-  border: 1px solid #f7fbff;
-  box-shadow:
-    0 0 0 1px #6d91ad38,
-    0 7px 18px #173c601a;
-}
-.kr-empty {
-  padding: 40px;
-  text-align: center;
-  background: #d9eaf3d9;
-}
+.kr-partner-status .kr-button { width: 100%; }
 .kr-visit-layout {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -329,6 +293,26 @@
   font: 700 23px var(--fs-display);
   color: var(--kr-accent-warm);
   letter-spacing: 0.035em;
+}
+.kr-visit-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 28px 0 22px;
+  padding-top: 18px;
+  border-top: 1px solid #6f91ab55;
+}
+.kr-visit-facts div { min-width: 0; }
+.kr-visit-facts dt {
+  color: #557792;
+  font: 700 10px var(--fs-display);
+  letter-spacing: 0.16em;
+}
+.kr-visit-facts dd {
+  margin: 6px 0 0;
+  color: #173c5b;
+  font: 700 15px/1.35 var(--fs-display);
+  letter-spacing: 0.05em;
 }
 .kr-visit-copy .kr-button {
   width: 100%;

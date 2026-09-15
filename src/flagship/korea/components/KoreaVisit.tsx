@@ -28,6 +28,16 @@ export function KoreaVisit({ c }: { c: KoreaPageCopy }) {
             <MapPin />
             <h3>{c.koreaEvent.venue}</h3>
             <strong>{c.koreaEvent.venueDetail}</strong>
+            <dl className="kr-visit-facts">
+              <div>
+                <dt>{c.date}</dt>
+                <dd>{c.koreaEvent.date}</dd>
+              </div>
+              <div>
+                <dt>{c.time}</dt>
+                <dd>{c.koreaEvent.time}</dd>
+              </div>
+            </dl>
             <a
               className="kr-button"
               href={koreaDeckMapUrl()}

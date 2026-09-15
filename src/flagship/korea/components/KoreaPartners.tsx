@@ -1,23 +1,11 @@
-import { useState } from "react";
-import { Search } from "iconoir-react";
-import {
-  organizer,
-  titleSponsor,
-  cohost,
-  vendors,
-} from "../../../data/partners";
-import {
-  PartnerTierCard,
-  VendorLogoCard,
-} from "../../../components/PartnerLogoCard";
+import { ArrowUpRight } from "iconoir-react";
+import { organizer, titleSponsor } from "../../../data/partners";
+import { PartnerTierCard } from "../../../components/PartnerLogoCard";
 import { Reveal } from "../../motion/Reveal";
+import { officialLinks } from "../../data/editions";
 import type { KoreaPageCopy } from "../data/copy";
 
 export function KoreaPartners({ c }: { c: KoreaPageCopy }) {
-  const [query, setQuery] = useState("");
-  const filtered = vendors.filter((v) =>
-    v.name.toLocaleLowerCase().includes(query.toLocaleLowerCase().trim()),
-  );
   return (
     <section id="vendors" className="kr-section kr-partners">
       <div className="kr-wrap">
@@ -49,42 +37,24 @@ export function KoreaPartners({ c }: { c: KoreaPageCopy }) {
               tone="title"
               revealIndex={0}
             />
-            <PartnerTierCard
-              label={c.event.vendors.cohostLabel}
-              logo={cohost}
-              tone="cohost"
-              revealIndex={2}
-            />
           </div>
         </div>
-        <div className="kr-vendor-bar" data-reveal>
-          <h3>
-            {c.event.vendors.vendorLabel}{" "}
-            <span>
-              {filtered.length} / {vendors.length}
-            </span>
-          </h3>
-          <label>
-            <Search />
-            <input
-              type="search"
-              aria-label={c.search}
-              placeholder={c.search}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </label>
+        <div className="kr-partner-status" data-reveal>
+          <div>
+            <span>{c.event.vendors.vendorLabel}</span>
+            <h3>{c.partnerDirectoryTitle}</h3>
+            <p>{c.partnerDirectoryBody}</p>
+          </div>
+          <a
+            className="kr-button"
+            href={officialLinks.flagshipX}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {c.officialUpdates}
+            <ArrowUpRight aria-hidden="true" />
+          </a>
         </div>
-        <ul className="vendor-logo-grid kr-vendor-grid">
-          {filtered.map((logo, index) => (
-            <VendorLogoCard key={logo.name} logo={logo} index={index} />
-          ))}
-        </ul>
-        {filtered.length === 0 && (
-          <p className="kr-empty" role="status">
-            {c.noResults}
-          </p>
-        )}
       </div>
     </section>
   );

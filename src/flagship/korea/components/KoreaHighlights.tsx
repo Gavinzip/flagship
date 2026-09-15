@@ -39,7 +39,7 @@ export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
                 <div className="kr-highlight-copy">
                   <span className="kr-highlight-korean" lang="ko">
                     {i === 0
-                      ? "무료 카드팩"
+                      ? "카드, 문화, 연결"
                       : i === 1
                         ? "컬렉터 커뮤니티"
                         : "브랜드 경험"}

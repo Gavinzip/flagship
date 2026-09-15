@@ -4,7 +4,7 @@ import { koreaDeckEvent } from "./koreaDeck";
 export const koreaPageCopy = {
   "zh-TW": {
     metaDescription:
-      "FLAGSHIP 韓國卡展將於 2026 年 9 月 29 日 13:00–20:00，在首爾 TEX+FA HALL 舉行。票務與正式陣容將陸續公布。",
+      "FLAGSHIP 韓國卡展將於 2026 年 9 月 29 日 13:00–20:00，在首爾 TEX+FA HALL 舉行。免費入場，報名須經主辦審核。",
     event: koreaEventContent["zh-TW"],
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
@@ -19,8 +19,10 @@ export const koreaPageCopy = {
     intro:
       "FLAGSHIP KOREA 將在首爾舉行，連結卡店、收藏家、玩家與品牌。活動資訊將依官方公告持續更新。",
     explore: "查看活動亮點",
+    ticketCta: "立即取票",
+    officialUpdates: "追蹤 FLAGSHIP 最新公告",
     registration: "報名資訊",
-    registrationNote: "即將公告",
+    registrationNote: "免費入場 · 需主辦審核",
     menu: "開啟選單",
     navigation: "活動導覽",
     search: "搜尋合作夥伴",
@@ -32,8 +34,11 @@ export const koreaPageCopy = {
     pause: "暫停裝飾動畫",
     resume: "播放裝飾動畫",
     partnersNote: "合作夥伴資訊將依正式公告更新。",
+    partnerDirectoryTitle: "展商與合作夥伴名單即將公布",
+    partnerDirectoryBody:
+      "目前不預先列出未確認的展商。完整名單與合作方式，將以 FLAGSHIP 官方公告為準。",
     visitNote:
-      "TEX+FA HALL 位於首爾江南區；完整地址、交通與入場資訊將依正式公告更新。",
+      "TEX+FA HALL 位於首爾江南區纖維中心 3 樓，從三成站 4 號出口步行即可抵達。入場動線如有更新，將以官方公告為準。",
     close: "關閉",
     faqTitle: "常見問題",
     back: "回到頂部",
@@ -41,7 +46,7 @@ export const koreaPageCopy = {
   },
   en: {
     metaDescription:
-      "FLAGSHIP Korea takes place at TEX+FA HALL in Seoul on 29 September 2026, from 1–8 PM. Ticket and lineup updates will follow.",
+      "FLAGSHIP Korea takes place at TEX+FA HALL in Seoul on 29 September 2026, from 1–8 PM. Admission is free and registration requires host approval.",
     event: koreaEventContent.en,
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
@@ -56,8 +61,10 @@ export const koreaPageCopy = {
     intro:
       "FLAGSHIP KOREA takes place in Seoul, connecting card shops, collectors, players, and brands. Information will continue to be updated through official announcements.",
     explore: "View event highlights",
+    ticketCta: "Get tickets",
+    officialUpdates: "Follow FLAGSHIP updates",
     registration: "REGISTRATION",
-    registrationNote: "To be announced",
+    registrationNote: "Free · approval required",
     menu: "Open menu",
     navigation: "Event navigation",
     search: "Search partners",
@@ -69,8 +76,11 @@ export const koreaPageCopy = {
     pause: "Pause decorative motion",
     resume: "Resume decorative motion",
     partnersNote: "Partner information will be updated through official announcements.",
+    partnerDirectoryTitle: "Exhibitors and partners will be announced",
+    partnerDirectoryBody:
+      "We do not publish unconfirmed exhibitors in advance. The complete directory and partnership details will follow FLAGSHIP's official announcements.",
     visitNote:
-      "TEX+FA HALL is in Gangnam, Seoul. The full address, transit, and entry information will be updated through official announcements.",
+      "TEX+FA HALL is on the third floor of the Textile Center in Gangnam, Seoul, a short walk from Samseong Station Exit 4. Check official updates for any entry-route changes.",
     close: "Close",
     faqTitle: "Frequently asked questions",
     back: "Back to top",
@@ -78,7 +88,7 @@ export const koreaPageCopy = {
   },
   ko: {
     metaDescription:
-      "FLAGSHIP KOREA는 2026년 9월 29일 13:00–20:00, 서울 TEX+FA HALL에서 열립니다. 티켓과 최종 라인업은 추후 공개됩니다.",
+      "FLAGSHIP KOREA는 2026년 9월 29일 13:00–20:00, 서울 TEX+FA HALL에서 열립니다. 무료 입장이며 등록은 주최 측 승인이 필요합니다.",
     event: koreaEventContent.ko,
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
@@ -93,8 +103,10 @@ export const koreaPageCopy = {
     intro:
       "FLAGSHIP KOREA는 서울에서 카드 숍, 컬렉터, 플레이어, 브랜드를 연결합니다. 행사 정보는 공식 공지를 통해 계속 업데이트됩니다.",
     explore: "행사 하이라이트 보기",
+    ticketCta: "티켓 받기",
+    officialUpdates: "FLAGSHIP 공식 소식 보기",
     registration: "입장 안내",
-    registrationNote: "추후 공지",
+    registrationNote: "무료 · 주최 측 승인 필요",
     menu: "메뉴 열기",
     navigation: "행사 메뉴",
     search: "파트너 검색",
@@ -106,8 +118,11 @@ export const koreaPageCopy = {
     pause: "장식 애니메이션 일시 정지",
     resume: "장식 애니메이션 재생",
     partnersNote: "파트너 정보는 공식 공지를 통해 업데이트됩니다.",
+    partnerDirectoryTitle: "참가사와 파트너 명단은 추후 공개됩니다",
+    partnerDirectoryBody:
+      "확정되지 않은 참가사 명단은 미리 공개하지 않습니다. 전체 명단과 협업 관련 정보는 FLAGSHIP 공식 공지로 안내됩니다.",
     visitNote:
-      "TEX+FA HALL은 서울 강남구에 있습니다. 전체 주소, 교통 및 입장 정보는 공식 공지를 통해 안내됩니다.",
+      "TEX+FA HALL은 서울 강남구 섬유센터 3층에 있으며 삼성역 4번 출구에서 걸어서 갈 수 있습니다. 입장 동선 변경은 공식 공지를 확인해 주세요.",
     close: "닫기",
     faqTitle: "자주 묻는 질문",
     back: "맨 위로",

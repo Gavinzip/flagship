@@ -33,10 +33,15 @@ export function KoreaHeader({ c }: { c: KoreaPageCopy }) {
         ))}
       </nav>
       <div className="kr-header-tools">
-        <span className="kr-country">
-          <span lang="ko">서울</span>
-          <strong>KOREA</strong>
-        </span>
+        <a
+          className="kr-header-ticket"
+          href="https://luma.com/5qs2r3xi"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {c.ticketCta}
+          <ArrowUpRight aria-hidden="true" />
+        </a>
         <select
           aria-label="Language"
           value={language}

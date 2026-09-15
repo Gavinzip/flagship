@@ -4,7 +4,7 @@ export const koreaDeckEvent = {
     en: "2026.09.29 TUE",
     ko: "2026.09.29 (화)",
   },
-  time: "13:00 — 20:00",
+  time: "13:00 — 20:00 KST",
   venue: "TEX+FA HALL",
   venueDetail: {
     "zh-TW": "首爾江南區 · Textile Center Building 3F",
@@ -12,9 +12,6 @@ export const koreaDeckEvent = {
     ko: "서울 강남구 · Textile Center Building 3층",
   },
   mapQuery: "TEX+FA HALL Textile Center Building Gangnam-gu Seoul",
-  vendorTables: "20",
-  exhibitorBooths: "5",
-  expectedFootfall: "1,000–2,000",
 } as const;
 
 export function koreaDeckMapEmbedUrl() {

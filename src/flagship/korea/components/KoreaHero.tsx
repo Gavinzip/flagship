@@ -1,6 +1,7 @@
-import { ArrowDown } from "iconoir-react";
+import { ArrowDown, ArrowUpRight } from "iconoir-react";
 import { HeroArtwork } from "../../components/HeroArtwork";
 import { TiltedCard } from "../../motion/TiltedCard";
+import { officialLinks } from "../../data/editions";
 import type { KoreaPageCopy } from "../data/copy";
 
 export function KoreaHero({ c }: { c: KoreaPageCopy }) {
@@ -9,7 +10,6 @@ export function KoreaHero({ c }: { c: KoreaPageCopy }) {
       <div className="kr-hero-scene kr-wrap">
         <div className="kr-hero-art" aria-hidden="true">
           <HeroArtwork />
-          <span className="kr-hero-coordinates">37.5665° N · 126.9780° E</span>
         </div>
 
         <div className="kr-event-card-stack">
@@ -44,10 +44,31 @@ export function KoreaHero({ c }: { c: KoreaPageCopy }) {
                 <span>{c.registration}</span>
                 <strong>{c.registrationNote}</strong>
               </div>
-              <a className="kr-button" href="#highlights">
-                {c.explore}
-                <ArrowDown />
-              </a>
+              <div className="kr-event-card-actions">
+                <a
+                  className="kr-button kr-event-card-ticket"
+                  href="https://luma.com/5qs2r3xi"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {c.ticketCta}
+                  <ArrowUpRight aria-hidden="true" />
+                </a>
+                <div className="kr-event-card-links">
+                  <a href="#highlights">
+                    {c.explore}
+                    <ArrowDown aria-hidden="true" />
+                  </a>
+                  <a
+                    href={officialLinks.flagshipX}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {c.officialUpdates}
+                    <ArrowUpRight aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             </article>
           </TiltedCard>
         </div>
