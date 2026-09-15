@@ -134,6 +134,28 @@
   max-height: 68px;
 }
 
+.partner-tier-card__logo-split {
+  position: relative;
+  display: block;
+  width: min(92%, 350px);
+  max-width: 100%;
+}
+
+.partner-tier-card__logo-split > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 68px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.28));
+}
+
+.partner-tier-card__logo-split > .partner-tier-card__logo-icon {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 77% 0 0);
+}
+
 .partner-tier-card--title .partner-tier-card__stage > img {
   width: min(88%, 400px);
   max-height: 124px;
