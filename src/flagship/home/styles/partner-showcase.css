@@ -10,14 +10,21 @@
 .ip-partner-organizer { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 24px; margin-top: 48px; }
 .ip-partner-organizer > span { font-size: 10px; letter-spacing: .08em; color: var(--brand-muted); }
 .ip-partner-organizer a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 3px 2px; border: 0; background: transparent; box-shadow: none; }
-.ip-partner-organizer img { width: 154px; height: 34px; object-fit: contain; transition: transform .22s ease, filter .22s ease; }
+.ip-partner-organizer-logo { position: relative; display: grid; width: 154px; height: 34px; }
+.ip-partner-organizer-logo img { grid-area: 1 / 1; width: 154px; height: 34px; object-fit: contain; transition: transform .22s ease, filter .22s ease; }
+.ip-partner-organizer-mark { display: none; }
 .ip-partner-organizer svg { width: 15px; height: 15px; color: var(--brand-muted); transition: transform .22s ease, color .22s ease; }
-.ip-partner-organizer a:hover img { transform: translateY(-1px); }
+.ip-partner-organizer a:hover .ip-partner-organizer-logo img { transform: translateY(-1px); }
 .ip-partner-organizer a:hover svg { color: var(--brand-text); transform: translate(2px, -2px); }
 
-/* The supplied black-and-gold mark becomes a raised white mark over the IP's dark sky. */
-.brand-site[data-theme="dark"] .ip-partner-organizer img {
+/* On the dark sky, preserve the gold icon while lifting the wordmark in white. */
+.brand-site[data-theme="dark"] .ip-partner-organizer-wordmark {
   filter: brightness(0) invert(1) drop-shadow(0 -1px 0 rgba(255, 255, 255, .32)) drop-shadow(0 2px 1px rgba(6, 13, 27, .92)) drop-shadow(0 8px 14px rgba(0, 0, 0, .56));
+}
+.brand-site[data-theme="dark"] .ip-partner-organizer-mark {
+  display: block;
+  clip-path: inset(0 79% 0 0);
+  filter: drop-shadow(0 -1px 0 rgba(255, 223, 150, .22)) drop-shadow(0 2px 1px rgba(6, 13, 27, .86)) drop-shadow(0 8px 14px rgba(0, 0, 0, .56));
 }
 .brand-site[data-theme="dark"] .ip-partner-organizer svg { color: rgba(236, 246, 255, .72); filter: drop-shadow(0 2px 5px rgba(0, 0, 0, .5)); }
 @media (max-width: 600px) {

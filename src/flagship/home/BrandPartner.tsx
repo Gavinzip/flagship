@@ -33,13 +33,25 @@ export function BrandPartner({ copy: c }: { copy: HomeCopy }) {
         <div className="ip-partner-organizer">
           <span>{c.organizerLabel}</span>
           <a href={officialLinks.website} target="_blank" rel="noreferrer">
-            <img
-              src={organizer.src}
-              width="360"
-              height="120"
-              loading="lazy"
-              alt={organizer.name}
-            />
+            <span className="ip-partner-organizer-logo">
+              <img
+                className="ip-partner-organizer-wordmark"
+                src={organizer.src}
+                width="360"
+                height="120"
+                loading="lazy"
+                alt={organizer.name}
+              />
+              <img
+                className="ip-partner-organizer-mark"
+                src={organizer.src}
+                width="360"
+                height="120"
+                loading="lazy"
+                alt=""
+                aria-hidden="true"
+              />
+            </span>
             <ArrowUpRight aria-hidden="true" />
           </a>
         </div>
