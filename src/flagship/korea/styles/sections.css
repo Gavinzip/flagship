@@ -116,17 +116,6 @@
   font-size: 15px;
   line-height: 1.9;
 }
-.kr-highlight-copy ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  list-style: none;
-  margin: 24px 0 0;
-  padding: 16px 0 0;
-  border-top: 1px solid var(--kr-line);
-  font-size: 12px;
-  font-weight: 700;
-}
 .kr-partners {
   padding-top: 65px;
 }

@@ -31,11 +31,6 @@ export function KoreaHighlights({ c }: { c: KoreaPageCopy }) {
                   <span className="kr-label">{item.english}</span>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
-                  <ul>
-                    {item.points.map((point) => (
-                      <li key={point}>{point}</li>
-                    ))}
-                  </ul>
                 </div>
               </Reveal>
             );

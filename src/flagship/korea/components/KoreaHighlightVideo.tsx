@@ -10,10 +10,8 @@ export function KoreaHighlightVideo({
   visual,
   alt,
 }: KoreaHighlightVideoProps) {
-  const frame = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
-  const [nearViewport, setNearViewport] = useState(false);
-  const [inViewport, setInViewport] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [canPlay, setCanPlay] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -26,40 +24,36 @@ export function KoreaHighlightVideo({
   }, []);
 
   useEffect(() => {
-    const target = frame.current;
-    if (!target) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setNearViewport(entry.isIntersecting);
-        setInViewport(entry.intersectionRatio >= 0.42);
-        if (!entry.isIntersecting) setCanPlay(false);
-      },
-      { rootMargin: "220px 0px", threshold: [0, 0.42] },
-    );
-
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     const element = video.current;
     if (!element) return;
 
-    if (!nearViewport || !inViewport || reducedMotion) {
+    if (!isHovered || reducedMotion) {
       element.pause();
       return;
     }
 
     void element.play().catch(() => undefined);
-  }, [inViewport, nearViewport, reducedMotion]);
+  }, [isHovered, reducedMotion]);
+
+  const startPreview = (pointerType: string) => {
+    if (pointerType !== "mouse" || reducedMotion) return;
+    setCanPlay(false);
+    setIsHovered(true);
+  };
+
+  const stopPreview = () => {
+    video.current?.pause();
+    setCanPlay(false);
+    setIsHovered(false);
+  };
 
   return (
     <div
-      ref={frame}
-      className={`kr-highlight-media${canPlay && !reducedMotion ? " is-ready" : ""}`}
+      className={`kr-highlight-media${canPlay && isHovered ? " is-ready" : ""}`}
+      onPointerEnter={(event) => startPreview(event.pointerType)}
+      onPointerLeave={stopPreview}
     >
-      {nearViewport && !reducedMotion && (
+      {isHovered && !reducedMotion && (
         <video
           ref={video}
           className="kr-highlight-video"
@@ -72,17 +66,15 @@ export function KoreaHighlightVideo({
           onCanPlay={() => setCanPlay(true)}
         />
       )}
-      {nearViewport && (
-        <img
-          className="kr-highlight-poster"
-          src={visual.poster}
-          alt={alt}
-          width="1280"
-          height="720"
-          loading="lazy"
-          decoding="async"
-        />
-      )}
+      <img
+        className="kr-highlight-poster"
+        src={visual.poster}
+        alt={alt}
+        width="1280"
+        height="720"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   );
 }

@@ -4,7 +4,6 @@ type HighlightCopy = {
   title: string;
   description: string;
   alt: string;
-  points: readonly string[];
 };
 
 type FaqItem = {
@@ -57,7 +56,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "因為卡，大家來到這裡。因卡相聚，也是一種緣分；一張卡就能讓原本不認識的人停下腳步，開始認識彼此。",
           alt: "玩家圍著桌子看卡與對戰",
-          points: ["卡冊", "對戰桌"],
         },
         {
           number: "02",
@@ -66,7 +64,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "喜歡同一套卡、收著同樣的收藏，話題就接上了。卡冊一攤開，大家交流收藏，也慢慢認識彼此。",
           alt: "收藏家在卡展中分享卡牌與收藏",
-          points: ["收藏卡", "卡冊"],
         },
         {
           number: "03",
@@ -75,7 +72,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "攤位上有商品，也有展示、互動和各式收藏品。走到喜歡的攤位，停下來看看，也和身邊的人聊幾句。",
           alt: "卡展中的品牌攤位與收藏品展示",
-          points: ["展示", "互動"],
         },
         {
           number: "04",
@@ -84,7 +80,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "不管是小獎還是大獎，只要有了結果，旁邊的人都會跟著一起歡呼。",
           alt: "卡展人群舉手歡呼的瞬間",
-          points: ["抽獎", "對戰結果"],
         },
         {
           number: "05",
@@ -93,7 +88,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "從入口、攤位到舞台，每個角落都聚著喜歡卡牌的人。",
           alt: "FLAGSHIP TAIWAN 的卡展人潮與場內攤位",
-          points: ["入口", "攤位與舞台"],
         },
       ],
     },
@@ -245,7 +239,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "Cards brought people here. Meeting through cards is a kind of connection; one card can make strangers stop, talk, and get to know one another.",
           alt: "Players gathered around a table to look at cards and play",
-          points: ["Binders", "Match tables"],
         },
         {
           number: "02",
@@ -254,7 +247,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "People who love the same cards and collect similar things already have something to talk about. Once a binder opens, the conversation begins.",
           alt: "Collectors sharing cards and their collections at a card show",
-          points: ["Collectible cards", "Binders"],
         },
         {
           number: "03",
@@ -263,7 +255,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "Booths feature products, displays, interactive moments, and collectibles. They give people something to look at and talk about.",
           alt: "Brand booths and collectible displays at a card show",
-          points: ["Displays", "Interactive moments"],
         },
         {
           number: "04",
@@ -272,7 +263,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "Small prize or big prize, once there is a result, the people nearby cheer along.",
           alt: "A cheering crowd at a card show",
-          points: ["Prize draw", "Match result"],
         },
         {
           number: "05",
@@ -281,7 +271,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "From the entrance and booths to the stage, every corner has people who love cards.",
           alt: "Crowds and booths at FLAGSHIP TAIWAN",
-          points: ["Entrance", "Booths and stage"],
         },
       ],
     },
@@ -434,7 +423,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "카드가 사람들을 이곳으로 모았습니다. 카드로 만난 인연은 특별합니다. 카드 한 장이 낯선 사람들의 발걸음을 멈추게 하고, 대화를 시작하게 합니다.",
           alt: "테이블에 모여 카드를 보고 게임을 하는 사람들",
-          points: ["바인더", "대결 테이블"],
         },
         {
           number: "02",
@@ -443,7 +431,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "같은 카드를 좋아하고 비슷한 컬렉션을 모으면, 이미 할 이야기가 있습니다. 바인더가 펼쳐지면 대화가 시작됩니다.",
           alt: "카드 쇼에서 카드와 컬렉션을 나누는 컬렉터들",
-          points: ["컬렉터블 카드", "바인더"],
         },
         {
           number: "03",
@@ -452,7 +439,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "부스에는 상품과 함께 전시, 체험, 다양한 컬렉터블이 놓입니다. 둘러보다가 멈춰 서서 이야기를 나누게 됩니다.",
           alt: "카드 쇼의 브랜드 부스와 컬렉터블 전시",
-          points: ["전시", "체험"],
         },
         {
           number: "04",
@@ -461,7 +447,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "작은 경품이든 큰 경품이든 결과가 나오면, 주변 사람들도 함께 환호합니다.",
           alt: "카드 쇼에서 함께 환호하는 사람들",
-          points: ["경품 추첨", "대결 결과"],
         },
         {
           number: "05",
@@ -470,7 +455,6 @@ export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent>
           description:
             "입구, 부스, 무대까지. 행사장 곳곳에 카드를 좋아하는 사람들이 모여 있습니다.",
           alt: "FLAGSHIP TAIWAN의 카드 쇼 관람객과 부스",
-          points: ["입구", "부스와 무대"],
         },
       ],
     },
