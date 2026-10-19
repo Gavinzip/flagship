@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5174 --strictPort",
     "build": "tsc --noEmit && vite build && node scripts/generate-csp.mjs && npm run assets:assert-build",
+    "build:vercel": "pnpm build && node scripts/build-vercel-output.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "queue:typecheck": "npm --prefix services/queue-worker run typecheck",

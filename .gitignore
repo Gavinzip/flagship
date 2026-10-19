@@ -7,6 +7,9 @@ private/
 *.luma-guests.csv
 .DS_Store
 *.tsbuildinfo
+.vercel/
 
 # Local design specifications must never ship with the production site.
 design/concepts/
+.env.local
+.env.*.local
