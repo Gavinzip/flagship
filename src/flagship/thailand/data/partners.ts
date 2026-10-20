@@ -11,9 +11,13 @@ export const thailandPartnerLineup = {
 } as const;
 
 export const thailandPartnerCopy = {
+  th: {
+    title: "พันธมิตร", organizer: "ผู้จัดงาน", mainSponsor: "ผู้สนับสนุนหลัก",
+    pendingTitle: "พบพันธมิตรเพิ่มเติมเร็ว ๆ นี้", comingSoon: "รอเปิดเผย", pendingNote: "รายชื่อแบรนด์และร้านค้าจะทยอยประกาศ", updates: "ติดตามข่าวล่าสุด",
+  },
   "zh-TW": {
     title: "合作夥伴", organizer: "主辦單位", mainSponsor: "主要贊助商",
-    pendingTitle: "更多合作夥伴", comingSoon: "待揭曉", pendingNote: "參展品牌與攤商將陸續揭曉，敬請期待。", updates: "追蹤最新消息",
+    pendingTitle: "更多合作夥伴", comingSoon: "待揭曉", pendingNote: "參展品牌與攤商名單將陸續公布。", updates: "追蹤最新消息",
   },
   en: {
     title: "Partners", organizer: "ORGANIZER", mainSponsor: "MAIN SPONSOR",

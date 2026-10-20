@@ -3,6 +3,7 @@ import { SiteLink } from "./SiteNavigation";
 import type { SiteLanguage } from "../data/copy";
 
 const messages = {
+  th: ["กำลังเปิดหน้างาน", "ไม่สามารถโหลดหน้างานได้", "โปรดตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง", "ลองอีกครั้ง", "กลับหน้า FLAGSHIP"],
   en: ["Opening the event", "The event page could not be loaded.", "Please check your connection and try again.", "Retry", "Back to Flagship"],
   "zh-TW": ["正在開啟活動網站", "活動頁面載入失敗", "請檢查網路連線後重試。", "重新載入", "返回 Flagship"],
   ko: ["행사 페이지를 여는 중", "행사 페이지를 불러오지 못했습니다.", "인터넷 연결을 확인한 후 다시 시도해 주세요.", "다시 시도", "Flagship으로 돌아가기"],

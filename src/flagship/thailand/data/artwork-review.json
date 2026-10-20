@@ -200,5 +200,39 @@
     "releaseManifest": "src/generated/thailandAssetRelease.ts",
     "files": 7,
     "note": "Only the retained emblem/clean hero, official QSNCC exterior/interior and three selected user-provided Seoul photos. Byte-identical optimized files; no source/concept images or unused AI candidates published. Seven CDN objects verified by SHA-256, content type and immutable cache headers. All runtime imports from ignored work/ removed."
+  },
+  "heroFilmRevision": {
+    "date": "2026-10-20",
+    "status": "local-review",
+    "source": "Taiwan 2026 official recap, selected by Gavin",
+    "rangeSeconds": [
+      45,
+      60
+    ],
+    "durationSeconds": 15,
+    "film": "public/assets/flagship/thailand/thailand-hero-recap-45-60.mp4",
+    "poster": "public/assets/flagship/thailand/thailand-hero-recap-45-60-poster.webp",
+    "release": "r5d83a22f502484392fa1",
+    "filesInRelease": 9,
+    "note": "Requested video replaces the static hero background. The previous retained art and all pending candidates remain untouched. Top logo row is cropped; independent Thailand emblem, dark scrim, white copy and yellow event details form the new layout. Source is visibly credited as Taiwan recap. Native muted inline loop, viewport pause. Local visual acceptance and Git push pending.",
+    "resolution": [
+      1920,
+      936
+    ],
+    "encoding": {
+      "codec": "H.264",
+      "fps": 30,
+      "preset": "slow",
+      "crf": 18,
+      "maxrateKbps": 8000,
+      "bufsizeKbps": 16000,
+      "gopFrames": 60,
+      "pixelFormat": "yuv420p",
+      "fastStart": true,
+      "audio": false
+    },
+    "filmBytes": 15826235,
+    "qualityNote": "Re-encoded from the original 1080p source at native cropped 1920×936 instead of downscaling to 1280×624. No artificial upscaling or sharpening; same 45–60 second segment, layout and playback behavior. High-quality first-frame poster. Browser confirms 1920×936 muted inline looping on desktop and mobile. Local visual acceptance and Git push remain pending.",
+    "presentationRevision": "2026-10-20: 8% video zoom and no visible pause control at Gavin’s request; reduced-motion and off-screen pause retained. Borderless master-logo admission screen and independent footer organizer mark. Visual acceptance and Git push pending."
   }
 }

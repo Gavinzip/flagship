@@ -33,7 +33,7 @@ export async function returnHandoff(
   )) : [];
   const nodes = [world, route, target.element, mark, ...followers, ...(content ? [content] : [])];
   const previous = new Map(nodes.map(node => [node, node.getAttribute("style")]));
-  const home = prepareReturnHomeFrame(world, stage);
+  const home = prepareReturnHomeFrame(world, stage, origin);
   world.style.setProperty("--return-home-copy-opacity", "0");
   world.style.setProperty("--return-home-city-opacity", "0");
   const restore = () => {

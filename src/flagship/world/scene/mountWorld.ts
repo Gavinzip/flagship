@@ -362,6 +362,7 @@ export async function mountWorld(
             return;
           }
           const originPose = { ...view };
+          const originProgress = smooth;
           entering = true;
           returningHome = false;
           selectedCity = city;
@@ -395,7 +396,7 @@ export async function mountWorld(
               origin: {
                 pose: originPose,
                 anchor,
-                progress: smooth,
+                progress: originProgress,
                 scrollY: window.scrollY,
               },
             });

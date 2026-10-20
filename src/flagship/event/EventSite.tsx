@@ -16,6 +16,7 @@ import { useEventReady } from "./useEventReady";
 export function EventSite({ onReady, definition }: { onReady: () => void; definition: EventDefinition }) {
   const { language } = useFlagship();
   const c = definition.copy[language];
+  if (!c) throw new Error(`No ${language} translation for ${definition.id}. Resolve the edition language before mounting.`);
   const root = useRef<HTMLDivElement>(null);
   useEventReady(root, onReady);
 

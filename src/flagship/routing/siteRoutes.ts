@@ -1,3 +1,4 @@
+import { editionLanguage } from "../data/editionLanguage";
 import type { SiteLanguage } from "../data/copy";
 import { isEditionId, type EditionId } from "../data/editions";
 
@@ -5,7 +6,7 @@ export type SitePage = "home" | EditionId;
 export type SiteLocation = { page: SitePage | "not-found"; language: SiteLanguage };
 
 export function siteHref(page: SitePage, language: SiteLanguage, hash = "") {
-  const resolved = page === "taiwan" && language === "ko" ? "en" : language;
+  const resolved = isEditionId(page) ? editionLanguage(page, language) : language;
   const path = page === "home" ? "/" : `/${page}/`;
   return `${path}?lang=${resolved}${hash ? `#${hash}` : ""}`;
 }
@@ -17,6 +18,6 @@ export function readSiteLocation(url: URL): SiteLocation {
   const country = path.slice(1);
   const page = isEditionId(country) ? country : isEditionId(legacy) ? legacy : path === "/" ? "home" : "not-found";
   const requested = url.searchParams.get("lang");
-  const language = requested === "ko" || requested === "zh-TW" ? requested : "en";
-  return { page, language: page === "taiwan" && language === "ko" ? "en" : language };
+  const language = requested === "ko" || requested === "zh-TW" || requested === "th" ? requested : "en";
+  return { page, language: isEditionId(page) ? editionLanguage(page, language) : language };
 }

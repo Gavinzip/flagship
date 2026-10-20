@@ -18,13 +18,14 @@ export function BrandPreferences({
           value={location.language}
           onChange={(event) => {
             const value = event.target.value;
-            if (value === "en" || value === "ko" || value === "zh-TW")
+            if (value === "en" || value === "ko" || value === "zh-TW" || value === "th")
               setLanguage(value);
           }}
         >
           <option value="en">EN</option>
           <option value="zh-TW">繁中</option>
           <option value="ko">한국어</option>
+          <option value="th">ไทย</option>
         </select>
       </label>
     </div>

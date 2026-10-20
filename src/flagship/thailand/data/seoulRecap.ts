@@ -16,14 +16,24 @@ type SeoulRecapCopy = {
 };
 
 export const seoulRecapCopy: Record<SiteLanguage, SeoulRecapCopy> = {
+  th: {
+    title: "ย้อนชมโซล ก่อนพบกันที่กรุงเทพฯ",
+    intro: "ภาพจาก BNB Seoul Super Meetup ที่บูธ Renaiss มีทั้งคนมาร่วมกิจกรรม แบ่งปันการ์ด และชมของสะสม แล้วพบกันอีกครั้งที่กรุงเทพฯ",
+    source: "ภาพจากงานเกาหลี · BNB SEOUL SUPER MEETUP",
+    captions: {
+      reactions: { label: "เสียงเชียร์จากคนที่บูธ", alt: "ผู้เข้าชมล้อมบูธสีเหลืองและส่งเสียงเชียร์ในงานโซล" },
+      cards: { label: "การ์ดเกรด PSA ที่บูธ Renaiss", alt: "การ์ดเกรด PSA จัดแสดงที่บูธ Renaiss ในงานโซล" },
+      collectors: { label: "พาของสะสมมาพบเพื่อนใหม่", alt: "นักสะสมโชว์การ์ดหน้าบูธ Renaiss ในงานโซล" },
+    },
+  },
   "zh-TW": {
-    title: "從首爾，走向下一次相聚。",
-    intro: "卡牌在手，話題就開始了。回看 Renaiss 在 BNB Seoul Super Meetup 的收藏展示、攤位互動與社群交流，把這份熱愛帶到下一站曼谷。",
+    title: "回看首爾，下一站曼谷。",
+    intro: "這些照片來自 BNB Seoul Super Meetup：有人在攤位前互動，也有人帶著卡牌交流、看看 Renaiss 展出的收藏。下一站到曼谷，再和大家見面。",
     source: "韓國活動實拍 · BNB SEOUL SUPER MEETUP",
     captions: {
-      reactions: { label: "一起投入，才有現場的熱度。", alt: "首爾活動參觀者圍在黃色攤位前，為互動體驗歡呼" },
-      cards: { label: "值得停下來看的收藏。", alt: "首爾活動 Renaiss 攤位展示的 PSA 鑑定卡" },
-      collectors: { label: "收藏，讓我們認識彼此。", alt: "收藏家在首爾活動的 Renaiss 攤位前展示卡牌" },
+      reactions: { label: "攤位前，大家一起歡呼。", alt: "首爾活動參觀者圍在黃色攤位前，為互動體驗歡呼" },
+      cards: { label: "Renaiss 攤位上的 PSA 鑑定卡。", alt: "首爾活動 Renaiss 攤位展示的 PSA 鑑定卡" },
+      collectors: { label: "帶著收藏，認識同樣喜歡卡牌的人。", alt: "收藏家在首爾活動的 Renaiss 攤位前展示卡牌" },
     },
   },
   en: {

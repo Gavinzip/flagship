@@ -22,7 +22,7 @@ import { TaiwanRecapClosing } from "./TaiwanRecapClosing";
 export function TaiwanEventSite({ onReady }: { onReady?: () => void }) {
   const { language, setLanguage } = useFlagship();
   const coveredByTransition = useContext(EditionTransitionContext)?.retainingWorld ?? false;
-  if (language === "ko") {
+  if (language !== "en" && language !== "zh-TW") {
     throw new Error(
       "The original Taiwan site supports zh-TW and en. Resolve its language before mounting.",
     );

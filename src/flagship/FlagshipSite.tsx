@@ -14,6 +14,7 @@ import { EditionTransitionContext } from "./routing/transition/EditionTransition
 import { entryMotion } from "./world/config/entryMotion";
 import { observeEditionPreparation, type EditionPreparation } from "./routing/prepareEdition";
 import { EditionRouteLoading } from "./routing/EditionRouteLoading";
+import type { SiteLanguage } from "./data/copy";
 import type { EditionId } from "./data/editions";
 import { EditionPresentationContext } from "./routing/EditionPresentationContext";
 const EditionSite = lazy(preloadEdition);
@@ -25,7 +26,7 @@ function DirectEditionRoute({
   language,
 }: {
   edition: EditionId;
-  language: "en" | "ko" | "zh-TW";
+  language: SiteLanguage;
 }) {
   const [preparation, setPreparation] = useState<EditionPreparation | null>(null);
   const transition = useContext(EditionTransitionContext);

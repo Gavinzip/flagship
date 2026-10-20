@@ -5,6 +5,22 @@ import { thailandHighlights } from "./highlights";
 
 // The five films document Taiwan 2026; Thailand's event plan and FAQ are independent.
 export const thailandEventContent: Record<SiteLanguage, EventContent> = {
+  th: {
+    navigation: [{ label: "ไฮไลต์", href: "#highlights" }, { label: "ภาพจากโซล", href: "#seoul-recap" }, { label: "พันธมิตร", href: "#vendors" }, { label: "สถานที่", href: "#venue" }, { label: "คำถามที่พบบ่อย", href: "#faq" }],
+    highlights: thailandHighlights.th,
+    vendors: { title: "พันธมิตร", english: "PARTNERS", organizerLabel: "ผู้จัดงาน", titleSponsorLabel: "ผู้สนับสนุนหลัก", vendorLabel: "ผู้จัดแสดง" },
+    venue: { title: "สถานที่จัดงาน", english: "VENUE & ACCESS" },
+    faq: {
+      categoryLabel: "หมวดคำถามที่พบบ่อย", categories: ["ข้อมูลงาน", "การเข้าชม", "ภายในงาน"],
+      items: [
+        { category: "ข้อมูลงาน", question: "FLAGSHIP Thailand จัดเมื่อไร", answer: "วันที่ 28–29 พฤศจิกายน 2026 เวลา 13:00–20:00 น. ทุกวัน ตามเวลากรุงเทพฯ (UTC+7)" },
+        { category: "ข้อมูลงาน", question: "งานจัดที่ไหน", answer: "QSNCC ศูนย์การประชุมแห่งชาติสิริกิติ์ Event Hall ชั้น B2 กรุงเทพฯ ประเทศไทย" },
+        { category: "ข้อมูลงาน", question: "ภายในงานมีอะไรบ้าง", answer: "เดินดูการ์ดและของสะสม แลกเปลี่ยนหรือซื้อขายการ์ด และพูดคุยกับนักสะสม แผนงานปัจจุบันมีโต๊ะร้านค้ากว่า 100 โต๊ะ และบูธแบรนด์ 4–6 บูธ รายชื่อผู้จัดแสดงและกำหนดการฉบับเต็มจะประกาศเพิ่มเติม" },
+        { category: "การเข้าชม", question: "ซื้อบัตรหรือลงทะเบียนอย่างไร", answer: "รายละเอียดบัตรเข้างานและลิงก์ลงทะเบียนของประเทศไทยยังไม่ประกาศ ติดตาม @flagshiptcg เพื่อรับข่าวเปิดจำหน่ายบัตร" },
+        { category: "ภายในงาน", question: "ดูรายชื่อร้านค้าได้ที่ไหน", answer: "รายชื่อร้านค้าที่ได้รับการยืนยัน กิจกรรม และรายละเอียดการเข้าชม จะทยอยประกาศผ่านช่องทาง FLAGSHIP อย่างเป็นทางการ" },
+      ],
+    },
+  },
   en: {
     ...koreaEventContent.en,
     highlights: thailandHighlights.en,
@@ -28,9 +44,9 @@ export const thailandEventContent: Record<SiteLanguage, EventContent> = {
     faq: {
       categoryLabel: "常見問題分類", categories: ["活動資訊", "入場資訊", "現場安排"],
       items: [
-        { category: "活動資訊", question: "泰國卡展何時舉行？", answer: "2026 年 11 月 28–29 日，每日 13:00–20:00，時間為曼谷當地時間（UTC+7）。" },
+        { category: "活動資訊", question: "泰國卡展何時舉行？", answer: "2026 年 11 月 28–29 日，每天 13:00–20:00，皆為曼谷當地時間（UTC+7）。" },
         { category: "活動資訊", question: "活動地點在哪裡？", answer: "泰國曼谷 QSNCC 詩麗吉王后國家會議中心，B2 樓 Event Hall。" },
-        { category: "活動資訊", question: "現場可以體驗什麼？", answer: "收藏、交易與卡牌社群交流。現階段規劃 100+ 張攤商桌與 4–6 個品牌展位；完整名單與節目將依正式公告更新。" },
+        { category: "活動資訊", question: "現場可以體驗什麼？", answer: "目前規劃 100+ 張攤商桌和 4–6 個品牌展位。你可以逛攤位、看卡牌和收藏品，跟同好聊收藏、交易卡牌。參展名單與完整節目還會繼續更新，請以官方公告為準。" },
         { category: "入場資訊", question: "如何購票或報名？", answer: "泰國站票務資訊與正式報名連結尚未公布，請追蹤 @flagshiptcg 的開票消息。" },
         { category: "現場安排", question: "完整攤商名單在哪裡看？", answer: "已確認的攤商、活動內容與入場安排，會透過 FLAGSHIP 官方管道陸續公告。" },
       ],

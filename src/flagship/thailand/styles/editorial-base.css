@@ -40,10 +40,3 @@ html:has(.thailand-event-site) { background: #0b0d10; color-scheme: dark; scroll
 .thailand-event-site .ev-desktop-nav a { font-size: clamp(13px,1.172vw,18px); font-weight: 600; }
 .thailand-event-site .ev-mobile-nav { background: #111418; color: #f8f8f4; border-color: #ffffff20; }
 .thailand-event-site .ev-mobile-nav :is(a,select,label) { color: #f8f8f4; }
-.edition-direct-admission--thailand { background: #0b0d10; }
-.edition-direct-admission--thailand::after { background: transparent; }
-.edition-direct-admission--thailand .edition-admission { background: #111418; border-color: #ffffff26; color: #f0b90b; text-shadow: none; box-shadow: none; }
-.edition-direct-admission--thailand .edition-admission p strong,
-.edition-direct-admission--thailand .edition-admission p span,
-.edition-direct-admission--thailand .edition-admission__footer { color: #f0b90b; }
-.edition-direct-admission--thailand .edition-admission__meter i { background: #f0b90b; box-shadow: none; }

@@ -14,14 +14,14 @@ export function ThailandVenue({ c, words, visit }: { c: EventPageCopy; words: Ed
       <div className="th-venue-layout">
         <ThailandVenueGallery words={words} />
         <div className="th-venue-copy">
-          <h3>QSNCC</h3><strong>EVENT HALL · LEVEL B2</strong>
-          <p>{c.details.venueDetail}</p>
-          <dl><div><dt>{c.date}</dt><dd>{words.heroDate}</dd></div><div><dt>{c.time}</dt><dd>{c.details.time}</dd></div></dl>
-          <p className="th-transit">{words.transit}</p>
-          <a className="th-button th-button--black" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(thailandEvent.mapQuery)}`} target="_blank" rel="noreferrer">{c.details.directions}<ArrowUpRight /></a>
+          <h3 data-th-reveal="0">QSNCC</h3><strong data-th-reveal="60">EVENT HALL · LEVEL B2</strong>
+          <p data-th-reveal="100">{c.details.venueDetail}</p>
+          <dl data-th-reveal="140"><div><dt>{c.date}</dt><dd>{words.heroDate}</dd></div><div><dt>{c.time}</dt><dd>{c.details.time}</dd></div></dl>
+          <p className="th-transit" data-th-reveal="180">{words.transit}</p>
+          <a className="th-button th-button--black" data-th-reveal="220" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(thailandEvent.mapQuery)}`} target="_blank" rel="noreferrer">{c.details.directions}<ArrowUpRight /></a>
         </div>
       </div>
-      <div className="th-shared-venue"><p>{words.venueContext}</p><div><span>FLAGSHIP CARD SHOW<strong>EVENT HALL · B2</strong></span><span>BINANCE BLOCKCHAIN WEEK<strong>EXHIBITION HALL 3 · G</strong></span></div></div>
+      <div className="th-shared-venue" data-th-reveal="80"><p>{words.venueContext}</p><div><span>FLAGSHIP CARD SHOW<strong>EVENT HALL · B2</strong></span><span>BINANCE BLOCKCHAIN WEEK<strong>EXHIBITION HALL 3 · G</strong></span></div></div>
       <ThailandAccess visit={visit} />
     </div>
   </section>;

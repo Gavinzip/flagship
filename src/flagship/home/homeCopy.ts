@@ -1,3 +1,4 @@
+import { homeThai } from "./locales/th";
 import type { SiteLanguage } from "../data/copy";
 
 export type HomeCopy = {
@@ -19,6 +20,7 @@ export type HomeCopy = {
 };
 
 export const homeCopy: Record<SiteLanguage, HomeCopy> = {
+  th: homeThai,
   "en": {
     "nav": [
       "About Flagship",

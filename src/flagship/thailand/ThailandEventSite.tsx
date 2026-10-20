@@ -12,6 +12,8 @@ import { ThailandHighlights } from "./components/ThailandHighlights";
 import { ThailandSeoulRecap } from "./components/ThailandSeoulRecap";
 import { ThailandVenue } from "./components/ThailandVenue";
 import { ThailandPartners } from "./components/ThailandPartners";
+import { useThailandReveal } from "./hooks/useThailandReveal";
+import { ThailandFooter } from "./components/ThailandFooter";
 import { ThailandQuestions } from "./components/ThailandQuestions";
 import "../event/styles/index.css";
 import "./styles/theme.css";
@@ -22,6 +24,7 @@ export function ThailandEventSite({ onReady }: { onReady: () => void }) {
   const c = thailandDefinition.copy[language];
   const words = editorialCopy[language];
   useEventReady(root, onReady);
+  useThailandReveal(root);
   return <div ref={root} className="edition-event-site thailand-event-site" id="top">
     <EventHeader c={c} definition={thailandDefinition} />
     <main id="main">
@@ -36,5 +39,6 @@ export function ThailandEventSite({ onReady }: { onReady: () => void }) {
       <ThailandVenue c={c} words={words} visit={visitCopy[language]} />
       <ThailandQuestions c={c} words={words} />
     </main>
+    <ThailandFooter c={c} words={words} />
   </div>;
 }

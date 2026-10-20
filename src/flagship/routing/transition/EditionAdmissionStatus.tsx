@@ -1,9 +1,9 @@
 import type { EditionId } from "../../data/editions";
 import type { SiteLanguage } from "../../data/copy";
-import { editions } from "../../data/editions";
-import { EditionEmblem } from "../../components/EditionEmblem";
+import masterLogo from "../../assets/brand/flagship-master.webp";
 
 const copy = {
+  th: { preparing: "กำลังเตรียม", back: "กลับ" },
   en: { preparing: "PREPARING", back: "Back" },
   "zh-TW": { preparing: "正在準備", back: "返回" },
   ko: { preparing: "준비 중", back: "뒤로" },
@@ -23,12 +23,8 @@ export function EditionAdmissionStatus({
 }) {
   const text = copy[language];
   return (
-    <div className="edition-admission" role="status" aria-live="polite">
-      <EditionEmblem edition={edition} className="edition-admission__logo" />
-      <p>
-        <span>{text.preparing}</span>
-        <strong>{edition.toUpperCase()}</strong>
-      </p>
+    <div className="edition-admission" role="status" aria-live="polite" aria-label={`${text.preparing} ${edition.toUpperCase()} ${progress}%`}>
+      <img src={masterLogo} className="edition-admission__logo" width="1670" height="941" alt="FLAGSHIP Card Show" />
       <div className="edition-admission__meter" aria-hidden="true">
         <i style={{ transform: `scaleX(${progress / 100})` }} />
       </div>

@@ -22,7 +22,7 @@ const records = new Map<EditionId, PreparationRecord>();
 
 function criticalImages(edition: EditionId) {
   if (edition === "taiwan") return siteImagePreloads;
-  if (edition === "thailand") return [ { src: thailandArtwork.emblem }, { src: thailandArtwork.hero } ];
+  if (edition === "thailand") return [ { src: thailandArtwork.emblem }, { src: thailandArtwork.heroPoster } ];
 
   return [
     { src: editions.korea.emblem },

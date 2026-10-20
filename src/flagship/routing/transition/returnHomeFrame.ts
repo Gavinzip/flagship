@@ -1,16 +1,22 @@
 import { entryMotion } from "../../world/config/entryMotion";
 import type { ReturnFrame } from "../../world/runtime/returnRig";
+import type { WorldEntryOrigin } from "../../world/runtime/entryOrigin";
 
 /** Scrub the entry's viewport expansion backwards on the camera's clock. */
-export function prepareReturnHomeFrame(world: HTMLElement, stage: HTMLElement) {
+export function prepareReturnHomeFrame(world: HTMLElement, stage: HTMLElement, origin: WorldEntryOrigin) {
   const home = stage.getBoundingClientRect();
+  const sticky = world.querySelector<HTMLElement>(".world-sticky");
+  if (!sticky) throw new Error("The return journey is missing its world layout.");
+  // The fixed return retainer is at scroll zero. A flowing mobile grid must
+  // land where it will appear after restoring the saved document scroll.
+  const top = home.top - (getComputedStyle(sticky).position === "relative" ? origin.scrollY : 0);
   const original = stage.getAttribute("style");
   stage.style.position = "fixed";
   stage.style.inset = "auto";
   stage.style.gridArea = "auto";
   stage.style.transition = "none";
   const viewport = stage.animate([
-    { left: `${home.left}px`, top: `${home.top}px`, width: `${home.width}px`, height: `${home.height}px` },
+    { left: `${home.left}px`, top: `${top}px`, width: `${home.width}px`, height: `${home.height}px` },
     { left: "0px", top: "0px", width: `${innerWidth}px`, height: `${innerHeight}px` },
   ], { duration: entryMotion.frameSeconds * 1000, easing: "ease", fill: "both" });
   viewport.pause();

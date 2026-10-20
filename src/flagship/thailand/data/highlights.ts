@@ -4,14 +4,24 @@ import { thailandEvent } from "./event";
 
 // Thailand programme copy is separate from the Taiwan recap footage and Korea's event copy.
 export const thailandHighlights: Record<SiteLanguage, EventContent["highlights"]> = {
+  th: {
+    title: "ไฮไลต์งาน", english: "EVENT HIGHLIGHTS",
+    items: [
+      { number: "01", english: "GATHER AROUND CARDS", title: "เริ่มคุยกันจากการ์ดหนึ่งใบ", description: "หยิบแฟ้มมาเดินดูงาน คุยกับนักสะสม ผู้เล่น ร้านการ์ด และแบรนด์ต่าง ๆ แบ่งปันเรื่องราวของการ์ดในมือ แล้วรู้จักเพื่อนใหม่ไปด้วยกัน", alt: "ผู้เล่นล้อมโต๊ะเพื่อดูและเล่นการ์ด" },
+      { number: "02", english: "COLLECT & TRADE", title: "โต๊ะร้านค้า 100+ โต๊ะ เดินดูได้เต็มที่", description: "งานกรุงเทพฯ วางแผนไว้กว่า 100 โต๊ะ ให้คุณเดินร้าน เลือกการ์ด และแลกเปลี่ยนหรือซื้อขายกับนักสะสม รายชื่อร้านค้าและข้อมูลสินค้าจะทยอยประกาศ", alt: "นักสะสมแบ่งปันการ์ดและของสะสมในงาน" },
+      { number: "03", english: "BRANDS & COLLECTIBLES", title: "พบแบรนด์ที่บูธ 4–6 บูธ", description: "ชมการ์ดและของสะสม พร้อมคุยกับแบรนด์และนักสะสมแบบเจอหน้ากัน งานกรุงเทพฯ วางแผนบูธแบรนด์ไว้ 4–6 บูธ รายชื่อแบรนด์และกิจกรรมจะประกาศอย่างเป็นทางการ", alt: "บูธแบรนด์และของสะสมที่จัดแสดงในงานการ์ด" },
+      { number: "04", english: "THE LIVE EXPERIENCE", title: "มาสนุกกับบรรยากาศในงาน", description: "วิดีโอบันทึกบทสนทนา กิจกรรม และเสียงเชียร์จากงานไต้หวัน ส่วนกำหนดการและวิธีเข้าร่วมกิจกรรมของประเทศไทยจะประกาศพร้อมโปรแกรมฉบับเต็ม", alt: "ผู้ร่วมงานส่งเสียงเชียร์ในงานการ์ด" },
+      { number: "05", english: "TWO SHOWS. ONE DESTINATION.", title: "สองวัน พบกันที่ QSNCC", description: "วันที่ 28–29 พฤศจิกายน เวลา 13:00–20:00 น. ทุกวัน ณ Event Hall ชั้น B2 และ Binance Blockchain Week ก็จัดที่ QSNCC ในวันเดียวกัน ทั้งสองงานอยู่คนละชั้น โปรดตรวจสอบเงื่อนไขเข้าชมของแต่ละงานแยกกัน", alt: "ร้านค้าและผู้เข้าชมงาน FLAGSHIP Taiwan" },
+    ],
+  },
   "zh-TW": {
     title: "活動亮點", english: "EVENT HIGHLIGHTS",
     items: [
-      { number: "01", english: "GATHER AROUND CARDS", title: "帶上收藏，因卡相聚", description: "收藏家、玩家、卡店與品牌，在同一場卡展相遇。帶上你的卡冊，分享收藏、交流心得，或從一張喜歡的卡開始，認識新的朋友。", alt: "玩家圍著桌子看卡與對戰" },
-      { number: "02", english: "COLLECT & TRADE", title: `${thailandEvent.plannedVendorTables} 張攤商桌，慢慢逛`, description: "曼谷站規劃超過 100 張攤商桌，讓收藏與交易在桌邊發生。逛逛不同卡店與選品、尋找心儀的卡；參展攤商與商品資訊將陸續公布。", alt: "收藏家在卡展中分享卡牌與收藏" },
-      { number: "03", english: "BRANDS & COLLECTIBLES", title: `${thailandEvent.plannedExhibitorBooths} 個品牌展位`, description: "走進品牌展位，看卡牌與收藏品展示，和品牌及其他收藏家面對面交流。曼谷站規劃 4–6 個展位，完整品牌名單與體驗內容待官方公布。", alt: "卡展中的品牌攤位與收藏品展示" },
-      { number: "04", english: "THE LIVE EXPERIENCE", title: "感受現場的熱度", description: "逛卡展，也是在參與一群人的熱愛。先從台灣站回顧，感受交流、互動與歡呼的瞬間；泰國站活動時程與參加方式，將隨完整節目公布。", alt: "卡展人群舉手歡呼的瞬間" },
-      { number: "05", english: "TWO SHOWS. ONE DESTINATION.", title: "兩天卡展，曼谷相見", description: "11 月 28–29 日，每日 13:00–20:00，在 QSNCC B2 Event Hall 相聚。同日期、同場館也有 Binance Blockchain Week；兩場活動的樓層與入場資訊請分別確認。", alt: "FLAGSHIP TAIWAN 的卡展人潮與場內攤位" },
+      { number: "01", english: "GATHER AROUND CARDS", title: "從一張卡開始聊", description: "帶著卡冊逛一逛，跟收藏家、玩家、卡店和品牌聊聊手上的卡。分享收藏心得，也認識新的朋友。", alt: "玩家圍著桌子看卡與對戰" },
+      { number: "02", english: "COLLECT & TRADE", title: `${thailandEvent.plannedVendorTables} 張攤商桌，慢慢逛`, description: "曼谷站規劃超過 100 張攤商桌，可以逛不同卡店、挑卡，也和收藏家交流或交易。參展攤商和商品資訊會陸續公布。", alt: "收藏家在卡展中分享卡牌與收藏" },
+      { number: "03", english: "BRANDS & COLLECTIBLES", title: `${thailandEvent.plannedExhibitorBooths} 個品牌展位`, description: "看看卡牌與收藏品，和品牌、收藏家面對面聊聊。曼谷站規劃 4–6 個品牌展位，參展品牌和體驗內容將由官方公布。", alt: "卡展中的品牌攤位與收藏品展示" },
+      { number: "04", english: "THE LIVE EXPERIENCE", title: "一起感受現場氣氛", description: "影片記錄了台灣站的交流、互動和歡呼。曼谷站的活動時程與參加方式，會和完整節目一起公布。", alt: "卡展人群舉手歡呼的瞬間" },
+      { number: "05", english: "TWO SHOWS. ONE DESTINATION.", title: "兩天卡展，曼谷相見", description: "卡展在 11 月 28–29 日開放，每日 13:00–20:00，地點是 QSNCC B2 的 Event Hall。Binance Blockchain Week 也在同一日期、同一場館舉行。兩場活動在不同樓層，入場方式也請各自確認。", alt: "FLAGSHIP TAIWAN 的卡展人潮與場內攤位" },
     ],
   },
   en: {

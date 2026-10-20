@@ -13,7 +13,6 @@ const { values } = parseArgs({
   },
 });
 const distDirectory = resolve(projectRoot, values.dist);
-const indexPath = resolve(distDirectory, "index.html");
 const cspPath = resolve(projectRoot, values.output);
 const productionEnvironment = loadEnv("production", projectRoot, "VITE_");
 const assetCdnOrigin = new URL(
@@ -38,7 +37,12 @@ for (const filename of await readdir(resolve(distDirectory, "assets"))) {
   integrityBySource.set(source, integrity);
   scriptHashes.add(integrity);
 }
-for (const relativePath of ["index.html", "korea/index.html", "taiwan/index.html"]) {
+// Secure every emitted HTML entry so new editions cannot be omitted from the CSP.
+const htmlPages = (await readdir(distDirectory, { recursive: true }))
+  .filter((path) => path.endsWith(".html"))
+  .sort();
+if (!htmlPages.includes("index.html")) throw new Error("The build is missing its HTML entry.");
+for (const relativePath of htmlPages) {
   const htmlPath = resolve(distDirectory, relativePath);
   let html = await readFile(htmlPath, "utf8");
   const externalScripts = [...html.matchAll(/<script\b([^>]*?)\bsrc="(\/assets\/[^"]+\.js)"([^>]*)><\/script>/g)];

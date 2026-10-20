@@ -28,6 +28,7 @@ import { WorldAdmission } from "./WorldAdmission";
 type AdmissionStage = "assets" | "module" | "renderer";
 
 const admissionCopy = {
+  th: { assets: "กำลังเตรียมกาแล็กซี", module: "กำลังเตรียมโลก FLAGSHIP", renderer: "กำลังเตรียมลูกโลก" },
   en: {
     assets: "PREPARING THE GALAXY",
     module: "PREPARING THE WORLD",
@@ -56,7 +57,7 @@ export function WorldJourney({
 }) {
   const { location } = useSiteNavigation();
   const zh = location.language === "zh-TW",
-    ko = location.language === "ko";
+    ko = location.language === "ko", th = location.language === "th";
   const section = useRef<HTMLElement>(null),
     host = useRef<HTMLDivElement>(null),
     runtime = useRef<WorldRuntime | null>(null),
@@ -250,7 +251,7 @@ export function WorldJourney({
               ? "左右滑動或使用方向鍵切換地區，向下捲動繼續認識 FLAGSHIP"
               : ko
                 ? "최신 행사는 태국입니다. 좌우로 밀거나 방향키로 지역을 선택하세요. 아래로 스크롤하여 FLAGSHIP을 만나보세요."
-                : "Thailand is the latest edition. Swipe or use left and right arrow keys to explore regions. Scroll down to discover FLAGSHIP."
+                : th ? "งานถัดไปคือประเทศไทย ปัดหรือใช้ปุ่มลูกศรซ้ายขวาเพื่อเลือกประเทศ เลื่อนลงเพื่อรู้จัก FLAGSHIP" : "Thailand is the latest edition. Swipe or use left and right arrow keys to explore regions. Scroll down to discover FLAGSHIP."
           }
         >
           {worldEditionOrder.map(id => <CityMarker key={id} city={id} status={editionCopy[id].status} action={editionCopy[id].cta} />)}

@@ -5,6 +5,7 @@ import type { CityId } from "../config/worldSpec";
 export const worldEditionOrder: readonly CityId[] = ["thailand", "korea", "taiwan"];
 export function worldEditionCopy(copy: HomeCopy, language: SiteLanguage) {
   const headlines = {
+    th: { thailand: "พบกันครั้งต่อไปที่กรุงเทพฯ", korea: "ย้อนชมการพบกันที่โซล", taiwan: "จุดเริ่มต้นของเรา" },
     en: { thailand: "OUR NEXT CHAPTER.", korea: "THE SEOUL CHAPTER.", taiwan: "WHERE IT BEGAN." },
     "zh-TW": { thailand: "下一站，一起相聚。", korea: "回看首爾的相聚。", taiwan: "故事開始的地方。" },
     ko: { thailand: "다음 만남.", korea: "서울에서의 만남.", taiwan: "우리의 시작." },

@@ -1,19 +1,27 @@
 import { useEffect, useRef, useState } from "react";
 import type { EventHighlightMedia } from "../data/highlightMedia";
+import { useViewportVideo } from "../hooks/useViewportVideo";
 
 type EventHighlightVideoProps = {
   visual: EventHighlightMedia;
   alt: string;
+  playback?: "hover" | "viewport";
+  active?: boolean;
 };
 
 export function EventHighlightVideo({
   visual,
   alt,
+  playback = "hover",
+  active = true,
 }: EventHighlightVideoProps) {
+  const container = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [canPlay, setCanPlay] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const inViewport = useViewportVideo(container, playback === "viewport" && active);
+  const previewActive = active && !reducedMotion && (playback === "viewport" ? inViewport : isHovered);
 
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -27,21 +35,31 @@ export function EventHighlightVideo({
     const element = video.current;
     if (!element) return;
 
-    if (!isHovered || reducedMotion) {
+    if (!previewActive) {
       element.pause();
       return;
     }
 
-    void element.play().catch(() => undefined);
-  }, [isHovered, reducedMotion]);
+    let cancelled = false;
+    void element.play().catch((error: unknown) => {
+      if (!cancelled && !(error instanceof DOMException && error.name === "AbortError")) {
+        console.error("[FLAGSHIP] Highlight playback failed.", error);
+      }
+    });
+    return () => {
+      cancelled = true;
+      element.pause();
+    };
+  }, [previewActive]);
 
   const startPreview = (pointerType: string) => {
-    if (pointerType !== "mouse" || reducedMotion) return;
+    if (playback !== "hover" || pointerType !== "mouse" || reducedMotion) return;
     setCanPlay(false);
     setIsHovered(true);
   };
 
   const stopPreview = () => {
+    if (playback !== "hover") return;
     video.current?.pause();
     setCanPlay(false);
     setIsHovered(false);
@@ -49,11 +67,12 @@ export function EventHighlightVideo({
 
   return (
     <div
-      className={`ev-highlight-media${canPlay && isHovered ? " is-ready" : ""}`}
+      ref={container}
+      className={`ev-highlight-media${canPlay && previewActive ? " is-ready" : ""}`}
       onPointerEnter={(event) => startPreview(event.pointerType)}
       onPointerLeave={stopPreview}
     >
-      {isHovered && !reducedMotion && (
+      {(playback === "viewport" || isHovered) && !reducedMotion && (
         <video
           ref={video}
           className="ev-highlight-video"
@@ -61,9 +80,10 @@ export function EventHighlightVideo({
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={playback === "viewport" ? "none" : "metadata"}
           aria-hidden="true"
-          onCanPlay={() => setCanPlay(true)}
+          onPlaying={() => setCanPlay(true)}
+          onPause={() => setCanPlay(false)}
         />
       )}
       <img

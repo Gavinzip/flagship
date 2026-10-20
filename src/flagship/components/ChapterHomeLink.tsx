@@ -7,7 +7,7 @@ export function ChapterHomeLink({ onClick }: { onClick?: () => void }) {
   const { location } = useSiteNavigation();
   const label = location.language === "zh-TW"
     ? "返回 Flagship 主站"
-    : location.language === "ko" ? "Flagship 홈으로" : "Back to Flagship home";
+    : location.language === "ko" ? "Flagship 홈으로" : location.language === "th" ? "กลับหน้า FLAGSHIP" : "Back to Flagship home";
   return (
     <SiteLink page="home" className="chapter-home-link" aria-label={label} onClick={onClick}>
       <ArrowUp aria-hidden="true" />

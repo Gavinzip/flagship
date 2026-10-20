@@ -3,7 +3,8 @@ import { ArrowUpRight, Menu, Xmark } from "iconoir-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useFlagship } from "../../FlagshipContext";
 import { ChapterHomeLink } from "../../components/ChapterHomeLink";
-import type { SiteLanguage } from "../../data/copy";
+import { EventLanguageMenu } from "./EventLanguageMenu";
+import { languageLabels } from "../../data/languages";
 import type { EventDefinition, EventPageCopy } from "../types";
 
 export function EventHeader({ c, definition }: { c: EventPageCopy; definition: EventDefinition }) {
@@ -42,16 +43,8 @@ export function EventHeader({ c, definition }: { c: EventPageCopy; definition: E
           {c.ticketCta}
           <ArrowUpRight aria-hidden="true" />
         </a>
-        <select
-          className="ev-header-language"
-          aria-label="Language"
-          value={language}
-          onChange={(e) => setLanguage(e.target.value as SiteLanguage)}
-        >
-          <option value="zh-TW">繁中</option>
-          <option value="en">EN</option>
-          <option value="ko">한국어</option>
-        </select>
+        <EventLanguageMenu className="ev-header-language" language={language}
+          onChange={setLanguage} includeThai={definition.id === "thailand"} />
         <button
           ref={toggle}
           className="ev-menu"
@@ -90,18 +83,11 @@ export function EventHeader({ c, definition }: { c: EventPageCopy; definition: E
                 <ArrowUpRight />
               </a>
             ))}
-            <label className="ev-mobile-language">
-              <span>Language</span>
-              <select
-                aria-label="Language"
-                value={language}
-                onChange={(e) => setLanguage(e.target.value as SiteLanguage)}
-              >
-                <option value="zh-TW">繁中</option>
-                <option value="en">EN</option>
-                <option value="ko">한국어</option>
-              </select>
-            </label>
+            <div className="ev-mobile-language">
+              <span>{languageLabels[language].label}</span>
+              <EventLanguageMenu language={language} onChange={setLanguage}
+                includeThai={definition.id === "thailand"} />
+            </div>
           </motion.nav>
         )}
       </AnimatePresence>

@@ -52,7 +52,7 @@ function waitForPreparation<T>(promise: Promise<T>, signal: AbortSignal) {
 
 export function EditionTransition({ children }: { children: ReactNode }) {
   const { location, registerHistoryTransition } = useSiteNavigation();
-  const zh = location.language === "zh-TW";
+  const zh = location.language === "zh-TW", th = location.language === "th";
   const [transfer, setTransfer] = useState<Transfer | null>(null);
   const active = useRef<AbortController | null>(null),
     world = useRef<WorldEntryBridge | null>(null),
@@ -165,7 +165,8 @@ export function EditionTransition({ children }: { children: ReactNode }) {
         mounted,
       ]);
       if (signal.aborted) return;
-      entryOrigin.current = arrival.origin;
+      // Navigation has already scrolled the country page to its own beginning.
+      entryOrigin.current = { ...arrival.origin, scrollY: scroll.current };
       setTransfer({ ...value, phase: "geographic", anchor: arrival, progress: 100 });
       await nextPaint();
       if (signal.aborted) return;
@@ -220,14 +221,14 @@ export function EditionTransition({ children }: { children: ReactNode }) {
       <div inert={transfer || returning ? true : undefined}>{children}</div>
       {returning && (
         <div className="geographic-transfer geographic-return" data-phase={returning.phase}
-          role="dialog" aria-modal="true" aria-label={zh ? "返回 FLAGSHIP 世界" : "Returning to the FLAGSHIP world"}>
+          role="dialog" aria-modal="true" aria-label={zh ? "返回 FLAGSHIP 世界" : th ? "กำลังกลับสู่โลก FLAGSHIP" : "Returning to the FLAGSHIP world"}>
           <div className="geographic-transfer-mark" ref={returnMark}>
             <EditionEmblem edition={returning.edition} />
           </div>
           {returning.phase === "error" && <div className="geographic-transfer-status" role="alert">
-            <span>{zh ? "地球載入失敗，請重試。" : "The globe could not be loaded."}</span>
-            <button onClick={() => returnHome(returning.edition, returning.navigate)}>{zh ? "重試" : "Retry"}</button>
-            <button onClick={cancelReturn}>{zh ? "留在此頁" : "Stay here"}</button>
+            <span>{zh ? "地球載入失敗，請重試。" : th ? "ไม่สามารถโหลดลูกโลกได้" : "The globe could not be loaded."}</span>
+            <button onClick={() => returnHome(returning.edition, returning.navigate)}>{zh ? "重試" : th ? "ลองอีกครั้ง" : "Retry"}</button>
+            <button onClick={cancelReturn}>{zh ? "留在此頁" : th ? "อยู่หน้านี้" : "Stay here"}</button>
           </div>}
         </div>
       )}
@@ -270,17 +271,17 @@ export function EditionTransition({ children }: { children: ReactNode }) {
               {transfer.phase === "error"
                 ? zh
                   ? "旅程載入失敗，請重試。"
-                  : "The journey could not be loaded."
+                  : th ? "ไม่สามารถโหลดการเดินทางได้" : "The journey could not be loaded."
                 : zh
                   ? `前往 ${transfer.edition.toUpperCase()} · 連結下一次相聚`
-                  : `ARRIVING IN ${transfer.edition.toUpperCase()}`}
+                  : th ? `กำลังไป ${transfer.edition.toUpperCase()}` : `ARRIVING IN ${transfer.edition.toUpperCase()}`}
             </span>
             {transfer.phase === "error" && (
               <button onClick={() => void run(transfer)}>
-                {zh ? "重新載入" : "Retry"}
+                {zh ? "重新載入" : th ? "ลองอีกครั้ง" : "Retry"}
               </button>
             )}
-            <button onClick={cancel}>{zh ? "返回" : "Back"}</button>
+            <button onClick={cancel}>{zh ? "返回" : th ? "กลับ" : "Back"}</button>
           </div>
         </div>
       )}

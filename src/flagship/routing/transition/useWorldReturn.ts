@@ -48,7 +48,11 @@ export function useWorldReturn(
         const { signal } = controller;
         const started = performance.now();
         // Direct country URLs are supported too: mount the original globe behind the country.
-        while (!world.current || !returnMark.current) {
+        // Mobile places the globe below copy that mounts only after admission.
+        // Measure the return frame after that layout exists, not just the bridge.
+        while (!world.current || !returnMark.current || !document.querySelector(
+          '.brand-world-retainer .world-stage[data-ready="true"]',
+        )) {
           if (signal.aborted) throw new DOMException("Aborted", "AbortError");
           if (performance.now() - started > 15000) throw new Error("The returning world is not ready.");
           await nextPaint();
@@ -66,14 +70,12 @@ export function useWorldReturn(
           navigate();
           setReturning({ ...value, phase: "settling" });
         });
-        // The country link intentionally carries a city hash for direct links.
-        // A journey that began in the outer world must instead land at the
-        // original scroll position, or the last frame changes scale after the
-        // reverse camera path has already finished.
+        // Restore document flow before scrolling. While the world retainer is
+        // fixed, the document is too short and the saved offset clamps to zero.
+        restore();
+        flushSync(() => setReturning(null));
         window.scrollTo({ top: value.origin.scrollY, behavior: "instant" });
         bridge.release();
-        restore();
-        setReturning(null);
         active.current = null;
         running.current = false;
         await nextPaint();

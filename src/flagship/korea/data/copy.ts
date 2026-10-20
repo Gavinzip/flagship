@@ -1,10 +1,10 @@
+import { koreaDescriptions } from "../../data/eventDescriptions";
 import { koreaEventContent } from "./koreaEventContent";
 import { koreaDeckEvent } from "./koreaDeck";
 
 export const koreaPageCopy = {
   "zh-TW": {
-    metaDescription:
-      "FLAGSHIP 韓國卡展將於 2026 年 9 月 29 日 13:00–20:00，在首爾 TEX+FA HALL 舉行。免費入場，報名須經主辦審核。",
+    metaDescription: koreaDescriptions["zh-TW"],
     event: koreaEventContent["zh-TW"],
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
@@ -45,8 +45,7 @@ export const koreaPageCopy = {
     footer: "收藏、交流與探索，期待在首爾相見。",
   },
   en: {
-    metaDescription:
-      "FLAGSHIP Korea takes place at TEX+FA HALL in Seoul on 29 September 2026, from 1–8 PM. Admission is free and registration requires host approval.",
+    metaDescription: koreaDescriptions["en"],
     event: koreaEventContent.en,
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {
@@ -87,8 +86,7 @@ export const koreaPageCopy = {
     footer: "A place for collecting, exchange, and discovery in Seoul.",
   },
   ko: {
-    metaDescription:
-      "FLAGSHIP KOREA는 2026년 9월 29일 13:00–20:00, 서울 TEX+FA HALL에서 열립니다. 무료 입장이며 등록은 주최 측 승인이 필요합니다.",
+    metaDescription: koreaDescriptions["ko"],
     event: koreaEventContent.ko,
     preview: "FLAGSHIP KOREA · SEOUL 2026",
     koreaEvent: {

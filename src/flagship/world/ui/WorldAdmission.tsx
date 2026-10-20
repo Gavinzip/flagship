@@ -1,3 +1,4 @@
+import type { SiteLanguage } from "../../data/copy";
 import { homeMedia } from "../../home/homeMedia";
 
 type WorldAdmissionProps = {
@@ -6,10 +7,11 @@ type WorldAdmissionProps = {
   error: boolean;
   exiting: boolean;
   retry: () => void;
-  language: "en" | "zh-TW" | "ko";
+  language: SiteLanguage;
 };
 
 const copy = {
+  th: { label: "กำลังเตรียมโลก FLAGSHIP", retry: "ลองอีกครั้ง" },
   en: { label: "PREPARING FLAGSHIP WORLD", retry: "Retry" },
   "zh-TW": { label: "正在準備 FLAGSHIP 世界", retry: "重新載入" },
   ko: { label: "FLAGSHIP 세계를 준비하는 중", retry: "다시 시도" },
@@ -30,6 +32,8 @@ export function WorldAdmission({
       className={`world-admission${exiting ? " world-admission--exiting" : ""}`}
       role={error ? "alert" : "status"}
       aria-live="polite"
+      aria-label={text.label}
+      data-loading-stage={stage}
     >
       <div className="world-admission__content">
         <img
@@ -40,16 +44,14 @@ export function WorldAdmission({
           alt="FLAGSHIP Card Show"
         />
         <div className="world-admission__copy">
-          <span>{error ? "FLAGSHIP WORLD" : text.label}</span>
           {error ? (
             <button type="button" onClick={retry}>{text.retry}</button>
           ) : (
             <>
-              <strong>{String(progress).padStart(2, "0")}%</strong>
-              <small>{stage}</small>
               <div className="world-admission__rail" aria-hidden="true">
                 <i style={{ transform: `scaleX(${progress / 100})` }} />
               </div>
+              <strong>{String(progress).padStart(2, "0")}%</strong>
             </>
           )}
         </div>

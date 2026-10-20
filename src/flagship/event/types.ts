@@ -61,5 +61,5 @@ export type EventDefinition = {
   titleSponsor: boolean;
   captions: { highlights: string; partners: string; venue: string; faq: string };
   artwork: EventArtwork;
-  copy: Record<SiteLanguage, EventPageCopy>;
+  copy: Record<Exclude<SiteLanguage, "th">, EventPageCopy> & { th?: EventPageCopy };
 };

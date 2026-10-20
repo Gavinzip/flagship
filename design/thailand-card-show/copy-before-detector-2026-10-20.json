@@ -1,0 +1,125 @@
+{
+  "models": {
+    "v3short": "yuchuantian/AIGC_detector_zhv3short",
+    "v3": "yuchuantian/AIGC_detector_zhv3",
+    "v2": "yuchuantian/AIGC_detector_zhv2"
+  },
+  "scope": "segments_not_document_probability",
+  "characters": 896,
+  "sha256": "ac50658a30bdf2b611b50b8a5fb112490ed3641c9dcbaef36ed35573b7aab69e",
+  "target_ai_probability": 0.05,
+  "sections": [
+    {
+      "segment": 1,
+      "start_character": 0,
+      "end_character": 449,
+      "text": "兩天的相聚，一樣的熱愛。帶上你的收藏，在曼谷遇見喜歡卡牌的人。\n\n和我們一起，讓曼谷成為下一次相聚的地方。\n\n現階段規劃 100+ 張攤商桌與 4–6 個品牌展位。已確認的攤商與完整節目，將依官方公告陸續公布。\n\n從收藏家交流到品牌展位，帶你認識 FLAGSHIP 的現場。\n\n與 Binance Blockchain Week 同期於 QSNCC 舉行。\n\n帶上收藏，因卡相聚\n\n收藏家、玩家、卡店與品牌，在同一場卡展相遇。帶上你的卡冊，分享收藏、交流心得，或從一張喜歡的卡開始，認識新的朋友。\n\n曼谷站規劃超過 100 張攤商桌，讓收藏與交易在桌邊發生。逛逛不同卡店與選品、尋找心儀的卡；參展攤商與商品資訊將陸續公布。\n\n走進品牌展位，看卡牌與收藏品展示，和品牌及其他收藏家面對面交流。曼谷站規劃 4–6 個展位，完整品牌名單與體驗內容待官方公布。\n\n感受現場的熱度\n\n逛卡展，也是在參與一群人的熱愛。先從台灣站回顧，感受交流、互動與歡呼的瞬間；泰國站活動時程與參加方式，將隨完整節目公布。\n\n",
+      "token_upper_bound": 413,
+      "sha256": "464bdaf74e3b31974e1a8688ec8a75e908d572507062772cddb5356112da9383"
+    },
+    {
+      "segment": 2,
+      "start_character": 449,
+      "end_character": 896,
+      "text": "11 月 28–29 日，每日 13:00–20:00，在 QSNCC B2 Event Hall 相聚。同日期、同場館也有 Binance Blockchain Week；兩場活動的樓層與入場資訊請分別確認。\n\n從首爾，走向下一次相聚。\n\n卡牌在手，話題就開始了。回看 Renaiss 在 BNB Seoul Super Meetup 的收藏展示、攤位互動與社群交流，把這份熱愛帶到下一站曼谷。\n\n一起投入，才有現場的熱度。\n\n值得停下來看的收藏。\n\n收藏，讓我們認識彼此。\n\n參展品牌與攤商將陸續揭曉，敬請期待。\n\n2026 年 11 月 28–29 日，每日 13:00–20:00，時間為曼谷當地時間（UTC+7）。\n\n收藏、交易與卡牌社群交流。現階段規劃 100+ 張攤商桌與 4–6 個品牌展位；完整名單與節目將依正式公告更新。\n\n活動為 11 月 28–29 日，每日 13:00–20:00。抵達後前往 B2 樓；報到方式、入場規則與完整節目將由 FLAGSHIP 官方公告。\n",
+      "token_upper_bound": 392,
+      "sha256": "cd3c442b8262c69730d996c23c7c5075f6128d1d5cd7136e33204fa72a8db41b"
+    }
+  ],
+  "results": [
+    {
+      "segment": 1,
+      "model_key": "v3short",
+      "state": "complete",
+      "model": "yuchuantian/AIGC_detector_zhv3short",
+      "endpoint": "https://yuchuantian-aigc-text-detector.hf.space/gradio_api/call/predict_zh4",
+      "event_id": "32d206602f6c4e6a83c8f8f1d6880a09",
+      "sha256": "464bdaf74e3b31974e1a8688ec8a75e908d572507062772cddb5356112da9383",
+      "characters": 449,
+      "token_upper_bound": 413,
+      "measured_at_utc": "2026-10-20T09:12:39.116950+00:00",
+      "label": "人类",
+      "winning_probability": 0.9339087009429932,
+      "ai_probability": 0.06609129905700684
+    },
+    {
+      "segment": 1,
+      "model_key": "v3",
+      "state": "complete",
+      "model": "yuchuantian/AIGC_detector_zhv3",
+      "endpoint": "https://yuchuantian-aigc-text-detector.hf.space/gradio_api/call/predict_zh",
+      "event_id": "deadc4ec5fa945e5b0b65f28a247fb4f",
+      "sha256": "464bdaf74e3b31974e1a8688ec8a75e908d572507062772cddb5356112da9383",
+      "characters": 449,
+      "token_upper_bound": 413,
+      "measured_at_utc": "2026-10-20T09:12:40.990709+00:00",
+      "label": "人类",
+      "winning_probability": 0.9714162945747375,
+      "ai_probability": 0.02858370542526245
+    },
+    {
+      "segment": 1,
+      "model_key": "v2",
+      "state": "complete",
+      "model": "yuchuantian/AIGC_detector_zhv2",
+      "endpoint": "https://yuchuantian-aigc-text-detector.hf.space/gradio_api/call/predict_zh6",
+      "event_id": "adedbedcd01a43e4a4d0468391b011f3",
+      "sha256": "464bdaf74e3b31974e1a8688ec8a75e908d572507062772cddb5356112da9383",
+      "characters": 449,
+      "token_upper_bound": 413,
+      "measured_at_utc": "2026-10-20T09:12:42.793202+00:00",
+      "label": "人类",
+      "winning_probability": 0.9903450608253479,
+      "ai_probability": 0.0096549391746521
+    },
+    {
+      "segment": 2,
+      "model_key": "v3short",
+      "state": "complete",
+      "model": "yuchuantian/AIGC_detector_zhv3short",
+      "endpoint": "https://yuchuantian-aigc-text-detector.hf.space/gradio_api/call/predict_zh4",
+      "event_id": "337243e6a6144cb3a36b85118c06557c",
+      "sha256": "cd3c442b8262c69730d996c23c7c5075f6128d1d5cd7136e33204fa72a8db41b",
+      "characters": 447,
+      "token_upper_bound": 392,
+      "measured_at_utc": "2026-10-20T09:12:44.447853+00:00",
+      "label": "AI",
+      "winning_probability": 0.8156736493110657,
+      "ai_probability": 0.8156736493110657
+    },
+    {
+      "segment": 2,
+      "model_key": "v3",
+      "state": "complete",
+      "model": "yuchuantian/AIGC_detector_zhv3",
+      "endpoint": "https://yuchuantian-aigc-text-detector.hf.space/gradio_api/call/predict_zh",
+      "event_id": "6ea118f5537949b4a2b0af3ee5d14ce4",
+      "sha256": "cd3c442b8262c69730d996c23c7c5075f6128d1d5cd7136e33204fa72a8db41b",
+      "characters": 447,
+      "token_upper_bound": 392,
+      "measured_at_utc": "2026-10-20T09:12:46.159392+00:00",
+      "label": "AI",
+      "winning_probability": 0.9781470894813538,
+      "ai_probability": 0.9781470894813538
+    },
+    {
+      "segment": 2,
+      "model_key": "v2",
+      "state": "complete",
+      "model": "yuchuantian/AIGC_detector_zhv2",
+      "endpoint": "https://yuchuantian-aigc-text-detector.hf.space/gradio_api/call/predict_zh6",
+      "event_id": "f556b554d6244f029aeaaacc8e4d7892",
+      "sha256": "cd3c442b8262c69730d996c23c7c5075f6128d1d5cd7136e33204fa72a8db41b",
+      "characters": 447,
+      "token_upper_bound": 392,
+      "measured_at_utc": "2026-10-20T09:12:47.813059+00:00",
+      "label": "人类",
+      "winning_probability": 0.9970767498016357,
+      "ai_probability": 0.002923250198364258
+    }
+  ],
+  "complete": true,
+  "max_verified_ai_probability": 0.9781470894813538,
+  "target_met": false,
+  "three_model_target_met": false
+}

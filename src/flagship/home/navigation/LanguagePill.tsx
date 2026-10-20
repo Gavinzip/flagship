@@ -2,16 +2,10 @@ import { MetalBorder } from "../ui/MetalBorder";
 import { useContext, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Check, Language, NavArrowDown } from "iconoir-react";
-import type { SiteLanguage } from "../../data/copy";
+import { languageLabels, siteLanguages as languages } from "../../data/languages";
 import { useSiteNavigation } from "../../routing/SiteNavigation";
 import { EditionTransitionContext } from "../../routing/transition/EditionTransitionContext";
 import { homeMotion } from "../motion/homeMotion";
-
-const languages: { value: SiteLanguage; label: string; short: string }[] = [
-  { value: "zh-TW", label: "繁體中文", short: "繁中" },
-  { value: "en", label: "English", short: "EN" },
-  { value: "ko", label: "한국어", short: "한국어" },
-];
 
 /** Available before scroll; uses the same locale routing as the rest of the site. */
 export function LanguagePill() {
@@ -23,7 +17,7 @@ export function LanguagePill() {
   const options = useRef<(HTMLButtonElement | null)[]>([]);
   const reduced = useReducedMotion();
   const current = languages.findIndex(item => item.value === location.language);
-  const label = location.language === "zh-TW" ? "切換語言" : location.language === "ko" ? "언어 변경" : "Change language";
+  const label = languageLabels[location.language].change;
 
   useEffect(() => { if (transferring) setOpen(false); }, [transferring]);
   useEffect(() => {

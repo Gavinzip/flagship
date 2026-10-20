@@ -1,57 +1,57 @@
 .thailand-event-site .th-hero {
-  position: relative; isolation: isolate; display: block; padding: 0; overflow: hidden;
-  height: 54.29vw; min-height: 0; background: #f9c51b; color: var(--th-ink);
+  position: relative; isolation: isolate; display: grid; align-items: center;
+  min-height: clamp(620px,84svh,880px); padding: 70px 0 90px; overflow: hidden;
+  background: var(--th-ink); color: var(--th-white);
 }
-.th-hero-art { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.th-hero-art-plane { position: absolute; top: 0; left: 50%; height: 100%; transform: translateX(-50%); }
-.th-hero-backdrop { display: block; width: 100%; height: 100%; }
-.th-hero-logo { position: absolute; }
+.th-hero-media { position: absolute; inset: 0; }
+.th-hero-film { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; transform: scale(1.08); pointer-events: none; }
+.th-hero-media::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg,#080b10d9 0%,#080b1080 52%,#080b104a),linear-gradient(0deg,#0b0d10eb,transparent 55%);
+}
+.th-hero-layout.th-wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 40px; }
+.th-hero-copy { min-width: 0; }
+.th-hero-logo { position: relative; justify-self: end; width: min(100%,540px); aspect-ratio: 1.5; pointer-events: none; }
 .th-hero-logo .fs-hero-artwork { position: absolute; inset: 0; display: block; }
 .th-hero-logo .fs-hero-artwork-inner { width: 100%; height: 100%; }
 .th-hero-logo .fs-brand { display: block; width: 100%; }
 .th-hero-logo .fs-original-emblem { display: block; width: 100%; height: auto; }
-.th-hero-layout.th-wrap { position: relative; width: 92%; height: 100%; margin-inline: auto; }
-.th-hero-copy { position: relative; z-index: 1; width: 46%; padding-top: 11.8vw; }
-.thailand-event-site .th-hero h1 { margin: 0 0 2.6vw; font-family: Arial,Helvetica,sans-serif; font-style: normal; letter-spacing: -.045em; }
-.th-hero h1 > .th-hero-title-kind { display: flex !important; flex-wrap: nowrap !important; font-size: 4.5vw; font-weight: 500; line-height: 1.16; letter-spacing: -.035em; }
-.th-hero h1 > .th-hero-title-place { display: flex !important; flex-wrap: nowrap !important; font-size: 8.2vw; font-weight: 600; line-height: 1.05; letter-spacing: -.055em; }
-.th-hero-date strong { font: 600 2.9vw/1.15 Arial,Helvetica,sans-serif; letter-spacing: -.035em; }
-.th-hero-meta { display: grid; gap: .45vw; margin-top: 1vw; }
-.th-hero-meta p { font-size: 1.45vw; line-height: 1.4; font-weight: 500; }
-.th-hero-actions { display: flex; align-items: center; gap: 2.344vw; margin-top: 2.15vw; }
-.th-hero-actions .th-button { justify-content: space-between; min-width: 19.141vw; min-height: 4.818vw; padding: 1.172vw 3.125vw; font-size: 1.302vw; gap: 2.604vw; }
-.th-hero-actions .th-text-link { width: 11.719vw; flex: none; padding-block: .586vw; font-size: 1.302vw; gap: 1.432vw; }
-.th-hero-actions svg { width: 1.823vw; height: 1.823vw; flex: none; }
-.th-ticket-note { color: #15120b; font-size: 1.1vw; font-weight: 400; margin-top: 1.65vw !important; }
+.thailand-event-site .th-hero h1 { margin: 0 0 30px; font-family: Arial,Helvetica,sans-serif; font-style: normal; letter-spacing: -.045em; }
+.th-hero h1 > .th-hero-title-kind { display: flex !important; flex-wrap: nowrap !important; font-size: clamp(22px,2.2vw,30px); font-weight: 500; line-height: 1.4; letter-spacing: .015em; margin-bottom: 9px; }
+.th-hero h1 > .th-hero-title-place { display: flex !important; flex-wrap: nowrap !important; font-size: clamp(68px,8vw,112px); font-weight: 700; line-height: 1.04; letter-spacing: -.06em; }
+.th-hero-date strong { color: var(--th-yellow); font: 700 clamp(25px,2.5vw,34px)/1.2 Arial,Helvetica,sans-serif; letter-spacing: -.035em; }
+.th-hero-meta { display: grid; gap: 5px; margin-top: 15px; }
+.th-hero-meta p { font-size: clamp(12px,1.15vw,16px); line-height: 1.6; font-weight: 400; color: #e1e2df; }
+.th-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 26px; margin-top: 30px; }
+.th-hero-actions .th-button { min-width: 218px; justify-content: space-between; min-height: 54px; padding: 15px 25px; font-size: 14px; gap: 28px; }
+.th-hero-actions .th-text-link { min-width: 118px; font-size: 14px; gap: 22px; }
+.th-hero-actions svg { width: 22px; height: 22px; flex: none; }
+.th-ticket-note { color: #c7c9c7; font-size: 12px; font-weight: 400; margin-top: 18px !important; }
+.th-hero-film-credit { position: absolute; z-index: 1; left: 4%; bottom: 26px; color: #c8cbc8; font: 500 10px/1.6 Arial,"PingFang TC",sans-serif; letter-spacing: .09em; }
 @media (max-width:1000px) {
-  .thailand-event-site .th-hero { height: auto; display: flex; flex-direction: column; }
-  .th-hero-art { position: relative; width: 100%; height: clamp(330px,72vw,620px); }
-  .th-hero-art-plane { left: auto; right: 0; transform: none; }
-  .th-hero-art::after { content: ''; position: absolute; inset: auto 0 0; height: 24px; background: linear-gradient(transparent,#f9c51b); }
-  .th-hero-layout.th-wrap { width: min(620px,calc(100% - 40px)); height: auto; }
-  .th-hero-copy { width: 100%; padding: 30px 0 44px; text-align: center; }
-  .thailand-event-site .th-hero h1 { margin-bottom: 26px; }
-  .th-hero h1 > .th-hero-title-kind { justify-content: center; font-size: clamp(30px,4.6vw,44px); }
-  .th-hero h1 > .th-hero-title-place { justify-content: center; font-size: clamp(64px,10vw,92px); line-height: 1.1; }
-  .th-hero-date strong { font-size: clamp(24px,3.8vw,34px); }
-  .th-hero-meta { gap: 5px; margin-top: 13px; }
-  .th-hero-meta p { font-size: clamp(12px,1.8vw,16px); }
-  .th-hero-actions { justify-content: center; flex-wrap: wrap; gap: 24px; margin-top: 28px; }
-  .th-hero-actions .th-button { min-width: 240px; min-height: 60px; padding: 15px 30px; font-size: 16px; gap: 32px; }
-  .th-hero-actions .th-text-link { width: 150px; font-size: 16px; padding-block: 9px; gap: 20px; }
-  .th-hero-actions svg { width: 24px; height: 24px; }
-  .th-ticket-note { font-size: 13px; margin-top: 20px !important; }
+  .thailand-event-site .th-hero { min-height: 660px; }
+  .th-hero-layout.th-wrap { width: calc(100% - 64px); gap: 24px; }
+  .th-hero h1 > .th-hero-title-place { font-size: clamp(64px,8.5vw,84px); }
+  .th-hero-actions { gap: 20px; }
+  .th-hero-actions .th-button { min-width: 196px; font-size: 13px; }
+  .th-hero-actions .th-text-link { font-size: 13px; min-width: 104px; }
 }
 @media (max-width:700px) {
-  .th-hero-copy { padding: 26px 0 34px; }
-  .thailand-event-site .th-hero h1 { margin-bottom: 24px; }
-  .th-hero h1 > .th-hero-title-kind { font-size: 30px; }
-  .th-hero h1 > .th-hero-title-place { font-size: clamp(58px,16vw,82px); }
-  .th-hero-date strong { font-size: clamp(23px,5.9vw,30px); }
+  .thailand-event-site .th-hero { min-height: calc(100svh - 64px); padding: 34px 0 85px; }
+  .th-hero-media::after { background: linear-gradient(180deg,#080b1066,#080b108f 40%,#080b10cc 72%,#0b0d10); }
+  .th-hero-film { object-position: 52% center; }
+  .th-hero-layout.th-wrap { width: calc(100% - 40px); grid-template-columns: minmax(0,1fr); gap: 14px; text-align: center; }
+  .th-hero-logo { grid-row: 1; justify-self: center; width: clamp(190px,60vw,260px); }
+  .thailand-event-site .th-hero h1 { margin-bottom: 23px; }
+  .th-hero h1 > .th-hero-title-kind { justify-content: center; font-size: 21px; margin-bottom: 5px; }
+  .th-hero h1 > .th-hero-title-place { justify-content: center; font-size: clamp(62px,17vw,84px); }
+  .th-hero-date strong { font-size: clamp(23px,6vw,28px); }
+  .th-hero-meta { gap: 4px; margin-top: 14px; }
   .th-hero-meta p { font-size: 11px; }
-  .th-hero-actions { gap: 20px; margin-top: 26px; }
-  .th-hero-actions .th-button { min-width: 174px; min-height: 52px; padding: 13px 24px; font-size: 13px; gap: 24px; }
-  .th-hero-actions .th-text-link { width: auto; min-width: 100px; font-size: 13px; gap: 10px; }
+  .th-hero-actions { justify-content: center; gap: 20px; margin-top: 26px; }
+  .th-hero-actions .th-button { min-width: 190px; min-height: 52px; padding: 13px 22px; font-size: 13px; gap: 20px; }
+  .th-hero-actions .th-text-link { min-width: 100px; font-size: 13px; gap: 14px; }
   .th-hero-actions svg { width: 20px; height: 20px; }
-  .th-ticket-note { font-size: 12px; margin-top: 18px !important; }
+  .th-ticket-note { font-size: 11px; margin-top: 16px !important; }
+  .th-hero-film-credit { left: 20px; bottom: 27px; max-width: calc(100% - 90px); font-size: 8px; letter-spacing: .045em; text-align: left; }
 }

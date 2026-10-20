@@ -12,3 +12,6 @@
 .th-footer-links > a { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
 .th-footer-links > a:last-child { align-self: end; justify-content: center; width: 36px; height: 36px; border: 1px solid currentColor; border-radius: 50%; }
 .th-footer-bottom { grid-column: 1/-1; display: flex; justify-content: space-between; gap: 20px; padding-top: 26px; color: #37301b; font-size: 9px; letter-spacing: .07em; }
+
+.th-footer-brand { min-width: 0; }
+.th-footer-organizer { display: block; width: clamp(190px,21vw,280px); height: auto; margin-top: 24px; filter: brightness(0); }

@@ -19,8 +19,8 @@ export function BrandPillHeader({ site }: { site: RefObject<HTMLDivElement | nul
   const [open, setOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
-  const zh = location.language === "zh-TW", ko = location.language === "ko";
-  const label = zh ? "FLAGSHIP 主站導覽" : ko ? "FLAGSHIP 탐색" : "FLAGSHIP navigation";
+  const zh = location.language === "zh-TW", ko = location.language === "ko", th = location.language === "th";
+  const label = zh ? "FLAGSHIP 主站導覽" : ko ? "FLAGSHIP 탐색" : th ? "เมนู FLAGSHIP" : "FLAGSHIP navigation";
   useEffect(() => { if (!visible) setOpen(false); }, [visible]);
   useEffect(() => {
     if (!open) return;
@@ -52,7 +52,7 @@ export function BrandPillHeader({ site }: { site: RefObject<HTMLDivElement | nul
       <LayoutGroup id="ip-navigation"><nav className="ip-pill-desktop" aria-label={label}>{items.map(item => link(item))}</nav></LayoutGroup>
       <span className="ip-pill-current">{items.find(item => item.id === active)?.label}</span>
       <button className="ip-pill-toggle ip-metal-control" ref={trigger} aria-expanded={open} aria-controls="ip-mobile-links"
-        aria-label={open ? (zh ? "關閉導覽" : ko ? "메뉴 닫기" : "Close navigation") : (zh ? "開啟導覽" : ko ? "메뉴 열기" : "Open navigation")}
+        aria-label={open ? (zh ? "關閉導覽" : ko ? "메뉴 닫기" : th ? "ปิดเมนู" : "Close navigation") : (zh ? "開啟導覽" : ko ? "메뉴 열기" : th ? "เปิดเมนู" : "Open navigation")}
         onClick={() => setOpen(value => !value)}><MetalBorder /><span /><span /></button>
     </div>
     <AnimatePresence initial={false}>{open && <motion.div className="ip-pill-mobile" id="ip-mobile-links"

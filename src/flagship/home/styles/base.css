@@ -62,3 +62,8 @@ html:is([lang="zh-TW"], [lang="ko"]) .brand-site h2 { font-size: clamp(29px, 3.2
 
 .brand-mobile-nav a:last-child { border-bottom: 0; }
 .brand-mobile-nav svg { color: #a5c0fb; width: 18px; }
+
+html[lang="th"] .brand-site { font-family: Arial, Thonburi, "Leelawadee UI", sans-serif; }
+html[lang="th"] .brand-site :is(h1,h2,h3) { font-family: Arial, Thonburi, "Leelawadee UI", sans-serif; line-height: 1.45; letter-spacing: normal; word-break: normal; }
+html[lang="th"] .brand-site h2 { font-size: clamp(29px,3.2vw,44px); }
+html[lang="th"] .brand-site :is(p,a,button,small) { letter-spacing: normal; }
