@@ -1,0 +1,33 @@
+.th-animated-text { vertical-align: top; }
+.th-hero-copy[data-presented='true'] > :is(.th-hero-date,.th-hero-meta,.th-hero-actions,.th-ticket-note) {
+  animation: th-information-arrive .68s cubic-bezier(.22,1,.36,1) both;
+}
+.th-hero-date { animation-delay: .3s !important; }
+.th-hero-meta { animation-delay: .38s !important; }
+.th-hero-actions { animation-delay: .46s !important; }
+.th-ticket-note { animation-delay: .54s !important; }
+.th-hero-actions .th-button { position: relative; isolation: isolate; overflow: hidden; }
+.th-hero-actions .th-button::before {
+  content: ''; position: absolute; inset: 0; padding: 1px;
+  background: conic-gradient(from var(--th-action-angle),transparent 55%,#f4c62e 80%,#fff0bc 90%,transparent);
+  mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask-composite: exclude;
+  border-radius: inherit; opacity: .01; transition: opacity .25s; pointer-events: none;
+}
+.th-hero-actions .th-button:is(:hover,:focus-visible)::before { opacity: 1; animation: th-action-edge 1.8s linear infinite; }
+.th-hero-actions .th-button svg { transition: transform .28s cubic-bezier(.22,1,.36,1); }
+.th-hero-actions .th-button:is(:hover,:focus-visible) svg { transform: translate(3px,-3px); }
+.th-highlight-visual { overflow: hidden; }
+.th-highlight-visual > * { transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.th-highlight:is(:hover,:focus-within) .th-highlight-visual > * { transform: scale(1.025); }
+@keyframes th-information-arrive {
+  from { opacity: .12; transform: translate3d(0,16px,0); filter: blur(7px); }
+  to { opacity: 1; transform: translate3d(0,0,0); filter: blur(0); }
+}
+@property --th-action-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes th-action-edge { to { --th-action-angle: 360deg; } }
+@media (prefers-reduced-motion:reduce) {
+  .th-hero-copy[data-presented='true'] > :is(.th-hero-date,.th-hero-meta,.th-hero-actions,.th-ticket-note) { animation: none; }
+  .th-hero-actions .th-button svg,.th-highlight-visual > * { transition: none; }
+  .th-highlight:is(:hover,:focus-within) .th-highlight-visual > * { transform: none; }
+  .th-hero-actions .th-button:is(:hover,:focus-visible)::before { animation: none; background: #f4c62e; }
+}

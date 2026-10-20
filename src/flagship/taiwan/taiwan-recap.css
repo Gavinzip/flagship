@@ -1,0 +1,43 @@
+.taiwan-archive-status {
+  width: fit-content;
+  margin: 0 0 18px;
+  padding: 7px 12px;
+  border: 1px solid rgba(132, 181, 225, 0.42);
+  color: #c5def4;
+  background: rgba(4, 12, 24, 0.72);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.taiwan-recap-closing {
+  border-top: 1px solid rgba(134, 163, 208, 0.24);
+  background: radial-gradient(ellipse at 50% 100%, #12233b, #040912 72%);
+  text-align: center;
+}
+
+.taiwan-recap-closing__eyebrow {
+  color: var(--color-blue-bright);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.taiwan-recap-closing h2 {
+  margin: 18px 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.8vw, 4.5rem);
+  line-height: 1.15;
+}
+
+.taiwan-recap-closing h2 + p {
+  max-width: 640px;
+  margin: 0 auto 28px;
+  color: #bdcbdc;
+  line-height: 1.85;
+}
+
+@media (max-width: 700px) {
+  .taiwan-recap-closing h2 { text-wrap: balance; }
+  .taiwan-archive-status { margin-bottom: 12px; font-size: 0.7rem; }
+}

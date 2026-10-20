@@ -17,3 +17,6 @@ cloudflare
 *.luma-guests.csv
 *.log
 *.tsbuildinfo
+
+# Local delivered media is not part of the web build.
+outputs

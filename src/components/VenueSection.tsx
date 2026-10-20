@@ -2,7 +2,6 @@ import { Map, MapPin, Train } from "iconoir-react";
 import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
 import { ActionLink } from "./ActionLink";
-import { CalendarButton } from "./CalendarButton";
 import { EnergyFrame } from "./EnergyFrame";
 import { SectionHeading } from "./SectionHeading";
 
@@ -22,6 +21,7 @@ export function VenueSection() {
             <iframe
               src={event.mapEmbedUrl}
               title={content.venue.mapTitle}
+              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
             <span>{content.venue.mapRoute}</span>
@@ -62,7 +62,6 @@ export function VenueSection() {
                 <Map aria-hidden="true" width={22} height={22} />
                 {content.venue.directions}
               </ActionLink>
-              <CalendarButton />
             </div>
           </div>
         </EnergyFrame>

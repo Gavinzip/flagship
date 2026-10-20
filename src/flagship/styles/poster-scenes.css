@@ -1,0 +1,528 @@
+/* Scene composition. Four independent poster fragments; no fixed whole-page image
+   and no reading veil. Image masks blend only the outer joins into sky colours. */
+.fs-site {
+  --fs-bg: #bfdaf2;
+  --fs-text: #0d2943;
+  --fs-muted: #254762;
+  --fs-accent: #214e76;
+  --fs-line: #35688d40;
+  background: #bfdaf2;
+}
+.fs-poster-scene {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.fs-poster-scene > img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  display: block;
+}
+.fs-card-fragment {
+  aspect-ratio: 2 / 3;
+  width: 100%;
+  pointer-events: none;
+}
+.fs-card-fragment > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.fs-site .fs-hero {
+  min-height: 780px;
+  padding-bottom: 20px;
+  grid-template-rows: minmax(430px, 1fr) auto;
+}
+.fs-poster-sky {
+  mask-image: linear-gradient(#000 75%, transparent);
+}
+.fs-poster-sky > img {
+  object-position: 50% 35%;
+}
+.fs-hero-frame {
+  position: absolute;
+  z-index: 0;
+  width: min(clamp(200px, 25vw, 390px), calc((100cqh - 90px) * 0.46));
+}
+.fs-hero-frame-left {
+  left: -120px;
+  top: 18%;
+  rotate: -18deg;
+}
+.fs-hero-frame-right {
+  right: -70px;
+  top: 23%;
+  rotate: 17deg;
+}
+.fs-hero-scene {
+  z-index: 1;
+  overflow: clip;
+}
+.fs-site .fs-hero-artwork {
+  inset: 92px 0 25px;
+}
+.fs-site .fs-hero-artwork-inner {
+  width: min(800px, 77vw, calc((100cqh - 117px) * 1.549));
+}
+.fs-site .fs-hero-details {
+  padding: 22px 0 0;
+  border-top: 1px solid #47779d55;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.fs-site .fs-hero-statement {
+  gap: 20px;
+}
+.fs-site .fs-hero-footer {
+  border-top-color: #47779d40;
+}
+.fs-site .fs-hero-information .fs-button {
+  padding-inline: 24px;
+  border-radius: 4px;
+}
+.fs-site .fs-manifesto {
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 60px;
+  min-height: 700px;
+  padding-block: 105px 110px;
+}
+.fs-manifesto-visual {
+  position: relative;
+  order: 0;
+  display: grid;
+  justify-items: center;
+}
+.fs-manifesto-visual .fs-card-fragment {
+  width: min(100%, 370px);
+  rotate: 6deg;
+}
+.fs-fragment-caption {
+  margin-top: 24px;
+  font: 500 13px var(--fs-display);
+  letter-spacing: 0.18em;
+  color: var(--fs-accent);
+}
+.fs-site .fs-manifesto-copy > p {
+  max-width: 520px;
+}
+.fs-site .fs-manifesto-copy h3 {
+  max-width: 540px;
+}
+.fs-site .fs-ticker {
+  background: transparent;
+  border-block-color: #47779d35;
+}
+.fs-site .fs-experience {
+  background: linear-gradient(#bfdaf2, #c9e0f2);
+  padding-block: 110px 125px;
+}
+.fs-site .fs-section-heading {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+  gap: 64px;
+  text-align: left;
+  margin-bottom: 50px;
+}
+.fs-site .fs-section-heading .fs-eyebrow {
+  justify-content: flex-start;
+}
+.fs-site .fs-section-heading .fs-heading-line {
+  margin-inline: 0;
+}
+.fs-site .fs-section-heading > p {
+  max-width: 360px;
+  border: 0;
+  padding: 0;
+  flex-shrink: 0;
+  text-align: left;
+}
+.fs-site .fs-experience-list.fs-reading-plane {
+  border-radius: 6px;
+  background: linear-gradient(155deg, #e1eff9d9, #bfd8eed9);
+}
+.fs-site .fs-experience-panel {
+  grid-template-columns: 1.45fr 0.85fr;
+  gap: 50px;
+  align-items: center;
+  overflow: visible;
+}
+.fs-site .fs-experience-image {
+  aspect-ratio: 1.5;
+  border-radius: 8px;
+  border: 1px solid #f2fbff;
+  box-shadow: 0 16px 35px -25px #224e77;
+}
+.fs-site .fs-experience-caption {
+  padding: 16px 0;
+}
+.fs-site .fs-experience-caption p {
+  font-size: 17px;
+  line-height: 1.95;
+}
+.fs-site .fs-experience-caption .fs-eyebrow {
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--fs-line);
+  border-radius: 0;
+  padding: 18px 0 0;
+}
+.fs-site .fs-editions {
+  background: linear-gradient(#c9e0f2, #c1dcf4);
+  padding-block: 90px 110px;
+}
+.fs-site .fs-edition-grid {
+  gap: 42px;
+  margin-top: 0;
+  max-width: none;
+}
+.fs-site .fs-edition-card.fs-reading-plane {
+  background: linear-gradient(145deg, #e4f1faf0, #c8ddf0f0);
+  padding: 16px;
+}
+.fs-site .fs-edition-art {
+  aspect-ratio: 1.7;
+}
+.fs-site .fs-edition-card-copy {
+  padding: 24px 8px;
+}
+.fs-site .fs-editions-future {
+  max-width: none;
+}
+.fs-site .fs-info-scene {
+  isolation: isolate;
+  background: linear-gradient(#c1dcf4 70%, #b9d8f0);
+  min-height: 1020px;
+  padding-block: 100px 340px;
+}
+.fs-poster-city {
+  mask-image: linear-gradient(transparent, #000 12%, #000 80%, transparent);
+}
+.fs-poster-city > img {
+  object-position: 72% 100%;
+}
+.fs-site .fs-show-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px 100px;
+  align-items: start;
+}
+.fs-site .fs-info-intro,
+.fs-site .fs-next-card {
+  grid-column: 1;
+  position: relative;
+  top: auto;
+}
+.fs-site .fs-info-intro > p:not(.fs-eyebrow) {
+  max-width: 500px;
+  margin-block: 24px 0;
+}
+.fs-site .fs-info-intro .fs-status {
+  display: none;
+}
+.fs-site .fs-next-card,
+.fs-site .fs-next-details {
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+.fs-site .fs-next-card dl {
+  display: grid;
+  grid-template-columns: 0.85fr 1.3fr 0.85fr;
+  gap: 18px;
+  margin-bottom: 24px;
+  border-block: 1px solid #426e9355;
+}
+.fs-site .fs-next-card dl > div {
+  display: block;
+  border: 0;
+  padding-block: 18px;
+}
+.fs-site .fs-next-card dd {
+  margin: 10px 0 0;
+  text-align: left;
+  font-size: 15px;
+}
+.fs-site .fs-next-card dt {
+  font-size: 14px;
+}
+.fs-site .fs-next-card .fs-button {
+  width: fit-content;
+  min-width: 230px;
+}
+.fs-site .fs-next-card .fs-small-note {
+  font-size: 13px;
+}
+.fs-site .fs-community {
+  min-height: 800px;
+  padding: 100px 0 460px;
+  background: linear-gradient(#b9d8f0, #bfdaf2);
+  display: block;
+  isolation: isolate;
+}
+.fs-site .fs-community > .fs-wrap {
+  align-items: start;
+  gap: 100px;
+}
+.fs-site .fs-community h2 {
+  font-size: clamp(40px, 4.6vw, 66px);
+}
+.fs-site .fs-community-copy {
+  max-width: 440px;
+}
+.fs-poster-river {
+  top: auto;
+  height: 480px;
+  mask-image: linear-gradient(transparent, #000 30%, #000 83%, transparent);
+}
+.fs-poster-river > img {
+  object-position: 50% 100%;
+}
+.fs-site .fs-questions {
+  padding-block: 90px 110px;
+  gap: 80px;
+}
+.fs-site .fs-faq-list.fs-reading-plane {
+  padding-inline: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.fs-site .fs-faq-list::before,
+.fs-site .fs-faq-list::after,
+.fs-site .fs-faq-list .fs-glass-reflection {
+  display: none;
+}
+.fs-site .fs-faq-list details {
+  border-color: #47779d55;
+}
+.fs-site .fs-footer {
+  background: linear-gradient(#bfdaf2, #a4c8e7);
+}
+.fs-site .fs-footer-top.fs-reading-plane,
+.fs-site .fs-footer-bottom.fs-reading-plane {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  border-block: 1px solid #47779d40;
+  box-shadow: none;
+  padding-inline: 0;
+}
+.fs-site .fs-footer :is(.fs-footer-top, .fs-footer-bottom)::before,
+.fs-site .fs-footer :is(.fs-footer-top, .fs-footer-bottom)::after,
+.fs-site .fs-footer .fs-glass-reflection {
+  display: none;
+}
+.fs-site .fs-footer-emblem {
+  width: min(70%, 390px);
+  margin-block: 45px;
+}
+@media (max-width: 1100px) {
+  .fs-site .fs-section-heading {
+    gap: 32px;
+  }
+  .fs-site .fs-section-heading > p {
+    max-width: 290px;
+  }
+  .fs-site .fs-manifesto {
+    gap: 35px;
+  }
+  .fs-site .fs-show-info {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 24px 40px;
+  }
+  .fs-site .fs-experience-panel {
+    gap: 30px;
+  }
+}
+@media (max-width: 900px) {
+  .fs-site .fs-section-heading {
+    flex-direction: column;
+    align-items: start;
+  }
+  .fs-site .fs-section-heading > p {
+    max-width: 520px;
+  }
+  .fs-site .fs-show-info {
+    grid-template-columns: 1.4fr 0.6fr;
+  }
+  .fs-site .fs-questions {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .fs-site .fs-community > .fs-wrap {
+    gap: 40px;
+  }
+  .fs-hero-frame-left {
+    left: -140px;
+  }
+  .fs-hero-frame-right {
+    right: -115px;
+  }
+}
+@media (max-width: 620px) {
+  .fs-site .fs-hero {
+    min-height: 780px;
+    height: 100svh;
+    grid-template-rows: minmax(310px, 1fr) auto;
+  }
+  .fs-site .fs-hero-artwork {
+    inset: 90px 0 28px;
+  }
+  .fs-site .fs-hero-artwork-inner {
+    width: min(93vw, calc((100cqh - 118px) * 1.549));
+  }
+  .fs-poster-sky > img {
+    object-position: 48% 20%;
+  }
+  .fs-hero-frame {
+    width: 165px;
+  }
+  .fs-hero-frame-left {
+    left: -100px;
+    top: 18%;
+  }
+  .fs-hero-frame-right {
+    right: -110px;
+    top: 26%;
+  }
+  .fs-site .fs-hero-details {
+    padding-top: 18px;
+  }
+  .fs-site .fs-hero-statement {
+    display: block;
+  }
+  .fs-site .fs-hero-statement p {
+    font-size: 12px;
+  }
+  .fs-site .fs-hero-statement > span {
+    font-size: 14px;
+    letter-spacing: 0.015em;
+  }
+  .fs-site .fs-manifesto {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-block: 76px 85px;
+    min-height: 0;
+  }
+  .fs-site .fs-manifesto-visual {
+    order: 0;
+  }
+  .fs-manifesto-visual .fs-card-fragment {
+    width: 240px;
+  }
+  .fs-fragment-caption {
+    font-size: 12px;
+  }
+  .fs-site .fs-manifesto-copy h3 {
+    font-size: 17px;
+  }
+  .fs-site .fs-manifesto-copy > p {
+    font-size: 16px;
+  }
+  .fs-site .fs-experience {
+    padding-block: 76px 85px;
+  }
+  .fs-site .fs-section-heading {
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .fs-site .fs-experience-panel {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .fs-site .fs-experience-image {
+    aspect-ratio: 1.3;
+  }
+  .fs-site .fs-experience-caption {
+    padding: 0;
+  }
+  .fs-site .fs-experience-caption p {
+    font-size: 16px;
+  }
+  .fs-site .fs-experience-caption .fs-eyebrow {
+    font-size: 13px;
+    margin-top: 20px;
+  }
+  .fs-site .fs-editions {
+    padding-block: 70px 80px;
+  }
+  .fs-site .fs-edition-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .fs-site .fs-edition-card.fs-reading-plane {
+    padding: 12px;
+  }
+  .fs-site .fs-edition-art {
+    aspect-ratio: 1.5;
+  }
+  .fs-site .fs-edition-card-copy {
+    padding: 20px 4px;
+  }
+  .fs-site .fs-info-scene {
+    padding: 75px 0 380px;
+    min-height: 0;
+  }
+  .fs-site .fs-show-info {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .fs-site .fs-info-intro > p:not(.fs-eyebrow) {
+    margin-top: 24px;
+  }
+  .fs-poster-city {
+    top: auto;
+    height: 420px;
+  }
+  .fs-poster-city > img {
+    object-position: 75% 100%;
+  }
+  .fs-site .fs-next-card dl {
+    gap: 12px;
+  }
+  .fs-site .fs-next-card dt {
+    font-size: 13px;
+  }
+  .fs-site .fs-next-card dd {
+    font-size: 14px;
+  }
+  .fs-site .fs-next-card .fs-button {
+    width: 100%;
+  }
+  .fs-site .fs-community {
+    padding: 70px 0 330px;
+    min-height: 0;
+  }
+  .fs-site .fs-community > .fs-wrap {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .fs-site .fs-community-copy {
+    justify-self: start;
+    max-width: none;
+  }
+  .fs-poster-river {
+    height: 340px;
+  }
+  .fs-site .fs-questions {
+    padding-block: 60px 80px;
+  }
+  .fs-site .fs-faq-list summary {
+    gap: 14px;
+  }
+  .fs-site .fs-faq-list details p {
+    padding-inline: 0;
+  }
+  .fs-site .fs-footer-top p {
+    font-size: 14px;
+  }
+}

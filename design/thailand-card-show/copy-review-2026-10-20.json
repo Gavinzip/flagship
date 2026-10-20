@@ -1,0 +1,112 @@
+{
+  "status": "local-review",
+  "scope": "Revised Traditional Chinese Thailand marketing and visitor copy; factual dates, hours, planned counts and pending announcements retained. Navigation labels, proper names and unchanged copy not reworded.",
+  "edits": [
+    {
+      "file": "copy.ts",
+      "before": "兩天的相聚，一樣的熱愛。帶上你的收藏，在曼谷遇見喜歡卡牌的人。",
+      "after": "帶上你的卡冊，來曼谷逛卡展、聊收藏，認識同樣喜歡卡牌的朋友。"
+    },
+    {
+      "file": "copy.ts",
+      "before": "和我們一起，讓曼谷成為下一次相聚的地方。",
+      "after": "和卡店、品牌一起，在曼谷辦一場卡展。"
+    },
+    {
+      "file": "copy.ts",
+      "before": "現階段規劃 100+ 張攤商桌與 4–6 個品牌展位。已確認的攤商與完整節目，將依官方公告陸續公布。",
+      "after": "目前規劃 100+ 張攤商桌與 4–6 個品牌展位，參展名單和完整節目將由官方陸續公布。"
+    },
+    {
+      "file": "editorialCopy.ts",
+      "before": "從收藏家交流到品牌展位，帶你認識 FLAGSHIP 的現場。",
+      "after": "逛攤位、看收藏，也看看大家怎麼在 FLAGSHIP 玩卡。"
+    },
+    {
+      "file": "editorialCopy.ts",
+      "before": "與 Binance Blockchain Week 同期於 QSNCC 舉行。",
+      "after": "與 Binance Blockchain Week 在同一日期、同一場館舉行。"
+    },
+    {
+      "file": "highlights.ts",
+      "before": "帶上收藏，因卡相聚",
+      "after": "從一張卡開始聊"
+    },
+    {
+      "file": "highlights.ts",
+      "before": "收藏家、玩家、卡店與品牌，在同一場卡展相遇。帶上你的卡冊，分享收藏、交流心得，或從一張喜歡的卡開始，認識新的朋友。",
+      "after": "帶著卡冊逛一逛，跟收藏家、玩家、卡店和品牌聊聊手上的卡。分享收藏心得，也認識新的朋友。"
+    },
+    {
+      "file": "highlights.ts",
+      "before": "曼谷站規劃超過 100 張攤商桌，讓收藏與交易在桌邊發生。逛逛不同卡店與選品、尋找心儀的卡；參展攤商與商品資訊將陸續公布。",
+      "after": "曼谷站規劃超過 100 張攤商桌，可以逛不同卡店、挑卡，也和收藏家交流或交易。參展攤商和商品資訊會陸續公布。"
+    },
+    {
+      "file": "highlights.ts",
+      "before": "走進品牌展位，看卡牌與收藏品展示，和品牌及其他收藏家面對面交流。曼谷站規劃 4–6 個展位，完整品牌名單與體驗內容待官方公布。",
+      "after": "看看卡牌與收藏品，和品牌、收藏家面對面聊聊。曼谷站規劃 4–6 個品牌展位，參展品牌和體驗內容將由官方公布。"
+    },
+    {
+      "file": "highlights.ts",
+      "before": "感受現場的熱度",
+      "after": "一起感受現場氣氛"
+    },
+    {
+      "file": "highlights.ts",
+      "before": "逛卡展，也是在參與一群人的熱愛。先從台灣站回顧，感受交流、互動與歡呼的瞬間；泰國站活動時程與參加方式，將隨完整節目公布。",
+      "after": "影片記錄了台灣站的交流、互動和歡呼。曼谷站的活動時程與參加方式，會和完整節目一起公布。"
+    },
+    {
+      "file": "highlights.ts",
+      "before": "11 月 28–29 日，每日 13:00–20:00，在 QSNCC B2 Event Hall 相聚。同日期、同場館也有 Binance Blockchain Week；兩場活動的樓層與入場資訊請分別確認。",
+      "after": "卡展在 11 月 28–29 日開放，每日 13:00–20:00，地點是 QSNCC B2 的 Event Hall。Binance Blockchain Week 也在同一日期、同一場館舉行。兩場活動在不同樓層，入場方式也請各自確認。"
+    },
+    {
+      "file": "seoulRecap.ts",
+      "before": "從首爾，走向下一次相聚。",
+      "after": "回看首爾，下一站曼谷。"
+    },
+    {
+      "file": "seoulRecap.ts",
+      "before": "卡牌在手，話題就開始了。回看 Renaiss 在 BNB Seoul Super Meetup 的收藏展示、攤位互動與社群交流，把這份熱愛帶到下一站曼谷。",
+      "after": "這些照片來自 BNB Seoul Super Meetup：有人在攤位前互動，也有人帶著卡牌交流、看看 Renaiss 展出的收藏。下一站到曼谷，再和大家見面。"
+    },
+    {
+      "file": "seoulRecap.ts",
+      "before": "一起投入，才有現場的熱度。",
+      "after": "攤位前，大家一起歡呼。"
+    },
+    {
+      "file": "seoulRecap.ts",
+      "before": "值得停下來看的收藏。",
+      "after": "Renaiss 攤位上的 PSA 鑑定卡。"
+    },
+    {
+      "file": "seoulRecap.ts",
+      "before": "收藏，讓我們認識彼此。",
+      "after": "帶著收藏，認識同樣喜歡卡牌的人。"
+    },
+    {
+      "file": "partners.ts",
+      "before": "參展品牌與攤商將陸續揭曉，敬請期待。",
+      "after": "參展品牌與攤商名單將陸續公布。"
+    },
+    {
+      "file": "content.ts",
+      "before": "2026 年 11 月 28–29 日，每日 13:00–20:00，時間為曼谷當地時間（UTC+7）。",
+      "after": "2026 年 11 月 28–29 日，每天 13:00–20:00，皆為曼谷當地時間（UTC+7）。"
+    },
+    {
+      "file": "content.ts",
+      "before": "收藏、交易與卡牌社群交流。現階段規劃 100+ 張攤商桌與 4–6 個品牌展位；完整名單與節目將依正式公告更新。",
+      "after": "目前規劃 100+ 張攤商桌和 4–6 個品牌展位。你可以逛攤位、看卡牌和收藏品，跟同好聊收藏、交易卡牌。參展名單與完整節目還會繼續更新，請以官方公告為準。"
+    },
+    {
+      "file": "visitCopy.ts",
+      "before": "活動為 11 月 28–29 日，每日 13:00–20:00。抵達後前往 B2 樓；報到方式、入場規則與完整節目將由 FLAGSHIP 官方公告。",
+      "after": "到了 QSNCC，跟著 FLAGSHIP 的標示前往 B2 樓 Event Hall。活動日期是 11 月 28–29 日，每天 13:00–20:00。報到方式、入場規則和完整節目，請留意 FLAGSHIP 官方後續公告。"
+    }
+  ],
+  "note": "First complete comparison uses the same 21 passages grouped into two contiguous sections. A second wording pass clarifies venue arrival, event floors, photo provenance and the planned nature of booths without changing facts. Final measurements cover the exact final concatenated passages; per-section boundaries are recorded by the helper."
+}

@@ -1,0 +1,22 @@
+{
+  "mode": "built-in imagegen",
+  "source": "User-supplied original Korea poster",
+  "briefs": [
+    {
+      "key": "01-sky",
+      "prompt": "Use case: precise-object-edit / background extraction. Edit the supplied FLAGSHIP poster into ONE independent landscape 16:9 high-resolution SKY LAYER for a website. Extract and extend the real bright blue sky from the upper half of the poster. Remove the logo, ALL typography, ALL card holders, city, water and pavement. Keep the original airy silver-blue lighting, natural detailed white clouds mostly at the perimeter, a faint pink-blue sunlight streak at far upper right, and small cherry blossom branches entering the far upper left corner. Centre is open clear blue sky, naturally smooth enough for a separately composited logo. Lower edge becomes a broad light blue sky tone around #c8dff1, without fog, white wash, blur or an artificial overlay. Sharp natural cloud detail, premium poster rendering. This is a separated background layer, not a complete poster or webpage. No lettering, no symbols, no crystals, no other objects."
+    },
+    {
+      "key": "02-seoul-waterfront",
+      "prompt": "Use case: precise-object-edit / compositing. Derive ONE new wide 16:9 high-resolution CITY AND RIVER LAYER from the attached FLAGSHIP Korea poster. Preserve its Seoul/Han River atmosphere, recognizable distant slender tower, airy spring midday, reflective blue water and bright polished light. Remove all logos, all typography and all floating card holders. Recompose the extracted skyline into the lower right half: the tall tower around x=80%, architecture extends across the bottom third, calm river along bottom quarter. The upper left 65% of the frame is genuine clean pale blue sky with very sparse clouds, naturally low-detail for dark website text, not whitened or overlaid. The skyline must remain crisp and detailed, no blur, no foggy white veil. Wide elegant panoramic city view, open composition, subtle cherry blossoms at extreme lower left only. Top edge clean light blue around #c8dff1 to connect to another sky asset. No border, no panels, no UI, no repeated whole poster."
+    },
+    {
+      "key": "03-open-card-holder",
+      "prompt": "Use case: background-extraction / precise-object-edit. From the attached poster, extract and complete ONE of the EMPTY rectangular trading-card holders with blue corner details seen on the right. Make one isolated high-resolution portrait asset with a genuinely transparent background AND a fully transparent empty central opening. Preserve the poster's object language: very thin polished silver double edges, clear acrylic rim, tiny cobalt blue edge tabs, crisp linear highlights. A tall simple rectangular card frame with rounded corners, slightly three-quarter perspective, front largely visible, leaning about 10 degrees; occupy about 85% of the canvas. This is an EMPTY CARD HOLDER FRAME, not a crystal, jewel, shard, slab of stone, filled card, or solid sheet. No inner artwork or central pane, no letters or logos, no surrounding scenery, no floor, no heavy chrome border, no dark opaque core, no second frame. Keep the lightness of the poster's original acrylic holders. Actual alpha transparency, not a checkerboard illustration."
+    },
+    {
+      "key": "04-river-reflections",
+      "prompt": "Use case: precise-object-edit / background extraction. Extend the LOWER WATER AND PROMENADE DETAIL of the attached FLAGSHIP Korea poster into ONE distinct wide 16:9 high-resolution website scenic fragment. Close low-angle view of the Han River's luminous blue water and wet polished waterfront paving, cropped closer than the poster. No skyline, buildings, tall tower, railings, logo, text or card holders. Upper two thirds is serene silver-blue water reflecting the spring sky, broad gentle gradients and subtle horizontal ripples, not busy glitter and not blurred. Lower third has the original reflective stone promenade, a few tiny pale pink cherry petals and a fine reflected pink-blue light. Quiet, clear, airy, light polished surface rather than heavy metal or foggy glass. Top edge a natural light blue around #c8dff1. This is a cropped and extended material environment used below event cards, not a full poster or UI. No white overlay, no crystals or invented central objects."
+    }
+  ]
+}

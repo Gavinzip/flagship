@@ -1,0 +1,16 @@
+.thailand-event-site .th-partners {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+.th-partners > .th-wrap { position: relative; z-index: 1; }
+.th-partner-light {
+  position: absolute;
+  inset: -72px 0 0;
+  pointer-events: none;
+  user-select: none;
+  mask-image: linear-gradient(transparent,#00000014 8%,#000 32%,#000 48%,transparent 94%);
+}
+@media (max-width:700px) {
+  .th-partner-light { inset: -52px -20% 0; opacity: .85; }
+}

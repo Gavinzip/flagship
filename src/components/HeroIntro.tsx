@@ -22,6 +22,7 @@ export function HeroIntro({ className = "" }: HeroIntroProps) {
         alt="Flagship Card Show Taiwan"
       />
       <p className="hero__eyebrow">{content.hero.eyebrow}</p>
+      <p className="taiwan-archive-status">{content.archive.status}</p>
       <h1>
         <span className="hero__title-kicker">
           <span>{content.hero.titleKicker}</span>

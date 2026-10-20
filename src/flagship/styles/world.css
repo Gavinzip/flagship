@@ -1,0 +1,40 @@
+/* Header remains part of the active chapter atmosphere. */
+.fs-header {
+  color: #10223b;
+  animation: none;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+.fs-header::before {
+  z-index: 0;
+  inset: 0 0 -30px;
+  background: linear-gradient(#bfdaf2f5, #bfdaf2e6 48%, #bfdaf200);
+  backdrop-filter: none;
+  mask-image: none;
+}
+.fs-header[data-scrolled="true"],
+.fs-header[data-open="true"] {
+  color: #102843;
+}
+.fs-theme-taiwan .fs-header {
+  color: #eff4fc;
+}
+.fs-theme-taiwan .fs-header::before {
+  background: linear-gradient(#15243df5, #15243de6 48%, #15243d00);
+}
+.fs-header > :not(.fs-mobile-nav) {
+  position: relative;
+  z-index: 1;
+}
+.fs-header > .fs-mobile-nav {
+  z-index: 2;
+}
+.fs-header[data-concealed="true"]:not(:has(:focus-visible)) {
+  transform: translateY(-150%);
+  opacity: 0;
+  pointer-events: none;
+}
+.fs-ticker[data-visible="false"] .fs-ticker-track {
+  animation-play-state: paused;
+}

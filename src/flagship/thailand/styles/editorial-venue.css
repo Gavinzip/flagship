@@ -1,0 +1,68 @@
+.th-venue { background: var(--th-yellow); color: var(--th-ink); }
+.th-venue > .th-wrap > .th-eyebrow { margin-bottom: 20px; }
+.thailand-event-site .th-venue h2 { max-width: 100%; margin-bottom: 40px; }
+.th-venue-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
+.th-venue figure { margin: 0; }
+.th-venue figure > img { display: block; width: 100%; height: auto; aspect-ratio: 3/2; object-fit: cover; }
+.th-venue figcaption { margin-top: 10px; }
+.th-venue figcaption a { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; text-decoration: none; }
+.th-venue figcaption svg { width: 13px; height: 13px; }
+.thailand-event-site .th-venue-copy h3 { font: 800 clamp(66px,7vw,104px)/.95 var(--th-display); letter-spacing: -.025em; }
+.th-venue-copy > strong { display: block; margin-top: 12px; font: 800 24px/1.25 var(--th-display); letter-spacing: .03em; }
+.th-venue-copy > p { margin-top: 15px !important; font-size: 16px; }
+.th-venue-copy dl { margin: 26px 0; display: grid; gap: 12px; }
+.th-venue-copy dl > div { display: grid; grid-template-columns: 90px 1fr; gap: 12px; font-size: 14px; }
+.th-venue-copy dt { opacity: .7; }
+.th-venue-copy dd { margin: 0; font-weight: 700; }
+.th-venue-copy .th-transit { max-width: 390px; line-height: 1.6; margin-bottom: 20px !important; font-size: 14px; }
+.th-venue .th-button { font-size: 13px; gap: 20px; }
+.th-shared-venue { margin-top: 40px; display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 24px 28px; border: 1px solid #0b0d1040; }
+.th-shared-venue > p { max-width: 350px; font-size: 15px; font-weight: 600; }
+.th-shared-venue > div { display: flex; gap: 40px; }
+.th-shared-venue span { font: 700 10px/1.5 Arial,sans-serif; letter-spacing: .025em; }
+.th-shared-venue strong { display: block; margin-top: 8px; font: 800 22px/1.2 var(--th-display); letter-spacing: .01em; }
+.th-access { margin-top: 74px; }
+.thailand-event-site .th-access > h3 { font: 800 clamp(30px,3.2vw,44px)/1.3 var(--th-display); margin-bottom: 28px; }
+.th-route-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+.th-route { padding: 28px; background: #0e1f48; color: #fff; }
+.th-route--car { background: #15181f; }
+.th-route--venue { background: #65192c; }
+.th-route-label { display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; color: #ffda5b; }
+.th-route-label svg { width: 21px; height: 21px; }
+.th-route h4 { margin: 23px 0 15px; font-size: 19px; font-weight: 800; line-height: 1.5; }
+.th-route p { font-size: 14px; color: #e5e7ed; line-height: 1.85; }
+.th-map-layout { display: grid; grid-template-columns: 1.5fr 1fr; margin-top: 28px; background: #15181f; color: #fff; }
+.th-map { min-height: 390px; background: #e9e5dc; }
+.th-map iframe { display: block; width: 100%; height: 100%; min-height: 390px; border: 0; }
+.th-address { padding: 38px; align-self: center; }
+.th-address > svg { display: block; width: 29px; height: 29px; margin-bottom: 22px; color: var(--th-yellow); }
+.th-address > .th-eyebrow { color: var(--th-yellow); }
+.th-address address { margin-top: 15px; font-style: normal; font-size: 14px; color: #d0d3db; }
+.th-address address strong { display: block; margin-bottom: 12px; color: #fff; font-size: 18px; line-height: 1.5; }
+.th-address p { margin-top: 22px !important; font-size: 13px; color: #d0d3db; }
+.th-address a { display: inline-flex; align-items: center; gap: 9px; margin-top: 24px; font-size: 12px; color: #ffda5b; text-underline-offset: 6px; }
+.th-address a svg { width: 17px; height: 17px; }
+@media (max-width:1000px) {
+  .th-venue-layout { gap: 32px; }
+  .th-venue-copy dl > div { grid-template-columns: 1fr; gap: 2px; }
+  .th-shared-venue { align-items: start; flex-direction: column; }
+  .th-route { padding: 23px; }
+  .th-route h4 { font-size: 17px; }
+  .th-address { padding: 28px; }
+}
+@media (max-width:700px) {
+  .thailand-event-site .th-venue h2 { max-width: 360px; font-size: 36px; margin-bottom: 30px; }
+  .th-venue-layout,.th-map-layout,.th-route-grid { grid-template-columns: minmax(0,1fr); gap: 22px; }
+  .thailand-event-site .th-venue-copy h3 { font-size: 70px; }
+  .th-venue-copy dl { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .th-venue-copy .th-transit { max-width: 100%; }
+  .th-shared-venue { padding: 22px; margin-top: 32px; gap: 22px; }
+  .th-shared-venue > div { flex-direction: column; gap: 22px; }
+  .th-shared-venue strong { font-size: 24px; }
+  .th-access { margin-top: 48px; }
+  .th-route { padding: 25px; }
+  .th-route h4 { font-size: 20px; margin-top: 18px; }
+  .th-map-layout { gap: 0; }
+  .th-map,.th-map iframe { min-height: 320px; }
+  .th-address { padding: 28px; }
+}

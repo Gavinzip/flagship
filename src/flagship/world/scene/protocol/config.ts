@@ -1,0 +1,28 @@
+// Main controls for the procedural globe. Network topology is in data/network.ts.
+export const globeConfig = {
+  cameraDistance: 3.8,
+  fieldOfView: 35,
+  initialLongitude: 112,
+  initialTilt: 0.1,
+  rotationSpeed: 0.028,
+  dragSensitivity: 0.004,
+  scrollRotation: 0.38,
+  pixelRatioLimit: 1.6,
+  exposure: 1.1,
+  atmosphere: { radius: 1.012, intensity: 0.22, falloff: 3.5 },
+  colors: {
+    oceanBase: [34, 49, 68],
+    oceanRange: [20, 23, 30],
+    landBase: [60, 78, 46],
+    landRange: [120, 95, 77],
+    coast: "#d9c797",
+    routes: "#e9d4a4",
+    cities: "#e7cc92",
+    hubCore: "#f4ce86",
+    atmosphere: "#91b7ee",
+  },
+  hubBloom: { opacity: 0.82, largeSize: 0.15, size: 0.105 },
+  key: { color: "#fff0d1", intensity: 2.6, position: [-3, 4, 4] as const },
+  fill: { color: "#92b5ff", intensity: 1.4, position: [3, -1, 3] as const },
+  rim: { color: "#b0c9f5", intensity: 1.2, position: [0, 3, -2] as const },
+};

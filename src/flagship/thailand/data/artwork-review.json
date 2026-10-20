@@ -1,0 +1,238 @@
+{
+  "status": "local-review",
+  "candidateDirectory": "work/generated-images/2026-10-20-thailand-editorial",
+  "candidates": [
+    {
+      "id": 1,
+      "file": "01-thailand-show-entrance.png",
+      "role": "hero-background",
+      "status": "pending-user-selection"
+    },
+    {
+      "id": 2,
+      "file": "02-hero-layout-concept.png",
+      "role": "layout-reference",
+      "status": "pending-user-selection"
+    },
+    {
+      "id": 3,
+      "file": "03-highlights-layout-concept.png",
+      "role": "layout-reference",
+      "status": "pending-user-selection"
+    },
+    {
+      "id": 4,
+      "file": "04-venue-footer-layout-concept.png",
+      "role": "layout-reference",
+      "status": "pending-user-selection"
+    }
+  ],
+  "source": "DocSend qhedg825czb3538i, slides 11 and 13",
+  "note": "Candidate 1 remains the selected full design. At Gavin’s request, the baked emblem and its stationary reflection are removed from the background; cards, yellow/gold texture, diagonal light and reflective ground remain. The original transparent Thailand emblem is positioned independently over the cards. Entry and return measure this exact DOM image, so there is one visible emblem and matching endpoints. No interior globe. Existing native UI, outer globe, gold mutation, camera timing and downstream activity content remain. All candidate rounds are preserved. New clean-background retention and final visual acceptance are pending. No image deletion, push, publication or deployment is authorized by this change. Gavin subsequently retained clean background candidate 1 and authorized deletion of other candidates in that round; there were no other candidate images in that single-image round, so no deletions occurred. Typography and motion refinement is now under local review.",
+  "delivery": "cdn",
+  "selectedEmblem": "public/assets/flagship/thailand/thailand-emblem.webp",
+  "retainedPreviousBackground": "design/thailand-card-show/source-artwork/bangkok-golden-world-retained.png",
+  "visualReferences": "design/thailand-card-show/references/",
+  "retainedUnselectedCandidates": [
+    "work/generated-images/2026-10-19-thailand-tech/01-bangkok-tech-arena.png"
+  ],
+  "additionalRounds": [
+    {
+      "directory": "work/generated-images/2026-10-20-thailand-atmosphere",
+      "status": "rejected-preserved",
+      "candidates": [
+        {
+          "id": 1,
+          "file": "01-card-show-atmosphere.png",
+          "role": "experience-background",
+          "status": "rejected-preserved"
+        },
+        {
+          "id": 2,
+          "file": "02-partner-gallery.png",
+          "role": "partners-background",
+          "status": "rejected-preserved"
+        }
+      ]
+    },
+    {
+      "directory": "work/generated-images/2026-10-20-thailand-binance-redesign",
+      "status": "pending-user-selection",
+      "candidates": [
+        {
+          "id": 1,
+          "file": "01-hero-concept.png",
+          "role": "layout-reference",
+          "status": "pending-user-selection"
+        },
+        {
+          "id": 2,
+          "file": "02-highlights-concept.png",
+          "role": "layout-reference",
+          "status": "pending-user-selection"
+        },
+        {
+          "id": 3,
+          "file": "03-partners-faq-concept.png",
+          "role": "layout-reference",
+          "status": "pending-user-selection"
+        },
+        {
+          "id": 4,
+          "file": "04-seoul-recap-concept.png",
+          "role": "layout-reference",
+          "status": "pending-user-selection"
+        },
+        {
+          "id": 5,
+          "file": "05-hero-halftone-art.png",
+          "role": "hero-background",
+          "status": "pending-user-selection",
+          "usage": "withdrawn-from-page",
+          "note": "Interior globe removed at Gavin's request; source and derivative are preserved pending retention choice."
+        }
+      ]
+    },
+    {
+      "directory": "work/generated-images/2026-10-20-thailand-card-hero",
+      "status": "source-design-selected",
+      "userDecision": "候選一比較好看",
+      "candidates": [
+        {
+          "id": 1,
+          "file": "01-card-hero-concept.png",
+          "role": "layout-reference",
+          "status": "selected-design"
+        },
+        {
+          "id": 2,
+          "file": "02-gold-card-fan.png",
+          "role": "hero-artwork",
+          "status": "pending-user-selection",
+          "usage": "withdrawn-from-page-preserved"
+        }
+      ],
+      "usage": "Candidate 1 is the selected full design; simplified isolated-fan implementation was rejected and replaced.",
+      "fileRetention": "pending-explicit-retention-choice"
+    },
+    {
+      "directory": "work/generated-images/2026-10-20-thailand-candidate-one",
+      "status": "pending-user-selection",
+      "sourceDesign": "work/generated-images/2026-10-20-thailand-card-hero/01-card-hero-concept.png",
+      "candidates": [
+        {
+          "id": 1,
+          "file": "01-candidate-one-hero-art.png",
+          "role": "complete-hero-artwork",
+          "status": "pending-user-selection"
+        }
+      ],
+      "usage": "Previous complete background with baked emblem; withdrawn from page and preserved pending explicit file-retention choice.",
+      "userDecision": "先看完成網頁再決定"
+    },
+    {
+      "directory": "work/generated-images/2026-10-20-thailand-type-motion",
+      "status": "pending-user-selection",
+      "candidates": [
+        {
+          "id": 1,
+          "file": "01-upright-uppercase-concept.png",
+          "role": "typography-reference",
+          "status": "pending-user-selection"
+        },
+        {
+          "id": 2,
+          "file": "02-editorial-type-concept.png",
+          "role": "typography-reference",
+          "status": "pending-user-selection"
+        }
+      ],
+      "usage": "Agent is implementing concept 2 as the requested typography refinement; this does not imply user visual acceptance or file-retention approval."
+    }
+  ],
+  "activeRound": "work/generated-images/2026-10-20-thailand-separated-logo",
+  "heroRevision": {
+    "directory": "work/generated-images/2026-10-20-thailand-separated-logo",
+    "status": "retained",
+    "sourceDesign": "work/generated-images/2026-10-20-thailand-card-hero/01-card-hero-concept.png",
+    "sourceArtwork": "work/generated-images/2026-10-20-thailand-candidate-one/01-candidate-one-hero-art.png",
+    "candidates": [
+      {
+        "id": 1,
+        "file": "01-hero-without-emblem.png",
+        "role": "clean-hero-background",
+        "status": "retained",
+        "sourceDestination": "design/thailand-card-show/source-artwork/thailand-card-hero-clean-source.png",
+        "runtimeDestination": "public/assets/flagship/thailand/thailand-card-hero-clean.webp"
+      }
+    ],
+    "usage": "Retained clean background source moved to design source-artwork; optimized derivative moved to the Thailand asset directory. The original emblem remains a separate foreground used by entry and return.",
+    "userDecision": "保留一，其余删除。",
+    "deletedCandidates": []
+  },
+  "selectedDesign": "work/generated-images/2026-10-20-thailand-card-hero/01-card-hero-concept.png",
+  "typographyRevision": {
+    "reference": "work/generated-images/2026-10-20-thailand-type-motion/02-editorial-type-concept.png",
+    "status": "local-review",
+    "motionReference": "https://reactbits.dev/text-animations/blur-text",
+    "note": "Native title-case upright headings, lighter hierarchy and admission-gated character reveal. Existing chosen card composition and original independent emblem retained."
+  },
+  "venueDetailRevision": {
+    "status": "local-review",
+    "exteriorSource": "https://www.qsncc.com/en/media/gallery/exterior/main-entrance/",
+    "sourceImage": "https://images.prismic.io/qsncc/d9be3813-a56f-418d-a574-3b4e2285cb60_Exterior2.jpg?auto=compress,format",
+    "runtimeImage": "public/assets/flagship/thailand/qsncc-exterior-1280.webp",
+    "imageKind": "official-photograph-not-AI",
+    "note": "Official QSNCC exterior remains primary, B2 interior supporting. At Gavin’s request the low-contrast brand wordmark/gold atmosphere was moved from partners to the show introduction, event figures and highlights. A quieter edge-masked continuation now reaches every highlight row; central copy remains visually clear and the lead-to-card gap is tighter. Partners keep their black base; the later partnerLightingRevision adds only the requested light effect. No globe/new scene and no changes to earlier AI-candidate retention decisions."
+  },
+  "partnerLightingRevision": {
+    "status": "local-review",
+    "source": "https://reactbits.dev/r/LightRays-TS-CSS.json",
+    "retrieved": "2026-10-20",
+    "retrieval": "Official shadcn 4.22.0 CLI view after MCP NOT_CONFIGURED for @react-bits",
+    "note": "Gavin requested ReactSkills light for partners, rejected a clipped top boundary/excessive yellow, then requested left-side light with interaction. Native WebGL2 Light Rays now supplies low-saturation warm-white light from the top-left, angled down and right, with mouse steering, soft cursor shadows and click pulses. Pointer influence returns to neutral outside the region; pointer-down updates the position for touch input as well. Upper bleed/fade and site-level horizontal clip are preserved. Original black base, logos, copy and layout remain. Reduced motion holds the same effect still; no runtime replacement. No new media/dependency, image generation/deletion, push or deployment. Final visual acceptance pending."
+  },
+  "deliveryRevision": {
+    "date": "2026-10-20",
+    "scope": "User-authorized Test branch push; final visual acceptance and pending candidate-retention decisions remain separate.",
+    "release": "rc1ceef6c97412eb2e60a",
+    "sourceDirectory": "public/assets/flagship/thailand",
+    "releaseManifest": "src/generated/thailandAssetRelease.ts",
+    "files": 7,
+    "note": "Only the retained emblem/clean hero, official QSNCC exterior/interior and three selected user-provided Seoul photos. Byte-identical optimized files; no source/concept images or unused AI candidates published. Seven CDN objects verified by SHA-256, content type and immutable cache headers. All runtime imports from ignored work/ removed."
+  },
+  "heroFilmRevision": {
+    "date": "2026-10-20",
+    "status": "local-review",
+    "source": "Taiwan 2026 official recap, selected by Gavin",
+    "rangeSeconds": [
+      45,
+      60
+    ],
+    "durationSeconds": 15,
+    "film": "public/assets/flagship/thailand/thailand-hero-recap-45-60.mp4",
+    "poster": "public/assets/flagship/thailand/thailand-hero-recap-45-60-poster.webp",
+    "release": "r5d83a22f502484392fa1",
+    "filesInRelease": 9,
+    "note": "Requested video replaces the static hero background. The previous retained art and all pending candidates remain untouched. Top logo row is cropped; independent Thailand emblem, dark scrim, white copy and yellow event details form the new layout. Source is visibly credited as Taiwan recap. Native muted inline loop, viewport pause. Local visual acceptance and Git push pending.",
+    "resolution": [
+      1920,
+      936
+    ],
+    "encoding": {
+      "codec": "H.264",
+      "fps": 30,
+      "preset": "slow",
+      "crf": 18,
+      "maxrateKbps": 8000,
+      "bufsizeKbps": 16000,
+      "gopFrames": 60,
+      "pixelFormat": "yuv420p",
+      "fastStart": true,
+      "audio": false
+    },
+    "filmBytes": 15826235,
+    "qualityNote": "Re-encoded from the original 1080p source at native cropped 1920×936 instead of downscaling to 1280×624. No artificial upscaling or sharpening; same 45–60 second segment, layout and playback behavior. High-quality first-frame poster. Browser confirms 1920×936 muted inline looping on desktop and mobile. Local visual acceptance and Git push remain pending.",
+    "presentationRevision": "2026-10-20: 8% video zoom and no visible pause control at Gavin’s request; reduced-motion and off-screen pause retained. Borderless master-logo admission screen and independent footer organizer mark. Visual acceptance and Git push pending."
+  }
+}

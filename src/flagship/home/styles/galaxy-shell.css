@@ -1,0 +1,60 @@
+/* One continuous galaxy belongs to the IP site; no planet or sky is mounted inside regional pages. */
+.brand-site[data-theme] {
+  position: relative;
+  background: transparent;
+}
+.brand-site > .world-galaxy {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #e8effc;
+}
+.brand-site > .world-galaxy > img[data-active="true"] {
+  opacity: 0.46;
+}
+.brand-site > .world-galaxy::after {
+  display: none;
+}
+.brand-site > .world-galaxy .world-galaxy-legibility {
+  background: linear-gradient(90deg, #f0f5fc8a, #f2f5ff2b 72%);
+}
+.brand-site[data-theme="dark"] > .world-galaxy {
+  background: #050f20;
+}
+.brand-site[data-theme="dark"] > .world-galaxy > img[data-active="true"] {
+  opacity: 0.48;
+}
+.brand-site[data-theme="dark"] > .world-galaxy .world-galaxy-legibility {
+  background: linear-gradient(90deg, #06122175, #07142714 80%);
+}
+.brand-site[data-theme]
+  :is(.world-journey, .brand-editions, .brand-partner, .brand-footer) {
+  background: transparent;
+}
+.brand-site[data-theme] :is(.brand-editions, .brand-partner) {
+  border-color: #7894b52b;
+}
+.brand-site[data-theme="light"] {
+  --brand-muted: #33485f;
+}
+.brand-site[data-theme="light"]
+  :is(
+    .brand-prose p,
+    .brand-story-text .brand-prose p,
+    .brand-partner .brand-prose p,
+    .brand-recap-layout p,
+    .brand-chapter p
+  ) {
+  color: #33485f;
+}
+@media (max-width: 600px) {
+  .brand-site > .world-galaxy > img {
+    object-position: 62% center;
+  }
+  .brand-site > .world-galaxy .world-galaxy-legibility {
+    background: linear-gradient(180deg, #f2f6ffb8, #e8effd24 76%);
+  }
+  .brand-site[data-theme="dark"] > .world-galaxy .world-galaxy-legibility {
+    background: linear-gradient(180deg, #0612218a, #07142718 72%);
+  }
+}

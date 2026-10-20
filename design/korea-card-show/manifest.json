@@ -1,0 +1,290 @@
+{
+  "title": "FLAGSHIP 韓國卡展素材",
+  "updated": "2026-09-14",
+  "scope": "集中已提供的韓國參考圖、舊版延伸素材，以及目前韓國內頁使用的三張 2K 背景。",
+  "selectionEvidence": "src/flagship/data/artwork-review.json；2026-09-14 使用者要求三張完整 2K 16:9 圖保留，但兩個交界必須融合到看不出接縫。",
+  "preservation": "原圖與舊版延伸素材保留。舊漩渦雲母圖與停用的 12 另存紀錄；目前網站只載入 09、10、11。",
+  "assets": [
+    {
+      "id": "01",
+      "title": "韓國主海報",
+      "kind": "提供的主視覺／現存 WebP 副本",
+      "note": "首爾河岸、櫻花、紅藍透明卡框、大型 KOREA Logo。完整 PNG 原檔未在專案中找到；底部仍有 IN TAIWAN，不能照抄為韓國文案。",
+      "file": "01-korea-main-poster.webp",
+      "source": "src/flagship/assets/korea-keyvisual.webp",
+      "bytes": 249888,
+      "sha256": "3f063c6b61e802804d97324d60a3bc1ac8ff0d67474f90895432598222ffdcea",
+      "variants": [],
+      "width": 1600,
+      "height": 893
+    },
+    {
+      "id": "02",
+      "title": "韓國原始 Logo",
+      "kind": "提供的原始 Logo",
+      "note": "原始 PNG 完整保留。網站改用無損 WebP 色彩層配合 SVG 外輪廓，修正原去背下緣缺角；原始比例、文字與配色不變。",
+      "file": "02-korea-logo-original.png",
+      "source": "design/source-artwork/flagship-card-show-korea-logo-original.png",
+      "bytes": 398249,
+      "sha256": "59e24077738a10f1b82e506c7cfd1363f4eeb019402280fe78da320df1fa1941",
+      "variants": [
+        {
+          "file": "source-and-variants/02-korea-logo-transparent.webp",
+          "source": "src/flagship/assets/korea-emblem-alpha.webp",
+          "bytes": 565234,
+          "sha256": "499444524edf1fe5c1ec2022d7a0dfbbfae038e52766dc054816600ae2d60445",
+          "note": "舊版透明 Logo：去背輪廓有缺角，保留對照，已停止使用。",
+          "width": 3344,
+          "height": 1882
+        },
+        {
+          "file": "source-and-variants/02-korea-logo-color.webp",
+          "source": "src/flagship/assets/korea-emblem-color.webp",
+          "bytes": 327614,
+          "sha256": "e2855fed008bf2acf27c78060124db2518556a362fa33975579feb7291946d4d",
+          "note": "目前網頁用無損色彩層；像素與原 PNG 一致，搭配 SVG 輪廓顯示。",
+          "width": 1672,
+          "height": 941
+        },
+        {
+          "file": "source-and-variants/02-korea-logo-web.svg",
+          "source": "scripts/export-korea-logo.py",
+          "bytes": 439623,
+          "sha256": "f0acb24ed84fe9bdc5d8a230d91465e34f0e1355e91b9a426ad73d3b52a638da",
+          "note": "目前網頁 Logo 的獨立 SVG 預覽，已修正下緣缺角。",
+          "width": 1170,
+          "height": 755,
+          "derivation": {
+            "inputs": [
+              "src/flagship/assets/korea-emblem-color.webp",
+              "src/flagship/data/koreaEmblemContour.ts"
+            ],
+            "method": "Embed the unchanged web texture and canonical display clip; no AI generation."
+          }
+        }
+      ],
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "id": "03",
+      "title": "韓國攤商宣傳圖",
+      "kind": "提供的宣傳參考图",
+      "note": "MEET OUR VENDOR；手持透明卡片、左紅右藍。底部印有 26.09.2026 與場地字樣。日期與場地應另行確認後同步網站。",
+      "file": "03-korea-vendor-poster.jpg",
+      "source": "work/references/2026-09-12-korea-galaxy/korea-vendor-reference.jpg",
+      "bytes": 177741,
+      "sha256": "db5072aa37f4c10b6cf21a1c78df8071ff544d561f6b2d3e2fa675fc2dca9c2d",
+      "variants": [],
+      "width": 1600,
+      "height": 903
+    },
+    {
+      "id": "04",
+      "title": "天空延伸圖",
+      "kind": "舊版 AI 延伸素材，保留參考",
+      "note": "從主海報延伸的天空環境。新版 08–12 仍以其自然雲層作為修正參考。",
+      "file": "04-korea-sky.webp",
+      "source": "public/assets/flagship/korea-sky.webp",
+      "bytes": 192134,
+      "sha256": "1ae4abc1a4616ce0aa54adf1a3e660429b0c6d3723fde10577605ac2c250377d",
+      "variants": [
+        {
+          "file": "source-and-variants/04-korea-sky-source.png",
+          "source": "work/generated-images/2026-09-11-poster-fragments/01-sky.png",
+          "bytes": 1885337,
+          "sha256": "aec8f7d2882f10c37216220641cfb78b95dc6b0ff330259430052074c82de145",
+          "note": "04 的生成 PNG 來源",
+          "width": 1672,
+          "height": 941
+        }
+      ],
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "id": "05",
+      "title": "首爾城市與河岸",
+      "kind": "舊版 AI 延伸素材，保留參考",
+      "note": "右側城市天際線與河岸。新版網站已改用 12 的單一連續長背景。",
+      "file": "05-korea-city.webp",
+      "source": "public/assets/flagship/korea-city.webp",
+      "bytes": 305880,
+      "sha256": "a9249ab42ff23eea98a3ada3b100f12ce5f8997e2d30b3230a41a7063a5b76d9",
+      "variants": [
+        {
+          "file": "source-and-variants/05-korea-city-source.png",
+          "source": "work/generated-images/2026-09-11-poster-fragments/02-seoul-waterfront.png",
+          "bytes": 2150608,
+          "sha256": "2b53271b8d6539bae7df5124e5c9d9fbef51971298e5c3ad247df6c444850e2e",
+          "note": "05 的生成 PNG 來源",
+          "width": 1672,
+          "height": 941
+        }
+      ],
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "id": "06",
+      "title": "透明空卡框",
+      "kind": "目前採用的 AI 延伸素材",
+      "note": "直式透明空卡框，銀邊及藍色細節；新版用在開場兩側，保持小尺寸不遮擋內容。",
+      "file": "06-korea-card-frame.webp",
+      "source": "public/assets/flagship/korea-card-frame.webp",
+      "bytes": 235374,
+      "sha256": "7469c7379a0d2bbf7eb3164fd8c434fafc3132a07870e16d5fe1ce04e16a209b",
+      "variants": [
+        {
+          "file": "source-and-variants/06-korea-card-frame-source.png",
+          "source": "work/generated-images/2026-09-11-poster-fragments/03-open-card-holder.png",
+          "bytes": 1686777,
+          "sha256": "966b0addc754bb26a531fe969c11512025baf610efe8739864a735960ca28610",
+          "note": "06 的生成 PNG 來源",
+          "width": 1024,
+          "height": 1536
+        }
+      ],
+      "width": 1024,
+      "height": 1536
+    },
+    {
+      "id": "07",
+      "title": "河面與步道",
+      "kind": "舊版 AI 延伸素材，保留參考",
+      "note": "河面、倒影與石材步道近景。新版網站已改用 12，不再進行獨立圖片切換。",
+      "file": "07-korea-river.webp",
+      "source": "public/assets/flagship/korea-river.webp",
+      "bytes": 397018,
+      "sha256": "4ef8955834a68b0522741d6386687b83746ac2fba2daf0368937dab9172f71e2",
+      "variants": [
+        {
+          "file": "source-and-variants/07-korea-river-source.png",
+          "source": "work/generated-images/2026-09-11-poster-fragments/04-river-reflections.png",
+          "bytes": 2482364,
+          "sha256": "cc75f8954ac6bf7806b806c8df2bb2bb7e2f310bda4da8589d9e64743e59a722",
+          "note": "07 的生成 PNG 來源",
+          "width": 1672,
+          "height": 941
+        }
+      ],
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "id": "08",
+      "title": "自然雲連續母圖",
+      "kind": "目前採用的 AI 連續場景母圖",
+      "note": "從天空、首爾天際線、漢江一路連至河岸濕地面。雲層依 04 修正為自然、不規則分布；舊漩渦雲版本保留於 variants。",
+      "file": "08-korea-continuous-scroll-master.png",
+      "source": "work/generated-images/2026-09-13-korea-continuous-scroll/06-master-v2-natural-clouds.png",
+      "bytes": 2950093,
+      "sha256": "803af170eb6c01a18cfeee7f92722ab9a72abfd526532b723edccdd9c598f488",
+      "variants": [
+        {
+          "file": "source-and-variants/08-korea-continuous-scroll-master-v1-cloud-vortex.png",
+          "source": "work/generated-images/2026-09-13-korea-continuous-scroll/02-three-viewport-master.png",
+          "bytes": 3087060,
+          "sha256": "6e6c317ddb56eaf68142f608600fdfa9170e7fb9cdc66e7e8d9f1fb8f65f6b26",
+          "note": "被取代的漩渦雲版本，僅保留差異證據。",
+          "width": 965,
+          "height": 1629
+        }
+      ],
+      "width": 965,
+      "height": 1630
+    },
+    {
+      "id": "09",
+      "title": "自然天空高解析段",
+      "kind": "韓國內頁目前實際使用",
+      "note": "自然疏密雲層與開放藍天；沒有魚眼漩渦。完整 16:9 畫面輸出為 2048 × 1152。",
+      "file": "09-korea-scroll-sky.webp",
+      "source": "source-and-variants/09-korea-scroll-sky-source.png",
+      "bytes": 283970,
+      "sha256": "4e700929cba1f72e41a677685b4404eb6c8fbc4cd4f3f1652856b5c1a413bd4d",
+      "variants": [
+        {
+          "file": "source-and-variants/09-korea-scroll-sky-source.png",
+          "source": "work/generated-images/2026-09-13-korea-continuous-scroll/07-panel-01-natural-sky.png",
+          "bytes": 1947018,
+          "sha256": "70719e95c77798b3e1e3048009c3a93f87792eff43f5dbb77dc4d9c3bb40f423",
+          "note": "ImageGen PNG 來源。",
+          "width": 1672,
+          "height": 941
+        }
+      ],
+      "width": 2048,
+      "height": 1152
+    },
+    {
+      "id": "10",
+      "title": "首爾與漢江高解析段",
+      "kind": "韓國內頁目前實際使用",
+      "note": "承接自然天空的首爾、漢江與河岸視角。完整 16:9 畫面輸出為 2048 × 1152。",
+      "file": "10-korea-scroll-city.webp",
+      "source": "source-and-variants/10-korea-scroll-city-source.png",
+      "bytes": 623674,
+      "sha256": "016409cce76e931d6a980fda20088728e789aaf5b02425a8b69d3eeee7d47888",
+      "variants": [
+        {
+          "file": "source-and-variants/10-korea-scroll-city-source.png",
+          "source": "work/generated-images/2026-09-13-korea-continuous-scroll/08-panel-02-natural-city-river.png",
+          "bytes": 2678901,
+          "sha256": "8f9f48152cc7a35f754c36d97114d41478357f20c2abaec47c1b5ccbddb2a8d4",
+          "note": "ImageGen PNG 來源。",
+          "width": 1672,
+          "height": 941
+        }
+      ],
+      "width": 2048,
+      "height": 1152
+    },
+    {
+      "id": "11",
+      "title": "河岸地面高解析段",
+      "kind": "韓國內頁目前實際使用",
+      "note": "漢江欄杆、濕石地面與花瓣近景。完整 16:9 畫面輸出為 2048 × 1152。",
+      "file": "11-korea-scroll-ground.webp",
+      "source": "source-and-variants/11-korea-scroll-ground-source.png",
+      "bytes": 941764,
+      "sha256": "4638856ef77d985639b913678d6adc694d6ad51ab1011f8cd40bf41e5873990b",
+      "variants": [
+        {
+          "file": "source-and-variants/11-korea-scroll-ground-source.png",
+          "source": "work/generated-images/2026-09-13-korea-continuous-scroll/09-panel-03-natural-ground.png",
+          "bytes": 3393731,
+          "sha256": "d6f3c8b99e7b9f833f12ade262709f395508b865e15902c1b54b008b21b45dbc",
+          "note": "ImageGen PNG 來源。",
+          "width": 1672,
+          "height": 941
+        }
+      ],
+      "width": 2048,
+      "height": 1152
+    },
+    {
+      "id": "12",
+      "title": "網頁連續長背景",
+      "kind": "已停用的上一版網站背景，保留紀錄",
+      "note": "上一版把 08 整理成 1672 × 2823 長背景；因解析度及捲動跟手問題停用。網站公開目錄已移除，設計檔與 PNG 來源保留。",
+      "file": "12-korea-scroll-continuous.webp",
+      "source": "design/korea-card-show/12-korea-scroll-continuous.webp",
+      "bytes": 925478,
+      "sha256": "29cda4a16c69a88a3e7ef209a9db9175cc3f1187dadc30004efbdf519d5d4c26",
+      "variants": [
+        {
+          "file": "source-and-variants/12-korea-scroll-continuous-source.png",
+          "source": "scripts/prepare-korea-scroll-assets.py",
+          "bytes": 7335639,
+          "sha256": "68e5b3291a89988d9e47cbc6038ea85c7328140f31345b4c9be655e68bc1fde1",
+          "note": "網站 WebP 的未壓縮 PNG 來源。",
+          "width": 1672,
+          "height": 2823
+        }
+      ],
+      "width": 1672,
+      "height": 2823
+    }
+  ]
+}

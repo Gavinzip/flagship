@@ -20,19 +20,24 @@ function normalizeAssetPath(value: string) {
 }
 
 export function staticAssetUrl(path: string) {
+  return staticAssetReleaseUrl(path, STATIC_ASSET_RELEASE);
+}
+
+/** Edition media can advance its own immutable release without republishing older editions. */
+export function staticAssetReleaseUrl(path: string, release: string) {
   const assetPath = normalizeAssetPath(path);
 
   if (import.meta.env.DEV) {
     return assetPath;
   }
 
-  if (!configuredCdnBase || STATIC_ASSET_RELEASE === "unpublished") {
+  if (!configuredCdnBase || release === "unpublished") {
     throw new Error(
       "Static asset CDN is not configured. Publish an asset release and set VITE_STATIC_ASSET_CDN_BASE_URL before a production build.",
     );
   }
 
-  return `${configuredCdnBase}/${STATIC_ASSET_RELEASE}${assetPath}`;
+  return `${configuredCdnBase}/${release}${assetPath}`;
 }
 
 export function staticAssetCssUrl(path: string) {

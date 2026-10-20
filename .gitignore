@@ -13,3 +13,10 @@ private/
 design/concepts/
 .env.local
 .env.*.local
+
+# Local review sources, recordings, and the separate venue study.
+work/
+outputs/
+videos/
+flagship-venue-3d/
+design/promo/

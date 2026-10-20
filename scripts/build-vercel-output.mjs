@@ -33,16 +33,19 @@ const headers = {
 
 if (stage === "pilot") {
   headers["X-Robots-Tag"] = "noindex, nofollow, noarchive";
-  const indexPath = join(output, "static/index.html");
-  const html = await readFile(indexPath, "utf8");
-  if (!/<meta name="ga-measurement-id" content="G-[A-Z0-9]+"\s*\/>/.test(html)) {
-    throw new Error("Cannot locate analytics metadata for the isolated pilot.");
-  }
+  // Every direct edition entry inherits analytics metadata from the main HTML.
   // The pilot must not send QA traffic to the production GA property.
-  await writeFile(indexPath, html.replace(
-    /(<meta name="ga-measurement-id" content=")[^"]+("\s*\/>)/,
-    "$1$2",
-  ));
+  for (const page of ["index.html", "thailand/index.html", "taiwan/index.html"]) {
+    const indexPath = join(output, "static", page);
+    const html = await readFile(indexPath, "utf8");
+    if (!/<meta name="ga-measurement-id" content="[^"]*"\s*\/>/.test(html)) {
+      throw new Error(`Cannot locate analytics metadata for the isolated pilot: ${page}`);
+    }
+    await writeFile(indexPath, html.replace(
+      /(<meta name="ga-measurement-id" content=")[^"]*("\s*\/>)/,
+      "$1$2",
+    ));
+  }
 }
 
 const config = {
@@ -55,10 +58,12 @@ const config = {
       continue: true,
     },
     {
-      src: "/assets/[^/]+-[A-Za-z0-9_-]{8,}\\.(?:js|css|woff2?)$",
+      src: "/assets/[^/]+-[A-Za-z0-9_-]{8,}\\.(?:js|css|webp|woff2?)$",
       headers: { "Cache-Control": "public, max-age=31536000, immutable" },
       continue: true,
     },
+    { src: "/korea(?:/.*)?", status: 404, headers: { "Cache-Control": "no-store" } },
+    { src: "/(thailand|taiwan)/?", dest: "/$1/index.html" },
     { handle: "filesystem" },
     // A missing asset is an error, not the existing SPA document route.
     { src: "/assets/(.*)", status: 404, headers: { "Cache-Control": "no-store" } },
@@ -76,7 +81,7 @@ async function audit(directory, prefix = "") {
     if (entry.isSymbolicLink()) throw new Error(`Unexpected deployment symlink: ${name}`);
     if (entry.isDirectory()) files.push(...await audit(path, `${name}/`));
     else {
-      if (!/\.(?:html|js|css|woff2?|txt|xml|ics)$/.test(name)) {
+      if (!/\.(?:html|js|css|webp|woff2?|txt|xml|ics)$/.test(name)) {
         throw new Error(`Unexpected static deployment file: ${name}`);
       }
       files.push({ name, bytes: (await readFile(path)).byteLength });

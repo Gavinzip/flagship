@@ -1,0 +1,489 @@
+@media (min-width: 1700px) {
+  .fs-header {
+    padding-inline: max(48px, calc((100vw - 1440px) / 2));
+  }
+}
+@media (max-width: 1150px) {
+  .fs-wrap {
+    width: calc(100% - 72px);
+  }
+  .fs-header {
+    padding-inline: 28px;
+    gap: 24px;
+    height: 80px;
+  }
+  .fs-brand {
+    width: 146px;
+  }
+  .fs-desktop-nav {
+    gap: 20px;
+  }
+  .fs-desktop-nav a {
+    font-size: 11px;
+  }
+  .fs-header-controls {
+    gap: 8px;
+  }
+  .fs-manifesto {
+    gap: 55px;
+  }
+  .fs-experience-list > button {
+    gap: 10px;
+    padding: 22px 14px;
+  }
+  .fs-experience-list small {
+    font-size: 9px;
+  }
+  .fs-experience-caption {
+    padding: 25px;
+  }
+  .fs-experience-caption p {
+    font-size: 12px;
+  }
+  .fs-edition-grid {
+    gap: 55px;
+  }
+  .fs-show-info {
+    gap: 55px;
+  }
+  .fs-community > .fs-wrap {
+    gap: 50px;
+  }
+  .fs-section {
+    padding-block: 90px;
+  }
+  .fs-editions {
+    padding-bottom: 150px;
+  }
+}
+@media (max-width: 900px) {
+  .fs-header {
+    height: 74px;
+  }
+  .fs-desktop-nav {
+    display: none;
+  }
+  .fs-header-controls {
+    margin-left: auto;
+  }
+  .fs-menu-toggle {
+    display: grid;
+    place-items: center;
+  }
+  .fs-mobile-nav {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    padding: 18px 35px 27px;
+    flex-direction: column;
+    background: var(--fs-nav);
+    border-bottom: 1px solid #809ec66b;
+    box-shadow: 0 20px 30px var(--fs-shadow);
+    animation: fs-entry 0.35s ease both;
+  }
+  .fs-mobile-nav a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-block: 17px;
+    border-bottom: 1px solid var(--fs-line);
+    font-size: 16px;
+  }
+  .fs-mobile-nav a span {
+    font: 11px var(--fs-display);
+    color: var(--fs-muted);
+  }
+  .fs-mobile-nav svg {
+    margin-left: auto;
+  }
+  .fs-manifesto {
+    gap: 40px;
+    padding-block: 80px;
+  }
+  .fs-manifesto h2 {
+    font-size: 60px;
+  }
+  .fs-manifesto-copy h3 {
+    font-size: 16px;
+    margin-top: 23px;
+  }
+  .fs-manifesto-copy > p {
+    font-size: 12px;
+  }
+  .fs-section-heading {
+    gap: 30px;
+  }
+  .fs-section-heading > p {
+    max-width: 230px;
+    font-size: 11px;
+    padding-left: 18px;
+  }
+  .fs-experience-list strong {
+    font-size: 28px;
+  }
+  .fs-experience-list small {
+    font-size: 8px;
+  }
+  .fs-experience-list > button > svg {
+    display: none;
+  }
+  .fs-experience-panel {
+    grid-template-columns: 1.4fr 0.75fr;
+  }
+  .fs-experience-image {
+    aspect-ratio: 1.4;
+  }
+  .fs-experience-caption {
+    padding: 22px;
+  }
+  .fs-experience-caption .fs-eyebrow {
+    font-size: 8px;
+  }
+  .fs-image-index {
+    font-size: 28px;
+    right: 12px;
+    bottom: 10px;
+  }
+  .fs-experience-image > span {
+    font-size: 7px;
+    left: 15px;
+  }
+  .fs-edition-grid {
+    gap: 30px;
+    margin-top: 55px;
+  }
+  .fs-edition-card-copy {
+    padding: 20px 16px;
+  }
+  .fs-edition-card-copy h3 {
+    font-size: 56px;
+  }
+  .fs-edition-bottom {
+    margin-inline: 16px;
+  }
+  .fs-edition-badge {
+    top: 12px;
+    left: 12px;
+    padding: 6px 9px;
+    font-size: 7px;
+  }
+  .fs-show-info {
+    gap: 35px;
+  }
+  .fs-next-card {
+    padding: 22px;
+  }
+  .fs-questions {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .fs-questions h2 {
+    max-width: none;
+  }
+  .fs-community h2 {
+    font-size: 64px;
+  }
+  .fs-community-copy p {
+    font-size: 12px;
+  }
+  .fs-footer-bottom > span:nth-child(2) {
+    display: none;
+  }
+}
+@media (max-width: 620px) {
+  html:has(.fs-site) {
+    scroll-padding-top: 68px;
+  }
+  .fs-wrap {
+    width: calc(100% - 40px);
+  }
+  .fs-header {
+    height: 68px;
+    padding-inline: 16px;
+    gap: 12px;
+  }
+  .fs-brand {
+    width: 115px;
+  }
+  .fs-header-controls {
+    gap: 9px;
+  }
+  .fs-edition-control {
+    padding-inline: 8px;
+    gap: 6px;
+  }
+  .fs-header select {
+    font-size: 9px;
+    min-height: 40px;
+    padding-right: 1px;
+    max-width: 66px;
+  }
+  .fs-header .fs-language {
+    max-width: 50px;
+  }
+  .fs-menu-toggle {
+    width: 28px;
+    padding: 3px;
+  }
+  .fs-menu-toggle svg {
+    width: 20px;
+  }
+  .fs-mobile-nav {
+    padding: 12px 22px 25px;
+  }
+  .fs-section {
+    padding-block: 70px;
+  }
+  .fs-site h2 {
+    font-size: clamp(42px, 10.8vw, 66px);
+    line-height: 1;
+  }
+  .fs-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    gap: 10px;
+  }
+  .fs-eyebrow::before {
+    width: 17px;
+  }
+  .fs-manifesto {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-block: 20px 70px;
+  }
+  .fs-manifesto-copy .fs-eyebrow {
+    margin-bottom: 18px;
+  }
+  .fs-site .fs-manifesto h2 {
+    font-size: 56px;
+  }
+  .fs-manifesto-copy h3 {
+    font-size: 17px;
+    margin-top: 24px;
+  }
+  .fs-manifesto-copy > p {
+    font-size: 13px;
+    line-height: 1.95;
+  }
+  .fs-ticker {
+    padding-block: 12px;
+  }
+  .fs-ticker-track > span {
+    font-size: 25px;
+    padding-right: 25px;
+  }
+  .fs-ticker i {
+    font-size: 14px;
+    padding-inline: 26px;
+  }
+  .fs-section-heading {
+    display: block;
+    margin-bottom: 30px;
+  }
+  .fs-section-heading .fs-eyebrow {
+    margin-bottom: 20px;
+  }
+  .fs-section-heading > p {
+    max-width: 330px;
+    margin-top: 23px;
+    font-size: 12px;
+    padding-left: 15px;
+  }
+  .fs-experience-layout {
+    gap: 22px;
+  }
+  .fs-experience-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .fs-experience-list > button {
+    min-width: 0;
+    min-height: 86px;
+    padding: 14px 7px;
+    gap: 9px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .fs-tab-number {
+    font-size: 8px;
+  }
+  .fs-experience-list strong {
+    font-size: clamp(19px, 5.6vw, 28px);
+  }
+  .fs-experience-list small {
+    display: none;
+  }
+  .fs-experience-panel {
+    display: block;
+    padding: 8px;
+  }
+  .fs-experience-image {
+    aspect-ratio: 1.35;
+  }
+  .fs-experience-image > span {
+    font-size: 7px;
+    left: 15px;
+  }
+  .fs-experience-caption {
+    padding: 24px 16px 20px;
+  }
+  .fs-experience-caption p {
+    font-size: 13px;
+  }
+  .fs-experience-caption .fs-eyebrow {
+    margin-top: 20px;
+    font-size: 8px;
+  }
+  .fs-edition-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+    margin: 48px 8px 0;
+  }
+  .fs-edition-grid > div:first-child {
+    rotate: -2deg;
+  }
+  .fs-edition-grid > div:last-child {
+    rotate: 2deg;
+    margin-top: 0;
+  }
+  .fs-edition-card {
+    padding: 8px;
+  }
+  .fs-edition-card-copy {
+    padding: 22px 18px 18px;
+  }
+  .fs-edition-card-copy h3 {
+    font-size: 64px;
+  }
+  .fs-edition-bottom {
+    margin-inline: 18px;
+  }
+  .fs-edition-badge {
+    top: 14px;
+    left: 14px;
+    font-size: 7px;
+  }
+  .fs-show-info {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .fs-info-intro {
+    position: static;
+  }
+  .fs-info-intro > p:not(.fs-eyebrow) {
+    font-size: 13px;
+    margin-block: 25px;
+  }
+  .fs-next-card {
+    padding: 24px;
+  }
+  .fs-next-card dd {
+    font-size: 11px;
+  }
+  .fs-next-card dt {
+    font-size: 10px;
+  }
+  .fs-community {
+    padding-block: 100px;
+    min-height: 650px;
+  }
+  .fs-community > .fs-wrap {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .fs-community .fs-eyebrow {
+    margin-bottom: 23px;
+  }
+  .fs-community h2 {
+    font-size: 58px;
+  }
+  .fs-community-copy {
+    justify-self: start;
+    max-width: none;
+  }
+  .fs-community-copy p {
+    font-size: 13px;
+    margin-bottom: 25px;
+  }
+  .fs-community-copy .fs-button {
+    width: 100%;
+  }
+  .fs-questions {
+    gap: 28px;
+  }
+  .fs-faq-list summary {
+    gap: 14px;
+    min-height: 78px;
+    padding: 20px 12px;
+  }
+  .fs-faq-list h3 {
+    font-size: 12px;
+  }
+  .fs-faq-list details p {
+    font-size: 12px;
+    padding-inline: 34px 22px;
+  }
+  .fs-floor-scroll img {
+    min-width: 800px;
+    max-width: none;
+  }
+  .fs-footer {
+    padding-block: 25px 20px;
+  }
+  .fs-footer-top {
+    gap: 18px;
+  }
+  .fs-footer-top p {
+    font-size: 9px;
+    max-width: 120px;
+    margin-left: auto;
+  }
+  .fs-back {
+    width: 36px;
+    height: 36px;
+  }
+  .fs-back svg {
+    width: 17px;
+  }
+  .fs-footer-bottom {
+    flex-wrap: wrap;
+    font-size: 7px;
+    gap: 8px;
+    padding-top: 17px;
+  }
+  .fs-footer-bottom > div {
+    gap: 15px;
+  }
+}
+@media (max-width: 360px) {
+  .fs-header {
+    padding-inline: 11px;
+    gap: 7px;
+  }
+  .fs-brand {
+    width: 96px;
+  }
+  .fs-header-controls {
+    gap: 5px;
+  }
+  .fs-edition-control {
+    padding-inline: 6px;
+    gap: 4px;
+  }
+  .fs-header select {
+    font-size: 8px;
+  }
+  .fs-community h2 {
+    font-size: 55px;
+  }
+  .fs-next-card {
+    padding: 20px;
+  }
+  .fs-footer-top p {
+    display: none;
+  }
+  .fs-back {
+    margin-left: auto;
+  }
+}

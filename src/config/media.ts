@@ -1,4 +1,5 @@
 import { staticAssetCssUrl, staticAssetUrl } from "../lib/staticAssets";
+import { taiwanRecapMedia } from "./taiwanRecapMedia";
 
 const mediaPaths = {
   appIcon: "app-icon.png",
@@ -80,20 +81,26 @@ const responsivePreloads: Partial<Record<MediaKey, ResponsiveMedia>> = {
   heroFloatingCard: responsiveMedia.heroFloatingCard,
 };
 
-export const siteImagePreloads = Object.freeze(
-  Object.keys(mediaPaths).map((key) => {
-    const mediaKey = key as MediaKey;
-    const responsive = responsivePreloads[mediaKey];
+export const siteImagePreloads = Object.freeze([
+  ...Object.keys(mediaPaths)
+    .filter((key) => !(key in taiwanRecapMedia))
+    .map((key) => {
+      const mediaKey = key as MediaKey;
+      const responsive = responsivePreloads[mediaKey];
 
-    return {
-      label: media[mediaKey],
-      src: media[mediaKey],
-      ...(responsive
-        ? { srcSet: responsive.srcSet, sizes: responsive.sizes }
-        : {}),
-    } satisfies SiteImagePreload;
-  }),
-);
+      return {
+        label: media[mediaKey],
+        src: media[mediaKey],
+        ...(responsive
+          ? { srcSet: responsive.srcSet, sizes: responsive.sizes }
+          : {}),
+      } satisfies SiteImagePreload;
+    }),
+  ...Object.values(taiwanRecapMedia).map((image) => ({
+    ...image,
+    label: image.src,
+  })),
+]);
 
 const cssAssetVariables = {
   "--asset-event-pass-surface": staticAssetCssUrl(mediaPaths.eventPassSurface),

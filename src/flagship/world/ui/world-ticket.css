@@ -1,0 +1,55 @@
+/* Registration is the current Korea action; it borrows the destination-card halo. */
+.brand-site[data-theme] .world-ticket-action {
+  --action-fill: linear-gradient(145deg, #182136, #0a1020 60%, #0b1629);
+  --action-rim: linear-gradient(120deg, #8bd9ff, #c6a3ff 42%, #f28fb9 68%, #82caff);
+  --action-text: #f2f6ff;
+  min-width: 160px;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px #02061159, inset 0 0 0 1px #dae8ff16;
+}
+
+.brand-site[data-theme] .world-ticket-aura {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: .72;
+  background: transparent;
+  box-shadow:
+    -17px 14px 26px -18px #f496b8e6,
+    18px -12px 28px -18px #83d5ffd9;
+  transition: opacity .3s ease;
+}
+
+.brand-site[data-theme] .world-ticket-action > .ip-metal-border {
+  --metal-a: #b89bfa;
+  --metal-b: #fa9abd;
+  --metal-c: #80d8ff;
+}
+
+.brand-site[data-theme] .world-ticket-action > .ip-metal-border::before {
+  opacity: .72;
+  padding: 1.25px;
+  -webkit-mask-image: conic-gradient(from var(--metal-cursor-angle, 215deg), #000 34%, transparent 47%, transparent 53%, #000 66%), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-image: conic-gradient(from var(--metal-cursor-angle, 215deg), #000 34%, transparent 47%, transparent 53%, #000 66%), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+}
+
+.brand-site[data-theme] .world-ticket-action > .ip-metal-border > .ip-metal-edge {
+  opacity: .35;
+}
+
+.brand-site[data-theme] .world-ticket-action:is(:hover, :focus-visible) > .ip-metal-border::before,
+.brand-site[data-theme] .world-ticket-action:is(:hover, :focus-visible) > .ip-metal-border > .ip-metal-edge {
+  opacity: 1;
+}
+
+.brand-site[data-theme] .world-ticket-action:is(:hover, :focus-visible) .world-ticket-aura {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-site[data-theme] .world-ticket-aura {
+    transition: none;
+  }
+}

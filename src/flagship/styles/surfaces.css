@@ -1,0 +1,960 @@
+/* Daylight surfaces: open typography, hairline reflections, and clear edges.
+   The poster remains the environment; no chrome plates or blurred white panels. */
+.fs-site {
+  --fs-text: #071a30;
+  --fs-muted: #152b45;
+  --fs-accent: #123e6a;
+  --fs-line: #385e843b;
+  --fs-glass: #e8f3ff38;
+  --fs-glass-active: #edf7ff63;
+  --fs-nav: #deedfa;
+  --fs-shadow: #24497412;
+  --fs-edge: linear-gradient(
+    125deg,
+    #ffffffdb,
+    #7497b164 22%,
+    #fff 46%,
+    #7797bb66 74%,
+    #ffffffb3
+  );
+}
+.fs-site h2,
+.fs-site h3,
+.fs-site p,
+.fs-site .fs-eyebrow {
+  text-shadow: none;
+}
+.fs-wrap {
+  max-width: 1200px;
+}
+.fs-site h2 .fs-heading-line {
+  color: var(--fs-text);
+}
+.fs-site .fs-eyebrow {
+  color: var(--fs-accent);
+  font-size: 14px;
+  letter-spacing: 0.16em;
+}
+.fs-site .fs-eyebrow::before {
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+  box-shadow: none;
+}
+.fs-site .fs-text-link {
+  color: var(--fs-text);
+  font-size: 14px;
+  font-weight: 600;
+  border-color: var(--fs-line);
+}
+.fs-site .fs-button {
+  min-height: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid #1b5690;
+  border-radius: 2px;
+  background: #194f83;
+  box-shadow: inset 0 1px 0 #ffffff24;
+  color: #fff !important;
+  text-shadow: none;
+}
+.fs-site .fs-button::before {
+  display: none;
+}
+.fs-site .fs-button:hover {
+  background: #123f6c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px #18477719;
+}
+.fs-site .fs-button:active {
+  transform: none;
+}
+.fs-site .fs-button svg {
+  color: inherit;
+}
+.fs-site .fs-button-light {
+  color: var(--fs-text) !important;
+  background: transparent;
+  border-color: var(--fs-line);
+  box-shadow: none;
+}
+.fs-site .fs-button-light:hover {
+  background: #ffffff30;
+}
+.fs-site :is(button, a, select, input, summary):focus-visible {
+  outline-color: #1b62a1;
+}
+.fs-live-dot {
+  box-shadow: none;
+}
+/* Navigation is typography on the sky, including the edition control. */
+.fs-header {
+  font-weight: 600;
+}
+.fs-desktop-nav a {
+  font-size: 14px;
+  font-weight: 600;
+}
+.fs-header .fs-desktop-nav a,
+.fs-header .fs-language {
+  color: inherit;
+}
+.fs-header select {
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+}
+.fs-header .fs-edition-control {
+  color: inherit;
+  border: 0;
+  border-left: 1px solid var(--fs-line);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  padding-left: 18px;
+}
+.fs-header select option {
+  background: var(--fs-nav);
+  color: var(--fs-text);
+}
+.fs-header .fs-mobile-nav {
+  background: #dcecfbf5;
+  color: #102843;
+  backdrop-filter: none;
+  box-shadow: 0 14px 25px #17457312;
+  border-bottom: 1px solid #799bbb55;
+}
+.fs-desktop-nav a::after {
+  height: 1px;
+  background: currentColor;
+}
+/* The hero keeps the source emblem intact. Information sits on a light, open
+   horizontal rule rather than a separate card-shaped object. */
+.fs-hero {
+  padding-bottom: 20px;
+}
+.fs-hero-scene {
+  padding-bottom: 0;
+}
+.fs-hero-artwork {
+  inset: 82px 0 26px;
+}
+.fs-hero-artwork-inner {
+  width: min(750px, 78vw, calc((100cqh - 108px) * 1.549));
+}
+.fs-hero-information {
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid var(--fs-line);
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding: 17px 0 12px;
+  gap: 20px 42px;
+  color: var(--fs-text);
+}
+.fs-hero-statement {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-column: 1/-1;
+  text-align: left;
+  gap: 15px;
+}
+.fs-hero-statement p {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--fs-text);
+}
+.fs-hero-statement > span {
+  margin: 0;
+  color: var(--fs-text);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+.fs-hero-chapter > span,
+.fs-hero-facts dt {
+  font-size: 14px;
+  color: var(--fs-muted);
+  letter-spacing: 0.08em;
+}
+.fs-hero-facts dd {
+  font-size: 14px;
+  color: var(--fs-text);
+  font-weight: 600;
+}
+.fs-hero h1 {
+  font-size: 34px;
+  font-weight: 600;
+}
+.fs-hero h1 small {
+  color: var(--fs-accent);
+  font-size: 14px;
+}
+.fs-hero-information .fs-button {
+  min-height: 48px;
+  border: 1px solid #194f83;
+  background: #194f83;
+  box-shadow: none;
+}
+.fs-hero-information .fs-button:hover {
+  background: #123f6c;
+}
+.fs-hero-footer {
+  color: var(--fs-text);
+  margin-top: 7px;
+  padding-top: 8px;
+  min-height: 40px;
+  background: none;
+  border: 0;
+}
+.fs-scroll-link {
+  font-size: 14px;
+}
+.fs-organizer > span:first-child {
+  color: var(--fs-muted);
+  font-size: 14px;
+}
+.fs-organizer-name {
+  font-size: 19px;
+}
+.fs-motion-toggle {
+  width: 30px;
+  height: 30px;
+  border-color: var(--fs-line);
+}
+/* More sky between the object and the copy; the frame is a small detail of
+   the world, not the size of an entire metal poster. */
+.fs-manifesto {
+  min-height: 720px;
+  grid-template-columns: 0.88fr 1.12fr;
+  padding-block: 110px;
+  gap: 90px;
+}
+.fs-manifesto-copy {
+  padding: 0;
+  max-width: 570px;
+}
+.fs-manifesto-copy h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.7;
+  margin-top: 32px;
+}
+.fs-manifesto-copy > p {
+  font-size: 16px;
+  color: var(--fs-muted);
+  line-height: 2;
+  max-width: 475px;
+  margin-top: 16px;
+}
+html:is([lang="zh-TW"], [lang="ko"]) .fs-site h2 {
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.38;
+}
+.fs-ticker {
+  color: var(--fs-accent);
+  background: transparent;
+  border-block: 1px solid var(--fs-line);
+  box-shadow: none;
+  mask-image: none;
+  padding-block: 18px;
+}
+.fs-ticker-track > span {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+}
+.fs-ticker i {
+  color: var(--fs-accent);
+  font-size: 14px;
+}
+.fs-experience,
+.fs-editions,
+.fs-info-scene {
+  padding-block: 115px;
+}
+.fs-section-heading {
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 24px;
+  margin-bottom: 45px;
+}
+.fs-section-heading .fs-eyebrow {
+  justify-content: center;
+}
+.fs-section-heading .fs-heading-line {
+  margin-inline: auto;
+}
+.fs-section-heading > p {
+  max-width: 500px;
+  padding: 0;
+  border: 0;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--fs-muted);
+}
+.fs-experience-layout {
+  gap: 34px;
+}
+.fs-experience-list {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--fs-line);
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+.fs-experience-list > button {
+  min-height: 106px;
+  padding: 19px 22px 25px;
+  border: 0;
+  gap: 16px;
+}
+.fs-experience-list > button:first-child {
+  padding-left: 0;
+}
+.fs-experience-list > button.is-selected {
+  color: var(--fs-accent);
+  background: none;
+  box-shadow: none;
+}
+.fs-experience-list > button::after {
+  inset-inline: 0 22px;
+  height: 2px;
+  background: var(--fs-accent);
+}
+.fs-experience-list strong {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.fs-experience-list small {
+  color: var(--fs-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.fs-tab-number {
+  color: var(--fs-accent);
+  font-size: 14px;
+}
+.fs-experience-panel {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  grid-template-columns: 1.65fr 1fr;
+  box-shadow: none;
+  backdrop-filter: none;
+  overflow: visible;
+  gap: 44px;
+}
+.fs-experience-image {
+  border: 1px solid #ffffffb3;
+  border-radius: 3px;
+  box-shadow: 0 8px 26px #244c7b1f;
+}
+.fs-experience-image > span {
+  font-size: 14px;
+  bottom: 20px;
+  left: 20px;
+}
+.fs-experience-caption {
+  padding: 0 12px 0 0;
+}
+.fs-experience-caption p {
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--fs-text);
+}
+.fs-experience-caption .fs-eyebrow {
+  margin-top: 28px;
+  font-size: 14px;
+}
+.fs-image-index {
+  color: #fff;
+}
+/* Event chapters have only a single slim edge. Text stays outside the photo. */
+.fs-edition-grid {
+  gap: 70px;
+  max-width: 1120px;
+  margin-top: 58px;
+}
+.fs-edition-grid > div:first-child,
+.fs-edition-grid > div:last-child {
+  rotate: none;
+  margin-top: 0;
+}
+.fs-edition-card {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+.fs-edition-card:hover,
+.fs-edition-card[aria-pressed="true"] {
+  border-color: transparent;
+  box-shadow: none;
+}
+.fs-slab-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  color: var(--fs-accent);
+  font: 500 11px var(--fs-display);
+  letter-spacing: 0.16em;
+}
+.fs-edition-art {
+  border: 1px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0 8px 25px #244c7b18;
+}
+.fs-edition-badge {
+  font-size: 14px;
+  background: #163a60d9;
+  border: 1px solid #fff8;
+  border-radius: 2px;
+  backdrop-filter: none;
+}
+.fs-edition-card-copy {
+  padding: 26px 0 22px;
+}
+.fs-edition-card-copy h3 {
+  color: var(--fs-text);
+  font-size: 54px;
+  font-weight: 600;
+}
+.fs-edition-card-copy p,
+.fs-edition-card-copy > div > span,
+.fs-edition-bottom {
+  color: var(--fs-muted);
+  font-size: 14px;
+}
+.fs-edition-bottom {
+  margin: 0;
+  padding-block: 17px;
+  border-color: var(--fs-line);
+}
+.fs-circle-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transform: none;
+  background: none;
+  color: var(--fs-accent);
+  border-color: var(--fs-line);
+  box-shadow: none;
+}
+.fs-circle-arrow svg {
+  transform: none;
+}
+.fs-edition-card[aria-pressed="true"] .fs-circle-arrow {
+  background: #194f83;
+  color: #fff;
+  border-color: #194f83;
+}
+.fs-foil-sheen {
+  border-radius: 4px;
+}
+.fs-show-info {
+  gap: 100px;
+  align-items: center;
+}
+.fs-info-intro {
+  padding: 0;
+}
+.fs-info-intro > p:not(.fs-eyebrow) {
+  color: var(--fs-muted);
+  max-width: 430px;
+  font-size: 16px;
+  line-height: 1.95;
+}
+.fs-status {
+  border: 0;
+  border-left: 1px solid var(--fs-line);
+  border-radius: 0;
+  padding: 2px 14px;
+  background: none;
+  color: var(--fs-accent);
+  font-size: 14px;
+  box-shadow: none;
+}
+.fs-next-card {
+  border: 0;
+  border-left: 1px solid var(--fs-line);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding: 12px 0 12px 50px;
+}
+.fs-next-card::before {
+  display: none;
+}
+.fs-next-emblem {
+  background: none;
+  overflow: visible;
+  margin: 0 0 28px;
+  align-items: flex-start;
+}
+.fs-next-emblem .fs-brand {
+  width: min(100%, 260px);
+}
+.fs-next-card dl > div {
+  padding-block: 21px;
+  border-color: var(--fs-line);
+}
+.fs-next-card dt {
+  color: var(--fs-muted);
+  font-size: 14px;
+}
+.fs-next-card dd {
+  color: var(--fs-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+.fs-next-card .fs-small-note {
+  color: var(--fs-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+.fs-community {
+  padding-block: 115px;
+  min-height: 460px;
+}
+.fs-community > .fs-wrap {
+  gap: 90px;
+  align-items: center;
+}
+.fs-community-copy {
+  padding: 0;
+  max-width: 420px;
+}
+.fs-community-copy p {
+  color: var(--fs-muted);
+  font-size: 16px;
+  line-height: 1.95;
+}
+.fs-questions {
+  padding-block: 110px;
+  gap: 80px;
+}
+.fs-questions h2 {
+  max-width: none;
+}
+.fs-faq-list {
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--fs-line);
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding: 0;
+}
+.fs-faq-list details {
+  background: none;
+  border-color: var(--fs-line);
+}
+.fs-faq-list summary {
+  padding: 24px 0;
+  gap: 23px;
+}
+.fs-faq-list summary > span {
+  color: var(--fs-accent);
+  font-size: 14px;
+}
+.fs-faq-list h3 {
+  color: var(--fs-text);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+.fs-faq-list details p {
+  color: var(--fs-muted);
+  font-size: 14px;
+  line-height: 1.95;
+  padding: 0 35px 25px;
+}
+.fs-faq-list details[open] {
+  background: none;
+  box-shadow: none;
+}
+.fs-faq-list details[open] summary {
+  color: var(--fs-accent);
+}
+.fs-footer {
+  color: var(--fs-text);
+  --fs-line: #385e843b;
+  padding: 60px 0 28px;
+  border: 0;
+}
+.fs-footer-top {
+  border-bottom: 1px solid var(--fs-line);
+  padding-bottom: 23px;
+}
+.fs-footer-top p {
+  color: var(--fs-muted);
+  font-size: 14px;
+}
+.fs-footer-emblem {
+  width: min(400px, 58vw);
+  margin: 55px auto;
+}
+.fs-footer-bottom {
+  border-top: 1px solid var(--fs-line);
+  color: var(--fs-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.fs-back {
+  background: none;
+  color: var(--fs-text) !important;
+  border: 1px solid var(--fs-line);
+  border-radius: 50%;
+  box-shadow: none;
+}
+.fs-archive-panel p,
+.fs-archive-tabs button {
+  font-size: 14px;
+}
+.fs-stats span,
+.fs-sponsors span,
+.fs-vendors span {
+  font-size: 14px;
+}
+.fs-archive-notice {
+  font-size: 14px !important;
+}
+.fs-search {
+  background: #ffffff1a;
+}
+.fs-search input {
+  font-size: 14px;
+}
+.fs-theme-taiwan {
+  --fs-text: #eef4ff;
+  --fs-muted: #d2dbea;
+  --fs-accent: #ecd0a7;
+  --fs-line: #c8d6ee40;
+  --fs-nav: #1c293c;
+}
+.fs-theme-taiwan .fs-header .fs-mobile-nav {
+  background: #1c293cf5;
+  color: #eef4ff;
+}
+.fs-theme-taiwan .fs-button-light {
+  color: #eef4ff !important;
+}
+@media (max-width: 1150px) {
+  .fs-manifesto,
+  .fs-show-info {
+    gap: 50px;
+  }
+  .fs-experience-list > button {
+    padding-inline: 12px;
+    gap: 10px;
+  }
+  .fs-experience-list strong {
+    font-size: 30px;
+  }
+  .fs-edition-grid {
+    gap: 45px;
+  }
+}
+@media (max-width: 900px) {
+  .fs-manifesto {
+    min-height: 600px;
+    gap: 34px;
+    padding-block: 90px;
+  }
+  .fs-manifesto-copy h3 {
+    font-size: 17px;
+  }
+  .fs-hero-artwork {
+    inset: 76px 0 30px;
+  }
+  .fs-hero-artwork-inner {
+    width: min(740px, 88vw, calc((100cqh - 106px) * 1.549));
+  }
+  .fs-hero-information {
+    gap: 18px 26px;
+  }
+  .fs-section-heading {
+    gap: 35px;
+  }
+  .fs-section-heading > p {
+    font-size: 14px;
+  }
+  .fs-experience-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .fs-experience-list > button {
+    border: 0;
+    border-bottom: 1px solid var(--fs-line);
+    padding: 22px 15px;
+  }
+  .fs-experience-list > button:first-child {
+    padding-left: 15px;
+  }
+  .fs-experience-list > button > svg {
+    display: block;
+  }
+  .fs-experience-panel {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 26px;
+  }
+  .fs-experience-image {
+    aspect-ratio: 1.25;
+  }
+  .fs-experience-caption p {
+    font-size: 16px;
+  }
+  .fs-show-info {
+    gap: 34px;
+  }
+  .fs-next-card {
+    padding-left: 28px;
+  }
+  .fs-questions {
+    gap: 42px;
+  }
+  .fs-footer-bottom {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 620px) {
+  .fs-header select {
+    font-size: 14px;
+    max-width: 74px;
+  }
+  .fs-header .fs-language {
+    max-width: 60px;
+  }
+  .fs-header .fs-edition-control {
+    padding-left: 12px;
+  }
+  .fs-hero {
+    grid-template-rows: minmax(360px, 1fr) auto auto;
+  }
+  .fs-hero-artwork {
+    inset: 76px 0 25px;
+  }
+  .fs-hero-artwork-inner {
+    width: min(93vw, calc((100cqh - 101px) * 1.549));
+  }
+  .fs-hero-information {
+    padding: 16px 0 10px;
+    gap: 17px;
+  }
+  .fs-hero-statement {
+    display: block;
+    text-align: left;
+    padding: 0 0 7px;
+  }
+  .fs-hero-statement p {
+    font-size: 14px;
+    letter-spacing: 0.16em;
+  }
+  .fs-hero-statement > span {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  .fs-hero h1 {
+    font-size: 28px;
+  }
+  .fs-hero-chapter > span,
+  .fs-hero-facts dt {
+    font-size: 14px;
+  }
+  .fs-hero-facts dd {
+    font-size: 14px;
+  }
+  .fs-hero-footer {
+    grid-template-columns: 1fr auto 30px;
+    gap: 10px;
+  }
+  .fs-scroll-link {
+    font-size: 14px;
+  }
+  .fs-organizer > span:first-child {
+    font-size: 14px;
+  }
+  .fs-organizer-name {
+    font-size: 16px;
+  }
+  .fs-manifesto {
+    grid-template-columns: 1fr;
+    padding-block: 72px 85px;
+    gap: 38px;
+    min-height: 0;
+  }
+  .fs-manifesto-visual {
+    order: 2;
+  }
+  .fs-manifesto-copy h3 {
+    font-size: 17px;
+    margin-top: 25px;
+  }
+  .fs-manifesto-copy > p {
+    font-size: 16px;
+  }
+  .fs-experience,
+  .fs-editions,
+  .fs-info-scene,
+  .fs-questions {
+    padding-block: 80px;
+  }
+  .fs-section-heading {
+    margin-bottom: 32px;
+  }
+  .fs-section-heading > p {
+    max-width: none;
+    padding: 0;
+    margin-top: 22px;
+  }
+  .fs-experience-list > button {
+    min-height: 98px;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 8px;
+    gap: 10px;
+  }
+  .fs-experience-list > button:first-child {
+    padding-left: 8px;
+  }
+  .fs-experience-list strong {
+    font-size: 28px;
+  }
+  .fs-experience-list small {
+    display: block;
+    font-size: 14px;
+  }
+  .fs-experience-list > button > svg {
+    display: none;
+  }
+  .fs-tab-number {
+    align-self: flex-start;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .fs-experience-panel {
+    display: block;
+    padding: 0;
+  }
+  .fs-experience-image {
+    aspect-ratio: 1.4;
+  }
+  .fs-experience-image > span {
+    font-size: 14px;
+    left: 12px;
+    bottom: 14px;
+  }
+  .fs-experience-caption {
+    padding: 26px 0 0;
+  }
+  .fs-image-index {
+    bottom: 8px;
+    right: 12px;
+    font-size: 28px;
+  }
+  .fs-edition-grid {
+    gap: 45px;
+    margin: 36px 0 0;
+  }
+  .fs-edition-card {
+    padding: 0;
+  }
+  .fs-edition-card-copy {
+    padding: 22px 0;
+  }
+  .fs-edition-card-copy h3 {
+    font-size: 50px;
+  }
+  .fs-edition-bottom {
+    margin: 0;
+  }
+  .fs-slab-label {
+    font-size: 14px;
+  }
+  .fs-next-card {
+    border: 0;
+    border-top: 1px solid var(--fs-line);
+    padding: 32px 0 0;
+  }
+  .fs-next-emblem .fs-brand {
+    width: 230px;
+  }
+  .fs-next-card dt,
+  .fs-next-card dd {
+    font-size: 14px;
+  }
+  .fs-community {
+    min-height: 0;
+    padding-block: 85px;
+  }
+  .fs-community > .fs-wrap {
+    gap: 27px;
+  }
+  .fs-community-copy p {
+    font-size: 16px;
+  }
+  .fs-faq-list summary {
+    gap: 14px;
+  }
+  .fs-faq-list h3,
+  .fs-faq-list details p {
+    font-size: 14px;
+  }
+  .fs-faq-list details p {
+    padding-inline: 28px 0;
+  }
+  .fs-footer {
+    padding-top: 45px;
+  }
+  .fs-footer-top p {
+    display: block;
+    max-width: none;
+    margin: 0;
+    font-size: 14px;
+  }
+  .fs-footer-emblem {
+    width: 72%;
+    margin-block: 40px;
+  }
+  .fs-footer-bottom {
+    font-size: 14px;
+    gap: 16px;
+  }
+  .fs-footer-bottom > div {
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
+}
+@media (max-width: 360px) {
+  .fs-header select {
+    font-size: 14px;
+  }
+  .fs-experience-list strong {
+    font-size: 25px;
+  }
+  .fs-experience-list > button {
+    padding-inline: 5px;
+    gap: 7px;
+  }
+  .fs-hero-facts {
+    gap: 12px;
+  }
+}

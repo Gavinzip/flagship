@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Menu, Xmark } from "iconoir-react";
-import { responsiveMedia } from "../config/media";
-import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
 import { LanguageSelector } from "./LanguageSelector";
-import { LumaCheckoutLink } from "./LumaCheckoutLink";
+import { ActionLink } from "./ActionLink";
 
-export function Header() {
+export function Header({ brandControl, editionControl }: { brandControl: ReactNode; editionControl?: ReactNode }) {
   const [open, setOpen] = useState(false);
   const { content } = useLocale();
 
@@ -24,16 +22,12 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="site-shell site-header__inner">
-        <a className="brand-link" href="#top" aria-label={content.header.homeLabel}>
-          <img
-            {...responsiveMedia.flagshipLogo}
-            width="900"
-            height="493"
-            alt="Flagship Card Show Taiwan"
-          />
-        </a>
+        {brandControl}
 
-        <nav className="desktop-nav" aria-label={content.header.primaryNavLabel}>
+        <nav
+          className="desktop-nav"
+          aria-label={content.header.primaryNavLabel}
+        >
           {content.navigation.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
@@ -42,14 +36,14 @@ export function Header() {
         </nav>
 
         <div className="header-actions">
+          {editionControl}
           <LanguageSelector />
-          <LumaCheckoutLink
-            checkoutTarget="challenge"
+          <ActionLink
             className="header-cta"
-            href={event.challengeRegistrationUrl}
+            href="#highlights"
           >
-            {content.challengeRegistration.label}
-          </LumaCheckoutLink>
+            {content.archive.recap}
+          </ActionLink>
 
           <button
             className="menu-button"
@@ -57,7 +51,9 @@ export function Header() {
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={
-              open ? content.header.closeMenuLabel : content.header.openMenuLabel
+              open
+                ? content.header.closeMenuLabel
+                : content.header.openMenuLabel
             }
             onClick={() => setOpen((current) => !current)}
           >

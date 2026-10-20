@@ -11,12 +11,13 @@ function vendorAssetUrl(filename: string) {
 export type PartnerLogo = {
   name: string;
   src: string;
-  treatment?: "invert-monochrome";
+  treatment?: "gold-icon" | "invert-monochrome";
 };
 
 export const organizer: PartnerLogo = {
   name: "Renaiss Protocol",
   src: partnerAssetUrl("renaiss-protocol.webp"),
+  treatment: "gold-icon",
 };
 
 export const titleSponsor: PartnerLogo = {

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Map, SecurityPass } from "iconoir-react";
-import { event } from "../data/event";
+import { MediaImage, Group } from "iconoir-react";
 import { useLocale } from "../i18n/LocaleProvider";
-import { TicketLink } from "./TicketLink";
+import { InteractiveLink } from "./InteractiveLink";
 
 export function MobileActionBar() {
   const [visible, setVisible] = useState(false);
@@ -27,21 +26,19 @@ export function MobileActionBar() {
       aria-label={content.mobileActions.label}
       aria-hidden={!visible}
     >
-      <TicketLink
-        variant="plain"
+      <InteractiveLink
+        href="#highlights"
         tabIndex={visible ? undefined : -1}
       >
-        <SecurityPass aria-hidden="true" />
-        <span>{content.mobileActions.ticket}</span>
-      </TicketLink>
+        <MediaImage aria-hidden="true" />
+        <span>{content.archive.recap}</span>
+      </InteractiveLink>
       <a
-        href={event.mapUrl}
-        target="_blank"
-        rel="noreferrer"
+        href="#vendors"
         tabIndex={visible ? undefined : -1}
       >
-        <Map aria-hidden="true" />
-        <span>{content.mobileActions.directions}</span>
+        <Group aria-hidden="true" />
+        <span>{content.vendors.title}</span>
       </a>
     </nav>
   );

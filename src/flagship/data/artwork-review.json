@@ -1,0 +1,30 @@
+{
+  "status": "approved",
+  "candidateDirectory": "work/generated-images/2026-09-13-korea-continuous-scroll",
+  "reviewCandidates": [2],
+  "selectedFiles": [
+    "07-panel-01-natural-sky.png",
+    "08-panel-02-natural-city-river.png",
+    "09-panel-03-natural-ground.png"
+  ],
+  "excludedCandidates": [],
+  "unusedCandidates": [],
+  "previousReview": {
+    "candidateDirectory": "work/generated-images/2026-09-10-poster-world",
+    "reviewCandidates": [
+      1
+    ],
+    "excludedCandidates": [
+      3
+    ],
+    "unusedCandidates": [
+      2,
+      4
+    ]
+  },
+  "approval": {
+    "date": "2026-09-14",
+    "scope": "Use the three corrected version 2 panels as full 2048 × 1152 plates on the Korea internal page. Align the skyline and railing content, overlap the matching regions, and feather only the narrow aligned seams. Other generated candidates remain retained locally.",
+    "delivery": "Local Korea page uses public/assets/flagship/09-korea-scroll-sky.webp, 10-korea-scroll-city.webp, and 11-korea-scroll-ground.webp; immutable CDN publishing remains pending."
+  }
+}

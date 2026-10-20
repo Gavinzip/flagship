@@ -5,9 +5,7 @@ import "@fontsource/barlow-condensed/latin-700.css";
 import "@fontsource/barlow-condensed/latin-800.css";
 import "@fontsource/barlow-condensed/latin-900.css";
 import { App } from "./App";
-import { LumaCheckoutProvider } from "./components/LumaCheckoutProvider";
 import { QueuePage } from "./components/QueuePage";
-import { SiteBoot } from "./components/SiteBoot";
 import { installStaticAssetCssVariables } from "./config/media";
 import { LocaleProvider } from "./i18n/LocaleProvider";
 import { installGoogleAnalytics } from "./lib/googleAnalytics";
@@ -23,17 +21,13 @@ const queuePageMode = getQueuePageMode(window.location.pathname);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <LocaleProvider>
-      {queuePageMode ? (
+    {queuePageMode ? (
+      <LocaleProvider>
         <QueuePage mode={queuePageMode} />
-      ) : (
-        <LumaCheckoutProvider>
-          <SiteBoot>
-            <App />
-          </SiteBoot>
-        </LumaCheckoutProvider>
-      )}
-    </LocaleProvider>
+      </LocaleProvider>
+    ) : (
+      <App />
+    )}
   </StrictMode>,
 );
 

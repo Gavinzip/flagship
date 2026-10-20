@@ -5,28 +5,54 @@ type PartnerTierCardProps = {
   label: string;
   logo: PartnerLogo;
   tone: "organizer" | "title" | "cohost";
+  revealIndex?: number;
 };
 
 export function PartnerTierCard({
   label,
   logo,
   tone,
+  revealIndex = 0,
 }: PartnerTierCardProps) {
+  const treatmentClass = logo.treatment
+    ? ` partner-tier-card--${logo.treatment}`
+    : "";
+  const usesGoldIconTreatment = logo.treatment === "gold-icon";
+
   return (
     <article
-      className={`partner-tier-card partner-tier-card--${tone}`}
+      className={`partner-tier-card partner-tier-card--${tone}${treatmentClass}`}
       data-reveal
+      style={{ "--reveal-index": revealIndex } as CSSProperties}
     >
       <header className="partner-tier-card__header">
         <h3>{label}</h3>
       </header>
       <div className="partner-tier-card__stage">
-        <img
-          src={logo.src}
-          alt={logo.name}
-          decoding="async"
-          loading="lazy"
-        />
+        {usesGoldIconTreatment ? (
+          <span className="partner-tier-card__logo-split">
+            <img
+              src={logo.src}
+              alt={logo.name}
+              decoding="async"
+              loading="lazy"
+            />
+            <img
+              className="partner-tier-card__logo-icon"
+              src={logo.src}
+              alt=""
+              aria-hidden="true"
+              decoding="async"
+            />
+          </span>
+        ) : (
+          <img
+            src={logo.src}
+            alt={logo.name}
+            decoding="async"
+            loading="lazy"
+          />
+        )}
       </div>
     </article>
   );

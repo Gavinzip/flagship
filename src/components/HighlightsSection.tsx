@@ -12,6 +12,7 @@ export function HighlightsSection() {
           title={content.highlights.title}
           english={content.highlights.english}
         />
+        <p className="event-highlights-intro">{content.highlights.description}</p>
 
         <EventHighlightsGrid />
       </div>

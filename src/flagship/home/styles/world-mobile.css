@@ -1,0 +1,67 @@
+/* The mobile world is one flowing composition. Its geographic canvas remains
+   absolutely positioned in the second grid row for the shared route journey. */
+@media (max-width: 600px) {
+  .brand-site[data-theme] .world-journey { height: auto; }
+  .brand-site[data-theme] .world-journey .world-sticky {
+    position: relative; top: auto; height: auto; min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto clamp(282px, 88vw, 410px) auto;
+    row-gap: 14px;
+    padding: 58px 0 28px;
+  }
+  .brand-site[data-theme] .world-journey .world-copy {
+    position: relative; inset: auto; grid-area: 1 / 1;
+    width: auto; max-width: 380px; margin: 0 24px;
+    justify-self: center; text-align: center;
+  }
+  .brand-site[data-theme] .world-journey .world-eyebrow { display: none; }
+  .brand-site[data-theme] .world-journey .world-logo {
+    width: clamp(158px, 44vw, 188px); margin: 0 auto 18px;
+  }
+  .brand-site[data-theme] .world-journey .world-heading-slot { min-height: 0; }
+  .brand-site[data-theme] .world-journey .world-heading { min-height: 0; }
+  .brand-site[data-theme] .world-journey .world-status {
+    font-size: 9px; margin: 0 0 8px !important;
+  }
+  .brand-site[data-theme] .world-journey .world-heading h1 {
+    font-size: 20px !important; line-height: 1.35; margin: 0;
+  }
+  .brand-site[data-theme] .world-journey .world-country {
+    font: 700 clamp(40px, 11vw, 48px) / 1 var(--brand-display) !important;
+    margin: 0 auto 8px;
+  }
+  .brand-site[data-theme] .world-journey .world-heading > p:last-child {
+    max-width: 320px; margin: 12px auto 0;
+    font-size: 11px; line-height: 1.75; min-height: 38.5px;
+  }
+  .brand-site[data-theme] .world-journey .world-actions {
+    margin-top: 18px; gap: 12px; justify-content: center;
+  }
+  .brand-site[data-theme] .world-journey[data-chapter] .world-stage {
+    position: absolute; grid-area: 2 / 1 / 3 / 2;
+    inset: 0; width: 100%; height: 100%; transition: opacity .7s;
+  }
+  .brand-site[data-theme] .world-journey .world-city-nav {
+    position: relative; inset: auto; grid-area: 3 / 1;
+    width: auto; margin: 0 28px; transform: none;
+  }
+  .brand-site[data-theme] .world-city-nav > p {
+    font-size: 9px; line-height: 1.6; letter-spacing: .02em; margin: 0 0 8px;
+  }
+  .brand-site[data-theme] .world-city-nav-row { gap: 20px; }
+  .brand-site[data-theme] .world-city-nav .world-edition-choice {
+    height: 60px; padding: 6px 0; gap: 10px;
+  }
+  .brand-site[data-theme] .world-city-nav .world-edition-choice:last-child { justify-content: flex-end; }
+  .brand-site[data-theme] .world-edition-choice small { font-size: 9px; }
+  .brand-site[data-theme] .world-edition-choice strong { font-size: 26px; }
+  .brand-site[data-theme] .world-journey .world-scroll { display: none; }
+
+  /* The transfer takes over the same canvas in viewport coordinates. */
+  .brand-world-retainer[data-transferring="true"] .brand-site .world-sticky {
+    position: fixed; inset: 0; display: block;
+    height: 100svh; min-height: 0; padding: 0;
+  }
+  .brand-world-retainer[data-transferring="true"] .brand-site .world-stage { grid-area: auto; }
+}

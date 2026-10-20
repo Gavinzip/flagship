@@ -1,0 +1,38 @@
+.brand-hero { position: relative; min-height: 800px; min-height: max(800px, 100svh); display: flex; flex-direction: column; padding: 120px 0 0; isolation: isolate; }
+.brand-backdrop { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: radial-gradient(ellipse at 50% 35%,#fff 0%,#ffffff90 29%,transparent 67%),linear-gradient(118deg,#ede1e6,#eef1f5 47%,#dae7fb); }
+.brand-backdrop::after { content: ''; position: absolute; inset: auto 0 0; height: 160px; background: linear-gradient(0deg,#eef1f5,transparent); }
+.brand-site .brand-facets { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .82; }
+.brand-hero-content { position: relative; display: flex; flex-direction: column; align-items: center; flex: 1; padding-top: 10px; text-align: center; }
+.brand-hero-eyebrow { color: #3d4659 !important; font: 600 12px/1.5 var(--brand-display); letter-spacing: .18em; animation: brand-entry .8s cubic-bezier(.22,1,.36,1) both; }
+.brand-hero-logo { width: min(59vw, 730px); height: auto; margin: 12px 0 0; filter: none; animation: brand-entry 1s cubic-bezier(.22,1,.36,1) .05s both; }
+.brand-hero-copy { max-width: 750px; animation: brand-entry .9s cubic-bezier(.22,1,.36,1) .12s both; }
+.brand-hero h1 { font: 700 clamp(32px, 3.5vw, 49px)/1.08 var(--brand-display); letter-spacing: -.012em; color: #171d29; text-shadow: none; }
+.brand-hero h1 span { display: inline; }
+.brand-hero h1 span + span::before { content: " "; }
+.brand-hero h1 span:last-child { color: #34425b; }
+html:is([lang="zh-TW"], [lang="ko"]) .brand-hero h1 { font-size: clamp(26px, 2.5vw, 35px); line-height: 1.4; }
+.brand-hero-copy p { font-size: 15px; max-width: 620px; margin: 15px auto 0; color: #4d596c; }
+.brand-hero-destinations { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; width: min(660px, 100%); margin-top: 28px; animation: brand-entry .8s cubic-bezier(.22,1,.36,1) .2s both; }
+.brand-hero-destinations a { --entry-accent: #ed4560; display: flex; align-items: center; gap: 18px; text-align: left; padding: 18px 28px; position: relative; isolation: isolate; color: white; background: linear-gradient(110deg,#222b3d,#080e1a 66%,#253650); border: 1px solid #97a5bd; border-radius: 0; clip-path: polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px); box-shadow: inset 0 1px 0 #ffffffc0,inset 0 -3px 0 #60718a; transition: background .25s; }
+.brand-hero-destinations a:last-of-type { --entry-accent: #719eff; }
+.brand-hero-destinations a::before { content: ''; position: absolute; left: 0; top: 15px; bottom: 15px; width: 3px; background: var(--entry-accent); box-shadow: 0 0 12px var(--entry-accent); }
+.brand-hero-destinations a::after { content: ''; position: absolute; inset: 1px; pointer-events: none; background: linear-gradient(118deg,transparent 57%,#ffffff0d 57.3%,transparent 78%); }
+.brand-hero-destinations a:hover { background: linear-gradient(110deg,#34445c,#111b2c 66%,#354e74); }
+.brand-destination-index { font: italic 600 15px var(--brand-display); color: var(--entry-accent); }
+.brand-hero-destinations small { display: block; font-size: 11px; font-weight: 500; letter-spacing: .04em; color: #c0cbdc; }
+.brand-hero-destinations strong { display: block; font: italic 700 32px/1.16 var(--brand-display); letter-spacing: .04em; color: #f5f7ff; text-shadow: 0 1px 0 #000; }
+.brand-hero-destinations svg { margin-left: auto; width: 23px; height: 23px; color: var(--entry-accent); transition: transform .25s; }
+.brand-hero-destinations a:hover svg { transform: translate(3px,-3px); }
+.brand-watch-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 10px; background: none; border: 0; font-size: 12px !important; margin-top: 16px; color: #39485f !important; }
+.brand-play-icon { width: 22px; height: 22px; display: grid; place-items: center; border: 1px solid #8b9ab1; border-radius: 0; font-size: 8px; padding-left: 1px; background: linear-gradient(120deg,#fff,#d4deec); }
+.brand-watch-link:hover { color: #9d4b61 !important; }
+.brand-hero-bottom { display: flex; align-items: center; justify-content: space-between; padding: 16px 0 20px; color: #718197; }
+.brand-hero-scroll { display: flex; gap: 18px; align-items: center; min-height: 42px; font-size: 10px; }
+.brand-hero-scroll svg { width: 16px; }
+.brand-hero-signature { font: 600 10px var(--brand-display); letter-spacing: .18em; }
+
+.brand-hero-eyebrow::before { content: "//"; color: #ae2c42; letter-spacing: -.12em; margin-right: 13px; font-style: italic; font-weight: 800; }
+.brand-hero-eyebrow::after { content: "//"; color: #345fbe; letter-spacing: -.12em; margin-left: 13px; font-style: italic; font-weight: 800; }
+
+.brand-destination > span:not(.brand-destination-index) { min-width: 0; }
+.brand-hero-destinations a:focus-visible { outline: 0; box-shadow: inset 0 0 0 3px #fff,inset 7px 0 0 var(--entry-accent); }

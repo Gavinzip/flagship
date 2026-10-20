@@ -1,0 +1,67 @@
+.brand-preferences {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #7d97b533;
+  font-size: 12px;
+}
+.brand-appearance {
+  display: flex;
+  gap: 14px;
+}
+.brand-appearance button,
+.brand-language select {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+}
+.brand-appearance button {
+  padding-inline: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+.brand-appearance button[aria-pressed="true"] {
+  border-color: #8b99b14d;
+  background: #8292b010;
+  color: var(--brand-text);
+}
+.brand-appearance button:hover {
+  color: var(--control-accent);
+}
+.brand-language {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-language select {
+  border: 0;
+  border-bottom: 1px solid #7697c166;
+}
+.brand-language option {
+  color: #21334c;
+  background: #edf3fb;
+}
+.brand-preferences :is(button, select):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .brand-preferences {
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-appearance button {
+    transition: none;
+  }
+}

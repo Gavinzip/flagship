@@ -1,12 +1,19 @@
 import { createHash } from "node:crypto";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseArgs } from "node:util";
 import { loadEnv } from "vite";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const indexPath = resolve(projectRoot, "dist/index.html");
-const cspPath = resolve(projectRoot, "Caddyfile.csp");
+const { values } = parseArgs({
+  options: {
+    dist: { type: "string", default: "dist" },
+    output: { type: "string", default: "Caddyfile.csp" },
+  },
+});
+const distDirectory = resolve(projectRoot, values.dist);
+const cspPath = resolve(projectRoot, values.output);
 const productionEnvironment = loadEnv("production", projectRoot, "VITE_");
 const assetCdnOrigin = new URL(
   productionEnvironment.VITE_STATIC_ASSET_CDN_BASE_URL,
@@ -18,48 +25,56 @@ function hashContent(algorithm, content) {
   return `${algorithm}-${createHash(algorithm).update(content).digest("base64")}`;
 }
 
-let html = await readFile(indexPath, "utf8");
-const externalScriptPattern =
-  /<script\b([^>]*?)\bsrc="(\/assets\/[^"]+\.js)"([^>]*)><\/script>/g;
-const externalScripts = [...html.matchAll(externalScriptPattern)];
-
-if (!externalScripts.length) {
-  throw new Error("No production JavaScript entry was found for CSP hashing.");
+const scriptHashes = new Set();
+const securedPages = [];
+const integrityBySource = new Map();
+// Every split ES module needs an integrity-bearing preload under hash-based CSP.
+// Dynamic imports do not carry an integrity attribute of their own.
+for (const filename of await readdir(resolve(distDirectory, "assets"))) {
+  if (!filename.endsWith(".js")) continue;
+  const source = `/assets/${filename}`;
+  const integrity = hashContent("sha384", await readFile(resolve(distDirectory, `.${source}`)));
+  integrityBySource.set(source, integrity);
+  scriptHashes.add(integrity);
 }
-
-const scriptHashes = [];
-
-for (const match of externalScripts) {
-  const [element, beforeSource, source, afterSource] = match;
-  if (/\bintegrity=/.test(element)) {
-    throw new Error(`The script already has an integrity attribute: ${source}`);
+// Secure every emitted HTML entry so new editions cannot be omitted from the CSP.
+const htmlPages = (await readdir(distDirectory, { recursive: true }))
+  .filter((path) => path.endsWith(".html"))
+  .sort();
+if (!htmlPages.includes("index.html")) throw new Error("The build is missing its HTML entry.");
+for (const relativePath of htmlPages) {
+  const htmlPath = resolve(distDirectory, relativePath);
+  let html = await readFile(htmlPath, "utf8");
+  const externalScripts = [...html.matchAll(/<script\b([^>]*?)\bsrc="(\/assets\/[^"]+\.js)"([^>]*)><\/script>/g)];
+  if (!externalScripts.length) throw new Error(`No JavaScript entry found in ${htmlPath}.`);
+  for (const match of externalScripts) {
+    const [element, beforeSource, source, afterSource] = match;
+    if (/\bintegrity=/.test(element)) throw new Error(`Script already secured: ${source}`);
+    let integrity = integrityBySource.get(source);
+    if (!integrity) {
+      integrity = hashContent("sha384", await readFile(resolve(distDirectory, `.${source}`)));
+      integrityBySource.set(source, integrity);
+    }
+    scriptHashes.add(integrity);
+    const crossOrigin = /\bcrossorigin(?:=|\s|>)/.test(element) ? "" : ' crossorigin="anonymous"';
+    html = html.replace(element, `<script${beforeSource}src="${source}"${afterSource}${crossOrigin} integrity="${integrity}"></script>`);
   }
-
-  const scriptContent = await readFile(resolve(projectRoot, `dist${source}`));
-  const integrity = hashContent("sha384", scriptContent);
-  scriptHashes.push(integrity);
-
-  const crossOrigin = /\bcrossorigin(?:=|\s|>)/.test(element)
-    ? ""
-    : ' crossorigin="anonymous"';
-  const securedElement = `<script${beforeSource}src="${source}"${afterSource}${crossOrigin} integrity="${integrity}"></script>`;
-  html = html.replace(element, securedElement);
-}
-
-const inlineScripts = [
-  ...html.matchAll(/<script\b(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi),
-];
-
-for (const [, attributes, content] of inlineScripts) {
-  if (!/\btype="application\/ld\+json"/.test(attributes)) {
-    throw new Error("An executable inline script was found in dist/index.html.");
+  for (const [, attributes, content] of html.matchAll(/<script\b(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    if (!/\btype="application\/ld\+json"/.test(attributes)) throw new Error(`Executable inline script in ${htmlPath}.`);
+    scriptHashes.add(hashContent("sha256", content));
   }
-  scriptHashes.push(hashContent("sha256", content));
+  const entrySources = new Set(externalScripts.map(match => match[2]));
+  const modulePreloads = [...integrityBySource]
+    .filter(([source]) => !entrySources.has(source))
+    .map(([source, integrity]) => `<link rel="modulepreload" href="${source}" crossorigin="anonymous" integrity="${integrity}" />`)
+    .join("\n    ");
+  html = html.replace("</head>", `    ${modulePreloads}\n  </head>`);
+  securedPages.push({ path: htmlPath, html });
 }
 
 const directives = [
   "default-src 'self'",
-  `script-src 'self' ${scriptHashes.map((hash) => `'${hash}'`).join(" ")} 'strict-dynamic' https://www.googletagmanager.com`,
+  `script-src 'self' ${[...scriptHashes].map((hash) => `'${hash}'`).join(" ")} 'strict-dynamic' https://www.googletagmanager.com`,
   `connect-src 'self' ${queueApiOrigin} https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com`,
   `img-src 'self' data: ${assetCdnOrigin} https://www.google-analytics.com https://region1.google-analytics.com`,
   "style-src-elem 'self'",
@@ -76,7 +91,7 @@ const directives = [
   "upgrade-insecure-requests",
 ];
 
-await writeFile(indexPath, html, "utf8");
+await Promise.all(securedPages.map(page => writeFile(page.path, page.html, "utf8")));
 await writeFile(
   cspPath,
   `header Content-Security-Policy "${directives.join("; ")}"\n`,
@@ -84,5 +99,5 @@ await writeFile(
 );
 
 console.log(
-  `Generated strict CSP with ${scriptHashes.length} script hash${scriptHashes.length === 1 ? "" : "es"}.`,
+  `Generated strict CSP with ${scriptHashes.size} script hash${scriptHashes.size === 1 ? "" : "es"}.`,
 );

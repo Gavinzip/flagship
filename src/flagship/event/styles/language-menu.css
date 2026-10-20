@@ -1,0 +1,75 @@
+/* Dropdown transition: transitions.dev, menu-dropdown recipe. */
+:root {
+  --dropdown-open-dur: 250ms;
+  --dropdown-close-dur: 150ms;
+  --dropdown-pre-scale: 0.97;
+  --dropdown-closing-scale: 0.99;
+  --dropdown-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.t-dropdown {
+  transform-origin: top left;
+  transform: scale(var(--dropdown-pre-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--dropdown-open-dur) var(--dropdown-ease),
+    opacity   var(--dropdown-open-dur) var(--dropdown-ease);
+  will-change: transform, opacity;
+}
+.t-dropdown[data-origin="top-right"]     { transform-origin: top right; }
+.t-dropdown[data-origin="top-center"]    { transform-origin: top center; }
+.t-dropdown[data-origin="bottom-left"]   { transform-origin: bottom left; }
+.t-dropdown[data-origin="bottom-center"] { transform-origin: bottom center; }
+.t-dropdown[data-origin="bottom-right"]  { transform-origin: bottom right; }
+.t-dropdown.is-open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.t-dropdown.is-closing {
+  transform: scale(var(--dropdown-closing-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--dropdown-close-dur) var(--dropdown-ease),
+    opacity   var(--dropdown-close-dur) var(--dropdown-ease);
+}
+.ev-language { position: relative; color: var(--ev-ink); }
+.ev-language-trigger {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 44px; padding: 8px 12px; border: 1px solid transparent;
+  border-radius: 8px; background: transparent; color: inherit;
+  font: inherit; font-size: 14px; white-space: nowrap; cursor: pointer;
+}
+.ev-language-trigger svg { width: 17px; height: 17px; transition: transform 200ms ease; }
+.ev-language-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+.ev-language-trigger:is(:hover,[aria-expanded="true"]) { background: #7a8b9d18; }
+.ev-language-panel {
+  position: absolute; top: calc(100% + 10px); right: 0; z-index: 2;
+  min-width: 172px; padding: 6px; border: 1px solid #b1bacb55;
+  border-radius: 12px; background: #f1f5fa; box-shadow: 0 16px 40px #0003;
+}
+.ev-language-panel[data-phase="closed"] { visibility: hidden; }
+.ev-language-panel button {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  min-height: 44px; width: 100%; padding: 10px 12px; border: 0; border-radius: 7px;
+  background: transparent; color: #182435; font: inherit; font-size: 14px;
+  font-family: Arial, Thonburi, "Leelawadee UI", sans-serif;
+  letter-spacing: normal; text-align: left; cursor: pointer;
+}
+.ev-language-panel button:is(:hover,:focus-visible) { background: #d9e4f0; outline: none; }
+.ev-language-panel button[aria-checked="true"] { color: #173e72; background: #d9e4f0; }
+.ev-language-panel button svg { flex: 0 0 17px; width: 17px; height: 17px; }
+.ev-mobile-language .ev-language-panel { top: auto; bottom: calc(100% + 8px); transform-origin: bottom right; }
+.thailand-event-site .ev-language { color: #f4f4ee; }
+.thailand-event-site .ev-mobile-language { color: #b8babf; letter-spacing: normal; }
+.thailand-event-site .ev-language-trigger:is(:hover,[aria-expanded="true"]) { background: #ffffff0c; }
+.thailand-event-site .ev-language-panel { background: #15181c; border-color: #ffffff25; box-shadow: 0 16px 40px #0008; }
+.thailand-event-site .ev-language-panel button { color: #eeeeea; }
+.thailand-event-site .ev-language-panel button:is(:hover,:focus-visible) { background: #ffffff0d; outline: none; }
+.thailand-event-site .ev-language-panel button[aria-checked="true"] { background: #f6c92819; color: #f6c928; }
+.thailand-event-site .ev-language-trigger:focus-visible { outline: 2px solid #f6c928; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .t-dropdown { transition: none !important; }
+  .ev-language-trigger svg { transition: none; }
+}

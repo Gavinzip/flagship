@@ -3,9 +3,9 @@ import { Calendar, Clock, MapPin, Train } from "iconoir-react";
 import { media } from "../config/media";
 import { event } from "../data/event";
 import { useLocale } from "../i18n/LocaleProvider";
-import { LumaCheckoutLink } from "./LumaCheckoutLink";
+import { ActionLink } from "./ActionLink";
+import { officialLinks } from "../flagship/data/editions";
 import { SpotlightCard } from "./SpotlightCard";
-import { TicketLink } from "./TicketLink";
 
 type EventPassContentProps = {
   showTransit?: boolean;
@@ -19,7 +19,7 @@ export function EventPassContent({
   return (
     <>
       <header className="event-pass__header">
-        <span>EVENT PASS</span>
+        <span>EVENT ARCHIVE</span>
         <span>FLAGSHIP · TAIWAN 2026</span>
       </header>
 
@@ -66,14 +66,15 @@ export function EventPassContent({
       ) : null}
 
       <div className="event-pass__actions">
-        <TicketLink>{content.eventPass.eventRegistrationLabel}</TicketLink>
-        <LumaCheckoutLink
-          checkoutTarget="challenge"
-          href={event.challengeRegistrationUrl}
+        <ActionLink href="#highlights">{content.archive.recap}</ActionLink>
+        <ActionLink
+          href={officialLinks.updates}
+          target="_blank"
+          rel="noreferrer"
           tone="blue"
         >
-          {content.eventPass.challengeRegistrationLabel}
-        </LumaCheckoutLink>
+          {content.archive.updates}
+        </ActionLink>
       </div>
     </>
   );

@@ -1,0 +1,116 @@
+/* The logo and edition share one optical axis. Geography keeps its own stage. */
+.brand-site[data-theme] .world-journey .world-country {
+  width: fit-content;
+  margin-inline: auto;
+  color: var(--brand-text);
+  background: linear-gradient(105deg, #efa3b5 2%, #faf4f6 40%, #c8dcff 67%, #86adff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+.brand-site[data-theme="light"] .world-journey .world-country {
+  background-image: linear-gradient(105deg, #9b3551, #394665 45%, #2b62bb);
+}
+
+@media (min-width: 1001px) {
+  .brand-site .world-journey {
+    --world-copy-left: max(40px, calc((100% - 1280px) / 2));
+    --world-copy-width: min(42vw, 500px);
+  }
+  .brand-site[data-theme] .world-copy {
+    top: clamp(32px, calc((100svh - 650px) / 2), 180px);
+    left: var(--world-copy-left);
+    right: auto;
+    width: var(--world-copy-width);
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .brand-site[data-theme] .world-logo {
+    order: 0;
+    width: clamp(260px, 22vw, 310px);
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .brand-site[data-theme] .world-eyebrow {
+    order: 1;
+    justify-content: center;
+    margin: 10px 0 0;
+    font-size: 8px;
+    line-height: 1.6;
+    letter-spacing: .17em;
+  }
+  .brand-site[data-theme] .world-heading-slot {
+    order: 2;
+    width: 100%;
+    margin-top: 32px;
+    min-height: 244px;
+  }
+  .brand-site[data-theme] .world-heading {
+    min-height: 0;
+    width: 100%;
+  }
+  .brand-site[data-theme] .world-status {
+    font-size: 10px;
+    line-height: 16px;
+    margin: 0 0 12px !important;
+  }
+  .brand-site[data-theme] .world-journey .world-heading h1 {
+    font-size: 23px !important;
+    line-height: 1.35;
+    letter-spacing: .01em;
+  }
+  .brand-site[data-theme] .world-journey .world-country {
+    display: block;
+    font: 700 clamp(76px, 6.5vw, 94px) / .98 var(--brand-display) !important;
+    letter-spacing: .01em;
+    margin: 0 auto 10px;
+  }
+  .brand-site[data-theme] .world-heading > p:last-child {
+    max-width: 340px;
+    min-height: 48px;
+    margin: 18px auto 0;
+    font-size: 13px;
+    line-height: 1.85;
+    color: var(--brand-muted);
+  }
+  .brand-site[data-theme] .world-description > span {display: block;text-wrap: balance;}
+  .brand-site[data-theme] .world-actions {
+    order: 3;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    gap: 12px;
+  }
+  .brand-site[data-theme] .world-city-nav {
+    left: var(--world-copy-left);
+    right: auto;
+    width: var(--world-copy-width);
+    bottom: 24px;
+  }
+  .brand-site[data-theme] .world-city-nav > p {text-align: center;}
+  .brand-site[data-theme] .world-city-nav-row {max-width: 350px;margin-inline: auto;}
+  .brand-site[data-theme] .world-city-nav .world-edition-choice {justify-content: center;}
+}
+
+@media (forced-colors: active) {
+  .brand-site[data-theme] .world-journey .world-country {
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+  }
+}
+
+@media (min-width: 1001px) and (max-height: 650px) {
+  .brand-site[data-theme] .world-sticky {min-height: 620px;}
+  .brand-site[data-theme] .world-copy {top: 18px;}
+  .brand-site[data-theme] .world-logo {width: 210px;}
+  .brand-site[data-theme] .world-heading-slot {margin-top: 20px;min-height: 224px;}
+  .brand-site[data-theme] .world-journey .world-country {font-size: 68px !important;}
+  .brand-site[data-theme] .world-journey .world-heading h1 {font-size: 20px !important;}
+  .brand-site[data-theme] .world-actions {margin-top: 16px;}
+  .brand-site[data-theme] .world-city-nav {bottom: 16px;}
+}

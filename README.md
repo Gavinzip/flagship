@@ -1,6 +1,10 @@
-# Flagship Card Show Taiwan 2026
+# FLAGSHIP Card Show
 
-提供活動參加者使用的單頁活動網站。
+FLAGSHIP 的跨城市品牌主站。預設呈現 Thailand 下一站，Korea 與 Taiwan 2026 保留為歷屆展會；切換展會會更新整站主題、主視覺與活動資訊。支援 English、한국어、繁體中文。
+
+設計來源、維護方式與本機驗證紀錄見 [FLAGSHIP 主站說明](docs/flagship-brand-site.md)。
+
+韓國卡展素材統一從 [韓國素材資料夾](design/korea-card-show/README.md) 查找；[01–12 縮圖總覽](design/korea-card-show/index.html) 使用固定編號區分主海報、原 Logo、攤商圖、舊版延伸素材與目前連續背景。
 
 ## 本機啟動
 
@@ -19,15 +23,20 @@ pnpm build
 
 ## 專案結構
 
-- `src/config/event.json`：活動名稱、日期、時間、場地與 SEO 的唯一資料來源
-- `src/config/media.ts`：網站圖片與 CSS 背景的唯一資產清單
-- `src/components/`：依頁面區塊拆分的 React 元件
-- `src/hooks/useSiteReadiness.ts`：等待圖片、字型與最終排版完成後才解除載入頁
-- `src/styles/`：共用樣式與各活動區塊的獨立響應式樣式
+- `src/config/brand.json`：FLAGSHIP 品牌名稱、搜尋描述與主辦資訊
+- `src/flagship/data/editions.ts`：當期展會、各站狀態與主視覺
+- `src/flagship/data/locales/`：依語言分開維護的網站文案
+- `src/flagship/event/`：韓國／泰國共用的活動元件與樣式
+- `src/flagship/thailand/`：泰國專屬資料、黑黃視覺；外層地球切換金色粒子的效果在 `world/scene/goldMutation.ts`
+- `src/flagship/components/`：品牌導覽、展會、體驗、場地與頁尾元件
+- `src/flagship/motion/`：ReactSkills 進場與 TiltedCard 動畫元件
+- `src/flagship/styles/`：主站基礎、主視覺、段落與響應式樣式
+- `src/config/event.json`：台灣 2026 原始活動資料與行事曆資料
+- `src/config/media.ts`、`src/styles/`、`src/components/queue/`：既有台灣素材與叫號系統；保留的舊活動元件未掛載於品牌主站
 - `public/assets/`：開發環境與 Cloudflare 發布使用的已壓縮來源圖片；正式 build 不會複製這些圖片
 - `cloudflare/`：R2 媒體 Worker 與 Wrangler 設定
 - `scripts/r2-static-assets.mjs`：資產 audit、發布、正式 URL 驗證與 build 防呆
-- `vite.config.ts`：由活動設定產生 SEO 結構化資料與 `.ics` 行事曆檔
+- `vite.config.ts`：品牌 WebSite 結構化資料與台灣歷屆 `.ics` 行事曆檔
 
 ## Cloudflare 圖片發布
 
@@ -46,7 +55,11 @@ pnpm assets:verify
 pnpm build
 ```
 
+泰國站目前使用的保留標誌、首屏、QSNCC 照片與首爾回顧圖，集中在 `public/assets/flagship/thailand/`，使用獨立內容雜湊 release，避免重發其他展會的媒體。修改這組檔案時執行 `pnpm assets:thailand:audit`、`pnpm assets:thailand:publish`、`pnpm assets:thailand:verify`，再執行 `pnpm build`。發布指令會產生 `src/generated/thailandAssetRelease.ts`；網頁與分享圖片共用此 release。來源 PNG 與未選定候選留在設計／work 資料夾，不進入網站 build。
+
 圖片品質規則：只發布 `public/assets/` 內的原始尺寸檔案，不建立降尺寸或重新壓縮版本。`assets:verify` 會下載 Cloudflare 正式檔並比對 SHA-256，確保與本機原檔逐位元一致。
+
+目前 IP 銀河、活動照片與影片的發布來源集中在 `public/assets/flagship/`，同樣經內容雜湊 R2 release 提供。原始候選圖保留在被 Git/Docker 排除的 `work/`。公開站點只有台灣與泰國；韓國舊版原始素材保留封存，泰國頁內的 BNB 首爾活動回顧仍保留。
 
 只有 Worker 程式本身變更時才需要：
 
@@ -54,7 +67,9 @@ pnpm build
 pnpm assets:deploy-gateway
 ```
 
-正式 build 缺少 CDN 設定或仍夾帶活動圖片時會直接失敗，不會退回本機圖片。
+正式 build 缺少 CDN 設定或夾帶未允許的活動圖片時會直接失敗，不會退回本機圖片。品牌主視覺與台灣回顧響應式圖片是明確允許的例外：透過 Vite 產生內容雜湊網址，並依 `src/flagship/data/artwork-budget.json` 的個別預算檢查；其餘活動素材由 R2 提供。
+
+`src/config/site.json` 集中設定該分支的網址、搜尋索引與分析開關。`main` 使用 `https://tcgflagship.com/`，開啟索引與 GA；`Test` 使用獨立測試網址、noindex，並關閉 GA，避免測試瀏覽混入正式數據。Vercel 的 pilot 輸出會關閉每個 HTML 入口的 GA，並透過回應標頭禁止索引。
 
 ## 現場即時叫號
 
