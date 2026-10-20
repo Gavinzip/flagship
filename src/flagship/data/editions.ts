@@ -2,8 +2,9 @@ import koreaVisual from "../assets/korea-keyvisual.webp";
 import koreaEmblem from "../assets/korea-emblem-color.webp";
 import { staticAssetUrl } from "../../lib/staticAssets";
 import { event } from "../../data/event";
+import { thailandArtwork } from "../thailand/data/artwork";
 
-export type EditionId = "korea" | "taiwan";
+export type EditionId = "thailand" | "korea" | "taiwan";
 export type Edition = {
   id: EditionId;
   country: string;
@@ -13,18 +14,25 @@ export type Edition = {
   visual: string;
   emblem: string;
   date: string | null;
+  emblemAspectRatio: number;
 };
 
 export const editions: Record<EditionId, Edition> = {
+  thailand: {
+    id: "thailand", country: "THAILAND", localName: "ประเทศไทย", number: "03",
+    status: "announced", visual: thailandArtwork.emblem, emblem: thailandArtwork.emblem,
+    date: "28–29 NOV 2026", emblemAspectRatio: 3 / 2,
+  },
   korea: {
     id: "korea",
     country: "KOREA",
     localName: "대한민국",
     number: "02",
-    status: "announced",
+    status: "past",
     visual: koreaVisual,
     emblem: koreaEmblem,
-    date: null,
+    date: "29 SEP 2026",
+    emblemAspectRatio: 1170 / 755,
   },
   taiwan: {
     id: "taiwan",
@@ -35,10 +43,11 @@ export const editions: Record<EditionId, Edition> = {
     visual: staticAssetUrl("hero-arena.webp"),
     emblem: staticAssetUrl("flagship-logo.webp"),
     date: event.date,
+    emblemAspectRatio: 900 / 493,
   },
 };
 
-export const currentEdition: EditionId = "korea";
+export const currentEdition: EditionId = "thailand";
 export const editionList = Object.values(editions);
 
 export function isEditionId(value: string | null): value is EditionId {

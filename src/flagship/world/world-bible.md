@@ -38,6 +38,10 @@ Cancellation restores the previous city, native scroll position and focus. Conte
 
 Candidate 3 is the current galaxy preview: work/generated-images/2026-09-12-stellar-galaxy/. Its original and 251562-byte WebP remain there awaiting user selection; all earlier candidates remain untouched. Exact generation prompt and cache provenance are beside it. Review builds accept the derivative; the production approval gate remains active.
 
+## Thailand gold detail — 2026-10-20
+
+Gavin requested a denser dot pattern in the enlarged Thailand transition. `goldParticleSpec` keeps sampling and screen-space dot sizes together: geographic spacing0.42° (previously0.62°), land1.2px and ocean0.7px before existing camera/DPR scaling. The field contains233569 points instead of107179, about2.18× as many. Smaller dots retain individual separation during approach. Existing geography, single Points draw, mutation timing and entry/return camera remain. Typed point buffers total4671380 bytes; no texture/media dependency or second render loop is added.
+
 One lazy renderer, on-demand RAF, hidden/offscreen pause, shader warmup, ResizeObserver and idempotent disposal. DPR caps: desktop 1.5, phone 1.25. No shadow maps or full-screen postprocessing. Six resident textures include the four original 2048 × 1024 procedural material maps; those four maps alone have about 42.7 MiB of conservative RGBA8 mip storage, not a measured GPU allocation. Opening 37 draw calls / 50972 triangles; selected edition 41 / 51518. CPU frame-submission timings do not establish hardware FPS.
 
 ## Evidence
@@ -50,3 +54,10 @@ Current matched-tempo revision: /Users/gavin/Documents/CodexArtifacts/flagship/2
 The IP homepage defaults to the dark galaxy; an explicit theme=light query retains the light appearance. The dark visual system is split by section under home/styles/dark. Ten documented rounds with five change groups each refine hierarchy, red/blue controls, real card-show photography, edition covers, experience tabs, partner and footer. The original globe and both geographic entry implementations are unchanged.
 
 Heading transitions overlap directionally within one grid cell. World scroll progress updates the camera runtime without invalidating inherited styles across the brand root. Recording evidence uses native Chrome tab capture of the actual local review build. Full round notes, screenshots and recordings are in /Users/gavin/Documents/CodexArtifacts/flagship/2026-09-13-dark-ip-10-rounds/. The subsequent single-globe navigation and borderless flow review is in /Users/gavin/Documents/CodexArtifacts/flagship/2026-09-13-single-globe-flow/. This remains local review, not user acceptance or deployment.
+
+
+## October 19 Thailand particle review
+
+Thailand is the current edition. Selecting any edition retains the original physical Earth and galaxy. Only entering Thailand transforms them: the approach releases a geographic wave of 107,179 fine gold points from Bangkok, preserves subdued surface relief, and grades/dissolves the galaxy into a gold field. The surface push completes the mutation before revealing the regional page. Returning plays the same camera-driven blend backwards, restoring the original Earth and galaxy. `goldParticleField.ts` samples the original Protocol land rings; `goldMutation.ts` owns the surface materials and `ui/mutation.css` owns the background. Both use the existing on-demand camera clock, with no separate animation loop. The live globe adds two draw calls and no textures, respects reduced motion, and is disposed with the existing scene. Marker binding uses explicit city IDs, so adding a station cannot swap city labels through array ordering.
+
+User reference: `design/thailand-card-show/references/` (three supplied Binance images, especially the Bangkok 26 gold particle globe). The destination continues the same land atlas in a large Bangkok-facing SVG halftone globe, split into two paths rather than thousands of nodes. This is code-native artwork, without a replacement image or additional WebGL renderer. The scenic and arena candidates remain retained and are not displayed. No one-sided decorative accent bars. Local review only; user visual acceptance and Git push remain separate gates.

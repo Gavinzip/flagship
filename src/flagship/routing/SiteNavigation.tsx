@@ -1,3 +1,4 @@
+import { isEditionId } from "../data/editions";
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type AnchorHTMLAttributes } from "react";
 import type { SiteLanguage } from "../data/copy";
 import { readSiteLocation, siteHref, type SiteLocation, type SitePage } from "./siteRoutes";
@@ -84,8 +85,8 @@ export function SiteLink({ page, hash, children, onClick, ...props }: Omit<Ancho
     onClick?.(event);
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || props.target === "_blank" || props.download) return;
     event.preventDefault();
-    if(location.page === "home" && (page === "korea" || page === "taiwan") && transition) transition.enter(page,()=>navigate(page,location.language,hash));
-    else if(page === "home" && (location.page === "korea" || location.page === "taiwan") && transition) transition.returnHome(location.page,()=>navigate("home",location.language,`world-${location.page}`));
+    if(location.page === "home" && isEditionId(page) && transition) transition.enter(page,()=>navigate(page,location.language,hash));
+    else if(page === "home" && isEditionId(location.page) && transition) transition.returnHome(location.page,()=>navigate("home",location.language,`world-${location.page}`));
     else navigate(page, location.language, hash);
   }}>{children}</a>;
 }

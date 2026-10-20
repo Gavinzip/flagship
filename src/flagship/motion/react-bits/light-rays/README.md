@@ -1,0 +1,9 @@
+# React Bits Light Rays
+
+Official TS-CSS source retrieved on2026-10-20 from https://reactbits.dev/r/LightRays-TS-CSS.json using shadcn4.22.0 CLI `view`. MCP discovery returned NOT_CONFIGURED for @react-bits, so this uses the same component's live official source through the retrieval backup authorized by ReactSkills. No archive or accepted custom component was overwritten.
+
+Registry response retained at `work/references/react-bits-light-rays-2026-10-20/LightRays-TS-CSS.json`; SHA-25687c3a9ed3e881ca8c49fe035610c9c729e9e95c93a1fc22a25eb8eec06e78454. Upstream uses native WebGL2 and declares no dependencies. License is MIT plus Commons Clause, preserved in ../LICENSE.md; the current upstream license was rechecked and retained with the registry reference.
+
+Local integration preserves the GLSL effect and configurable API. It freezes the same light frame for reduced motion, responds to preference changes, prevents an offscreen queued frame, skips unused mouse tracking, reports initialization failure explicitly, and rejects invalid colors instead of substituting white. Existing resize/visibility observers, context restoration and resource cleanup remain. No alternate rendering effect is substituted for WebGL failure.
+
+ThailandPartnerLight keeps page composition/settings separate. It delays the initial shader mount until near the partner section; light comes from the top-left, angled down and right, with low-saturation warm white and slow speed. At Gavin's request, mouse steering, cursor shadow and click pulses are enabled. Pointer steering returns to neutral outside the region; pointer-down also updates position for touch. The upper fade extends into the preceding spacer without section clipping; site-level horizontal clipping remains. The decorative layer cannot receive pointer/focus input and is hidden from accessibility; passive window listeners observe input without blocking page controls or scrolling.

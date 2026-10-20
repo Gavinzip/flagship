@@ -5,9 +5,10 @@ import { worldSpec } from "../config/worldSpec";
 import { finishAtmosphere } from "./atmosphereFinish";
 import { finishEarthSurface } from "./earthSurface";
 import { createCityReticle } from "./createCityReticle";
-export function createEarth() {
+import { createGoldMutation } from "./goldMutation";
+export function createEarth(initiallyGold = false) {
   const root = createGlobeModel();
-  finishEarthSurface(root);
+  const surfaceGold = finishEarthSurface(root);
   finishAtmosphere(root);
   const earth = root.getObjectByName("earth-surface") as T.Mesh;
   const cities = Object.entries(worldSpec.cities).map(([id, city]) => {
@@ -19,7 +20,7 @@ export function createEarth() {
       new T.MeshBasicMaterial({ color: city.color, transparent: true, depthWrite: false, toneMapped: false }),
     );
     core.renderOrder = 13;
-    const halo = createCityReticle(id === "korea" ? "#a8d7f5" : "#e9bdd0");
+    const halo = createCityReticle(id === "thailand" ? "#fcd535" : id === "korea" ? "#a8d7f5" : "#e9bdd0");
     const glow = new T.Mesh(
       new T.PlaneGeometry(0.09, 0.09),
       new T.ShaderMaterial({
@@ -34,5 +35,6 @@ export function createEarth() {
     root.add(anchor);
     return { id, anchor, core, halo };
   });
-  return { root, earth, cities };
+  const mutation = createGoldMutation(root, surfaceGold, initiallyGold);
+  return { root, earth, cities, mutation };
 }

@@ -63,9 +63,9 @@
 }
 /* A direct chapter visit stays behind the admission panel until its first frame is complete.
    Do not replay Korea's page-enter animation after that panel has gone away. */
-.edition-route-plane[data-direct-entry="true"] .kr-header,
-.edition-route-plane[data-direct-entry="true"] .kr-hero-art,
-.edition-route-plane[data-direct-entry="true"] .kr-event-card-stack {
+.edition-route-plane[data-direct-entry="true"] .ev-header,
+.edition-route-plane[data-direct-entry="true"] .ev-hero-art,
+.edition-route-plane[data-direct-entry="true"] .ev-event-card-stack {
   animation: none;
   filter: none;
   opacity: 1;

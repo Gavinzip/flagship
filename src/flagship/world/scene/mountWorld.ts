@@ -34,7 +34,7 @@ export async function mountWorld(
   onError: (error: Error) => void,
   labels: HTMLElement[],
   initialProgress = 0,
-  initialCity: CityId = "korea",
+  initialCity: CityId = "thailand",
   initialTheme: WorldTheme = "light",
   initialReturnOrigin?: WorldEntryOrigin,
 ): Promise<WorldRuntime> {
@@ -57,7 +57,13 @@ export async function mountWorld(
   host.append(canvas);
   const scene = new T.Scene(),
     camera = new T.PerspectiveCamera(worldSpec.camera.fov, 1, 0.1, 30);
-  const model = createEarth();
+  const model = createEarth(initialReturnOrigin !== undefined && initialCity === "thailand");
+  const worldShell = host.closest<HTMLElement>(".brand-site");
+  if (!worldShell) throw new Error("The globe's background shell is missing.");
+  const cityLabels = new Map(labels.map(label => [label.dataset.city, label]));
+  for (const city of model.cities) {
+    if (!cityLabels.has(city.id)) throw new Error(`The globe's ${city.id} marker is missing.`);
+  }
   scene.add(model.root);
   const ambient = new T.HemisphereLight("#b6d6ff", "#0b172b", 0.85);
   const key = new T.DirectionalLight("#edf0ff", 2.1);
@@ -75,6 +81,7 @@ export async function mountWorld(
   };
   let flight: GlobeFlight | null = null;
   let entering = false;
+  let returningHome = false;
   let completeFlight: (() => void) | null = null;
   let interruptFlight: ((error: Error) => void) | null = null;
   const departure = createDepartureRig(() => wake());
@@ -131,6 +138,20 @@ export async function mountWorld(
       entryMotion.surfaceDistance,
       leaving,
     );
+    // Selection retains the original Earth. Only its regional approach and
+    // surface push transform Thailand, with the same timeline played in reverse.
+    const approach = reverse ? reverse.approach : flight?.entering
+      ? flight.duration ? flight.elapsed / flight.duration : 1
+      : 1;
+    const mutation = entering && selectedCity === "thailand"
+      ? T.MathUtils.smootherstep(approach, .2, .96) * .68
+        + T.MathUtils.smootherstep(leaving, 0, .42) * .32
+      : 0;
+    const goldBlend = model.mutation.update(mutation, renderer.getPixelRatio());
+    worldShell.style.setProperty("--world-mutation", goldBlend.toFixed(4));
+    worldShell.dataset.mutationActive = String(goldBlend > .001);
+    host.dataset.goldBlend = goldBlend.toFixed(3);
+    host.dataset.goldParticles = String(model.mutation.count);
     host.dataset.entryProgress = leaving.toFixed(3);
     host.dataset.cameraDistance = camera.position.z.toFixed(3);
     host.dataset.longitude = view.longitude.toFixed(3);
@@ -149,7 +170,7 @@ export async function mountWorld(
       city.halo.scale.setScalar(1 + illumination * 0.12);
       city.halo.material.opacity = 0.15 + illumination * 0.45;
       city.core.material.color
-        .set(worldSpec.cities[city.id as "taiwan" | "korea"].color)
+        .set(worldSpec.cities[city.id as CityId].color)
         .lerp(new T.Color("#ffffff"), illumination * 0.6);
     }
   };
@@ -189,8 +210,7 @@ export async function mountWorld(
     model.root.updateMatrixWorld();
     for (let i = 0; i < model.cities.length; i++) {
       const city = model.cities[i],
-        label = labels[i];
-      if (!label) continue;
+        label = cityLabels.get(city.id)!;
       const position = city.anchor.getWorldPosition(new T.Vector3()),
         normal = position.clone().normalize(),
         front =
@@ -202,7 +222,7 @@ export async function mountWorld(
         view.latitude - worldSpec.cities[selectedCity].latitude,
       );
       const opacity =
-        front && city.id === selectedCity
+        front && city.id === selectedCity && (!entering || returningHome)
           ? cityIllumination(alignment)
           : 0;
       label.style.visibility = opacity > 0.015 ? "visible" : "hidden";
@@ -291,6 +311,8 @@ export async function mountWorld(
     // but release its GPU resources only after that pending work settles.
     if (!compiling) disposeGraphics();
     canvas.remove();
+    worldShell.style.removeProperty("--world-mutation");
+    delete worldShell.dataset.mutationActive;
   };
   const lost = (event: Event) => {
     event.preventDefault();
@@ -341,6 +363,7 @@ export async function mountWorld(
           }
           const originPose = { ...view };
           entering = true;
+          returningHome = false;
           selectedCity = city;
           target = smooth = Math.max(smooth, 0.65);
           const stop = (error: Error) => {
@@ -390,6 +413,7 @@ export async function mountWorld(
       resume: () => {
         interruptFlight?.(new DOMException("Aborted", "AbortError"));
         entering = false;
+        returningHome = false;
         flight = null;
         completeFlight = null;
         departure.reset();
@@ -399,6 +423,7 @@ export async function mountWorld(
       depart: (travelSignal, advance) => departure.run(travelSignal, reduced.matches, advance),
       retreat: (city, travelSignal, advance, origin) => {
         entering = true;
+        returningHome = true;
         selectedCity = city;
         // Finish at the precise world progress that existed when this journey
         // began. Returning to a hard-coded opening pose makes the last frame

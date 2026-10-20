@@ -1,43 +1,6 @@
-type HighlightCopy = {
-  number: "01" | "02" | "03" | "04" | "05";
-  english: string;
-  title: string;
-  description: string;
-  alt: string;
-};
+import type { EventContent } from "../../event/types";
 
-type FaqItem = {
-  category: string;
-  question: string;
-  answer: string;
-};
-
-export type KoreaEventContent = {
-  navigation: readonly { label: string; href: string }[];
-  highlights: {
-    title: string;
-    english: string;
-    items: readonly HighlightCopy[];
-  };
-  vendors: {
-    title: string;
-    english: string;
-    organizerLabel: string;
-    titleSponsorLabel: string;
-    vendorLabel: string;
-  };
-  venue: {
-    title: string;
-    english: string;
-  };
-  faq: {
-    categoryLabel: string;
-    categories: readonly string[];
-    items: readonly FaqItem[];
-  };
-};
-
-export const koreaEventContent: Record<"zh-TW" | "en" | "ko", KoreaEventContent> = {
+export const koreaEventContent: Record<"zh-TW" | "en" | "ko", EventContent> = {
   "zh-TW": {
     navigation: [
       { label: "卡展現場", href: "#highlights" },

@@ -9,9 +9,9 @@ export function BrandDestinations({ copy: c }: { copy: HomeCopy }) {
       <span className="brand-destination-index">01</span>
       <span><small>{c.taiwanStatus}</small><strong>TAIWAN</strong></span><ArrowUpRight />
     </SiteLink>
-    <SiteLink page="korea" className="brand-destination brand-destination-korea">
-      <span className="brand-destination-index">02</span>
-      <span><small>{c.koreaStatus}</small><strong>KOREA</strong></span><ArrowUpRight />
+    <SiteLink page="thailand" className="brand-destination brand-destination-thailand">
+      <span className="brand-destination-index">03</span>
+      <span><small>{c.thailandStatus}</small><strong>THAILAND</strong></span><ArrowUpRight />
     </SiteLink>
   </nav>;
 }

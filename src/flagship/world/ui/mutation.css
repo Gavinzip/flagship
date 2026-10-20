@@ -1,0 +1,32 @@
+/* One timeline grades the authored galaxy and dissolves it into the destination.
+   These layers are dormant while selecting countries, including Thailand. */
+.brand-site[data-mutation-active="true"] > .world-galaxy {
+  filter: grayscale(var(--world-mutation)) sepia(calc(var(--world-mutation) * .95))
+    saturate(calc(1 + var(--world-mutation) * 2.4));
+}
+.brand-site[data-mutation-active="true"] > .world-galaxy > img {
+  transform: translate3d(0, calc(var(--world-progress, 0) * -6%), 0)
+    scale(calc(1 + var(--world-mutation) * .18));
+}
+.world-galaxy-mutation {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: var(--world-mutation, 0);
+  background:
+    radial-gradient(ellipse at 62% 38%, #f0b90b1c, transparent 60%),
+    linear-gradient(#080a0c50, #080a0ce8);
+}
+.world-galaxy-mutation::before {
+  position: absolute;
+  inset: -20%;
+  content: "";
+  background-image: radial-gradient(#f0b90b7a .7px, transparent 1.15px);
+  background-size: 6px 6px;
+  mask-image: radial-gradient(ellipse at 60% 40%, transparent 20%, #0007 60%, transparent 78%);
+  transform: scale(calc(.9 + var(--world-mutation, 0) * .3));
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-site[data-mutation-active="true"] > .world-galaxy > img { transform: none; }
+  .world-galaxy-mutation::before { transform: none; }
+}

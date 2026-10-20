@@ -1,0 +1,49 @@
+html:has(.thailand-event-site) { background: #0b0d10; color-scheme: dark; scroll-padding-top: clamp(70px,5.534vw,85px); }
+.thailand-event-site {
+  --th-yellow: #f4c62e;
+  --th-ink: #0b0d10;
+  --th-white: #f8f8f4;
+  --th-muted: #b8babf;
+  --th-display: "Barlow Condensed", "Flagship Display TC", "Arial Black", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  color: var(--th-white);
+  background: var(--th-ink);
+  line-height: 1.7;
+}
+.thailand-event-site :is(a,button,select):focus-visible { outline: 3px solid var(--th-yellow); outline-offset: 5px; }
+.th-wrap { width: min(1280px, calc(100% - 112px)); margin-inline: auto; }
+.th-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.th-section { padding-block: clamp(72px, 7vw, 112px); scroll-margin-top: 0; }
+.thailand-event-site :is(h2,h3) { text-wrap: balance; }
+.thailand-event-site h2 { font-family: Arial,"PingFang TC","Microsoft JhengHei",sans-serif; font-weight: 600; font-size: clamp(32px, 3.7vw, 54px); line-height: 1.2; letter-spacing: -.035em; }
+.thailand-event-site :is(.th-highlights,.th-seoul,.th-partners,.th-faq) h2 { color: var(--th-yellow); }
+.thailand-event-site a { color: inherit; }
+.th-button {
+  display: inline-flex; justify-content: center; align-items: center; gap: 28px;
+  min-height: 52px; padding: 13px 28px; border: 1px solid transparent; border-radius: 999px;
+  background: var(--th-yellow); color: #0b0d10 !important; text-decoration: none;
+  font: 700 15px/1.35 Arial, "PingFang TC", sans-serif; transition: background .2s, transform .2s;
+}
+.th-button:hover { background: #fcd535; transform: translateY(-2px); }
+.th-button--black { background: #0b0d10; color: #fff !important; }
+.th-button--black:hover { background: #24272b; }
+.th-text-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; padding-block: 9px; color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; font-size: 14px; font-weight: 700; }
+.th-text-link svg { transition: transform .2s; }
+.th-text-link:hover svg { transform: translate(2px,-2px); }
+.thailand-event-site .ev-header { height: clamp(70px,5.534vw,85px); min-height: clamp(70px,5.534vw,85px); padding-inline: 4%; background: #0b0d10; border-bottom: 1px solid #ffffff13; box-shadow: none; backdrop-filter: none; }
+.thailand-event-site .ev-header :is(a,select) { color: #f8f8f4; }
+.thailand-event-site .ev-header .ev-header-ticket { background: #ffd12b; color: #0b0d10; border: 0; box-shadow: none; min-height: clamp(44px,3.646vw,56px); padding-inline: clamp(22px,2.083vw,32px); font-size: clamp(13px,1.172vw,18px); }
+.thailand-event-site .ev-header-ticket svg { width: 22px; height: 22px; }
+.thailand-event-site .ev-header-language { font-size: clamp(12px,1.042vw,16px); }
+.thailand-event-site .chapter-home-link span { font-size: clamp(18px,1.563vw,24px); }
+.thailand-event-site .chapter-home-link svg { width: 30px; height: 30px; }
+.thailand-event-site .ev-desktop-nav { gap: clamp(16px,2vw,32px); }
+.thailand-event-site .ev-desktop-nav a { font-size: clamp(13px,1.172vw,18px); font-weight: 600; }
+.thailand-event-site .ev-mobile-nav { background: #111418; color: #f8f8f4; border-color: #ffffff20; }
+.thailand-event-site .ev-mobile-nav :is(a,select,label) { color: #f8f8f4; }
+.edition-direct-admission--thailand { background: #0b0d10; }
+.edition-direct-admission--thailand::after { background: transparent; }
+.edition-direct-admission--thailand .edition-admission { background: #111418; border-color: #ffffff26; color: #f0b90b; text-shadow: none; box-shadow: none; }
+.edition-direct-admission--thailand .edition-admission p strong,
+.edition-direct-admission--thailand .edition-admission p span,
+.edition-direct-admission--thailand .edition-admission__footer { color: #f0b90b; }
+.edition-direct-admission--thailand .edition-admission__meter i { background: #f0b90b; box-shadow: none; }

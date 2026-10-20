@@ -534,3 +534,105 @@ final result: passed
 - [x] Verify 1280 desktop, 1512 wide desktop, 390 mobile, full-view comparison, focused-card comparison, console state, and production build.
 
 final result: passed
+
+## Thailand editorial review — 2026-10-20
+
+- The prior inner-page implementation was rejected by Gavin for manual video playback, missing information and insufficient red/blue.
+- Correction: exact Korea hover-preview component, all five full Thailand descriptions, planned/forecast metrics, complete red/blue panels, official venue photo, map/address, MRT Exit 3, car/taxi and B2 arrival instructions.
+- Detailed source ledger and browser/build evidence: `design/thailand-card-show/editorial-review/design-qa.md`.
+- Current captures: `work/screenshots/thailand-content-2026-10-20/`.
+- Local preview: `http://127.0.0.1:5176/thailand/?lang=zh-TW&theme=dark`.
+- No generated candidate was promoted/deleted; no push or deployment. Outer globe and entry remain preserved.
+
+final result: internal checks passed; user visual review pending
+
+## Thailand background and sponsor correction — 2026-10-20
+
+Gavin rejected the solid red/blue panels. The current local review uses two generated card-show backgrounds referenced directly to Taiwan original art and the supplied Thailand deck. Renaiss / Vinci World are the user-authorized provisional primary lineup; other positions say to be revealed. Transport and outer globe/entry are preserved.
+
+Current specification and visual/interaction/build evidence: `design/thailand-card-show/atmosphere-review/`. Candidate retention remains pending. No image deletion, promotion, push or deployment.
+
+final result: internal checks passed; user design review pending
+# Thailand background withdrawal — 2026-10-20
+
+Gavin rejected the atmosphere backgrounds in both highlights and partners. Both images and their presentation layers have been removed from the local review page and bundle, with all candidate files preserved. The page currently shows a plain dark review baseline; background design remains unresolved and is not accepted. See `design/thailand-card-show/atmosphere-review/design-qa.md` for the withdrawal checks and screenshots.
+
+## Thailand Binance redesign and interior globe removal — 2026-10-20
+
+The current local review replaces the earlier baseline with a native yellow hero, bold display typography, original Thailand emblem, open dark media/partner sections, authentic Seoul recap and preserved complete venue/access information. Following Gavin's latest correction, the interior globe and its import/styles/budget entry are removed; the outer globe and entry animation remain preserved.
+
+Local review build, desktop/native-size render comparison, mobile three-language layout, hover video playback, FAQ and map checks completed. Latest desktop/mobile hero captures show only the original emblem and no globe. Evidence and intentional reference adaptations: `design/thailand-card-show/binance-redesign/design-qa.md`. All five generated candidates remain preserved pending Gavin's decision after viewing the completed page. No fallback, image deletion/promotion, Git push or deployment was introduced by this correction. User visual acceptance remains pending.
+
+## Thailand card-led hero revision — 2026-10-20
+
+Gavin rejected the empty yellow hero and requested a composition built from the organizer deck's cards, with more actual Binance campaign research. The current hero uses one large gold-framed red/black/blue card fan, the unchanged original emblem, native condensed italic type and a controlled yellow tonal field. No interior globe, room/scenery backdrop, arbitrary colored blocks or edge stripe is introduced. Outer globe/entry and downstream content remain preserved.
+
+Native working-concept comparison and current desktop, tablet, mobile and three-language checks passed internally; tablet emblem clipping was found and repaired. Current evidence and five-plus-point fidelity ledger: `design/thailand-card-show/card-hero-review/design-qa.md`. Build, media budget and `git diff --check` pass. Two new candidates remain preserved pending the user's deferred retention decision. No test/harness files, runtime fallback, image deletion/promotion, Git push or deployment. User visual acceptance remains pending.
+
+## Selected candidate one restoration — 2026-10-20
+
+Gavin explicitly prefers candidate 1 over the former simplified page. The current implementation restores its complete golden texture, diagonal light, reflective ground and combined card/emblem composition. Native title/logistics/buttons, header scale and centered transition headline are aligned to the selected 1536×1024 reference. The earlier claim that omitting its background elements was an accepted adaptation is revoked.
+
+Current specification, direct image comparison and responsive/interaction/build evidence: `design/thailand-card-show/candidate-one-review/`. All previous/new candidate files remain preserved, new extraction retention is pending, and final website acceptance remains Gavin's decision. No test/harness files, runtime fallback, image deletion/promotion, Git push or deployment.
+
+## Thailand / globe roundtrip repair — 2026-10-20
+
+The complete hero embeds its emblem, while the former entry/return code still required the removed independent emblem element. Added shared explicit geometry-based handoff targeting for the embedded artwork, retaining Korea/Taiwan representations and existing camera/gold mutation timing. Direct return, normal re-entry/return and returning from FAQ passed at mobile/current and desktop cover layouts; browser logs were empty. Current proof and build checks: `design/thailand-card-show/candidate-one-review/navigation-qa.md`. Preview is left on the original globe for replay. No runtime/data fallback, test files, image deletion, push or deployment.
+
+## 2026-10-20 — Thailand foreground logo alignment
+
+Removed the baked emblem and logo reflection from the selected hero background with ImageGen. The existing original transparent Thailand emblem is now a real independent foreground, sharing a composition plane with the large foil cards. Both entry and return measure its actual DOM bounds and use the exact same emblem source; removed the embedded-region estimate and mismatched-image crossfade. Original globe rendering, gold mutation and camera timings remain intact.
+
+Direct desktop admission, header return, globe re-entry and 390px layout/return pass in IAB. Desktop direct-entry and post-flight bounds match exactly. During handoff the static foreground is hidden; travelling source matches it. Build and media-budget checks pass (16 named files, 4,002,564 bytes; new review background 248,930 bytes). No fallback, test harness, deletion, Git push or deployment. New candidates remain in their generation round, pending file-retention decision. Screenshots and detailed evidence are in the candidate-one review navigation QA and `work/screenshots/thailand-separated-logo-2026-10-20/`. Final visual acceptance remains Gavin’s decision.
+
+## 2026-10-20 — Typography and React Bits motion refinement
+
+Reduced the large-poster typography to title-case upright sans, with a clearer date/venue/action hierarchy; preserved the retained clean card art and independent logo. Added actual current React Bits BlurText with a route-presentation gate so title motion waits until admission and geographic transfer finish, plus one-time section text reveals, CTA hover/focus trace, and gentle film hover scaling. Kept real event copy, maps, sponsor arrangement, video preview and original globe timings.
+
+Direct admission, deep-page return, globe re-entry, FAQ, real video preview, 390px English/Korean wrapping and 768px layout reviewed in IAB; final 1194px Chinese hero left open. `view_image` inspected working concept and native-size/final rendered screenshots; five-plus-point comparison and copy diff recorded in `design/thailand-card-show/type-motion-review/design-qa.md`. Build/media checks and diff whitespace pass. No runtime fallback, test file, image deletion, push or deployment. Retained background1 promoted locally; new typography concepts and previous undecided rounds remain preserved. User visual acceptance pending.
+
+## 2026-10-20 — Partners before venue, yellow partner section
+
+At Gavin's request, swapped the complete Thailand partners and venue/access sections. The page now runs highlights → Seoul recap → partners → venue/access → FAQ. English, Traditional Chinese and Korean navigation arrays match that order, shared by desktop and mobile menus. Both actual partners and venue links reach their correct anchor targets.
+
+Subsequent steering changed the partner section to yellow (#f4c62e) with black headings/body and darker secondary copy/dividers. Restored the supplied original Renaiss black wordmark on the light background by removing its former white inversion and duplicate icon overlay; the source logo file and Vinci World artwork remain unchanged. Focus outlines are dark on yellow.
+
+IAB verified desktop background rgb(244,198,46), title rgb(11,13,16), organizer logo filter none, and partners before venue in DOM/render order. At 390px the section has no horizontal overflow. Temporary viewport restored; preview left on partners. Build/media budget and git diff whitespace checks pass. No new image, fallback, test file, deletion, push or deployment. Screenshots: `work/screenshots/thailand-partners-yellow-2026-10-20.png` and `work/screenshots/thailand-partners-yellow-mobile-2026-10-20.png`. Visual acceptance remains pending.
+
+### Follow-up: partners restored to black
+
+Gavin requested reverting the partner section from yellow to its previous black treatment. Restored black background, yellow headings/links/focus outlines, light copy/dividers and the existing white Renaiss wordmark with original gold icon overlay. Kept partners before venue/access and the corresponding navigation order. IAB confirms background rgb(11,13,16), title rgb(244,198,46), loaded organizer image and unchanged section order. Review build and diff checks pass. Screenshot: `work/screenshots/thailand-partners-black-restored-2026-10-20.png`. No fallback, test files, deletions, push or deployment; viewport restored and review left on partners.
+
+## 2026-10-20 — Exterior arrival photo and quiet black campaign detail
+
+Added the requested official QSNCC exterior as venue gallery lead, retaining the B2 interior as a supporting photo with distinct captions/source links. Refined the partner black background using low-contrast cropped FLAGSHIP/CARD SHOW/THAILAND typography and restrained warm corner light, following Gavin's supplied Binance references. Original logos, headline hierarchy, partner-before-venue order and other page content remain.
+
+IAB desktop1194 and mobile390 reviewed; Chinese/English/Korean gallery labels have no horizontal overflow. `view_image` compared supplied style reference with rendered screenshots. Photo fully loads; official attribution links are correct; decoration is aria-hidden/non-interactive. Build/media checks and diff check pass. New optimized official photo101330 bytes; no new AI generation, runtime fallback, test files, deletion, push or deployment. Details: `design/thailand-card-show/venue-partner-review/design-qa.md`. User visual acceptance pending.
+
+### Background detail relocated to the show opening
+
+At Gavin's explicit placement correction, moved the brand typography and gold atmosphere from partners to the intro/statistics/highlights opening. Partners are plain black again. Extracted the intro into a focused component and renamed its decorative component/styles; venue photos, all copy and section/navigation order remain. IAB desktop/mobile show a single opening layer, no partner decoration and no overflow; highlight autoplay remains functional and console is clean. Build/diff pass. No fallback, generated image, test file, deletion or push. Review screenshots are in work/screenshots; final visual acceptance pending.
+
+### Lower highlights retain the same quiet detail
+
+Gavin found the lower highlight area still empty. Extended the background layer through all highlight rows, adding a lower repeat of the same campaign type with a softer center and edge light; tightened the lead-to-card spacing. Partner background remains plain black. IAB1194×1000 and390×844 inspected; no horizontal overflow, pointer-triggered playback works, console clean. Review build and media budgets pass. Screenshots: `work/screenshots/thailand-highlights-continuity-2026-10-20.png`, `work/screenshots/thailand-highlights-continuity-mobile-2026-10-20.png`, `work/screenshots/thailand-highlights-continuity-end-2026-10-20.png`. No new image, dependency, fallback, test file, deletion, push or deployment. Visual acceptance remains pending.
+
+### Partner light requested through ReactSkills
+
+Added actual React Bits Light Rays to partners: top-center warm gold, slow movement and downward fade over the retained black base. Layout/logos/copy unchanged. MCP @react-bits registry is unconfigured; source retrieved via the skill-authorized official shadcn4.22.0 CLI path, disclosed to Gavin. No runtime replacement. Native WebGL2 with no new dependency/media; deferred initial mount, visibility pause, reduced-motion static frame and cleanup. IAB desktop/mobile visual review, overflow, link focus and mobile navigation pass; console empty. Observed shader canvas0.54M desktop/0.27M mobile pixels; no FPS claim because browser timing API is unavailable. Review build/media budget and diff checks pass. No generated assets, test files, deletion, push or deployment. Details and provenance: design/thailand-card-show/partner-light-review.md. Screenshots under work/screenshots/thailand-partners-light-rays*.png; user visual acceptance pending.
+
+### Light boundary and yellow cast corrected
+
+Gavin rejected the upper cutoff and excessive yellow. The light's negative inset had moved its transparent edge above an overflow:hidden section, creating the cut. Allowed the decorative light to extend into the preceding spacer with a longer upper fade, retaining site-level horizontal clipping. Changed the light to low-saturation warm white and reduced glow/intensity/opacity. Desktop/mobile inspected with the actual boundary visible; no cutoff or horizontal overflow. Build/media budget and diff checks pass. No new fallback, test files, assets, deletion, push or deployment. Review evidence: work/screenshots/thailand-partner-light-soft-boundary-2026-10-20.png and its mobile counterpart. Final visual acceptance pending.
+
+### Left-side interactive partner light
+
+At Gavin's request, light now comes from the left, with actual mouse steering, cursor shadow and click pulses. Outside-region steering eases to neutral; pointer-down also updates touch position. Warm-white tone and smooth upper fade retained. IAB desktop native coordinate clicks visibly move/brighten the rays at an unchanged scroll position; mobile viewport has no overflow and the prior boundary stays smooth. Build/diff checks pass; no new fallback, test files, dependency/media, deletion, push or deployment. Evidence: work/screenshots/thailand-partner-light-left-interactive-2026-10-20.png and mobile counterpart. Visual acceptance pending.
+
+## 2026-10-20 — Denser gold globe and Test release preparation
+
+User requested denser Thailand globe dots after authorizing push to Test. Sampling0.62°→0.42°, with smaller land/ocean points1.2/0.7, gives233569 points versus107179. Parameters live together in goldParticleSpec. Entry/return/mutation timing and original geographic mask remain. IAB1440×1000 and390×844 verified the actual handoff; runtime reports233569 points,6 textures, and desktop renderP50/P951.60/7.60ms, mobile world1.60/4.40ms in the inspected scene (render timing samples, not a full-device FPS benchmark). No mobile horizontal overflow; hero CDN images decode at1702/1536px width. Screenshots: work/screenshots/thailand-gold-globe-dense-2026-10-20.png and mobile counterpart.
+
+Resolved release-only issues before Git push: runtime references to four ignored work/ photo derivatives moved to the maintained delivery inventory; retained emblem/clean hero and selected official/user photographs now use a separate immutable CDN release. Seven exact optimized files, release rc1ceef6c97412eb2e60a, verified byte-for-byte/content-type/immutable cache. Sources and unselected AI candidates remain outside public/dist. Sharing metadata now reads the actual Thailand CDN manifest instead of searching for a removed bundled emblem. No substitute imagery or runtime fallback.
+
+Both pnpm build and build:art-review pass. Production asset audit:10 named hashed media files/1792664 bytes; all other media on CDN. Main JS495.16kB/gzip160.16kB, edition129.08kB/gzip40.85kB. Existing Caddy encode gzip/zstd, hashed immutable caching and no-cache HTML/API behavior retained; Dockerfile still uses repository source, no override. CDN delivery is verified; Git push and the provider's new deployment/live behavior are checked as separate gates. No test/harness file or candidate deletion. Final visual acceptance remains Gavin's decision.

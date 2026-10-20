@@ -6,6 +6,7 @@ import type { HomeCopy } from "./homeCopy";
 import { TiltSurface } from "./ui/TiltSurface";
 export function BrandChapters({ copy: c }: { copy: HomeCopy }) {
   const chapters = [
+    { ...editions.thailand, status: c.thailandStatus, description: c.thailandDescription, cta: c.thailandCta, name: "ประเทศไทย", number: "03" },
     {
       ...editions.korea,
       status: c.koreaStatus,

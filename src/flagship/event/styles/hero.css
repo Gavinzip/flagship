@@ -1,0 +1,274 @@
+.ev-hero {
+  position: relative;
+  padding: 20px 0 48px;
+}
+.ev-hero-scene {
+  position: relative;
+  height: max(clamp(510px, 61svh, 660px), calc(100svh - 146px));
+  container-type: size;
+}
+.ev-hero-art {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 1;
+  width: min(650px, 55cqw);
+}
+.edition-event-site .ev-hero-art .fs-hero-artwork {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.edition-event-site .ev-hero-art .fs-hero-artwork-inner {
+  width: min(650px, 100%);
+  transform: translate3d(-1.5%, -3%, 0);
+}
+.edition-event-site .ev-hero-art .fs-hero-artwork .fs-brand,
+.edition-event-site .ev-hero-art .fs-original-emblem {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.edition-event-site .ev-hero-art .fs-original-emblem {
+  aspect-ratio: 1170 / 755;
+  overflow: visible;
+}
+.ev-event-card-stack {
+  position: absolute;
+  top: 50%;
+  right: 1.6%;
+  z-index: 3;
+  width: min(520px, 43cqw);
+  height: auto;
+  min-width: 0;
+  transform: translateY(-50%);
+}
+.ev-event-card-tilt,
+.ev-event-card-tilt .fs-tilt-inner,
+.ev-event-card {
+  height: auto;
+}
+.ev-event-card-tilt {
+  perspective: 1500px;
+}
+.ev-event-card-tilt .fs-tilt-inner {
+  will-change: transform;
+}
+.ev-event-card-tilt .fs-foil-sheen {
+  border-radius: 2px;
+}
+.ev-event-card {
+  border: 1px solid #ffffffdd;
+  border-radius: 2px;
+}
+.ev-event-card {
+  position: relative;
+  display: flex;
+  min-height: 432px;
+  flex-direction: column;
+  padding: clamp(26px, 3.1cqw, 42px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 9% 3%, #ffffff, transparent 28%),
+    radial-gradient(circle at 0% 70%, #c77f9130, transparent 43%),
+    radial-gradient(circle at 100% 42%, #7eb2dc3d, transparent 48%),
+    linear-gradient(112deg, #f7fbff 0%, #fbfcff 46%, #e0f0fa 100%);
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    inset 0 -1px 0 #7398b247,
+    0 24px 48px #123e6929;
+  backdrop-filter: blur(18px) saturate(1.14);
+  transform: rotateZ(-0.45deg);
+  transform-origin: center;
+}
+.ev-event-card::before {
+  position: absolute;
+  inset: -45% -56%;
+  z-index: 0;
+  background: linear-gradient(
+    112deg,
+    transparent 44%,
+    #ffffff00 47%,
+    #ffffffa4 50%,
+    #e7f3fc25 53%,
+    transparent 58%
+  );
+  content: "";
+  opacity: 0.42;
+  transform: translateX(-38%);
+  animation: ev-event-card-sheen 9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  pointer-events: none;
+}
+.ev-event-card > * {
+  position: relative;
+  z-index: 1;
+}
+.ev-event-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #547b9952;
+  color: #315b7c;
+  font: 700 11px var(--fs-display);
+  letter-spacing: 0.19em;
+}
+.ev-event-card-header span:last-child {
+  color: #6d7f91;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+.ev-event-card-copy {
+  padding: 19px 0 16px;
+}
+.ev-event-card-copy h1 {
+  font-size: clamp(34px, 3.3cqw, 51px);
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+.ev-event-card-copy p {
+  margin-top: 12px;
+  color: #345673;
+  font-size: 13px;
+  line-height: 1.78;
+}
+.ev-event-card-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  border-top: 1px solid #6f91ab42;
+  border-bottom: 1px solid #6f91ab42;
+}
+.ev-event-card-facts > div {
+  min-height: 76px;
+  padding: 13px 15px 12px 0;
+}
+.ev-event-card-facts > div + div {
+  padding-left: 15px;
+  border-left: 1px solid #6f91ab42;
+}
+.ev-event-card-facts > .ev-event-card-venue {
+  min-height: 72px;
+  grid-column: 1 / -1;
+  padding-right: 0;
+  border-top: 1px solid #6f91ab42;
+  border-left: 0;
+}
+.ev-event-card-facts dt,
+.ev-event-card-registration span {
+  color: #547590;
+  font: 700 10px var(--fs-display);
+  letter-spacing: 0.17em;
+}
+.ev-event-card-facts dd {
+  margin: 6px 0 0;
+  color: #0d2c4b;
+  font: 700 22px/1 var(--fs-display);
+  letter-spacing: 0.02em;
+}
+.ev-event-card-facts .ev-event-card-venue dd {
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.25;
+}
+.ev-event-card-facts dd small {
+  display: inline-block;
+  margin-left: 8px;
+  color: #4d6f8a;
+  font: 600 10px var(--fs-display);
+  letter-spacing: 0.06em;
+}
+.ev-event-card-venue dd small {
+  display: block;
+  margin: 5px 0 0;
+}
+.ev-event-card-registration {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0 16px;
+}
+.ev-event-card-registration strong {
+  color: #294d6a;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+}
+.ev-event-card-actions {
+  display: grid;
+  gap: 11px;
+  margin-top: auto;
+}
+.ev-event-card .ev-button {
+  width: 100%;
+  min-height: 51px;
+  padding-block: 11px;
+  border-color: #ffffff;
+  background: #f8fbfde8;
+}
+.ev-event-card-ticket {
+  border-color: #ce9ca9 !important;
+  background: linear-gradient(106deg, #c85269 0%, #89536f 48%, #527eae 100%) !important;
+  box-shadow:
+    inset 0 1px #ffffff5c,
+    -8px 11px 22px #c4516a26,
+    8px 11px 22px #537fae2b;
+  color: #f4fbff !important;
+}
+.ev-event-card-ticket:hover {
+  box-shadow:
+    inset 0 1px #ffffff80,
+    -10px 14px 26px #c4516a32,
+    10px 14px 26px #537fae37;
+}
+.ev-event-card-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #6f91ab58;
+}
+.ev-event-card-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 36px;
+  padding: 0 3px;
+  color: #2a4e6c;
+  font: 700 10px var(--fs-display);
+  letter-spacing: 0.12em;
+  transition: color 220ms ease, border-color 220ms ease;
+}
+.ev-event-card-links a + a {
+  padding-left: 14px;
+  border-left: 1px solid #6f91ab58;
+}
+.ev-event-card-links svg {
+  width: 17px;
+  height: 17px;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ev-event-card-links a:hover {
+  color: #0b3f69;
+}
+.ev-event-card-links a:hover svg { transform: translate3d(3px, -3px, 0); }
+@media (max-width: 620px) {
+  .ev-event-card-links { grid-template-columns: 1fr; }
+  .ev-event-card-links a + a { padding-left: 3px; border-top: 1px solid #6f91ab58; border-left: 0; }
+}
+@keyframes ev-event-card-sheen {
+  0%,
+  48% {
+    transform: translateX(-38%);
+  }
+  74%,
+  100% {
+    transform: translateX(38%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ev-event-card::before {
+    animation: none;
+  }
+}

@@ -15,6 +15,7 @@ import { entryMotion } from "./world/config/entryMotion";
 import { observeEditionPreparation, type EditionPreparation } from "./routing/prepareEdition";
 import { EditionRouteLoading } from "./routing/EditionRouteLoading";
 import type { EditionId } from "./data/editions";
+import { EditionPresentationContext } from "./routing/EditionPresentationContext";
 const EditionSite = lazy(preloadEdition);
 const minimumDirectAdmissionMs = 700;
 const directAdmissionExitMs = 260;
@@ -27,6 +28,7 @@ function DirectEditionRoute({
   language: "en" | "ko" | "zh-TW";
 }) {
   const [preparation, setPreparation] = useState<EditionPreparation | null>(null);
+  const transition = useContext(EditionTransitionContext);
   const [error, setError] = useState<Error | null>(null);
   const [admissionPhase, setAdmissionPhase] = useState<"loading" | "exiting" | "hidden">("loading");
   const admissionStartedAt = useRef(0);
@@ -78,7 +80,7 @@ function DirectEditionRoute({
   const editionModuleReady = preparation?.status === "ready";
 
   return (
-    <>
+    <EditionPresentationContext.Provider value={admissionPhase === "hidden" && !transition?.retainingWorld}>
       {editionModuleReady && (
         <Suspense fallback={null}>
           <EditionSite />
@@ -93,7 +95,7 @@ function DirectEditionRoute({
           phase={admissionPhase}
         />
       )}
-    </>
+    </EditionPresentationContext.Provider>
   );
 }
 

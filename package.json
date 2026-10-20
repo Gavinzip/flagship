@@ -15,6 +15,9 @@
     "assets:audit": "node scripts/r2-static-assets.mjs audit",
     "assets:publish": "node scripts/r2-static-assets.mjs publish --bucket flagship-cardshow-media",
     "assets:verify": "node scripts/r2-static-assets.mjs verify --base https://flagship-cardshow-media.tree-gavin.workers.dev",
+    "assets:thailand:audit": "node scripts/r2-static-assets.mjs audit --asset-dir public/assets/flagship/thailand --release-file src/generated/thailandAssetRelease.ts",
+    "assets:thailand:publish": "node scripts/r2-static-assets.mjs publish --asset-dir public/assets/flagship/thailand --release-file src/generated/thailandAssetRelease.ts --bucket flagship-cardshow-media",
+    "assets:thailand:verify": "node scripts/r2-static-assets.mjs verify --asset-dir public/assets/flagship/thailand --release-file src/generated/thailandAssetRelease.ts --base https://flagship-cardshow-media.tree-gavin.workers.dev",
     "assets:assert-build": "node scripts/r2-static-assets.mjs assert-build",
     "assets:deploy-gateway": "npx --yes wrangler@latest deploy --config cloudflare/wrangler.media.jsonc"
   },

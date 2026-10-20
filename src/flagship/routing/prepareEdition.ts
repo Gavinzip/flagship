@@ -3,6 +3,7 @@ import { artwork } from "../data/artwork";
 import { editions, type EditionId } from "../data/editions";
 import { preloadImage } from "./preloadImage";
 import { preloadEdition } from "./preloadEdition";
+import { thailandArtwork } from "../thailand/data/artwork";
 
 export type EditionPreparation = {
   completed: number;
@@ -21,6 +22,7 @@ const records = new Map<EditionId, PreparationRecord>();
 
 function criticalImages(edition: EditionId) {
   if (edition === "taiwan") return siteImagePreloads;
+  if (edition === "thailand") return [ { src: thailandArtwork.emblem }, { src: thailandArtwork.hero } ];
 
   return [
     { src: editions.korea.emblem },

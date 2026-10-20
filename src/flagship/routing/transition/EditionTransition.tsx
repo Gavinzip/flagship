@@ -5,8 +5,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { editions, type EditionId } from "../../data/editions";
-import { OriginalEmblem } from "../../components/OriginalEmblem";
+import { editions, isEditionId, type EditionId } from "../../data/editions";
+import { EditionEmblem } from "../../components/EditionEmblem";
 import { useSiteNavigation } from "../SiteNavigation";
 import { EditionTransitionContext } from "./EditionTransitionContext";
 import type {
@@ -63,7 +63,7 @@ export function EditionTransition({ children }: { children: ReactNode }) {
   const { returning, returnMark, returnHome, cancelReturn, interruptReturn, running } = useWorldReturn(world, active, entryOrigin);
   useEffect(() => registerHistoryTransition((from, to, commit) => {
     if (running.current) { interruptReturn(); return false; }
-    if (active.current || to.page !== "home" || (from.page !== "korea" && from.page !== "taiwan")) return false;
+    if (active.current || to.page !== "home" || !isEditionId(from.page)) return false;
     returnHome(from.page, () => {
       // Keep the country that was just visited selected when native history returns.
       const url = new URL(window.location.href);
@@ -209,7 +209,7 @@ export function EditionTransition({ children }: { children: ReactNode }) {
     });
   };
   const width = 120;
-  const height = width / (transfer?.edition === "taiwan" ? 900 / 493 : 1170 / 755);
+  const height = width / (transfer ? editions[transfer.edition].emblemAspectRatio : 1);
   return (
     <EditionTransitionContext.Provider
       value={{ enter, returnHome, retainingWorld: !!transfer || !!returning,
@@ -222,8 +222,7 @@ export function EditionTransition({ children }: { children: ReactNode }) {
         <div className="geographic-transfer geographic-return" data-phase={returning.phase}
           role="dialog" aria-modal="true" aria-label={zh ? "返回 FLAGSHIP 世界" : "Returning to the FLAGSHIP world"}>
           <div className="geographic-transfer-mark" ref={returnMark}>
-            {returning.edition === "korea" ? <OriginalEmblem src={editions.korea.emblem} /> :
-              <img src={editions.taiwan.emblem} alt="FLAGSHIP Card Show Taiwan" />}
+            <EditionEmblem edition={returning.edition} />
           </div>
           {returning.phase === "error" && <div className="geographic-transfer-status" role="alert">
             <span>{zh ? "地球載入失敗，請重試。" : "The globe could not be loaded."}</span>
@@ -252,11 +251,7 @@ export function EditionTransition({ children }: { children: ReactNode }) {
                 height,
               }}
             >
-              {transfer.edition === "korea" ? (
-                <OriginalEmblem src={editions.korea.emblem} />
-              ) : (
-                <img src={editions.taiwan.emblem} alt="FLAGSHIP Card Show Taiwan" />
-              )}
+              <EditionEmblem edition={transfer.edition} />
             </div>
           )}
           {transfer.phase === "preparing" && (

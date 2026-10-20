@@ -1,7 +1,7 @@
 import type { EditionId } from "../../data/editions";
 import type { SiteLanguage } from "../../data/copy";
 import { editions } from "../../data/editions";
-import { OriginalEmblem } from "../../components/OriginalEmblem";
+import { EditionEmblem } from "../../components/EditionEmblem";
 
 const copy = {
   en: { preparing: "PREPARING", back: "Back" },
@@ -24,18 +24,7 @@ export function EditionAdmissionStatus({
   const text = copy[language];
   return (
     <div className="edition-admission" role="status" aria-live="polite">
-      {edition === "korea" ? (
-        <OriginalEmblem
-          className="edition-admission__logo"
-          src={editions.korea.emblem}
-        />
-      ) : (
-        <img
-          className="edition-admission__logo"
-          src={editions[edition].emblem}
-          alt={`FLAGSHIP ${edition.toUpperCase()}`}
-        />
-      )}
+      <EditionEmblem edition={edition} className="edition-admission__logo" />
       <p>
         <span>{text.preparing}</span>
         <strong>{edition.toUpperCase()}</strong>

@@ -4,6 +4,7 @@ import { FlagshipProvider } from "./FlagshipProvider";
 import { useFlagship } from "./FlagshipContext";
 import { KoreaEventSite } from "./korea/KoreaEventSite";
 import { TaiwanEventSite } from "./taiwan/TaiwanEventSite";
+import { ThailandEventSite } from "./thailand/ThailandEventSite";
 
 const notifyEditionReady = () =>
   document.dispatchEvent(new Event("flagship:edition-ready"));
@@ -16,6 +17,8 @@ function EditionContent() {
   }, [edition.id]);
   if (edition.id === "taiwan")
     return <TaiwanEventSite onReady={notifyEditionReady} />;
+  if (edition.id === "thailand")
+    return <ThailandEventSite onReady={notifyEditionReady} />;
   return <KoreaEventSite onReady={notifyEditionReady} />;
 }
 

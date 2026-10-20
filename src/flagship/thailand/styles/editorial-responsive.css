@@ -1,0 +1,28 @@
+@media (max-width:1000px) {
+  .th-wrap { width: calc(100% - 64px); }
+  .th-faq-layout { gap: 44px; }
+  .th-footer > .th-wrap { grid-template-columns: minmax(0,1fr); gap: 30px; }
+  .th-footer-title { font-size: clamp(64px,9vw,98px); }
+  .th-footer-links { flex-direction: row; align-items: center; gap: 24px; }
+  .th-footer-links > a:last-child { margin-left: auto; }
+  .th-footer-bottom { padding-top: 0; }
+}
+@media (max-width:700px) {
+  html:has(.thailand-event-site) { scroll-padding-top: 64px; }
+  .th-wrap { width: calc(100% - 40px); }
+  .th-section { padding-block: 60px; }
+  .thailand-event-site h2 { font-size: 34px; }
+  .thailand-event-site .ev-header { height: 64px; min-height: 64px; padding-inline: 20px; }
+  .thailand-event-site .ev-header .ev-header-ticket { padding-inline: 16px; font-size: 11px; min-height: 44px; }
+  .th-faq-layout { grid-template-columns: minmax(0,1fr); gap: 30px; }
+  .th-question h3 button { padding-block: 22px; font-size: 15px; gap: 18px; }
+  .th-footer { padding-block: 34px 24px; }
+  .th-footer-title { max-width: 400px; font-size: clamp(54px,13vw,72px); }
+  .th-footer-links { gap: 16px; font-size: 11px; }
+  .th-footer-links > a { gap: 5px; }
+  .th-footer-links svg { width: 17px; height: 17px; }
+  .th-footer-bottom { font-size: 8px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .thailand-event-site :is(.th-button,.th-text-link svg) { transition: none; }
+}

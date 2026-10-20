@@ -1,0 +1,342 @@
+@media (min-width: 1600px) {
+  .ev-wrap {
+    width: min(1340px, calc(100% - 140px));
+  }
+}
+.ev-mobile-language {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .ev-header {
+    padding-inline: 26px;
+    gap: 22px;
+  }
+  .ev-header-cta {
+    display: none;
+  }
+  .ev-desktop-nav {
+    gap: 20px;
+  }
+  .ev-wrap {
+    width: calc(100% - 64px);
+  }
+  .ev-highlight-copy {
+    padding: 28px;
+  }
+  .ev-faq-layout {
+    gap: 34px;
+  }
+}
+@media (max-width: 900px) {
+  .ev-hero {
+    min-height: 0;
+  }
+  .ev-desktop-nav {
+    display: none;
+  }
+  .ev-header-tools {
+    margin-left: auto;
+  }
+  .ev-menu {
+    display: grid;
+    place-items: center;
+  }
+  .ev-highlight,
+  .ev-highlight-2 {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .ev-highlight-copy h3 {
+    font-size: 27px;
+  }
+  .ev-partner-tiers {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 14px;
+  }
+  .edition-event-site .partner-tier-card {
+    min-height: 160px;
+  }
+  .edition-event-site .partner-tier-card--title {
+    order: -1;
+    min-height: 190px;
+  }
+  .ev-partner-status { grid-template-columns: 1fr; gap: 22px; }
+  .ev-visit-layout {
+    grid-template-columns: 1fr;
+  }
+  .ev-map,
+  .ev-map iframe {
+    min-height: 370px;
+  }
+  .ev-faq-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .ev-hero-scene {
+    display: grid;
+    height: auto;
+    grid-template-columns: 1fr;
+    /* The desktop scene uses size containment for cqw/cqh positioning.
+       At this breakpoint the card becomes part of document flow, so only
+       contain inline size; otherwise the grid's block height collapses and
+       the highlights section paints underneath the hero. */
+    container-type: inline-size;
+  }
+  .ev-hero-art {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 390px;
+  }
+  .edition-event-site .ev-hero-art .fs-hero-artwork-inner {
+    width: min(585px, 75%);
+    transform: translate3d(-1%, -4%, 0);
+  }
+  .ev-event-card-stack {
+    position: relative;
+    top: auto;
+    right: auto;
+    height: auto;
+    transform: none;
+    width: min(610px, 92%);
+    margin: -28px 1% 0 auto;
+  }
+  .ev-event-card {
+    height: auto;
+    min-height: 0;
+    padding: 34px 30px 26px;
+  }
+}
+@media (max-width: 760px) {
+  .ev-hero-art {
+    height: 308px;
+  }
+  .edition-event-site .ev-hero-art .fs-hero-artwork-inner {
+    width: min(500px, 84%);
+  }
+  .ev-event-card-stack {
+    width: min(500px, 94%);
+    margin-top: -22px;
+  }
+  .ev-event-card {
+    padding: 34px 26px 24px;
+  }
+}
+@media (max-width: 620px) {
+  html:has(.edition-event-site) {
+    scroll-padding-top: 80px;
+  }
+  .ev-wrap {
+    width: calc(100% - 36px);
+  }
+  .ev-section {
+    padding-block: 54px;
+  }
+  .ev-section-title {
+    grid-template-columns: 1fr;
+    margin-bottom: 26px;
+    width: 100%;
+    padding: 18px 18px 20px;
+  }
+  .ev-section-korean {
+    margin-top: 4px;
+    text-align: left;
+    font-size: 10px;
+  }
+  .ev-header {
+    height: 64px;
+    padding-inline: 18px;
+    gap: 12px;
+  }
+  .ev-home {
+    font-size: 21px;
+  }
+  .ev-header-tools {
+    gap: 8px;
+  }
+  .ev-header-ticket { min-height: 38px; gap: 7px; padding: 7px 11px; font-size: 11px; }
+  .ev-header-language { display: none; }
+  .ev-mobile-language {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 12px;
+    padding-top: 13px;
+    border-top: 1px solid var(--ev-line);
+    color: var(--ev-muted);
+    font: 700 11px var(--fs-display);
+    letter-spacing: 0.12em;
+  }
+  .ev-mobile-language select {
+    min-height: 34px;
+    min-width: 78px;
+    padding: 0 3px;
+    border: 0;
+    background: transparent;
+    color: var(--ev-ink);
+    font: inherit;
+    text-align: right;
+  }
+  .ev-mobile-nav {
+    top: 64px;
+  }
+  .ev-hero {
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+  .ev-hero-art {
+    height: 210px;
+  }
+  .edition-event-site .ev-hero-art .fs-hero-artwork-inner {
+    width: min(350px, 72%);
+  }
+  .ev-event-card-stack {
+    width: 100%;
+    margin-top: -8px;
+  }
+  .ev-event-card {
+    padding: 20px 17px 14px;
+  }
+  .ev-event-card-header {
+    font-size: 10px;
+    padding-bottom: 10px;
+  }
+  .ev-event-card-header span:last-child {
+    font-size: 9px;
+  }
+  .ev-event-card-copy {
+    padding: 12px 0 10px;
+  }
+  .ev-event-card-copy h1 {
+    font-size: 31px;
+    line-height: 1.12;
+  }
+  .ev-event-card-copy p {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .ev-event-card-facts > div {
+    min-height: 58px;
+    padding: 9px 8px 8px 0;
+  }
+  .ev-event-card-facts > div + div {
+    padding-left: 10px;
+  }
+  .ev-event-card-facts > .ev-event-card-venue {
+    min-height: 56px;
+    padding-right: 0;
+  }
+  .ev-event-card-facts dd {
+    margin-top: 4px;
+    font-size: 18px;
+  }
+  .ev-event-card-facts .ev-event-card-venue dd { font-size: 15px; }
+  .ev-event-card-facts dd small { margin-top: 3px; font-size: 9px; }
+  .ev-event-card-registration {
+    gap: 10px;
+    padding: 10px 0 11px;
+  }
+  .ev-event-card-registration strong { font-size: 11px; }
+  .ev-event-card-actions { gap: 8px; }
+  .ev-event-card .ev-button { min-height: 45px; padding-block: 9px; }
+  .ev-event-card-links { grid-template-columns: 1fr 1.22fr; }
+  .ev-event-card-links a + a {
+    padding-left: 8px;
+    border-top: 0;
+    border-left: 1px solid #6f91ab58;
+  }
+  .ev-event-card-links a { min-height: 32px; font-size: 9px; }
+  .ev-highlight,
+  .ev-highlight-2 {
+    display: flex;
+    flex-direction: column;
+  }
+  .ev-highlight-image {
+    min-height: 220px;
+  }
+  .ev-highlight-copy {
+    padding: 22px 20px;
+  }
+  .ev-highlight-copy h3 {
+    font-size: 28px;
+    margin-block: 13px 16px;
+  }
+  .ev-highlight-copy p {
+    font-size: 13px;
+  }
+  .ev-highlight-list {
+    gap: 18px;
+  }
+  .ev-highlight-number {
+    font-size: 54px;
+  }
+  .ev-partner-status { margin-top: 22px; padding: 22px 18px; }
+  .ev-partner-stage-header {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  .ev-partner-stage-header p {
+    display: grid;
+    gap: 2px;
+  }
+  .ev-partner-stage-header small {
+    grid-column: 1 / -1;
+    padding-top: 8px;
+    border-top: 1px solid #bdd3e62b;
+  }
+  .ev-map {
+    margin: 10px;
+  }
+  .ev-map,
+  .ev-map iframe {
+    min-height: 270px;
+  }
+  .ev-visit-copy {
+    padding: 24px;
+  }
+  .ev-visit-copy h3 {
+    font-size: 29px;
+  }
+  .ev-visit-copy .ev-button {
+    font-size: 12px;
+    gap: 12px;
+    padding-inline: 16px;
+  }
+  .ev-faq-categories {
+    gap: 5px;
+  }
+  .ev-faq-categories button {
+    font-size: 12px;
+    padding: 10px 6px;
+  }
+  .ev-question h3 button {
+    padding: 17px 15px;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .ev-question p {
+    padding: 0 18px 22px 40px;
+    font-size: 13px;
+  }
+  .ev-footer {
+    gap: 16px;
+    padding-block: 26px;
+  }
+  .ev-footer > p {
+    width: calc(100% - 42px);
+    order: 1;
+  }
+  .ev-footer > a:last-of-type {
+    margin-left: auto;
+  }
+  .ev-footer small {
+    order: 2;
+    width: 100%;
+    flex-basis: auto !important;
+  }
+}

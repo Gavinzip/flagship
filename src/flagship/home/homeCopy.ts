@@ -5,6 +5,7 @@ export type HomeCopy = {
   headline: [string, string]; introduction: string; explore: string; ticketCta: string; viewRecap: string;
   aboutTitle: string[]; aboutParagraphs: [string, string]; aboutCaption: string; aboutAlt: string;
   editionsTitle: string; editionsIntro: string; taiwanStatus: string; koreaStatus: string;
+  thailandStatus: string; thailandDescription: string; thailandCta: string;
   taiwanDescription: string; koreaDescription: string; taiwanCta: string; koreaCta: string; moreCities: string;
   experienceTitle: string; experienceIntro: string;
   experiences: { name: string; title: string; body: string; alt: string }[];
@@ -34,21 +35,21 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     ],
     "introduction": "Collect, trade and play. Meet the people who love cards as much as you do, at FLAGSHIP.",
     "explore": "Explore the editions",
-    "ticketCta": "Get tickets",
+    "ticketCta": "Ticket updates",
     "viewRecap": "Watch Taiwan 2026",
     "aboutTitle": [
       "THE BEGINNING OF FLAGSHIP"
     ],
     "aboutParagraphs": [
       "FLAGSHIP began with a simple idea: cards give people a reason to meet. We bring collectors, players, card shops and brands into one space, where a shared interest becomes a conversation.",
-      "Show someone your favourite find. Trade a card. Sit down for a game. From Taiwan to Korea and the cities ahead, we create a place for collecting culture to come together."
+      "Show someone your favourite find. Trade a card. Sit down for a game. From Taiwan to Korea, Thailand and the cities ahead, we create a place for collecting culture to come together."
     ],
     "aboutCaption": "Sharing collections, face to face. Taiwan 2026.",
     "aboutAlt": "An exhibitor shows a card binder to collectors at FLAGSHIP Taiwan 2026",
     "editionsTitle": "ONE FLAGSHIP. ACROSS BORDERS.",
     "editionsIntro": "Explore the collecting culture, community and show experience of each edition.",
     "taiwanStatus": "2026 · PAST EDITION",
-    "koreaStatus": "UP NEXT",
+    "koreaStatus": "PREVIOUS · 2026",
     "taiwanDescription": "Where our story began. Step inside the Taiwan show and revisit the first gathering.",
     "koreaDescription": "FLAGSHIP arrives in Seoul on 29 September 2026, from 1–8 PM at TEX+FA HALL.",
     "taiwanCta": "Explore Taiwan",
@@ -109,7 +110,10 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     "play": "Play background film",
     "videoError": "The film could not be loaded.",
     "videoRetry": "Try again",
-    "closeFilm": "Close film"
+    "closeFilm": "Close film",
+    "thailandStatus": "UP NEXT",
+    "thailandDescription": "FLAGSHIP arrives in Bangkok on 28–29 November 2026, from 1–8 PM each day at QSNCC, Event Hall B2.",
+    "thailandCta": "Explore Thailand"
   },
   "zh-TW": {
     "nav": [
@@ -127,21 +131,21 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     ],
     "introduction": "收藏、交換、對戰。在 FLAGSHIP，和喜歡卡牌的人面對面相聚。",
     "explore": "探索各地卡展",
-    "ticketCta": "拿票",
+    "ticketCta": "追蹤開票消息",
     "viewRecap": "觀看台灣 2026 回顧",
     "aboutTitle": [
       "FLAGSHIP 的開始"
     ],
     "aboutParagraphs": [
       "FLAGSHIP 是為卡牌收藏與交流而建立的卡展。我們把收藏家、玩家、卡店與品牌聚在一起，翻開卡冊、分享收藏，認識志同道合的朋友。",
-      "從台灣出發，前往韓國與更多地方。我們希望把各地的卡牌文化帶到現場，讓大家交換心得、一起玩牌，讓共同的興趣成為人與人之間的連結。"
+      "從台灣出發，走過韓國，前往泰國與更多地方。我們希望把各地的卡牌文化帶到現場，讓大家交換心得、一起玩牌，讓共同的興趣成為人與人之間的連結。"
     ],
     "aboutCaption": "面對面分享收藏。台灣 2026 活動實拍。",
     "aboutAlt": "FLAGSHIP 台灣卡展攤商翻開卡冊，與收藏家面對面分享收藏",
     "editionsTitle": "一個 FLAGSHIP，走進各地卡展。",
-    "editionsIntro": "從台灣到韓國，認識當地的卡牌文化與玩家社群。選擇地區，查看活動內容與最新資訊。",
+    "editionsIntro": "從台灣、韓國到泰國，認識當地的卡牌文化與玩家社群。選擇地區，查看活動內容與最新資訊。",
     "taiwanStatus": "2026 · 歷屆活動",
-    "koreaStatus": "下一站",
+    "koreaStatus": "歷屆 · 2026",
     "taiwanDescription": "2026 年 9 月 5 日，台北三創。回顧活動內容、攤商與現場體驗。",
     "koreaDescription": "2026 年 9 月 29 日（二）13:00–20:00，首爾 TEX+FA HALL。",
     "taiwanCta": "進入台灣卡展",
@@ -202,7 +206,10 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     "play": "播放背景影片",
     "videoError": "影片載入失敗。",
     "videoRetry": "重新載入",
-    "closeFilm": "關閉回顧影片"
+    "closeFilm": "關閉回顧影片",
+    "thailandStatus": "下一站",
+    "thailandDescription": "2026 年 11 月 28–29 日，每日 13:00–20:00，曼谷 QSNCC · Event Hall B2。",
+    "thailandCta": "進入泰國卡展"
   },
   "ko": {
     "nav": [
@@ -220,21 +227,21 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     ],
     "introduction": "수집하고, 교환하고, 함께 즐기세요. FLAGSHIP에서 같은 취미를 가진 사람들을 만나보세요.",
     "explore": "각 지역 행사 둘러보기",
-    "ticketCta": "티켓 받기",
+    "ticketCta": "티켓 소식 확인",
     "viewRecap": "Taiwan 2026 영상 보기",
     "aboutTitle": [
       "FLAGSHIP의 시작"
     ],
     "aboutParagraphs": [
       "FLAGSHIP은 카드가 사람을 만나게 한다는 생각에서 시작되었습니다. 컬렉터, 플레이어, 카드숍과 브랜드가 한 공간에 모여 컬렉션을 공유하고 카드를 교환하며 함께 게임을 즐깁니다.",
-      "소중한 카드를 보여주거나 함께 게임을 하는 순간, 새로운 대화가 시작됩니다. 대만에서 한국, 그리고 다음 도시까지 수집 문화가 사람들을 연결하는 자리를 만들어갑니다."
+      "소중한 카드를 보여주거나 함께 게임을 하는 순간, 새로운 대화가 시작됩니다. 대만에서 한국, 태국과 다음 도시까지 수집 문화가 사람들을 연결하는 자리를 만들어갑니다."
     ],
     "aboutCaption": "마주 앉아 컬렉션을 나누다. Taiwan 2026 현장.",
     "aboutAlt": "FLAGSHIP 대만 행사에서 카드 바인더를 보여주는 전시자와 컬렉터",
     "editionsTitle": "하나의 FLAGSHIP. 새로운 챕터.",
     "editionsIntro": "각 지역의 커뮤니티와 수집 문화를 만나보세요. 도시마다 새로운 경험이 기다립니다.",
     "taiwanStatus": "2026 · 지난 행사",
-    "koreaStatus": "다음 행사",
+    "koreaStatus": "이전 행사 · 2026",
     "taiwanDescription": "우리의 이야기가 시작된 곳. 첫 대만 행사의 순간들을 다시 만나보세요.",
     "koreaDescription": "2026년 9월 29일(화) 13:00–20:00, 서울 TEX+FA HALL에서 열립니다.",
     "taiwanCta": "대만 행사 보기",
@@ -295,6 +302,9 @@ export const homeCopy: Record<SiteLanguage, HomeCopy> = {
     "play": "배경 영상 재생",
     "videoError": "영상을 불러오지 못했습니다.",
     "videoRetry": "다시 시도",
-    "closeFilm": "영상 닫기"
+    "closeFilm": "영상 닫기",
+    "thailandStatus": "다음 행사",
+    "thailandDescription": "2026년 11월 28–29일 매일 13:00–20:00, 방콕 QSNCC Event Hall B2에서 열립니다.",
+    "thailandCta": "태국 행사 보기"
   }
 };

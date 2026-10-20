@@ -5,6 +5,7 @@ import { worldSpec, type CityId } from "../config/worldSpec";
 import "./city-marker.css";
 
 const names = {
+  thailand: { country: "THAILAND", city: "BANGKOK", code: "TH" },
   korea: { country: "KOREA", city: "SEOUL", code: "KR" },
   taiwan: { country: "TAIWAN", city: "TAIPEI", code: "TW" },
 } as const;
@@ -13,7 +14,7 @@ const names = {
 export function CityMarker({ city, status, action }: { city: CityId; status: string; action: string }) {
   const place = names[city];
   const coordinates = worldSpec.cities[city];
-  return <SiteLink page={city} className={`world-city world-city--${city} ip-metal-control`} aria-label={`${place.city} · ${action}`}>
+  return <SiteLink page={city} data-city={city} className={`world-city world-city--${city} ip-metal-control`} aria-label={`${place.city} · ${action}`}>
     <svg className="world-city-leader" viewBox="0 0 30 24" preserveAspectRatio="none" fill="none" aria-hidden="true">
       <path className="world-city-leader-side" d="M0 24H10L30 4" vectorEffect="non-scaling-stroke" />
       <path className="world-city-leader-above" d="M15 24V0" vectorEffect="non-scaling-stroke" />

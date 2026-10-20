@@ -21,8 +21,8 @@ export function BrandFooter({
             <p>{c.footerBody}</p>
           </div>
           <div className="ip-footer-destination">
-            <SiteLink className="ip-footer-next ip-metal-control" page="korea">
-              <span className="ip-footer-next-label"><small>{c.koreaStatus}</small><strong>KOREA</strong></span>
+            <SiteLink className="ip-footer-next ip-metal-control" page="thailand">
+              <span className="ip-footer-next-label"><small>{c.thailandStatus}</small><strong>THAILAND</strong></span>
               <span className="ip-footer-next-arrow" data-metal-surface><MetalBorder /><ArrowUpRight aria-hidden="true" /></span>
             </SiteLink>
             <a
@@ -47,6 +47,7 @@ export function BrandFooter({
           </SiteLink>
           <span>© 2026 FLAGSHIP Card Show.</span>
           <nav aria-label="Footer">
+            <SiteLink page="thailand">Thailand</SiteLink>
             <SiteLink page="taiwan">Taiwan</SiteLink>
             <SiteLink page="korea">Korea</SiteLink>
             <a className="brand-footer-social" href={officialLinks.flagshipX} target="_blank" rel="noreferrer" aria-label="X @flagshiptcg" title="X @flagshiptcg">

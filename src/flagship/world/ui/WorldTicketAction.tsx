@@ -1,14 +1,12 @@
 import { StellarActionContent } from "../../home/ui/StellarActionContent";
 import "./world-ticket.css";
 
-const ticketUrl = "https://luma.com/5qs2r3xi";
-
-/** Korea's external registration action stays separate from edition navigation. */
-export function WorldTicketAction({ label }: { label: string }) {
+/** Each edition supplies its own confirmed ticket or explicitly labelled updates URL. */
+export function WorldTicketAction({ label, href }: { label: string; href: string }) {
   return (
     <a
       className="world-ticket-action stellar-action"
-      href={ticketUrl}
+      href={href}
       target="_blank"
       rel="noreferrer"
     >

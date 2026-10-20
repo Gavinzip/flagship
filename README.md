@@ -1,6 +1,6 @@
 # FLAGSHIP Card Show
 
-FLAGSHIP 的跨城市品牌主站。預設呈現 Korea 下一站，Taiwan 2026 保留為歷屆展會；切換展會會更新整站主題、主視覺與活動資訊。支援 English、한국어、繁體中文。
+FLAGSHIP 的跨城市品牌主站。預設呈現 Thailand 下一站，Korea 與 Taiwan 2026 保留為歷屆展會；切換展會會更新整站主題、主視覺與活動資訊。支援 English、한국어、繁體中文。
 
 設計來源、維護方式與本機驗證紀錄見 [FLAGSHIP 主站說明](docs/flagship-brand-site.md)。
 
@@ -26,6 +26,8 @@ pnpm build
 - `src/config/brand.json`：FLAGSHIP 品牌名稱、搜尋描述與主辦資訊
 - `src/flagship/data/editions.ts`：當期展會、各站狀態與主視覺
 - `src/flagship/data/locales/`：依語言分開維護的網站文案
+- `src/flagship/event/`：韓國／泰國共用的活動元件與樣式
+- `src/flagship/thailand/`：泰國專屬資料、黑黃視覺；外層地球切換金色粒子的效果在 `world/scene/goldMutation.ts`
 - `src/flagship/components/`：品牌導覽、展會、體驗、場地與頁尾元件
 - `src/flagship/motion/`：ReactSkills 進場與 TiltedCard 動畫元件
 - `src/flagship/styles/`：主站基礎、主視覺、段落與響應式樣式
@@ -52,6 +54,8 @@ pnpm assets:publish
 pnpm assets:verify
 pnpm build
 ```
+
+泰國站目前使用的保留標誌、首屏、QSNCC 照片與首爾回顧圖，集中在 `public/assets/flagship/thailand/`，使用獨立內容雜湊 release，避免重發其他展會的媒體。修改這組檔案時執行 `pnpm assets:thailand:audit`、`pnpm assets:thailand:publish`、`pnpm assets:thailand:verify`，再執行 `pnpm build`。發布指令會產生 `src/generated/thailandAssetRelease.ts`；網頁與分享圖片共用此 release。來源 PNG 與未選定候選留在設計／work 資料夾，不進入網站 build。
 
 圖片品質規則：只發布 `public/assets/` 內的原始尺寸檔案，不建立降尺寸或重新壓縮版本。`assets:verify` 會下載 Cloudflare 正式檔並比對 SHA-256，確保與本機原檔逐位元一致。
 

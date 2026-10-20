@@ -1,4 +1,5 @@
-export type CityId = "taiwan" | "korea";
+import type { EditionId } from "../../data/editions";
+export type CityId = EditionId;
 export const worldSpec = {
   radius: 1,
   camera: { fov: 36, minimumFrameDiameter: 2.22 },
@@ -11,6 +12,7 @@ export const worldSpec = {
     blue: "#225ed6",
   },
   cities: {
+    thailand: { longitude: 100.5018, latitude: 13.7563, label: "BANGKOK", color: "#f0b90b" },
     taiwan: {
       longitude: 121.5654,
       latitude: 25.033,

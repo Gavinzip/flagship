@@ -1,0 +1,22 @@
+.th-intro { color: var(--th-white); padding-block: 28px 64px; }
+.th-intro-layout { display: grid; gap: 30px; }
+.th-intro-heading { text-align: center; }
+.thailand-event-site .th-intro h2 { display: flex; justify-content: center; color: var(--th-yellow); font: 500 clamp(28px,2.8vw,42px)/1.4 Arial,"PingFang TC",sans-serif; letter-spacing: .01em; }
+.th-intro p { max-width: 650px; margin: 30px auto 0 !important; font-size: 15px; line-height: 1.85; color: var(--th-muted); }
+.th-stats { display: grid; grid-template-columns: .85fr .8fr 1.7fr; align-items: center; width: min(830px,100%); margin: 0 auto; gap: 26px; }
+.th-stats > div { display: flex; flex-direction: column-reverse; align-items: center; text-align: center; }
+.th-stats dt { font-size: 12px; color: #e4e4df; }
+.th-stats dd { margin: 0 0 10px; color: var(--th-yellow); font: 800 clamp(44px,4.5vw,70px)/1 var(--th-display); letter-spacing: -.025em; white-space: nowrap; }
+@media (max-width:1000px) {
+  .thailand-event-site .th-intro h2 { font-size: 32px; }
+  .th-stats { max-width: 700px; }
+  .th-stats dd { font-size: 62px; }
+}
+@media (max-width:700px) {
+  .th-intro { padding-block: 30px 40px; }
+  .thailand-event-site .th-intro h2 { font-size: clamp(22px,5.9vw,30px); letter-spacing: 0; }
+  .th-intro p { font-size: 14px; margin-top: 24px !important; }
+  .th-stats { grid-template-columns: 1fr 1fr; gap: 26px 20px; }
+  .th-stats > .th-visitors { grid-column: 1/-1; }
+  .th-stats dd { font-size: 68px; }
+}

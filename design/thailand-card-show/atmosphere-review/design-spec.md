@@ -1,0 +1,13 @@
+# Thailand atmosphere correction — 2026-10-20
+
+Gavin rejected the solid red/blue highlight panels and the thin partner section. The reference remains the existing Taiwan event page, its original art, and Thailand PPT slides 11/13. This is a targeted correction within that visual system, not an accepted new page concept. The outer globe/entry and the venue/transport surface are preserved.
+
+- Replace red/blue filled highlight cards with the same charcoal translucent surface, neutral gold full-perimeter framing and white/gold native type. Remove the rejected abstract five-encounters heading; use the direct native title "卡展亮點" and corresponding English/Korean labels. Retain every description and all five shared automatic video previews.
+- Add two generated background candidates, based directly on Taiwan's original card-show worlds and PPT industrial hall. They establish glass collectibles, suspended card backs, concrete columns, golden practical light and sparse red/blue reflections/banner details. Do not use flat native red/blue panels or single-edge decorative color bars.
+- Experience and Seoul recap share one sticky viewport background. Partners, FAQ and footer share the second. Native media/text remain separate; raw screenshots are never shipped as UI. The scene image is decorative, with pointer-events disabled, and cannot block video/menu actions.
+- Normal art framing is viewport cover with sticky position beneath the 78px header (64px on mobile). A neutral dark edge fade maintains the supplied scene's palette and legibility. Mobile object-position=20% keeps card/gallery detail visible rather than cropping only the empty center. Existing reduced-motion behavior is retained; the scene has no added motion animation.
+- Partner lineup is explicitly provisional, authorized by Gavin: Renaiss as organizer and Vinci World as main sponsor, matching the two primary Korea positions. Three remaining visual positions say "待揭曉". No complete Taiwan vendor list and no OKX cohost claim is added.
+- Original official logo assets are reused. Renaiss uses a white wordmark treatment with its original gold icon overlaid; Vinci remains full color. Labels, pending text and copy are native in all three languages.
+- Preserve real Taiwan footage, real Seoul recap photos, event dates, forecast/planned metrics, QSNCC venue photo/map, MRT Exit 3, taxi/car and B2 arrival directions, FAQ behavior and official links.
+
+Hero/nav/CTA copy above the fold is unchanged. Downstream intentional copy changes are the direct highlights title and the partner section requested by Gavin. Current backgrounds remain in `work/generated-images/2026-10-20-thailand-atmosphere/` pending image selection; no deletion, promotion, CDN publication or push is authorized.

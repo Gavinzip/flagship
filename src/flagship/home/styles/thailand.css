@@ -1,0 +1,27 @@
+/* A station changes the existing world palette; it never gains a decorative side bar. */
+.brand-site[data-theme] .world-journey[data-chapter="thailand"] .world-country { background: none; -webkit-text-fill-color: #f0b90b; color: #f0b90b; }
+.brand-site .world-stage .world-city--thailand { --marker-accent: #f0b90b; }
+.world-city--thailand .world-city-panel { background: #15171b; }
+.brand-site[data-theme] .world-journey[data-chapter="thailand"] .world-enter {
+  --action-fill: linear-gradient(#f0b90b, #f0b90b); --action-rim: linear-gradient(#f0b90b, #f0b90b); --action-text: #111318;
+}
+.brand-site[data-theme] .world-journey[data-chapter="thailand"] .world-ticket-action {
+  --action-fill: linear-gradient(#15171b, #15171b); --action-rim: linear-gradient(#63541f, #63541f); --action-text: #f4d45c;
+  box-shadow: none;
+}
+.brand-site[data-theme] .world-journey[data-chapter="thailand"] .world-ticket-aura { display: none; }
+.brand-site[data-theme] .world-journey[data-chapter="thailand"] .ip-metal-border { --metal-a: #f0b90b; --metal-b: #ffe477; --metal-c: #c99512; }
+.brand-site[data-theme] .world-journey[data-chapter="thailand"] .world-status::before { background: #f0b90b; box-shadow: 0 0 10px #f0b90b33; }
+.brand-site[data-theme] .world-journey[data-chapter="thailand"] .world-edition-choice[aria-pressed="true"],
+.brand-site[data-theme] .world-journey[data-chapter="thailand"] .world-edition-choice:enabled:hover { color: #f0b90b; }
+.brand-site[data-theme] .world-city-nav-row { display: flex; gap: 14px; }
+.brand-site[data-theme] .world-city-nav { width: min(430px, calc(100% - 48px)); }
+.brand-site[data-theme] .world-city-nav .world-edition-choice { justify-content: space-between; gap: 5px; }
+.brand-site[data-theme] .world-edition-choice strong { font-size: 24px; }
+@media (max-width: 600px) {
+  .brand-site[data-theme] .world-journey .world-city-nav { width: auto; margin-inline: 24px; }
+  .brand-site[data-theme] .world-city-nav-row { gap: 12px; max-width: none; }
+  .brand-site[data-theme] .world-edition-choice strong { font-size: 22px; }
+  .brand-site[data-theme] .world-edition-choice small { font-size: 8px; }
+  .brand-site[data-theme] .world-edition-choice svg { width: 12px; }
+}

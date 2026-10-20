@@ -1,8 +1,9 @@
-import type { EditionId } from "../../data/editions";
+import { editions, type EditionId } from "../../data/editions";
 import { entryMotion } from "../../world/config/entryMotion";
 import type { ReturnFrame } from "../../world/runtime/returnRig";
 import type { WorldEntryOrigin } from "../../world/runtime/entryOrigin";
 import { prepareReturnHomeFrame } from "./returnHomeFrame";
+import { heroHandoffTarget } from "./heroHandoffTarget";
 
 const range = (value: number, start: number, end: number) => {
   const t = Math.max(0, Math.min(1, (value - start) / (end - start)));
@@ -20,18 +21,17 @@ export async function returnHandoff(
   const world = document.querySelector<HTMLElement>(".brand-world-retainer");
   const route = document.querySelector<HTMLElement>(".edition-route-plane");
   const stage = world?.querySelector<HTMLElement>(".world-stage");
-  const selector = edition === "taiwan" ? ".hero__logo" : ".fs-hero-artwork .fs-original-emblem";
-  const target = route?.querySelector<HTMLElement>(selector);
-  if (!world || !route || !stage || !target)
+  if (!world || !route || !stage)
     throw new Error("The return journey is missing its regional or geographic target.");
-  const from = target.getBoundingClientRect();
+  const target = heroHandoffTarget(edition, route);
+  const from = target.bounds();
   if (!from.width || !from.height) throw new Error("The regional return emblem has no dimensions.");
   const inView = from.bottom > 0 && from.top < innerHeight;
-  const content = edition === "korea" ? target.closest(".fs-hero-artwork-inner") as HTMLElement | null : null;
+  const content = target.content;
   const followers = edition === "taiwan" ? Array.from(route.querySelectorAll<HTMLElement>(
     ".hero__intro > :not(.hero__logo), .hero-hand__card, .hero__pass",
   )) : [];
-  const nodes = [world, route, target, mark, ...followers, ...(content ? [content] : [])];
+  const nodes = [world, route, target.element, mark, ...followers, ...(content ? [content] : [])];
   const previous = new Map(nodes.map(node => [node, node.getAttribute("style")]));
   const home = prepareReturnHomeFrame(world, stage);
   world.style.setProperty("--return-home-copy-opacity", "0");
@@ -44,7 +44,7 @@ export async function returnHandoff(
     });
   };
   const smallWidth = 120;
-  const smallHeight = smallWidth / (edition === "taiwan" ? 900 / 493 : 1170 / 755);
+  const smallHeight = smallWidth / editions[edition].emblemAspectRatio;
   const { x: anchorX, y: anchorY } = origin.anchor;
   mark.style.cssText = `left:0;top:0;width:${from.width}px;height:${from.height}px;transform-origin:0 0;opacity:0;`;
   try {
@@ -63,7 +63,7 @@ export async function returnHandoff(
         "--return-home-city-opacity",
         String(range(homeProgress, 0.66, 1)),
       );
-      target.style.visibility = "hidden";
+      target.element.style.visibility = "hidden";
       world.style.opacity = String(1 - range(p, entryMotion.revealStart, entryMotion.revealEnd));
       world.style.filter = `blur(${range(p, .42, .9) * 8}px)`;
       route.style.opacity = String(range(p, 0, entryMotion.revealStart));

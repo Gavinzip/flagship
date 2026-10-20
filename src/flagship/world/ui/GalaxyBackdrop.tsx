@@ -1,4 +1,5 @@
 import { worldMaterials } from "../config/materials";
+import "./mutation.css";
 
 /** Poster-derived card culture behind the real Protocol Earth. */
 export function GalaxyBackdrop() {
@@ -13,6 +14,7 @@ export function GalaxyBackdrop() {
         fetchPriority="high"
       />
       <div className="world-galaxy-legibility" />
+      <div className="world-galaxy-mutation" />
     </div>
   );
 }

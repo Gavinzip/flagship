@@ -1,3 +1,6 @@
+import { currentEdition, isEditionId } from "../../data/editions";
+import { thailandEvent } from "../../thailand/data/event";
+import { worldEditionCopy, worldEditionOrder } from "./worldEditionCopy";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { EditionTransitionContext } from "../../routing/transition/EditionTransitionContext";
 import { ArrowDown } from "iconoir-react";
@@ -61,8 +64,8 @@ export function WorldJourney({
   const transition = useContext(EditionTransitionContext);
   const returningCity = transition?.returnEdition;
   const returnOrigin = transition?.returnOrigin;
-  const initialCity: CityId = returningCity ??
-    (window.location.hash === "#world-taiwan" ? "taiwan" : "korea");
+  const hashEdition = window.location.hash.replace("#world-", "");
+  const initialCity: CityId = returningCity ?? (isEditionId(hashEdition) ? hashEdition : currentEdition);
   const [city, setCity] = useState<CityId>(initialCity);
   const cityRef = useRef(city);
   const themeRef = useRef(theme);
@@ -103,8 +106,8 @@ export function WorldJourney({
   }, []);
   useEffect(() => {
     const hash = () => {
-      if (window.location.hash === "#world-taiwan") selectCity("taiwan");
-      if (window.location.hash === "#world-korea") selectCity("korea");
+      const target = window.location.hash.replace("#world-", "");
+      if (isEditionId(target)) selectCity(target);
     };
     window.addEventListener("hashchange", hash);
     return () => window.removeEventListener("hashchange", hash);
@@ -114,7 +117,10 @@ export function WorldJourney({
     return observeCityGestures(
       host.current,
       () => !entering.current,
-      (direction) => selectCity(direction > 0 ? "taiwan" : "korea"),
+      (direction) => {
+        const index = worldEditionOrder.indexOf(cityRef.current);
+        selectCity(worldEditionOrder[(index + (direction > 0 ? 1 : -1) + worldEditionOrder.length) % worldEditionOrder.length]);
+      },
     );
   }, [selectCity]);
   useEffect(() => {
@@ -213,22 +219,15 @@ export function WorldJourney({
   useEffect(() => {
     if (!ready) return;
     const timer = window.setTimeout(() => {
-      void warmEdition("korea")
-        .then(() => warmEdition("taiwan"))
+      void warmEdition(currentEdition)
+        .then(() => Promise.all(worldEditionOrder.filter(id => id !== currentEdition).map(warmEdition)))
         .catch((cause) => console.warn("[FLAGSHIP] Route warmup failed.", cause));
     }, 280);
     return () => window.clearTimeout(timer);
   }, [ready]);
-  const title =
-    city === "taiwan"
-      ? [
-          "TAIWAN",
-          zh ? "故事開始的地方。" : ko ? "우리의 시작." : "WHERE IT BEGAN.",
-        ]
-      : [
-          "KOREA",
-          zh ? "下一站，一起相聚。" : ko ? "다음 만남." : "OUR NEXT CHAPTER.",
-        ];
+  const editionCopy = worldEditionCopy(c, location.language);
+  const selected = editionCopy[city];
+  const title = [selected.country, selected.headline];
   return (
     <section
       ref={section}
@@ -250,12 +249,11 @@ export function WorldJourney({
             zh
               ? "左右滑動或使用方向鍵切換地區，向下捲動繼續認識 FLAGSHIP"
               : ko
-                ? "최신 행사는 한국입니다. 좌우로 밀거나 방향키로 지역을 선택하세요. 아래로 스크롤하여 FLAGSHIP을 만나보세요."
-                : "Korea is the latest edition. Swipe or use left and right arrow keys to explore regions. Scroll down to discover FLAGSHIP."
+                ? "최신 행사는 태국입니다. 좌우로 밀거나 방향키로 지역을 선택하세요. 아래로 스크롤하여 FLAGSHIP을 만나보세요."
+                : "Thailand is the latest edition. Swipe or use left and right arrow keys to explore regions. Scroll down to discover FLAGSHIP."
           }
         >
-          <CityMarker city="taiwan" status={c.taiwanStatus} action={c.taiwanCta} />
-          <CityMarker city="korea" status={c.koreaStatus} action={c.koreaCta} />
+          {worldEditionOrder.map(id => <CityMarker key={id} city={id} status={editionCopy[id].status} action={editionCopy[id].cta} />)}
         </div>
         {admissionVisible && (
           <WorldAdmission
@@ -295,7 +293,7 @@ export function WorldJourney({
                     }}
                   >
                     <p className="world-status">
-                      {city === "taiwan" ? c.taiwanStatus : c.koreaStatus}
+                      {selected.status}
                     </p>
                     <h1>
                       {title.map((line, index) => (
@@ -307,18 +305,18 @@ export function WorldJourney({
                         </span>
                       ))}
                     </h1>
-                    <WorldDescription text={city === "taiwan" ? c.taiwanDescription : c.koreaDescription} />
+                    <WorldDescription text={selected.description} />
                   </motion.div>
                 </AnimatePresence>
               </div>
-              <div className={`world-actions${city === "korea" ? " world-actions--with-ticket" : ""}`}>
-                {city === "korea" ? (
+              <div className={`world-actions${city === currentEdition ? " world-actions--with-ticket" : ""}`}>
+                {city === currentEdition ? (
                   <>
                     <div className="world-primary-actions">
                       <SiteLink page={city} className="world-enter stellar-action stellar-action--secondary">
-                        <StellarActionContent>{c.koreaCta}</StellarActionContent>
+                        <StellarActionContent>{selected.cta}</StellarActionContent>
                       </SiteLink>
-                      <WorldTicketAction label={c.ticketCta} />
+                      <WorldTicketAction label={c.ticketCta} href={thailandEvent.updatesUrl} />
                     </div>
                     <button className="stellar-action stellar-action--quiet" onClick={onWatch}>
                       <StellarActionContent play>{c.viewRecap}</StellarActionContent>
@@ -327,7 +325,7 @@ export function WorldJourney({
                 ) : (
                   <>
                     <SiteLink page={city} className="world-enter stellar-action">
-                      <StellarActionContent>{c.taiwanCta}</StellarActionContent>
+                      <StellarActionContent>{selected.cta}</StellarActionContent>
                     </SiteLink>
                     <button className="stellar-action stellar-action--quiet" onClick={onWatch}>
                       <StellarActionContent play>{c.viewRecap}</StellarActionContent>
@@ -353,8 +351,7 @@ export function WorldJourney({
           </>
         )}
       </div>
-      <span className="world-anchor world-anchor--taiwan" id="world-taiwan" />
-      <span className="world-anchor world-anchor--korea" id="world-korea" />
+      {worldEditionOrder.map(id => <span key={id} className={`world-anchor world-anchor--${id}`} id={`world-${id}`} />)}
     </section>
   );
 }

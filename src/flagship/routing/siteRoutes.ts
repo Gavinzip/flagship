@@ -1,6 +1,7 @@
 import type { SiteLanguage } from "../data/copy";
+import { isEditionId, type EditionId } from "../data/editions";
 
-export type SitePage = "home" | "korea" | "taiwan";
+export type SitePage = "home" | EditionId;
 export type SiteLocation = { page: SitePage | "not-found"; language: SiteLanguage };
 
 export function siteHref(page: SitePage, language: SiteLanguage, hash = "") {
@@ -13,9 +14,8 @@ export function siteHref(page: SitePage, language: SiteLanguage, hash = "") {
 export function readSiteLocation(url: URL): SiteLocation {
   const path = url.pathname.replace(/\/+$/, "") || "/";
   const legacy = path === "/" ? url.searchParams.get("edition") : null;
-  const page = path === "/korea" || legacy === "korea" ? "korea"
-    : path === "/taiwan" || legacy === "taiwan" ? "taiwan"
-    : path === "/" ? "home" : "not-found";
+  const country = path.slice(1);
+  const page = isEditionId(country) ? country : isEditionId(legacy) ? legacy : path === "/" ? "home" : "not-found";
   const requested = url.searchParams.get("lang");
   const language = requested === "ko" || requested === "zh-TW" ? requested : "en";
   return { page, language: page === "taiwan" && language === "ko" ? "en" : language };
