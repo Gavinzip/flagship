@@ -3,6 +3,7 @@ import { loadTransferImage, nextPaint } from "./transferRuntime";
 import { entryMotion } from "../../world/config/entryMotion";
 import { taiwanHandoff } from "./taiwanHandoff";
 import { heroHandoffTarget } from "./heroHandoffTarget";
+import { loadHeroFonts } from "./heroFonts";
 
 const range = (value: number, start: number, end: number) => {
   const t = Math.max(0, Math.min(1, (value - start) / (end - start)));
@@ -30,7 +31,7 @@ export async function geographicHandoff(
       .filter((image) => image.currentSrc || image.src)
       .map((image) => loadTransferImage(image.currentSrc || image.src, signal)),
   );
-  await document.fonts.ready;
+  await loadHeroFonts(hero);
   await nextPaint();
   if (signal.aborted) throw new DOMException("Aborted", "AbortError");
   const from = mark.getBoundingClientRect(), to = target.bounds();
