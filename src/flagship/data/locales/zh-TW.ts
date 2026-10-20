@@ -14,12 +14,12 @@ export const zh: SiteCopy = {
   announced: "即將登場",
   selected: "目前探索的展會",
   heroKicker: "同一份熱愛，讓卡牌連結世界。",
-  heroLine: "從台灣出發，走向韓國與更多國家。",
+  heroLine: "從台灣出發，走向泰國與更多國家。",
   heroDescription:
-    "FLAGSHIP 是走向世界的卡展品牌，讓各地收藏家、玩家、卡店與品牌相遇。下一站，韓國。",
+    "FLAGSHIP 是走向世界的卡展品牌，讓各地收藏家、玩家、卡店與品牌相遇。下一站，泰國。",
   taiwanDescription:
     "從這裡開始，把收藏家、玩家與品牌聚在一起。一起回看 FLAGSHIP 台灣場的展會內容。",
-  details: "查看韓國場資訊",
+  details: "查看泰國場資訊",
   updates: "追蹤下一站消息",
   scroll: "繼續探索",
   date: "展會日期",
@@ -28,13 +28,13 @@ export const zh: SiteCopy = {
   tba: "即將公布",
   ticketTba: "尚未開放",
   ended: "活動已結束",
-  cityTba: "韓國 · 場地即將公布",
+  cityTba: "曼谷 · QSNCC Event Hall B2",
   organizer: "主辦單位",
   identityEyebrow: "一個品牌，連結各國收藏文化",
   identityTitle: ["收藏無國界，", "相聚在 FLAGSHIP。"],
   identityBody: "從台灣出發，讓每一站都有新的相遇。",
   identityDescription:
-    "FLAGSHIP 是持續走向不同國家的卡展品牌。我們把收藏家、玩家、卡店與品牌聚在一起，讓卡牌交易、對戰和交流跨越語言與地域。從台灣到韓國，再走向更多地方，每一站都會帶來當地的收藏文化與展會陣容。",
+    "FLAGSHIP 是持續走向不同國家的卡展品牌。我們把收藏家、玩家、卡店與品牌聚在一起，讓卡牌交易、對戰和交流跨越語言與地域。從台灣到泰國，再走向更多地方，每一站都會帶來當地的收藏文化與展會陣容。",
   experienceEyebrow: "卡展現場，探索什麼",
   experienceTitle: "收藏、交易、對戰，\n還有新的相遇。",
   experienceNote:
@@ -70,16 +70,16 @@ export const zh: SiteCopy = {
   editionsTitle: "不同國家，\n同一個 FLAGSHIP。",
   editionsBody:
     "每一站都有自己的風格、社群與陣容。選擇國家，查看該場的展會網站與最新資訊。",
-  koreaCard: "下一站，與韓國的收藏文化相遇。",
+  thailandCard: "下一站，與泰國的收藏文化相遇。",
   taiwanCard: "回到品牌起點，探索台灣原版展會。",
   futureTitle: "更多國家，陸續加入。",
   futureBody: "FLAGSHIP 的旅程持續向前。新的目的地與展會消息，將在這裡公布。",
   switchEdition: "探索展會",
-  infoEyebrow: "下一站 / KOREA",
-  infoTitle: "下一站，\n韓國見。",
+  infoEyebrow: "下一站 / THAILAND",
+  infoTitle: "下一站，\n泰國見。",
   archiveTitle: "台灣，\n故事的起點。",
-  koreaInfo:
-    "FLAGSHIP 即將前往韓國。日期、場地、攤商名單與報名資訊，將透過官方管道陸續公布。",
+  thailandInfo:
+    "FLAGSHIP 泰國站將於 2026 年 11 月 28–29 日，每日 13:00–20:00，在曼谷 QSNCC B2 樓 Event Hall 舉行。攤商名單與票務資訊將由官方公布。",
   noRegistration: "目前尚未開放報名，請追蹤 Renaiss 官方公告。",
   taiwanInfo:
     "台灣 2026 在三創 CLAPPER STUDIO 集結卡牌攤商、現場對戰與舞台活動。以下保留本場的原始活動資訊。",
@@ -90,7 +90,7 @@ export const zh: SiteCopy = {
   stats: ["TCG 攤商", "冠軍挑戰賽", "玩家社群"],
   statsValues: ["30+", "LIVE", "ONE"],
   taiwanOnly: "台灣 2026 攤商陣容",
-  partnerNote: "此為台灣 2026 陣容，韓國場攤商尚未公布。",
+  partnerNote: "此為台灣 2026 陣容，泰國場攤商尚未公布。",
   titleSponsor: "冠名贊助",
   cohost: "共同主辦",
   vendors: "參展攤商",
@@ -113,23 +113,23 @@ export const zh: SiteCopy = {
   faqs: [
     [
       "FLAGSHIP 是什麼樣的卡展？",
-      "FLAGSHIP 是走向不同國家的卡展品牌，連結收藏家、玩家、卡店與品牌。從台灣到韓國與未來的更多國家，每一站都會呈現當地的收藏文化與獨立陣容。",
+      "FLAGSHIP 是走向不同國家的卡展品牌，連結收藏家、玩家、卡店與品牌。從台灣到泰國與未來的更多國家，每一站都會呈現當地的收藏文化與獨立陣容。",
     ],
     [
       "現場可以探索哪些收藏內容？",
-      "FLAGSHIP 關注 TCG、球員卡、鑑定收藏卡與卡牌相關文化。實際參展品類、攤商和活動以各站公告為準；韓國場完整陣容尚未公布。",
+      "FLAGSHIP 關注 TCG、球員卡、鑑定收藏卡與卡牌相關文化。實際參展品類、攤商和活動以各站公告為準；泰國場完整陣容尚未公布。",
     ],
     [
-      "韓國場何時、在哪裡舉辦？",
-      "韓國是我們的下一站，日期與場地尚未公布。確認後會在本網站與 Renaiss 官方管道同步更新。",
+      "泰國場何時、在哪裡舉辦？",
+      "2026 年 11 月 28–29 日，每日 13:00–20:00，地點為曼谷 QSNCC B2 樓 Event Hall，時間皆為曼谷當地時間（UTC+7）。",
     ],
     [
-      "現在可以報名韓國場嗎？",
-      "目前尚未開放。開放時會公布韓國場專屬報名連結；台灣 2026 的報名不適用於韓國場。",
+      "現在可以報名泰國場嗎？",
+      "目前尚未開放。開放時會公布泰國場專屬報名連結；台灣 2026 的報名不適用於泰國場。",
     ],
     [
       "每一站的攤商與活動都一樣嗎？",
-      "每一站都有自己的攤商與活動陣容。台灣 2026 的冠軍挑戰賽與入場好禮屬於該場活動，韓國場的節目與參加方式會另行公布。",
+      "每一站都有自己的攤商與活動陣容。台灣 2026 的冠軍挑戰賽與入場好禮屬於該場活動，泰國場的節目與參加方式會另行公布。",
     ],
     [
       "不熟悉卡牌，也能來逛嗎？",
@@ -141,7 +141,7 @@ export const zh: SiteCopy = {
     ],
     [
       "卡店或品牌如何參與？",
-      "請追蹤 Renaiss 官方管道，留意各站的攤商與合作招募公告。韓國場的申請方式目前尚未公布。",
+      "請追蹤 Renaiss 官方管道，留意各站的攤商與合作招募公告。泰國場的申請方式目前尚未公布。",
     ],
     [
       "還能查看台灣場的資訊嗎？",

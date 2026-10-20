@@ -22,6 +22,15 @@
   header Permissions-Policy "camera=(), microphone=(), geolocation=()"
   header Referrer-Policy "strict-origin-when-cross-origin"
 
+  # Korea is not a published FLAGSHIP edition. Old URLs must not serve an event.
+  @unpublishedEdition path /korea /korea/*
+  respond @unpublishedEdition "Not found" 404
+  @unpublishedEditionQuery {
+    path /
+    query edition=korea
+  }
+  respond @unpublishedEditionQuery "Not found" 404
+
   # Missing immutable files must return 404, never the SPA document.
   handle /assets/* {
     file_server

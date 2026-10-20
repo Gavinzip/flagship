@@ -6,22 +6,13 @@ import type { HomeCopy } from "./homeCopy";
 import { TiltSurface } from "./ui/TiltSurface";
 export function BrandChapters({ copy: c }: { copy: HomeCopy }) {
   const chapters = [
-    { ...editions.thailand, status: c.thailandStatus, description: c.thailandDescription, cta: c.thailandCta, name: "ประเทศไทย", number: "03" },
-    {
-      ...editions.korea,
-      status: c.koreaStatus,
-      description: c.koreaDescription,
-      cta: c.koreaCta,
-      name: "대한민국",
-      number: "02",
-    },
+    { ...editions.thailand, status: c.thailandStatus, description: c.thailandDescription, cta: c.thailandCta, name: "ประเทศไทย" },
     {
       ...editions.taiwan,
       status: c.taiwanStatus,
       description: c.taiwanDescription,
       cta: c.taiwanCta,
       name: "台灣",
-      number: "01",
     },
   ];
   return (
@@ -55,8 +46,8 @@ export function BrandChapters({ copy: c }: { copy: HomeCopy }) {
                     <img
                       className="brand-chapter-emblem"
                       src={chapter.emblem}
-                      width={chapter.id === "korea" ? "3344" : "900"}
-                      height={chapter.id === "korea" ? "1882" : "493"}
+                      width="1536"
+                      height={1536 / chapter.emblemAspectRatio}
                       alt={`FLAGSHIP ${chapter.country}`}
                       loading="lazy"
                     />

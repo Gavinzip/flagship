@@ -1,4 +1,4 @@
-import { koreaDescriptions } from "../../data/eventDescriptions";
+import { koreaDescriptions } from "./metadata";
 import { koreaEventContent } from "./koreaEventContent";
 import { koreaDeckEvent } from "./koreaDeck";
 

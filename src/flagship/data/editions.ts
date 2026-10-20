@@ -1,10 +1,8 @@
-import koreaVisual from "../assets/korea-keyvisual.webp";
-import koreaEmblem from "../assets/korea-emblem-color.webp";
 import { staticAssetUrl } from "../../lib/staticAssets";
 import { event } from "../../data/event";
 import { thailandArtwork } from "../thailand/data/artwork";
 
-export type EditionId = "thailand" | "korea" | "taiwan";
+export type EditionId = "thailand" | "taiwan";
 export type Edition = {
   id: EditionId;
   country: string;
@@ -19,20 +17,9 @@ export type Edition = {
 
 export const editions: Record<EditionId, Edition> = {
   thailand: {
-    id: "thailand", country: "THAILAND", localName: "ประเทศไทย", number: "03",
+    id: "thailand", country: "THAILAND", localName: "ประเทศไทย", number: "02",
     status: "announced", visual: thailandArtwork.emblem, emblem: thailandArtwork.emblem,
     date: "28–29 NOV 2026", emblemAspectRatio: 3 / 2,
-  },
-  korea: {
-    id: "korea",
-    country: "KOREA",
-    localName: "대한민국",
-    number: "02",
-    status: "past",
-    visual: koreaVisual,
-    emblem: koreaEmblem,
-    date: "29 SEP 2026",
-    emblemAspectRatio: 1170 / 755,
   },
   taiwan: {
     id: "taiwan",

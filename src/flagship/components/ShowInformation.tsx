@@ -7,7 +7,7 @@ import { PosterScene } from "./PosterScene";
 
 export function ShowInformation() {
   const { content: c, edition } = useFlagship();
-  const korea = edition.id === "korea";
+  const upcoming = edition.status === "announced";
   return (
     <section
       id="show-info"
@@ -19,20 +19,20 @@ export function ShowInformation() {
         <Reveal className="fs-info-intro">
           <p className="fs-eyebrow">03 / {c.infoEyebrow}</p>
           <h2 id="fs-info-title">
-            <BlurText text={korea ? c.infoTitle : c.archiveTitle} />
+            <BlurText text={upcoming ? c.infoTitle : c.archiveTitle} />
           </h2>
-          <p>{korea ? c.koreaInfo : c.taiwanInfo}</p>
+          <p>{upcoming ? c.thailandInfo : c.taiwanInfo}</p>
           <span className="fs-status">
             <i className="fs-live-dot" />
-            {edition.country} / {korea ? c.announced : c.ended}
+            {edition.country} / {upcoming ? c.announced : c.ended}
           </span>
         </Reveal>
-        {korea ? (
+        {upcoming ? (
           <Reveal className="fs-next-card" delay={0.1}>
             <div className="fs-next-details">
               <dl>
                 {[
-                  [c.date, c.tba],
+                  [c.date, edition.date ?? c.tba],
                   [c.venue, c.cityTba],
                   [c.tickets, c.ticketTba],
                 ].map(([label, value]) => (

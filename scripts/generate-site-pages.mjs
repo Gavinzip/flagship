@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { parseArgs } from "node:util";
 import { loadEnv } from "vite";
@@ -16,15 +16,12 @@ const release = releaseSource.match(/STATIC_ASSET_RELEASE(?:\s*:\s*string)?\s*=\
 const thailandReleaseSource = await readFile(resolve(root, "src/generated/thailandAssetRelease.ts"), "utf8");
 const thailandRelease = thailandReleaseSource.match(/STATIC_ASSET_RELEASE(?:\s*:\s*string)?\s*=\s*["']([^"']+)["']/)?.[1];
 const cdn = loadEnv("production", root, "VITE_").VITE_STATIC_ASSET_CDN_BASE_URL.replace(/\/$/, "");
-const files = await readdir(resolve(dist, "assets"));
-const koreaImage = files.find(name => /^korea-emblem-[\w-]+\.webp$/.test(name) && !name.startsWith("korea-emblem-alpha-"));
-if (!koreaImage || !release) throw new Error("Cannot generate event metadata without the published Taiwan release and Korea emblem.");
+if (!release) throw new Error("The published Taiwan media release is missing.");
 const escape = text => String(text).replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 if (!thailandRelease) throw new Error("Thailand's published media release is missing.");
 const thailandImage = `${cdn}/${thailandRelease}/assets/flagship/thailand/thailand-emblem.webp`;
 const pages = {
   thailand: { title: "FLAGSHIP Card Show — THAILAND · Bangkok 2026", description: "FLAGSHIP Thailand comes to QSNCC, Event Hall B2, Bangkok on 28–29 November 2026, from 1–8 PM each day. Ticket details will follow.", image: thailandImage, theme: "#111318" },
-  korea: { title: "FLAGSHIP Card Show — KOREA · Seoul 2026", description: "FLAGSHIP Korea takes place at TEX+FA HALL in Seoul on 29 September 2026, from 1–8 PM. Ticket and lineup updates will follow.", image: new URL(`assets/${koreaImage}`, siteUrl).href, theme: "#edf3fa" },
   taiwan: { title: "FLAGSHIP Taiwan 2026｜活動回顧", description: "Revisit FLAGSHIP Taiwan, held on September 5, 2026. Real photographs capture on-site surprises, Champion Challenge matches and 30+ TCG vendors.", image: `${cdn}/${release}/assets/flagship-logo.webp`, theme: "#090a0e" },
 };
 for (const [page, data] of Object.entries(pages)) {
@@ -42,4 +39,4 @@ for (const [page, data] of Object.entries(pages)) {
   await mkdir(resolve(dist, page), { recursive: true });
   await writeFile(resolve(dist, page, "index.html"), result);
 }
-console.log("Generated separate Thailand, Korea and Taiwan HTML metadata for direct links and social previews.");
+console.log("Generated separate Thailand and Taiwan HTML metadata for direct links and social previews.");

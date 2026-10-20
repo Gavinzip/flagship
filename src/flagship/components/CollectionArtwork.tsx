@@ -11,7 +11,7 @@ export function CollectionArtwork() {
   const visible = useInView(ref);
   const reduced = useReducedMotion();
   const { paused, language, edition } = useFlagship();
-  const accent = edition.id === "korea" ? "#397aca" : "#b67735";
+  const accent = edition.id === "thailand" ? "#f4c62e" : "#b67735";
   const [status, setStatus] = useState<"loading" | "ready" | "error">(
     "loading",
   );

@@ -19,12 +19,6 @@ export const worldSpec = {
       label: "TAIPEI",
       color: "#b82e4c",
     },
-    korea: {
-      longitude: 126.978,
-      latitude: 37.5665,
-      label: "KOREA",
-      color: "#225ed6",
-    },
   },
   journey: {
     approachStart: 0,

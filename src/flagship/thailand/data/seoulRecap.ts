@@ -17,7 +17,7 @@ type SeoulRecapCopy = {
 
 export const seoulRecapCopy: Record<SiteLanguage, SeoulRecapCopy> = {
   th: {
-    title: "ย้อนชมโซล ก่อนพบกันที่กรุงเทพฯ",
+    title: "Renaiss ที่ BNB Seoul Super Meetup",
     intro: "ภาพจาก BNB Seoul Super Meetup ที่บูธ Renaiss มีทั้งคนมาร่วมกิจกรรม แบ่งปันการ์ด และชมของสะสม แล้วพบกันอีกครั้งที่กรุงเทพฯ",
     source: "ภาพจากงานเกาหลี · BNB SEOUL SUPER MEETUP",
     captions: {
@@ -27,7 +27,7 @@ export const seoulRecapCopy: Record<SiteLanguage, SeoulRecapCopy> = {
     },
   },
   "zh-TW": {
-    title: "回看首爾，下一站曼谷。",
+    title: "Renaiss 在 BNB 首爾活動。",
     intro: "這些照片來自 BNB Seoul Super Meetup：有人在攤位前互動，也有人帶著卡牌交流、看看 Renaiss 展出的收藏。下一站到曼谷，再和大家見面。",
     source: "韓國活動實拍 · BNB SEOUL SUPER MEETUP",
     captions: {
@@ -37,7 +37,7 @@ export const seoulRecapCopy: Record<SiteLanguage, SeoulRecapCopy> = {
     },
   },
   en: {
-    title: "From Seoul, to our next gathering.",
+    title: "Renaiss at BNB Seoul Super Meetup.",
     intro: "A card starts a conversation. Look back at Renaiss at BNB Seoul Super Meetup: collectible displays, booth experiences and community encounters. Next stop, Bangkok.",
     source: "PHOTOGRAPHED IN KOREA · BNB SEOUL SUPER MEETUP",
     captions: {
@@ -47,7 +47,7 @@ export const seoulRecapCopy: Record<SiteLanguage, SeoulRecapCopy> = {
     },
   },
   ko: {
-    title: "서울에서, 다음 만남으로.",
+    title: "BNB Seoul Super Meetup의 Renaiss",
     intro: "카드 한 장으로 대화가 시작됩니다. BNB Seoul Super Meetup의 Renaiss 부스에서 만난 수집품 전시, 현장 체험과 커뮤니티 교류를 돌아봅니다. 다음 만남은 방콕입니다.",
     source: "한국 행사 실사 · BNB SEOUL SUPER MEETUP",
     captions: {

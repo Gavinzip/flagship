@@ -16,7 +16,7 @@ export function readSiteLocation(url: URL): SiteLocation {
   const path = url.pathname.replace(/\/+$/, "") || "/";
   const legacy = path === "/" ? url.searchParams.get("edition") : null;
   const country = path.slice(1);
-  const page = isEditionId(country) ? country : isEditionId(legacy) ? legacy : path === "/" ? "home" : "not-found";
+  const page = isEditionId(country) ? country : isEditionId(legacy) ? legacy : path === "/" && !legacy ? "home" : "not-found";
   const requested = url.searchParams.get("lang");
   const language = requested === "ko" || requested === "zh-TW" || requested === "th" ? requested : "en";
   return { page, language: isEditionId(page) ? editionLanguage(page, language) : language };

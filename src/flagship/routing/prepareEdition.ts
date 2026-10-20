@@ -1,6 +1,5 @@
 import { siteImagePreloads } from "../../config/media";
-import { artwork } from "../data/artwork";
-import { editions, type EditionId } from "../data/editions";
+import { type EditionId } from "../data/editions";
 import { preloadImage } from "./preloadImage";
 import { preloadEdition } from "./preloadEdition";
 import { thailandArtwork } from "../thailand/data/artwork";
@@ -24,12 +23,7 @@ function criticalImages(edition: EditionId) {
   if (edition === "taiwan") return siteImagePreloads;
   if (edition === "thailand") return [ { src: thailandArtwork.emblem }, { src: thailandArtwork.heroPoster } ];
 
-  return [
-    { src: editions.korea.emblem },
-    { src: artwork.scrollSky2k },
-    { src: artwork.scrollCity2k },
-    { src: artwork.scrollGround2k },
-  ];
+  throw new Error(`Unsupported event edition: ${edition}`);
 }
 
 function publish(record: PreparationRecord) {

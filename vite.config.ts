@@ -19,11 +19,11 @@ function buildRobots() {
 }
 
 function buildLlms() {
-  return `# ${brand.name}\n\n> ${brand.description}\n\n## Current chapter: Thailand\n\n- Date: 28-29 November 2026, 13:00-20:00 ICT.\n- Venue: QSNCC, Event Hall B2, Bangkok.\n- Thailand ticket details are not yet announced; do not use another edition's registration link.\n\n## Past edition: Korea 2026\n\n- Date: 29 September 2026.\n- Venue: TEX+FA HALL, Seoul.\n\n## Past edition: Taiwan 2026\n\n- Date: ${event.dateIso} (event concluded)\n- Venue: ${event.englishVenue}, ${event.room}\n- Archive: ${canonicalUrl}taiwan/\n\n## Official links\n\n- Website: ${canonicalUrl}\n- Organizer: ${brand.organizerUrl}\n`;
+  return `# ${brand.name}\n\n> ${brand.description}\n\n## Current chapter: Thailand\n\n- Date: 28-29 November 2026, 13:00-20:00 ICT.\n- Venue: QSNCC, Event Hall B2, Bangkok.\n- Thailand ticket details are not yet announced; do not use another edition's registration link.\n\n## Past edition: Taiwan 2026\n\n- Date: ${event.dateIso} (event concluded)\n- Venue: ${event.englishVenue}, ${event.room}\n- Archive: ${canonicalUrl}taiwan/\n\n## Official links\n\n- Website: ${canonicalUrl}\n- Organizer: ${brand.organizerUrl}\n`;
 }
 
 function buildSitemap() {
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${canonicalUrl}</loc>\n  </url>\n  <url><loc>${canonicalUrl}taiwan/</loc></url>\n  <url><loc>${canonicalUrl}korea/</loc></url>\n  <url><loc>${canonicalUrl}thailand/</loc></url>\n</urlset>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>${canonicalUrl}</loc>\n  </url>\n  <url><loc>${canonicalUrl}taiwan/</loc></url>\n  <url><loc>${canonicalUrl}thailand/</loc></url>\n</urlset>\n`;
 }
 
 const publicTextAssets = {
@@ -172,7 +172,7 @@ function eventAssets(
     name: brand.name,
     url: canonicalUrl,
     description: brand.description,
-    inLanguage: ["en", "ko", "zh-TW"],
+    inLanguage: ["en", "ko", "zh-TW", "th"],
     publisher: {
       "@type": "Organization",
       name: brand.organizerName,

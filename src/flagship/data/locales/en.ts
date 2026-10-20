@@ -12,12 +12,12 @@ export const en = {
   announced: "COMING NEXT",
   selected: "YOU’RE EXPLORING",
   heroKicker: "ONE COMMUNITY. A WORLD OF CARDS.",
-  heroLine: "From Taiwan to Korea. And beyond.",
+  heroLine: "From Taiwan to Thailand. And beyond.",
   heroDescription:
-    "FLAGSHIP is a card-show brand connecting collectors, players, shops and brands across countries. Next stop: Korea.",
+    "FLAGSHIP is a card-show brand connecting collectors, players, shops and brands across countries. Next stop: Thailand.",
   taiwanDescription:
     "Where our story began. Discover the Taiwan edition that brought collectors, players and brands together.",
-  details: "Explore Korea",
+  details: "Explore Thailand",
   updates: "Follow the next chapter",
   scroll: "KEEP EXPLORING",
   date: "DATE",
@@ -26,13 +26,13 @@ export const en = {
   tba: "To be announced",
   ticketTba: "Not yet open",
   ended: "Event concluded",
-  cityTba: "Korea · venue to be announced",
+  cityTba: "Bangkok · QSNCC Event Hall B2",
   organizer: "ORGANIZED BY",
   identityEyebrow: "ONE BRAND. COLLECTING WITHOUT BORDERS.",
   identityTitle: ["CARDS WITHOUT", "BORDERS."],
   identityBody: "Starting in Taiwan. Connecting with the world.",
   identityDescription:
-    "FLAGSHIP is a card-show brand growing across countries. We bring collectors, players, card shops and brands together through trading, play and conversation. From Taiwan to Korea and beyond, each edition introduces a local collecting culture and a lineup of its own.",
+    "FLAGSHIP is a card-show brand growing across countries. We bring collectors, players, card shops and brands together through trading, play and conversation. From Taiwan to Thailand and beyond, each edition introduces a local collecting culture and a lineup of its own.",
   experienceEyebrow: "WHAT TO EXPLORE",
   experienceTitle: "COLLECT. TRADE. PLAY.\nMEET YOUR PEOPLE.",
   experienceNote:
@@ -68,17 +68,17 @@ export const en = {
   editionsTitle: "NEW COUNTRIES.\nSAME FLAGSHIP.",
   editionsBody:
     "Every edition has its own identity, community and lineup. Choose a country to explore its event website and latest information.",
-  koreaCard: "Next stop: Korea’s collecting culture.",
+  thailandCard: "Next stop: Thailand’s collecting culture.",
   taiwanCard: "Where it began. Explore the original Taiwan show.",
   futureTitle: "More countries to come.",
   futureBody:
     "The FLAGSHIP journey continues. New destinations and show announcements will appear here.",
   switchEdition: "Explore",
-  infoEyebrow: "NEXT STOP / KOREA",
-  infoTitle: "NEXT STOP.\nKOREA.",
+  infoEyebrow: "NEXT STOP / THAILAND",
+  infoTitle: "NEXT STOP.\nTHAILAND.",
   archiveTitle: "TAIWAN.\nTHE FIRST CHAPTER.",
-  koreaInfo:
-    "FLAGSHIP is heading to Korea. Dates, venue, exhibitors and ticket information will be announced through our official channels.",
+  thailandInfo:
+    "FLAGSHIP Thailand takes place at QSNCC Event Hall B2, Bangkok on 28–29 November 2026, 1–8 PM daily. Exhibitors and ticket details will follow through official channels.",
   noRegistration:
     "Registration has not opened. Follow Renaiss for official announcements.",
   taiwanInfo:
@@ -91,7 +91,7 @@ export const en = {
   statsValues: ["30+", "LIVE", "ONE"],
   taiwanOnly: "TAIWAN 2026 EXHIBITORS",
   partnerNote:
-    "This lineup belongs to Taiwan 2026. Korea exhibitors have not been announced.",
+    "This lineup belongs to Taiwan 2026. Thailand exhibitors have not been announced.",
   titleSponsor: "TITLE SPONSOR",
   cohost: "CO-HOST",
   vendors: "EXHIBITORS",
@@ -115,23 +115,23 @@ export const en = {
   faqs: [
     [
       "What is FLAGSHIP?",
-      "FLAGSHIP is a card-show brand connecting collectors, players, card shops and brands across countries. From Taiwan to Korea and future destinations, each edition brings a local collecting culture and a lineup of its own.",
+      "FLAGSHIP is a card-show brand connecting collectors, players, card shops and brands across countries. From Taiwan to Thailand and future destinations, each edition brings a local collecting culture and a lineup of its own.",
     ],
     [
       "What kinds of collectibles can I explore?",
-      "FLAGSHIP explores TCGs, sports cards, graded collectibles and the culture around cards. Actual categories, exhibitors and activities depend on each edition. Korea’s full lineup has not been announced.",
+      "FLAGSHIP explores TCGs, sports cards, graded collectibles and the culture around cards. Actual categories, exhibitors and activities depend on each edition. Thailand’s full lineup has not been announced.",
     ],
     [
-      "When and where is the Korea edition?",
-      "Korea is our next chapter. The date and venue have not been announced. Confirmed details will appear here and on Renaiss official channels.",
+      "When and where is the Thailand edition?",
+      "28–29 November 2026, 1–8 PM daily, at QSNCC Event Hall on Level B2, Bangkok (UTC+7).",
     ],
     [
-      "Can I register for Korea now?",
-      "Registration has not opened. A Korea-specific registration link will be published when tickets are available. Taiwan 2026 registration does not apply to Korea.",
+      "Can I register for Thailand now?",
+      "Registration has not opened. A Thailand-specific registration link will be published when tickets are available. Taiwan 2026 registration does not apply to Thailand.",
     ],
     [
       "Will every edition have the same exhibitors and activities?",
-      "Each edition has its own exhibitors and program. Taiwan 2026’s Champion Challenge and entry gifts belonged to that event. Korea’s program and participation details will be announced separately.",
+      "Each edition has its own exhibitors and program. Taiwan 2026’s Champion Challenge and entry gifts belonged to that event. Thailand’s program and participation details will be announced separately.",
     ],
     [
       "Do I need to be an experienced collector?",
@@ -143,7 +143,7 @@ export const en = {
     ],
     [
       "How can my shop or brand get involved?",
-      "Follow the official Renaiss channels for each edition’s exhibitor and partnership announcements. Korea application details have not been published yet.",
+      "Follow the official Renaiss channels for each edition’s exhibitor and partnership announcements. Thailand application details have not been published yet.",
     ],
     [
       "Can I still see the Taiwan edition?",

@@ -90,3 +90,43 @@ Gavin explicitly requested pushing this accumulated iteration to `Test` on
 passed before the push. Build/visual checks and a Git push do not establish
 completion of the hosted deployment. Original media, image candidates and local
 review screenshots remain outside the production bundle.
+
+## Published editions correction — local review
+
+Gavin clarified that there is no FLAGSHIP Korea edition. The published registry,
+route mount, globe coordinates/markers/selection order, home/footer links and
+brand copy now expose only Taiwan and Thailand. Thailand is chapter 02. The four
+language versions no longer describe a Korean FLAGSHIP event or stop. HTML
+generation, social metadata, sitemap and llms output omit the Korea edition; the
+build no longer includes its emblem or key visual. The former route and legacy
+edition query no longer mount an event. Caddy explicitly returns 404 for those
+URLs when this source is deployed.
+
+Gavin separately confirmed retaining the real BNB Seoul Super Meetup recap. Its
+three photographs and source captions remain; the heading and navigation now
+identify BNB/Renaiss rather than suggesting another FLAGSHIP edition. Historical
+Korea source studies and original media remain preserved, disconnected from the
+public route graph. No candidate images or original media were deleted.
+
+A responsive recheck exposed an existing camera scheduling problem: the globe's
+intersection observer could suspend rendering while the mobile entry control
+was being used above it. Active entry/return/departure motion now keeps its own
+render frames while the document is visible; idle off-screen rendering still
+pauses. This preserves the original camera animation and adds no fallback.
+
+TypeScript, production build, CSP generation and asset budgets pass. Public HTML,
+sitemap/llms, emitted media and JS were checked for retired edition content.
+Browser checks cover all four language selectors, two globe choices, Taiwan
+entry/return and mobile Thailand entry/return, with a stable restored scroll
+position and no overflow or console warnings/errors. The old `/korea/` URL returns 404 in the
+local preview; the legacy query shows the existing page-not-found state. Hosted
+server/header behavior remains a separate deployment check.
+
+Desktop/mobile evidence: `work/screenshots/flagship-two-editions-*-2026-10-20.png`.
+Gavin withdrew the earlier main merge instruction and requested another review.
+These changes stay local on Test until he approves merging/pushing main again.
+
+Gavin subsequently requested `push`, authorizing this reviewed change and the
+Test-to-main merge. The production merge retains main's Vercel integration and
+restores the production canonical URL, indexing and analytics settings. Git
+publication and hosted deployment verification are recorded separately.

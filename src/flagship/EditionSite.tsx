@@ -2,7 +2,6 @@ import { useSiteNavigation } from "./routing/SiteNavigation";
 import { useLayoutEffect } from "react";
 import { FlagshipProvider } from "./FlagshipProvider";
 import { useFlagship } from "./FlagshipContext";
-import { KoreaEventSite } from "./korea/KoreaEventSite";
 import { TaiwanEventSite } from "./taiwan/TaiwanEventSite";
 import { ThailandEventSite } from "./thailand/ThailandEventSite";
 
@@ -19,7 +18,7 @@ function EditionContent() {
     return <TaiwanEventSite onReady={notifyEditionReady} />;
   if (edition.id === "thailand")
     return <ThailandEventSite onReady={notifyEditionReady} />;
-  return <KoreaEventSite onReady={notifyEditionReady} />;
+  throw new Error(`Unsupported event edition: ${edition.id}`);
 }
 
 export default function EditionSite() {

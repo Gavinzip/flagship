@@ -6,7 +6,6 @@ import "./city-marker.css";
 
 const names = {
   thailand: { country: "THAILAND", city: "BANGKOK", code: "TH" },
-  korea: { country: "KOREA", city: "SEOUL", code: "KR" },
   taiwan: { country: "TAIWAN", city: "TAIPEI", code: "TW" },
 } as const;
 

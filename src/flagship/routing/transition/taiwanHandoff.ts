@@ -7,7 +7,7 @@ const range = (value: number, start: number, end: number) => {
 };
 const mix = (from: number, to: number, progress: number) => from + (to - from) * progress;
 
-/** Compose Taiwan on Korea's departure clock, with no extra settlement phase. */
+/** Compose Taiwan on the shared departure clock, with no extra settlement phase. */
 export async function taiwanHandoff(
   mark: HTMLElement | null,
   signal: AbortSignal,

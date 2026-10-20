@@ -20,7 +20,7 @@ export function createEarth(initiallyGold = false) {
       new T.MeshBasicMaterial({ color: city.color, transparent: true, depthWrite: false, toneMapped: false }),
     );
     core.renderOrder = 13;
-    const halo = createCityReticle(id === "thailand" ? "#fcd535" : id === "korea" ? "#a8d7f5" : "#e9bdd0");
+    const halo = createCityReticle(id === "thailand" ? "#fcd535" : "#e9bdd0");
     const glow = new T.Mesh(
       new T.PlaneGeometry(0.09, 0.09),
       new T.ShaderMaterial({

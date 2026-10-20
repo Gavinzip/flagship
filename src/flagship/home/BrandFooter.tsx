@@ -49,7 +49,6 @@ export function BrandFooter({
           <nav aria-label="Footer">
             <SiteLink page="thailand">Thailand</SiteLink>
             <SiteLink page="taiwan">Taiwan</SiteLink>
-            <SiteLink page="korea">Korea</SiteLink>
             <a className="brand-footer-social" href={officialLinks.flagshipX} target="_blank" rel="noreferrer" aria-label="X @flagshiptcg" title="X @flagshiptcg">
               <X aria-hidden="true" />
             </a>

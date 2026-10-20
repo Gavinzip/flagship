@@ -86,6 +86,9 @@ export async function mountWorld(
   let interruptFlight: ((error: Error) => void) | null = null;
   const departure = createDepartureRig(() => wake());
   const returning = createReturnRig(() => wake());
+  // Mobile entry controls can be above the globe. Its visibility observer must
+  // not stop the camera while the route is borrowing that same scene.
+  const transitionActive = () => entering || returningHome || departure.active || returning.active;
   const atmosphere = model.root.getObjectByName("atmosphere") as T.Mesh<
     T.SphereGeometry,
     T.ShaderMaterial
@@ -191,7 +194,7 @@ export async function mountWorld(
   const paintTimes: number[] = [];
   const render = (time: number) => {
     frame = 0;
-    if (disposed || !visible || document.hidden) return;
+    if (disposed || (!visible && !transitionActive()) || document.hidden) return;
     const paintStart = performance.now();
     // Changing the drawing-buffer dimensions clears it. Resize and redraw in
     // the same frame so the expanding entry canvas never presents an empty globe.
@@ -267,7 +270,7 @@ export async function mountWorld(
       frame = requestAnimationFrame(render);
   };
   const wake = () => {
-    if (!frame && !disposed && visible && !document.hidden) {
+    if (!frame && !disposed && (visible || transitionActive()) && !document.hidden) {
       last = performance.now();
       frame = requestAnimationFrame(render);
     }
@@ -279,7 +282,7 @@ export async function mountWorld(
   resize.observe(host);
   const observer = new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
-    if (visible) wake();
+    if (visible || transitionActive()) wake();
     else {
       cancelAnimationFrame(frame);
       frame = 0;

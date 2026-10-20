@@ -7,7 +7,7 @@ import { CardFrameArtwork } from "./CardFrameArtwork";
 
 export function EditionHero() {
   const { content: c, edition, paused, setPaused } = useFlagship();
-  const korea = edition.id === "korea";
+  const upcoming = edition.status === "announced";
   return (
     <section className="fs-hero" aria-labelledby="fs-hero-title">
       <PosterScene scene="sky" />
@@ -23,7 +23,7 @@ export function EditionHero() {
             <span>{c.heroLine}</span>
           </div>
           <div className="fs-hero-chapter">
-            <span>{korea ? c.nextStop : c.archive}</span>
+            <span>{upcoming ? c.nextStop : c.archive}</span>
             <h1 id="fs-hero-title">
               {edition.country}
               <small>/{edition.number}</small>
@@ -36,7 +36,7 @@ export function EditionHero() {
             </div>
             <div>
               <dt>{c.venue}</dt>
-              <dd>{korea ? c.cityTba : "TAIPEI · CLAPPER STUDIO"}</dd>
+              <dd>{upcoming ? c.cityTba : "TAIPEI · CLAPPER STUDIO"}</dd>
             </div>
           </dl>
           <a className="fs-button" href="#show-info">

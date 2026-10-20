@@ -10,7 +10,7 @@ const range = (value: number, start: number, end: number) => {
   return t * t * (3 - 2 * t);
 };
 
-/** Korea keeps the approved September 12 emblem/camera handoff. */
+/** Thailand retains the shared emblem/camera handoff; Taiwan owns its choreography. */
 export async function geographicHandoff(
   edition: EditionId,
   mark: HTMLElement | null,

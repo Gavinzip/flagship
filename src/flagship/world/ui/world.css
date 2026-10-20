@@ -91,7 +91,7 @@
   gap: clamp(12px, 2vw, 22px);
 }
 .brand-site[data-theme] .world-actions.world-actions--with-ticket {
-  /* The ticket and Korea entry share the primary row beneath the centered heading. */
+  /* The ticket and current edition entry share the primary row beneath the centered heading. */
   flex-direction: column;
   align-items: center;
   gap: 12px;
@@ -158,9 +158,6 @@
   scroll-margin-top: 0;
 }
 .world-anchor--taiwan {
-  top: 32%;
-}
-.world-anchor--korea {
   top: 32%;
 }
 html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
@@ -365,9 +362,6 @@ html:is([lang="zh-TW"], [lang="ko"]) .world-heading h1 {
 }
 .world-journey[data-chapter="taiwan"] .world-country {
   color: #96334c;
-}
-.world-journey[data-chapter="korea"] .world-country {
-  color: #2b55a9;
 }
 .world-heading {
   min-height: 206px;

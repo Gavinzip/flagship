@@ -1,4 +1,4 @@
-/** Approved Korea entry timings; keep regional handoffs separate. */
+/** Approved regional entry timings; keep edition handoffs separate. */
 export const entryMotion = {
   frameSeconds: 0.75,
   approachSeconds: 1.25,

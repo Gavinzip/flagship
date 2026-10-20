@@ -75,7 +75,7 @@ export function EditionsSection() {
                       </p>
                       <h3>{item.country}</h3>
                       <span>
-                        {item.id === "korea" ? c.koreaCard : c.taiwanCard}
+                        {item.id === "thailand" ? c.thailandCard : c.taiwanCard}
                       </span>
                     </div>
                     <span className="fs-circle-arrow">
