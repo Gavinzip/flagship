@@ -9,6 +9,7 @@ import worldMaterialReview from "./src/flagship/world/config/materials-review.js
 import artworkReview from "./src/flagship/data/artwork-review.json";
 import thailandArtworkReview from "./src/flagship/thailand/data/artwork-review.json";
 import { STATIC_ASSET_RELEASE } from "./src/generated/staticAssetRelease";
+import { STATIC_ASSET_RELEASE as THAILAND_ASSET_RELEASE } from "./src/generated/thailandAssetRelease";
 
 const projectRoot = fileURLToPath(new URL(".", import.meta.url));
 const canonicalUrl = new URL(site.url).href;
@@ -162,6 +163,7 @@ function firstPartyApiBaseUrl(
 function eventAssets(
   assetUrl: (path: string) => string,
   measurementId: string,
+  socialImageUrl: string,
 ): Plugin {
   const ogDescription = brand.description;
   const calendar = buildCalendar("zh-TW");
@@ -240,18 +242,7 @@ function eventAssets(
     },
     transformIndexHtml: {
       order: "post",
-      handler(html, context) {
-        // Use the emitted filename so shared previews follow the same immutable asset as the site.
-        const socialImagePath = context.bundle
-          ? Object.keys(context.bundle).find((filename) =>
-              /^assets\/flagship-master-[a-zA-Z0-9_-]+\.webp$/.test(filename),
-            )
-          : "/src/flagship/assets/brand/flagship-master.webp";
-        if (!socialImagePath) {
-          throw new Error(
-            "The approved Flagship master logo is missing from the production bundle.",
-          );
-        }
+      handler(html) {
         const assetCdnOrigin = new URL(
           assetUrl("/assets/app-icon.png"),
           canonicalUrl,
@@ -263,10 +254,7 @@ function eventAssets(
           .replaceAll("__EVENT_META_DESCRIPTION__", brand.description)
           .replaceAll("__EVENT_OG_DESCRIPTION__", ogDescription)
           .replaceAll("__EVENT_CANONICAL_URL__", canonicalUrl)
-          .replaceAll(
-            "__SOCIAL_IMAGE_URL__",
-            new URL(socialImagePath, canonicalUrl).href,
-          )
+          .replaceAll("__SOCIAL_IMAGE_URL__", socialImageUrl)
           .replaceAll("__GA_MEASUREMENT_ID__", measurementId)
           .replaceAll("__ASSET_CDN_ORIGIN__", assetCdnOrigin)
           .replaceAll("/__ASSET_APP_ICON__", assetUrl("/assets/app-icon.png"))
@@ -311,6 +299,13 @@ export default defineConfig(({ mode, command }) => {
     mode,
     environment.VITE_STATIC_ASSET_CDN_BASE_URL || "",
   );
+  if (mode === "production" && THAILAND_ASSET_RELEASE === "unpublished") {
+    throw new Error("The Thailand social image release has not been published.");
+  }
+  const thailandEmblemPath = "/assets/flagship/thailand/thailand-emblem.webp";
+  const socialImageUrl = mode === "production"
+    ? `${environment.VITE_STATIC_ASSET_CDN_BASE_URL.replace(/\/+$/, "")}/${THAILAND_ASSET_RELEASE}${thailandEmblemPath}`
+    : new URL(thailandEmblemPath, canonicalUrl).href;
   const measurementId = analyticsMeasurementId(
     mode,
     environment.VITE_GA_MEASUREMENT_ID || "",
@@ -323,7 +318,7 @@ export default defineConfig(({ mode, command }) => {
 
   return {
     root: projectRoot,
-    plugins: [eventAssets(assetUrl, measurementId), react()],
+    plugins: [eventAssets(assetUrl, measurementId, socialImageUrl), react()],
     build: {
       outDir: artReviewBuild ? "work/site-review-build" : "dist",
       copyPublicDir: false,
