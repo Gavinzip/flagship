@@ -35,10 +35,10 @@ export function ThailandEventSite({ onReady }: { onReady: () => void }) {
       <main id="main">
         <ThailandHero c={c} words={words} />
         <ThailandVenue c={c} words={words} visit={visitCopy[language]} language={language} />
+        <ThailandCollaboration language={language} />
         <ThailandPartners language={language} />
         <ThailandIntro c={c} words={words} />
         <ThailandHighlights c={c} words={words} />
-        <ThailandCollaboration language={language} />
         <ThailandSeoulRecap language={language} />
         <ThailandQuestions c={c} words={words} />
       </main>

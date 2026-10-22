@@ -5,9 +5,9 @@
 .th-floor-heading p { margin-top: 12px; font-size: 14px; max-width: 620px; }
 .th-floor-status { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; padding: 7px 12px; border: 1px solid #0b0d1050; font-size: 11px; font-weight: 700; line-height: 1.5; }
 .th-floor-status i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-.th-floor-preview { position: relative; display: block; width: 100%; border: 0; padding: 0; background: #e9eeea; color: #fff; cursor: zoom-in; text-align: start; }
-.th-floor-image { display: block; overflow: hidden; aspect-ratio: 2.65; }
-.th-floor-image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.th-floor-preview { position: relative; display: block; width: 100%; border: 0; padding: 0; background: var(--th-yellow); color: #fff; cursor: zoom-in; text-align: start; }
+.th-floor-image { display: block; overflow: hidden; aspect-ratio: 4096 / 1245; }
+.th-floor-image img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .7s cubic-bezier(.22,1,.36,1); }
 .th-floor-preview:hover img { transform: scale(1.012); }
 .th-floor-open { display: inline-flex; align-items: center; gap: 16px; position: absolute; right: 18px; bottom: 18px; padding: 12px 18px; background: #111419; border: 1px solid #ffffff30; font-size: 13px; }
 .th-floor-open svg { width: 20px; height: 20px; }
@@ -16,7 +16,7 @@
 .th-floor-legend { display: flex; flex-wrap: wrap; gap: 20px; padding: 0; margin: 0; list-style: none; }
 .th-floor-legend li { display: flex; align-items: center; gap: 8px; font-size: 12px; }
 .th-floor-swatch { display: inline-block; width: 13px; height: 13px; border: 1px solid #0b0d1045; }
-.th-floor-swatch--0 { background: #ddcc60; }.th-floor-swatch--1 { background: #80b5b0; }.th-floor-swatch--2 { background: #eadde1; }
+.th-floor-swatch--0 { background: #111419; }.th-floor-swatch--1 { background: #fff8df; }.th-floor-swatch--2,.th-floor-swatch--3 { border-style: dashed; background: #f9d767; }
 html:has(.th-floor-dialog[open]) { overflow: hidden; }
 .th-floor-dialog { width: min(1440px,calc(100vw - 48px)); max-width: none; max-height: calc(100dvh - 48px); padding: 24px; margin: auto; border: 1px solid #ffffff30; background: #111419; color: #f8f8f4; box-shadow: 0 24px 100px #0009; overflow: hidden; }
 .th-floor-dialog::backdrop { background: #03060cde; backdrop-filter: blur(12px); }
@@ -33,10 +33,10 @@ html:has(.th-floor-dialog[open]) { overflow: hidden; }
 .th-floor-toolbar button { font-size: 24px; line-height: 1; }
 .th-floor-toolbar output { width: 48px; text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
 .th-floor-toolbar .th-floor-fit { margin-left: 8px; padding: 0 14px; font-size: 12px; }
-.th-floor-viewport { max-height: calc(100dvh - 285px); overflow: auto; overscroll-behavior: contain; background: #e9eeea; scrollbar-color: #f4c62e #24272b; }
+.th-floor-viewport { max-height: calc(100dvh - 285px); overflow: auto; overscroll-behavior: contain; background: var(--th-yellow); scrollbar-color: #f4c62e #24272b; }
 .th-floor-viewport[data-zoomed="true"] { cursor: grab; }.th-floor-viewport[data-zoomed="true"]:active { cursor: grabbing; }
-.th-floor-canvas { min-width: 100%; aspect-ratio: 2.65; overflow: hidden; }
-.th-floor-canvas img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; user-select: none; }
+.th-floor-canvas { min-width: 100%; aspect-ratio: 4096 / 1245; overflow: hidden; }
+.th-floor-canvas img { width: 100%; height: 100%; object-fit: contain; display: block; user-select: none; }
 .th-floor-dialog-caption { display: flex; justify-content: space-between; gap: 20px; margin-top: 14px; font-size: 11px; color: #c1c4ca; }
 .th-floor-dialog-caption p { font-size: 11px; }
 @media (max-width:700px) {
@@ -51,7 +51,7 @@ html:has(.th-floor-dialog[open]) { overflow: hidden; }
   .th-floor-dialog-heading .th-eyebrow { font-size: 9px; }
   .th-floor-toolbar { align-items: start; flex-direction: column; gap: 12px; }
   .th-floor-toolbar > div { width: 100%; gap: 6px; }.th-floor-toolbar .th-floor-fit { margin-left: auto; }
-  .th-floor-viewport { max-height: calc(100dvh - 340px); min-height: 160px; }
+  .th-floor-viewport { max-height: calc(100dvh - 340px); }
   .th-floor-dialog-caption { flex-direction: column; gap: 6px; }
 }
 @media (prefers-reduced-motion:reduce) { .th-floor-image img { transition: none; } }

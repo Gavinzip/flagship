@@ -11,6 +11,8 @@ import type { SiteLanguage } from "../../data/copy";
 import { venueExplorerCopy } from "../data/venueExplorerCopy";
 import { ThailandFloorPlan } from "./ThailandFloorPlan";
 
+const showTravelGuide = false;
+
 export function ThailandVenue({ c, words, visit, language }: { c: EventPageCopy; words: EditorialCopy; visit: VisitCopy; language: SiteLanguage }) {
   return <section id="venue" className="th-venue th-section" aria-labelledby="th-venue-title">
     <div className="th-wrap">
@@ -28,7 +30,7 @@ export function ThailandVenue({ c, words, visit, language }: { c: EventPageCopy;
         </div>
       </div>
       <ThailandFloorPlan language={language} />
-      <ThailandAccess visit={visit} />
+      {showTravelGuide && <ThailandAccess visit={visit} />}
     </div>
   </section>;
 }

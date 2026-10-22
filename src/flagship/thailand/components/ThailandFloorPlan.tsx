@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { ArrowUpRight } from "iconoir-react";
 import type { SiteLanguage } from "../../data/copy";
+import { floorPlanAsset } from "../data/floorPlanAsset";
 import { floorPlanCopy } from "../data/floorPlanCopy";
 import { ThailandFloorPlanDialog } from "./ThailandFloorPlanDialog";
-import plan from "../../assets/thailand/thailand-proposed-floorplan.webp";
 import "../styles/floor-plan.css";
 
 export function ThailandFloorPlan({ language }: { language: SiteLanguage }) {
@@ -17,7 +17,7 @@ export function ThailandFloorPlan({ language }: { language: SiteLanguage }) {
     </div>
     <figure className="th-floor-figure" data-th-reveal="60">
       <button ref={opener} className="th-floor-preview" onClick={() => setOpen(true)} aria-label={copy.open} aria-haspopup="dialog">
-        <span className="th-floor-image"><img src={plan} alt={copy.alt} width="2598" height="1298" loading="lazy" decoding="async" /></span>
+        <span className="th-floor-image"><img src={floorPlanAsset.image} alt={copy.alt} width={floorPlanAsset.width} height={floorPlanAsset.height} loading="lazy" decoding="async" /></span>
         <span className="th-floor-open">{copy.open}<ArrowUpRight /></span>
       </button>
       <figcaption><ul className="th-floor-legend">{copy.legend.map((item, i) => <li key={item}><i className={`th-floor-swatch th-floor-swatch--${i}`} aria-hidden="true" />{item}</li>)}</ul><p>{copy.note}</p></figcaption>

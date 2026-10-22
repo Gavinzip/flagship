@@ -5,6 +5,9 @@
 .th-main-partner:first-child { border-right: 1px solid #ffffff24; }
 .th-main-partner figcaption { color: #b8babf; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-align: center; }
 .th-partner-mark { display: grid; align-content: center; justify-items: center; position: relative; min-height: 155px; padding-top: 15px; }
+.th-partner-mark[href] { text-decoration: none; transition: opacity .2s ease; }
+.th-partner-mark[href]:hover { opacity: .82; }
+.th-partner-mark[href]:focus-visible { outline: 2px solid var(--th-yellow); outline-offset: 5px; }
 .th-partner-mark img { display: block; width: min(90%,360px); height: auto; max-height: 132px; object-fit: contain; }
 .th-partner-mark--organizer > img:first-child { width: min(95%,410px); filter: brightness(0) invert(1); }
 .th-partner-mark--organizer .th-partner-icon { position: absolute; top: 50%; left: 50%; width: min(95%,410px); transform: translate(-50%,calc(-50% + 7.5px)); clip-path: inset(0 77% 0 0); }

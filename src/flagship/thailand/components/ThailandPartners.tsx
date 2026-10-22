@@ -14,14 +14,14 @@ export function ThailandPartners({ language }: { language: SiteLanguage }) {
       <div className="th-main-partners">
         <figure className="th-main-partner" data-th-reveal="0">
           <figcaption>{copy.organizer}</figcaption>
-          <div className="th-partner-mark th-partner-mark--organizer">
+          <a className="th-partner-mark th-partner-mark--organizer" href={organizer.href} target="_blank" rel="noopener noreferrer" aria-label={`${organizer.name} on X`}>
             <img src={organizer.src} alt={organizer.name} width="1450" height="250" loading="lazy" decoding="async" />
             <img className="th-partner-icon" src={organizer.src} alt="" aria-hidden="true" width="1450" height="250" loading="lazy" decoding="async" />
-          </div>
+          </a>
         </figure>
         <figure className="th-main-partner" data-th-reveal="80">
           <figcaption>{copy.mainSponsor}</figcaption>
-          <div className="th-partner-mark"><img src={mainSponsor.src} alt={mainSponsor.name} width="960" height="349" loading="lazy" decoding="async" /></div>
+          <a className="th-partner-mark" href={mainSponsor.href} target="_blank" rel="noopener noreferrer" aria-label={`${mainSponsor.name} on X`}><img src={mainSponsor.src} alt={mainSponsor.name} width="960" height="349" loading="lazy" decoding="async" /></a>
         </figure>
       </div>
       <div className="th-partner-pending" data-th-reveal="120">

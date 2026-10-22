@@ -5,8 +5,8 @@ import { organizer, titleSponsor } from "../../../data/partners";
 // Match Korea's two main positions; all other names remain unrevealed.
 export const thailandPartnerLineup = {
   status: "provisional",
-  organizer,
-  mainSponsor: titleSponsor,
+  organizer: { ...organizer, href: "https://x.com/renaissCLTB" },
+  mainSponsor: { ...titleSponsor, href: "https://x.com/vinciwld" },
   pendingSlots: ["one", "two", "three"],
 } as const;
 
