@@ -1,5 +1,5 @@
 import type { SiteLanguage } from "../../data/copy";
-import { homeMedia } from "../../home/homeMedia";
+import type { worldEditionArtwork } from "./worldEditionArtwork";
 
 type WorldAdmissionProps = {
   progress: number;
@@ -8,6 +8,7 @@ type WorldAdmissionProps = {
   exiting: boolean;
   retry: () => void;
   language: SiteLanguage;
+  artwork: (typeof worldEditionArtwork)[keyof typeof worldEditionArtwork];
 };
 
 const copy = {
@@ -25,6 +26,7 @@ export function WorldAdmission({
   exiting,
   retry,
   language,
+  artwork,
 }: WorldAdmissionProps) {
   const text = copy[language];
   return (
@@ -38,10 +40,10 @@ export function WorldAdmission({
       <div className="world-admission__content">
         <img
           className="world-admission__logo"
-          src={homeMedia.masterLogo}
-          width="1670"
-          height="941"
-          alt="FLAGSHIP Card Show"
+          src={artwork.src}
+          width={artwork.width}
+          height={artwork.height}
+          alt={artwork.alt}
         />
         <div className="world-admission__copy">
           {error ? (

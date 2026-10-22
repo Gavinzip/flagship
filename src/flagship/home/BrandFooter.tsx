@@ -2,7 +2,7 @@ import { MetalBorder } from "./ui/MetalBorder";
 import { ArrowUpRight, Instagram, X } from "iconoir-react";
 import { officialLinks } from "../data/editions";
 import { SiteLink } from "../routing/SiteNavigation";
-import { homeMedia } from "./homeMedia";
+import { worldEditionArtwork } from "../world/ui/worldEditionArtwork";
 import type { HomeCopy } from "./homeCopy";
 import { BrandPreferences } from "./BrandPreferences";
 import { HomeReveal } from "./motion/HomeReveal";
@@ -39,10 +39,10 @@ export function BrandFooter({
         <div className="brand-footer-bottom">
           <SiteLink page="home" aria-label={c.footerHome}>
             <img
-              src={homeMedia.masterLogo}
-              width="1670"
-              height="941"
-              alt="FLAGSHIP Card Show"
+              src={worldEditionArtwork.thailand.src}
+              width={worldEditionArtwork.thailand.width}
+              height={worldEditionArtwork.thailand.height}
+              alt={worldEditionArtwork.thailand.alt}
             />
           </SiteLink>
           <span>© 2026 FLAGSHIP Card Show.</span>

@@ -27,6 +27,8 @@ import { worldMaterials } from "../config/materials";
 import { WorldAdmission } from "./WorldAdmission";
 import { WorldEventTape } from "../../home/affiliations/WorldEventTape";
 import { affiliationMedia } from "../../home/affiliations/affiliationMedia";
+import { organizer } from "../../../data/partners";
+import { organizerAffiliations } from "../../data/organizerAffiliations";
 
 type AdmissionStage = "assets" | "module" | "renderer";
 
@@ -171,6 +173,9 @@ export function WorldJourney({
         [
           ...worldEditionOrder.map((id) => preloadImage({ src: worldEditionArtwork[id].src })),
           preloadImage({ src: affiliationMedia.bbwWordmark }),
+          preloadImage({ src: organizer.src }),
+          preloadImage({ src: organizerAffiliations.chain.src }),
+          preloadImage({ src: organizerAffiliations.backer.src }),
         ],
       ).then(completeAdmissionStep),
       document.fonts.ready.then(completeAdmissionStep),
@@ -276,6 +281,7 @@ export function WorldJourney({
             exiting={ready && !error}
             retry={retry}
             language={location.language}
+            artwork={artwork}
           />
         )}
         {ready && (
@@ -347,7 +353,7 @@ export function WorldJourney({
                 )}
               </div>
             </div>
-            {city === "thailand" && <WorldEventTape language={location.language} />}
+            {city === "thailand" && <WorldEventTape />}
             <CityNavigator
               city={city}
               select={selectCity}
