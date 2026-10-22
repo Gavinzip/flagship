@@ -1,9 +1,8 @@
-import { ArrowUpRight } from "iconoir-react";
 import type { SiteLanguage } from "../../data/copy";
-import { thailandEvent } from "../data/event";
 import { thailandPartnerCopy, thailandPartnerLineup } from "../data/partners";
 import { EventText } from "../../motion/EventText";
 import { ThailandPartnerLight } from "./ThailandPartnerLight";
+import { VendorApplicationLink } from "../../components/VendorApplicationLink";
 
 export function ThailandPartners({ language }: { language: SiteLanguage }) {
   const copy = thailandPartnerCopy[language];
@@ -28,7 +27,7 @@ export function ThailandPartners({ language }: { language: SiteLanguage }) {
       <div className="th-partner-pending" data-th-reveal="120">
         <h3>{copy.pendingTitle}</h3>
         <ul aria-label={copy.pendingTitle}>{pendingSlots.map(id => <li key={id}>{copy.comingSoon}</li>)}</ul>
-        <div className="th-partner-updates"><p>{copy.pendingNote}</p><a className="th-text-link" href={thailandEvent.updatesUrl} target="_blank" rel="noreferrer">{copy.updates}<ArrowUpRight /></a></div>
+        <VendorApplicationLink language={language} />
       </div>
     </div>
   </section>;

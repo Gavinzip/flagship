@@ -19,7 +19,7 @@ export function ThailandHero({ c, words }: { c: EventPageCopy; words: EditorialC
           <div className="th-hero-meta"><p>QSNCC · EVENT HALL B2, BANGKOK</p><p>{c.details.time}</p></div>
           <div className="th-hero-actions">
             <a className="th-button" href={thailandEvent.updatesUrl} target="_blank" rel="noreferrer">{c.ticketCta}<ArrowUpRight /></a>
-            <a className="th-text-link" href="#highlights">{words.explore}<ArrowDown /></a>
+            <a className="th-text-link" href="#venue">{words.explore}<ArrowDown /></a>
           </div>
           <p className="th-ticket-note">{c.registrationNote}</p>
         </div>

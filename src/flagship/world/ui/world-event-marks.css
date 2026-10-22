@@ -1,0 +1,20 @@
+.world-event-marks {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-top: 10px;
+}
+.world-event-marks-bbw {
+  display: block; flex: 0 1 88px; min-width: 0; padding: 7px 6px;
+  border-radius: 3px; background: #f0b90b;
+}
+/* Frame the supplied mark's transparent canvas without changing the artwork. */
+.world-event-marks-bbw > span {
+  position: relative; display: block; aspect-ratio: 1760 / 514; overflow: hidden;
+}
+.world-event-marks-bbw img {
+  position: absolute; left: -4.545%; top: -56.615%;
+  width: 109.091%; max-width: none; height: auto; filter: brightness(0);
+}
+.world-event-marks-flagship {
+  display: block; width: 84px; max-width: 46%; height: auto; flex: none;
+  object-fit: contain;
+}

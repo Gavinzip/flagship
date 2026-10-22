@@ -1,0 +1,36 @@
+.thailand-arrival-film {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: .01;
+  background: #fffaf0;
+  pointer-events: none;
+}
+.thailand-arrival-film video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.thailand-arrival-light {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  opacity: .01;
+  transform-origin: var(--arrival-light-x) var(--arrival-light-y);
+  background:
+    radial-gradient(ellipse 27% 17% at var(--arrival-light-x) var(--arrival-light-y), #fffdf4 0%, #fffaf0 32%, rgb(255 246 220 / .68) 67%, transparent 100%),
+    linear-gradient(to top, rgb(255 250 235 / .26), transparent 38%);
+  pointer-events: none;
+}
+@media (max-aspect-ratio: 3/4) {
+  .thailand-arrival-film video {
+    object-position: 65% 50%;
+  }
+}
+.geographic-transfer:is([data-phase="venue"], [data-phase="revealing"]) .geographic-transfer-status {
+  visibility: hidden;
+}

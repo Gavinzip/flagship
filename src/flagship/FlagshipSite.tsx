@@ -30,6 +30,7 @@ function DirectEditionRoute({
 }) {
   const [preparation, setPreparation] = useState<EditionPreparation | null>(null);
   const transition = useContext(EditionTransitionContext);
+  const enteredFromWorld = useRef(Boolean(transition?.entryPhase));
   const [error, setError] = useState<Error | null>(null);
   const [admissionPhase, setAdmissionPhase] = useState<"loading" | "exiting" | "hidden">("loading");
   const admissionStartedAt = useRef(0);
@@ -81,13 +82,13 @@ function DirectEditionRoute({
   const editionModuleReady = preparation?.status === "ready";
 
   return (
-    <EditionPresentationContext.Provider value={admissionPhase === "hidden" && !transition?.retainingWorld}>
+    <EditionPresentationContext.Provider value={admissionPhase === "hidden" && (!transition?.retainingWorld || transition.entryPhase === "revealing")}>
       {editionModuleReady && (
         <Suspense fallback={null}>
           <EditionSite />
         </Suspense>
       )}
-      {admissionPhase !== "hidden" && (
+      {admissionPhase !== "hidden" && !enteredFromWorld.current && (
         <EditionRouteLoading
           key="edition-direct-admission"
           edition={edition}

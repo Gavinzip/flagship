@@ -1,0 +1,29 @@
+/* The facade, connector and label share one preview; selection stays explicit. */
+.th-venue-hit-area { pointer-events: visiblePainted; cursor: pointer; touch-action: manipulation; }
+.th-venue-zone[data-preview="true"] polygon { fill: #ffda37bb; stroke: #fff2b2; filter: drop-shadow(0 0 7px #ffda3770); }
+.th-venue-marker[data-preview="true"] .th-venue-marker-surface { border-color: #fff2b2; box-shadow: 0 0 0 2px #ffe06c90,0 16px 35px #0007,0 0 28px #ffd53526; }
+.th-venue-marker:focus-visible { outline: 2px solid #fff; outline-offset: 7px; }
+.th-venue-marker-surface::after { content: ""; position: absolute; inset: -20% -35%; background: linear-gradient(112deg,transparent 22%,rgb(255 255 255 / .025) 35%,rgb(255 255 255 / .14) 50%,rgb(255 255 255 / .055) 60%,transparent 78%); filter: blur(12px); opacity: 0; transform: translateX(-100%); pointer-events: none; }
+.th-venue-marker[data-preview="true"] .th-venue-marker-surface::after { animation: th-venue-sheen 1.55s cubic-bezier(.33,0,.2,1) both; }
+.th-venue-marker-status { flex: none; width: 4px; height: 4px; margin-right: 2px; border-radius: 50%; background: currentColor; opacity: .25; transition: opacity .25s, box-shadow .25s; }
+.th-venue-marker[aria-pressed="true"] .th-venue-marker-status,
+.th-venue-marker[data-preview="true"] .th-venue-marker-status { opacity: 1; box-shadow: 0 0 6px currentColor; }
+.th-venue-connector-light { fill: none; stroke: #fff5b2; stroke-width: 3; vector-effect: non-scaling-stroke; stroke-dasharray: .2 .8; opacity: 0; transition: opacity .3s; }
+.th-venue-zone[data-selected="true"] .th-venue-connector-light,
+.th-venue-zone[data-preview="true"] .th-venue-connector-light { opacity: 1; animation: th-venue-travel 2.8s linear infinite; }
+.th-venue-target-halo,.th-venue-activation-ring { fill: none; stroke: #ffe06c; stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
+.th-venue-target-halo { opacity: 0; transition: opacity .3s; }
+.th-venue-zone[data-selected="true"] .th-venue-target-halo,
+.th-venue-zone[data-preview="true"] .th-venue-target-halo { opacity: .8; animation: th-venue-beacon 2.8s ease-out infinite; }
+.th-venue-zone[data-preview="true"] .th-venue-label-target { fill: #fff8d6; }
+@keyframes th-venue-sheen { 0% { transform: translateX(-100%); opacity: 0; } 25% { opacity: .3; } 50% { opacity: .7; } 75% { opacity: .3; } 100% { transform: translateX(100%); opacity: 0; } }
+@keyframes th-venue-travel { to { stroke-dashoffset: -1; } }
+@keyframes th-venue-beacon { 0% { r: 12; opacity: .8; } 85%,100% { r: 35; opacity: 0; } }
+@media (prefers-reduced-motion:reduce) {
+  .th-venue-marker-surface,.th-venue-marker-status,.th-venue-connector-light,.th-venue-target-halo,.th-venue-zone polygon { transition: none; }
+  .th-venue-marker[data-preview="true"] .th-venue-marker-surface::after { animation: none; }
+  .th-venue-zone[data-selected="true"] .th-venue-connector-light,
+  .th-venue-zone[data-preview="true"] .th-venue-connector-light { animation: none; stroke-dasharray: none; }
+  .th-venue-zone[data-selected="true"] .th-venue-target-halo,
+  .th-venue-zone[data-preview="true"] .th-venue-target-halo { animation: none; opacity: .65; }
+}

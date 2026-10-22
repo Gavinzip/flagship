@@ -1,0 +1,8 @@
+# QSNCC arrival: user-edited night cut
+
+- The user supplied a local MOV as the selected cut and requested that the website start at its first frame, speed up toward the entrance, and bring in the warm-white light before the camera exposes the deeper hall.
+- The supplied file is a silent 1920×1080 H.264 QuickTime movie, 5.402083 seconds and 7,056,350 bytes. Its original is preserved byte-for-byte at `work/generated-videos/qsncc-user-cut-2026-10-22/00-user-cut-original.mov` (SHA-256 `dc6ad03668df00ff52fec9a263fee74995b0efd1214ee2adc6d17938add8351f`). The user's Desktop file was not modified.
+- Website MP4: `public/assets/flagship/thailand/qsncc-entry-1080p.mp4`, 7,056,187 bytes, SHA-256 `ae5670fc390092b1cd772d79fbb4815af3d9cf00a76771a75f8307e3dea78ac2`. Apple AVFoundation exported the MOV with `AVAssetExportPresetPassthrough` into an MP4 container. The source and MP4 `mdat` payloads have the same length (7,052,131 bytes) and SHA-256 (`9230c52956ebc813e67cc27208ca9ebe12d8c0246013805b37976f8d2f24412b`), confirming no video re-encoding. Any quality reduction already present in the user's MOV export is inherited by the site.
+- The poster is a separately encoded WebP of the new cut's first decoded frame. It does not modify the video.
+- Browser retiming starts at 1.2× and linearly reaches 2.4× after source second 1.8. The entrance-origin warm-white bloom begins at source second 3.45, covers the deeper interior, and the website fades in after the full source completes.
+- Previous WAN 3.0 original remains in `work/generated-videos/qsncc-wan3-detail-2026-10-22/`. The selected MP4 and its poster are published from the Thailand CDN asset directory; the original user MOV remains unchanged.

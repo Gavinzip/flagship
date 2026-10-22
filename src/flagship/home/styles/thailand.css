@@ -15,7 +15,6 @@
 .brand-site[data-theme] .world-journey[data-chapter="thailand"] .world-edition-choice[aria-pressed="true"],
 .brand-site[data-theme] .world-journey[data-chapter="thailand"] .world-edition-choice:enabled:hover { color: #f0b90b; }
 .brand-site[data-theme] .world-city-nav-row { display: flex; gap: 14px; }
-.brand-site[data-theme] .world-city-nav { width: min(430px, calc(100% - 48px)); }
 .brand-site[data-theme] .world-city-nav .world-edition-choice { justify-content: space-between; gap: 5px; }
 .brand-site[data-theme] .world-edition-choice strong { font-size: 24px; }
 @media (max-width: 600px) {

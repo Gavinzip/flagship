@@ -2,6 +2,7 @@ import type { SiteLanguage } from "../../data/copy";
 
 export const editorialCopy = {
   th: {
+    headerTicket: "ข่าวบัตร",
     heroDate: "28–29 พฤศจิกายน 2026", explore: "สำรวจงาน", tables: "โต๊ะร้านค้าตามแผน", booths: "บูธแบรนด์ตามแผน", visitors: "ผู้เข้าชมที่คาดไว้",
     filmTitle: "บรรยากาศงานการ์ด", filmIntro: "เดินดูร้าน ชมของสะสม และดูว่าคนรักการ์ดมาเจอกันที่ FLAGSHIP อย่างไร",
     filmSource: "ย้อนชม FLAGSHIP TAIWAN 2026",
@@ -12,6 +13,7 @@ export const editorialCopy = {
     footer: "SEE YOU IN BANGKOK.", social: "ข่าวสารอย่างเป็นทางการ", faq: "คำถามที่พบบ่อย",
   },
   "zh-TW": {
+    headerTicket: "開票消息",
     heroDate: "28–29 NOV 2026", explore: "探索卡展", tables: "規劃攤商桌", booths: "規劃品牌展位", visitors: "預計參觀人次",
     filmTitle: "卡展亮點", filmIntro: "逛攤位、看收藏，也看看大家怎麼在 FLAGSHIP 玩卡。",
     filmSource: "FLAGSHIP TAIWAN 2026 現場回顧",
@@ -22,6 +24,7 @@ export const editorialCopy = {
     footer: "SEE YOU IN BANGKOK.", social: "官方最新公告", faq: "常見問題",
   },
   en: {
+    headerTicket: "Tickets",
     heroDate: "28–29 NOV 2026", explore: "Explore the show", tables: "Planned vendor tables", booths: "Planned exhibitor booths", visitors: "Expected visitors",
     filmTitle: "The card show experience.", filmIntro: "From collector encounters to brand booths, discover the FLAGSHIP experience.",
     filmSource: "FLAGSHIP TAIWAN 2026 — THE RECAP",
@@ -32,6 +35,7 @@ export const editorialCopy = {
     footer: "SEE YOU IN BANGKOK.", social: "Official updates", faq: "Before you visit.",
   },
   ko: {
+    headerTicket: "티켓 소식",
     heroDate: "28–29 NOV 2026", explore: "카드쇼 둘러보기", tables: "예정 벤더 테이블", booths: "예정 브랜드 부스", visitors: "예상 방문 인원",
     filmTitle: "카드쇼 하이라이트", filmIntro: "수집가 교류부터 브랜드 부스까지, FLAGSHIP 현장을 만나보세요.",
     filmSource: "FLAGSHIP TAIWAN 2026 현장 하이라이트",

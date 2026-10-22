@@ -7,7 +7,9 @@ export const thailandEvent = {
   venue: "QSNCC · Event Hall B2",
   mapQuery: "Queen Sirikit National Convention Center Bangkok Thailand",
   updatesUrl: "https://x.com/flagshiptcg",
+  vendorApplicationUrl: "https://forms.gle/iib5yv8BzgWda9F39",
   plannedVendorTables: "100+",
   plannedExhibitorBooths: "4–6",
-  expectedVisitors: "3,000–4,000",
+  // Updated organizer estimate supplied on 2026-10-22; not actual attendance.
+  expectedVisitors: "5,000",
 } as const;

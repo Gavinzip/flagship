@@ -27,7 +27,7 @@ export const seoulRecapCopy: Record<SiteLanguage, SeoulRecapCopy> = {
     },
   },
   "zh-TW": {
-    title: "Renaiss 在 BNB 首爾活動。",
+    title: "Renaiss 在 BNB 首爾活動",
     intro: "這些照片來自 BNB Seoul Super Meetup：有人在攤位前互動，也有人帶著卡牌交流、看看 Renaiss 展出的收藏。下一站到曼谷，再和大家見面。",
     source: "韓國活動實拍 · BNB SEOUL SUPER MEETUP",
     captions: {

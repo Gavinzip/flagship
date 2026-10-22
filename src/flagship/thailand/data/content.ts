@@ -5,7 +5,7 @@ import { thailandHighlights } from "./highlights";
 // The five films document Taiwan 2026; Thailand's event plan and FAQ are independent.
 export const thailandEventContent: Record<SiteLanguage, EventContent> = {
   th: {
-    navigation: [{ label: "ไฮไลต์", href: "#highlights" }, { label: "BNB โซล", href: "#seoul-recap" }, { label: "พันธมิตร", href: "#vendors" }, { label: "สถานที่", href: "#venue" }, { label: "คำถามที่พบบ่อย", href: "#faq" }],
+    navigation: [{ label: "สถานที่", href: "#venue" }, { label: "พันธมิตร", href: "#vendors" }, { label: "ไฮไลต์", href: "#highlights" }, { label: "BNB โซล", href: "#seoul-recap" }, { label: "คำถามที่พบบ่อย", href: "#faq" }],
     highlights: thailandHighlights.th,
     vendors: { title: "พันธมิตร", english: "PARTNERS", organizerLabel: "ผู้จัดงาน", titleSponsorLabel: "ผู้สนับสนุนหลัก", vendorLabel: "ผู้จัดแสดง" },
     venue: { title: "สถานที่จัดงาน", english: "VENUE & ACCESS" },
@@ -24,7 +24,7 @@ export const thailandEventContent: Record<SiteLanguage, EventContent> = {
     vendors: { title: "Partners", english: "PARTNERS", organizerLabel: "ORGANIZER", titleSponsorLabel: "MAIN SPONSOR", vendorLabel: "EXHIBITORS" },
     venue: { title: "Venue", english: "VENUE & ACCESS" },
     highlights: thailandHighlights.en,
-    navigation: [{ label: "Highlights", href: "#highlights" }, { label: "BNB Seoul recap", href: "#seoul-recap" }, { label: "Partners", href: "#vendors" }, { label: "Venue", href: "#venue" }, { label: "FAQ", href: "#faq" }],
+    navigation: [{ label: "Venue", href: "#venue" }, { label: "Partners", href: "#vendors" }, { label: "Highlights", href: "#highlights" }, { label: "BNB Seoul recap", href: "#seoul-recap" }, { label: "FAQ", href: "#faq" }],
     faq: {
       categoryLabel: "Frequently asked question categories",
       categories: ["The event", "Admission", "On site"],
@@ -41,7 +41,7 @@ export const thailandEventContent: Record<SiteLanguage, EventContent> = {
     vendors: { title: "合作夥伴", english: "PARTNERS", organizerLabel: "主辦單位", titleSponsorLabel: "主要贊助商", vendorLabel: "參展攤商" },
     venue: { title: "場地資訊", english: "VENUE & ACCESS" },
     highlights: thailandHighlights["zh-TW"],
-    navigation: [{ label: "活動亮點", href: "#highlights" }, { label: "BNB 首爾回顧", href: "#seoul-recap" }, { label: "合作夥伴", href: "#vendors" }, { label: "場地資訊", href: "#venue" }, { label: "常見問題", href: "#faq" }],
+    navigation: [{ label: "場地資訊", href: "#venue" }, { label: "合作夥伴", href: "#vendors" }, { label: "活動亮點", href: "#highlights" }, { label: "BNB 首爾回顧", href: "#seoul-recap" }, { label: "常見問題", href: "#faq" }],
     faq: {
       categoryLabel: "常見問題分類", categories: ["活動資訊", "入場資訊", "現場安排"],
       items: [
@@ -57,7 +57,7 @@ export const thailandEventContent: Record<SiteLanguage, EventContent> = {
     vendors: { title: "파트너", english: "PARTNERS", organizerLabel: "주최", titleSponsorLabel: "주요 스폰서", vendorLabel: "참가사" },
     venue: { title: "행사장", english: "VENUE & ACCESS" },
     highlights: thailandHighlights.ko,
-    navigation: [{ label: "하이라이트", href: "#highlights" }, { label: "BNB 서울", href: "#seoul-recap" }, { label: "파트너", href: "#vendors" }, { label: "행사장", href: "#venue" }, { label: "FAQ", href: "#faq" }],
+    navigation: [{ label: "행사장", href: "#venue" }, { label: "파트너", href: "#vendors" }, { label: "하이라이트", href: "#highlights" }, { label: "BNB 서울", href: "#seoul-recap" }, { label: "FAQ", href: "#faq" }],
     faq: {
       categoryLabel: "자주 묻는 질문 분류", categories: ["행사 정보", "입장 안내", "현장 안내"],
       items: [

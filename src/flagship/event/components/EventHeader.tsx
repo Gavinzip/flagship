@@ -7,7 +7,7 @@ import { EventLanguageMenu } from "./EventLanguageMenu";
 import { languageLabels } from "../../data/languages";
 import type { EventDefinition, EventPageCopy } from "../types";
 
-export function EventHeader({ c, definition }: { c: EventPageCopy; definition: EventDefinition }) {
+export function EventHeader({ c, definition, compactTicketLabel }: { c: EventPageCopy; definition: EventDefinition; compactTicketLabel?: string }) {
   const { language, setLanguage } = useFlagship();
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
@@ -39,8 +39,9 @@ export function EventHeader({ c, definition }: { c: EventPageCopy; definition: E
           href={definition.ticketUrl}
           target="_blank"
           rel="noreferrer"
+          aria-label={compactTicketLabel ? c.ticketCta : undefined}
         >
-          {c.ticketCta}
+          {compactTicketLabel ? <><span className="ev-header-ticket-full">{c.ticketCta}</span><span className="ev-header-ticket-compact" aria-hidden="true">{compactTicketLabel}</span></> : c.ticketCta}
           <ArrowUpRight aria-hidden="true" />
         </a>
         <EventLanguageMenu className="ev-header-language" language={language}

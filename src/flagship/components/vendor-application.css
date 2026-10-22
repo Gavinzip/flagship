@@ -1,0 +1,25 @@
+:is(.brand-site,.thailand-event-site) .vendor-application {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  min-height: 54px; min-width: 190px; gap: 22px; padding: 10px 20px;
+  border: 1px solid #f4c62e; border-radius: 4px;
+  background: #14171ce6; color: #f4d56d; text-decoration: none;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.vendor-application > span { min-width: 0; text-align: left; }
+.vendor-application strong { font-size: 14px; font-weight: 650; line-height: 1.3; }
+.vendor-application svg { flex: none; width: 22px; height: 22px; transition: transform .2s; }
+:is(.brand-site,.thailand-event-site) .vendor-application:hover { color: #111419; background: #f4c62e; }
+.vendor-application:hover svg { transform: translate(2px,-2px); }
+:is(.brand-site,.thailand-event-site) .vendor-application:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+:is(.brand-site,.thailand-event-site) .vendor-application--partners { width: min(100%,360px); min-width: 0; min-height: 80px; margin-top: 36px; padding: 22px 32px; gap: 28px; color: #111419; background: #f4c62e; }
+.vendor-application--partners strong { font-size: 24px; font-weight: 700; }
+.thailand-event-site .vendor-application--partners svg { width: 30px; height: 30px; }
+:is(.brand-site,.thailand-event-site) .vendor-application--partners:hover { background: #ffe16c; border-color: #ffe16c; }
+@media (max-width:700px) {
+  :is(.brand-site,.thailand-event-site) .vendor-application--partners { min-height: 76px; padding: 20px 24px; gap: 20px; }
+  .vendor-application--partners strong { font-size: 20px; }
+  .thailand-event-site .vendor-application--partners svg { width: 26px; height: 26px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  :is(.brand-site,.thailand-event-site) .vendor-application,.vendor-application svg { transition: none; }
+}

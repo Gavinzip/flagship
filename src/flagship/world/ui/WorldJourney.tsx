@@ -1,6 +1,7 @@
 import { currentEdition, isEditionId } from "../../data/editions";
 import { thailandEvent } from "../../thailand/data/event";
 import { worldEditionCopy, worldEditionOrder } from "./worldEditionCopy";
+import { worldEditionArtwork } from "./worldEditionArtwork";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { EditionTransitionContext } from "../../routing/transition/EditionTransitionContext";
 import { ArrowDown } from "iconoir-react";
@@ -8,7 +9,6 @@ import { StellarActionContent } from "../../home/ui/StellarActionContent";
 import { homeMotion } from "../../home/motion/homeMotion";
 import { useSiteNavigation, SiteLink } from "../../routing/SiteNavigation";
 import type { HomeCopy } from "../../home/homeCopy";
-import { homeMedia } from "../../home/homeMedia";
 import { observeWorldScroll } from "../runtime/scrollState";
 import type { WorldRuntime } from "../scene/mountWorld";
 import type { CityId } from "../config/worldSpec";
@@ -17,6 +17,7 @@ import { CityNavigator } from "./CityNavigator";
 import { CityMarker } from "./CityMarker";
 import { WorldTicketAction } from "./WorldTicketAction";
 import { WorldDescription } from "./WorldDescription";
+import { WorldEventFacts } from "./WorldEventFacts";
 import { observeCityGestures } from "../runtime/cityGestures";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useWorldEntry } from "../runtime/useWorldEntry";
@@ -24,6 +25,8 @@ import { preloadImage, nextPaint } from "../../routing/preloadImage";
 import { warmEdition } from "../../routing/prepareEdition";
 import { worldMaterials } from "../config/materials";
 import { WorldAdmission } from "./WorldAdmission";
+import { WorldEventTape } from "../../home/affiliations/WorldEventTape";
+import { affiliationMedia } from "../../home/affiliations/affiliationMedia";
 
 type AdmissionStage = "assets" | "module" | "renderer";
 
@@ -139,7 +142,7 @@ export function WorldJourney({
     const node = host.current;
     if (!node) return;
     const controller = new AbortController();
-    const admissionTotal = 5;
+    const admissionTotal = 6;
     let admissionCompleted = 0;
     const completeAdmissionStep = () => {
       admissionCompleted += 1;
@@ -164,8 +167,17 @@ export function WorldJourney({
       preloadImage({ src: worldMaterials.environment }).then(
         completeAdmissionStep,
       ),
-      preloadImage({ src: homeMedia.masterLogo }).then(completeAdmissionStep),
+      Promise.all(
+        [
+          ...worldEditionOrder.map((id) => preloadImage({ src: worldEditionArtwork[id].src })),
+          preloadImage({ src: affiliationMedia.bbwWordmark }),
+        ],
+      ).then(completeAdmissionStep),
       document.fonts.ready.then(completeAdmissionStep),
+      // Returning from an edition only needs the globe. The venue film belongs
+      // to a future entry and is not mounted while the regional page is active.
+      (returnOrigin ? Promise.resolve() : transition!.prepareEntry(currentEdition))
+        .then(completeAdmissionStep),
     ]);
     setAdmissionStage("module");
     const scene = import("../scene/mountWorld").then(({ mountWorld }) => {
@@ -220,15 +232,15 @@ export function WorldJourney({
   useEffect(() => {
     if (!ready) return;
     const timer = window.setTimeout(() => {
-      void warmEdition(currentEdition)
-        .then(() => Promise.all(worldEditionOrder.filter(id => id !== currentEdition).map(warmEdition)))
+      void Promise.all(worldEditionOrder.filter(id => id !== currentEdition).map(warmEdition))
         .catch((cause) => console.warn("[FLAGSHIP] Route warmup failed.", cause));
     }, 280);
     return () => window.clearTimeout(timer);
   }, [ready]);
   const editionCopy = worldEditionCopy(c, location.language);
   const selected = editionCopy[city];
-  const title = [selected.country, selected.headline];
+  const artwork = worldEditionArtwork[city];
+  const title = city === "thailand" ? [selected.country] : [selected.country, selected.headline];
   return (
     <section
       ref={section}
@@ -254,7 +266,7 @@ export function WorldJourney({
                 : th ? "งานถัดไปคือประเทศไทย ปัดหรือใช้ปุ่มลูกศรซ้ายขวาเพื่อเลือกประเทศ เลื่อนลงเพื่อรู้จัก FLAGSHIP" : "Thailand is the latest edition. Swipe or use left and right arrow keys to explore regions. Scroll down to discover FLAGSHIP."
           }
         >
-          {worldEditionOrder.map(id => <CityMarker key={id} city={id} status={editionCopy[id].status} action={editionCopy[id].cta} />)}
+          {worldEditionOrder.map(id => <CityMarker key={id} city={id} status={editionCopy[id].status} action={editionCopy[id].cta} language={location.language} />)}
         </div>
         {admissionVisible && (
           <WorldAdmission
@@ -274,10 +286,10 @@ export function WorldJourney({
               </p>
               <img
                 className="world-logo"
-                src={homeMedia.masterLogo}
-                width="1670"
-                height="941"
-                alt="FLAGSHIP Card Show"
+                src={artwork.src}
+                width={artwork.width}
+                height={artwork.height}
+                alt={artwork.alt}
                 fetchPriority="high"
               />
               <div className="world-heading-slot">
@@ -306,7 +318,7 @@ export function WorldJourney({
                         </span>
                       ))}
                     </h1>
-                    <WorldDescription text={selected.description} />
+                    {city === "thailand" ? <WorldEventFacts language={location.language} /> : <WorldDescription text={selected.description} />}
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -335,6 +347,7 @@ export function WorldJourney({
                 )}
               </div>
             </div>
+            {city === "thailand" && <WorldEventTape language={location.language} />}
             <CityNavigator
               city={city}
               select={selectCity}

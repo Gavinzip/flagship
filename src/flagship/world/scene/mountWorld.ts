@@ -43,12 +43,6 @@ export async function mountWorld(
     antialias: true,
     powerPreference: "low-power",
   });
-  renderer.setPixelRatio(
-    Math.min(
-      devicePixelRatio,
-      innerWidth < 700 ? worldSpec.dpr.mobile : worldSpec.dpr.desktop,
-    ),
-  );
   renderer.outputColorSpace = T.SRGBColorSpace;
   renderer.toneMapping = T.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
@@ -177,12 +171,15 @@ export async function mountWorld(
         .lerp(new T.Color("#ffffff"), illumination * 0.6);
     }
   };
-  let renderWidth = 0, renderHeight = 0;
+  let renderWidth = 0, renderHeight = 0, renderPixelRatio = 0;
   const size = () => {
     const { width, height } = host.getBoundingClientRect();
-    if (!width || !height || (width === renderWidth && height === renderHeight)) return;
+    const pixelRatio = Math.min(devicePixelRatio, innerWidth < 700 ? worldSpec.dpr.mobile : worldSpec.dpr.desktop);
+    if (!width || !height || (width === renderWidth && height === renderHeight && pixelRatio === renderPixelRatio)) return;
     renderWidth = width;
     renderHeight = height;
+    renderPixelRatio = pixelRatio;
+    renderer.setPixelRatio(pixelRatio);
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     cameraFit = cameraFitForSize(width, height);
@@ -190,7 +187,6 @@ export async function mountWorld(
   };
   size();
   pose();
-  let needsResize = false;
   const paintTimes: number[] = [];
   const render = (time: number) => {
     frame = 0;
@@ -198,10 +194,7 @@ export async function mountWorld(
     const paintStart = performance.now();
     // Changing the drawing-buffer dimensions clears it. Resize and redraw in
     // the same frame so the expanding entry canvas never presents an empty globe.
-    if (needsResize) {
-      size();
-      needsResize = false;
-    }
+    size();
     const dt = Math.min(0.05, (time - last) / 1000);
     last = time;
     const destination = target;
@@ -275,11 +268,17 @@ export async function mountWorld(
       frame = requestAnimationFrame(render);
     }
   };
-  const resize = new ResizeObserver(() => {
-    needsResize = true;
-    wake();
-  });
+  // Resize before the browser paints its new CSS box. An idle scene cannot
+  // leave the previous drawing buffer stretched across a different viewport.
+  const resizeScene = () => {
+    if (disposed || document.hidden || (!visible && !transitionActive())) return;
+    cancelAnimationFrame(frame);
+    frame = 0;
+    render(performance.now());
+  };
+  const resize = new ResizeObserver(resizeScene);
   resize.observe(host);
+  window.addEventListener("resize", resizeScene);
   const observer = new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
     if (visible || transitionActive()) wake();
@@ -305,6 +304,7 @@ export async function mountWorld(
     returning.reset();
     cancelAnimationFrame(frame);
     resize.disconnect();
+    window.removeEventListener("resize", resizeScene);
     observer.disconnect();
     document.removeEventListener("visibilitychange", wake);
     reduced.removeEventListener("change", wake);

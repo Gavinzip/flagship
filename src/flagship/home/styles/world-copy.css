@@ -15,7 +15,7 @@
 
 @media (min-width: 1001px) {
   .brand-site .world-journey {
-    --world-copy-left: max(40px, calc((100% - 1280px) / 2));
+    --world-copy-left: max(40px, calc((100vw - 1280px) / 2));
     --world-copy-width: min(42vw, 500px);
   }
   .brand-site[data-theme] .world-copy {

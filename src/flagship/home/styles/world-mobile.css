@@ -1,20 +1,49 @@
-/* The mobile world is one flowing composition. Its geographic canvas remains
+/* Compact layouts share one flowing composition. The geographic canvas remains
    absolutely positioned in the second grid row for the shared route journey. */
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .brand-site[data-theme] .world-journey { height: auto; }
   .brand-site[data-theme] .world-journey .world-sticky {
     position: relative; top: auto; height: auto; min-height: 0;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto clamp(282px, 88vw, 410px) auto;
+    grid-template-rows: auto clamp(380px, 65vw, 560px) auto;
     row-gap: 14px;
     padding: 58px 0 28px;
   }
   .brand-site[data-theme] .world-journey .world-copy {
     position: relative; inset: auto; grid-area: 1 / 1;
-    width: auto; max-width: 380px; margin: 0 24px;
-    justify-self: center; text-align: center;
+    width: auto; max-width: 560px; margin: 0 32px;
+    justify-self: center; text-align: center; transform: none;
   }
+  .brand-site[data-theme] .world-journey .world-heading-slot,
+  .brand-site[data-theme] .world-journey .world-heading { min-height: 0; }
+  .brand-site[data-theme] .world-journey .world-actions { margin-top: 18px; justify-content: center; }
+  .brand-site[data-theme] .world-journey[data-chapter] .world-stage {
+    position: absolute; grid-area: 2 / 1 / 3 / 2;
+    inset: 0; width: 100%; height: 100%; transition: opacity .7s;
+  }
+  .brand-site[data-theme] .world-journey .world-city-nav {
+    position: relative; inset: auto; grid-area: 3 / 1;
+    width: min(500px, calc(100% - 64px)); margin: 0 auto; transform: none;
+  }
+  .brand-site[data-theme] .world-journey .world-scroll { display: none; }
+  .brand-site[data-theme] .world-journey .world-stage .world-city {
+    translate: -50% calc(-18px - 100%);
+  }
+  .world-city .world-city-leader { left: calc(50% - 15px); bottom: -18px; width: 30px; height: 18px; }
+  .world-city-leader-side { display: none; }
+  .world-city-leader-above { display: inline; }
+
+  /* The transfer takes over the same canvas in viewport coordinates. */
+  .brand-world-retainer[data-transferring="true"] .brand-site .world-sticky {
+    position: fixed; inset: 0; display: block;
+    height: 100svh; min-height: 0; padding: 0;
+  }
+  .brand-world-retainer[data-transferring="true"] .brand-site .world-stage { grid-area: auto; }
+}
+@media (max-width: 600px) {
+  .brand-site[data-theme] .world-journey .world-sticky { grid-template-rows: auto clamp(282px, 88vw, 410px) auto; }
+  .brand-site[data-theme] .world-journey .world-copy { max-width: 380px; margin: 0 24px; }
   .brand-site[data-theme] .world-journey .world-eyebrow { display: none; }
   .brand-site[data-theme] .world-journey .world-logo {
     width: clamp(158px, 44vw, 188px); margin: 0 auto 18px;
@@ -38,10 +67,6 @@
   .brand-site[data-theme] .world-journey .world-actions {
     margin-top: 18px; gap: 12px; justify-content: center;
   }
-  .brand-site[data-theme] .world-journey[data-chapter] .world-stage {
-    position: absolute; grid-area: 2 / 1 / 3 / 2;
-    inset: 0; width: 100%; height: 100%; transition: opacity .7s;
-  }
   .brand-site[data-theme] .world-journey .world-city-nav {
     position: relative; inset: auto; grid-area: 3 / 1;
     width: auto; margin: 0 28px; transform: none;
@@ -56,12 +81,4 @@
   .brand-site[data-theme] .world-city-nav .world-edition-choice:last-child { justify-content: flex-end; }
   .brand-site[data-theme] .world-edition-choice small { font-size: 9px; }
   .brand-site[data-theme] .world-edition-choice strong { font-size: 26px; }
-  .brand-site[data-theme] .world-journey .world-scroll { display: none; }
-
-  /* The transfer takes over the same canvas in viewport coordinates. */
-  .brand-world-retainer[data-transferring="true"] .brand-site .world-sticky {
-    position: fixed; inset: 0; display: block;
-    height: 100svh; min-height: 0; padding: 0;
-  }
-  .brand-world-retainer[data-transferring="true"] .brand-site .world-stage { grid-area: auto; }
 }

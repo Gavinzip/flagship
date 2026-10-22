@@ -1,0 +1,94 @@
+.th-venue-explorer { margin-bottom: 56px; }
+.th-venue-explorer-instruction { font-size: 14px; margin-bottom: 20px !important; color: #323128; }
+.th-venue-building { position: relative; isolation: isolate; background: #111419; }
+.th-venue-building-photo { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+.th-venue-building-photo > img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .75; transition: opacity 1.2s cubic-bezier(.22,1,.36,1); }
+.th-venue-explorer[data-arrived="true"] .th-venue-building-photo > img { opacity: 1; }
+.th-venue-building-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg,#0b111b70,transparent 28%,transparent 75%,#0b111b30); }
+.th-venue-building-name { position: absolute; z-index: 1; left: 28px; top: 23px; display: grid; gap: 5px; color: #fff; font: 800 32px/1 "Barlow Condensed",sans-serif; letter-spacing: .03em; }
+.th-venue-building-name > span { font: 500 10px/1.5 Arial,sans-serif; letter-spacing: .09em; }
+.th-venue-building-badge { position: absolute; z-index: 1; right: 26px; top: 25px; padding: 8px 11px; background: var(--th-yellow); font: 700 10px/1.2 Arial,sans-serif; letter-spacing: .04em; }
+.thailand-event-site .th-venue-zones { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; }
+.th-venue-zone { opacity: 0; clip-path: inset(0 100% 0 0); transition: clip-path 1.25s cubic-bezier(.22,1,.36,1) .2s, opacity .5s; }
+.th-venue-zone[data-event="flagship"] { transition-delay: .38s, .2s; }
+.th-venue-zone polygon { fill: #f4c62e70; stroke: #ffda37; stroke-width: 2; vector-effect: non-scaling-stroke; transition: fill .35s, stroke .35s, filter .35s; }
+.th-venue-explorer[data-arrived="true"] .th-venue-zone { opacity: 1; clip-path: inset(0); }
+.th-venue-explorer[data-selected="flagship"] .th-venue-zone[data-event="flagship"] polygon,
+.th-venue-explorer[data-selected="bbw"] .th-venue-zone[data-event="bbw"] polygon { fill: #ffd535b5; }
+/* Brand labels sit above the facade with connectors to the PPT's two areas. */
+.th-venue-marker { position: absolute; z-index: 3; width: 218px; padding: 0; transform: translate(-50%,-50%); translate: 0 10px; opacity: 0; border: 0; border-radius: 2px; background: transparent; color: #111419; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: opacity .5s cubic-bezier(.22,1,.36,1) .4s, translate .6s cubic-bezier(.22,1,.36,1) .4s; }
+.th-venue-marker-surface { position: relative; display: grid; justify-items: center; gap: 8px; width: 100%; padding: 12px 15px 10px; overflow: hidden; border: 1px solid #f4c62e; border-radius: 2px; background: #f4c62e; box-shadow: 0 8px 24px #0004; transition: box-shadow .3s, border-color .3s; }
+.th-venue-explorer[data-arrived="true"] .th-venue-marker { opacity: 1; translate: 0 0; }
+.th-venue-marker--flagship { width: 168px; color: #fff; }
+.th-venue-marker--flagship .th-venue-marker-surface { padding: 8px 12px; background: #10151deb; }
+.th-venue-marker-bbw { position: relative; display: block; width: 100%; aspect-ratio: 1760/514; overflow: hidden; }
+.th-venue-marker-bbw img { position: absolute; left: -4.545%; top: -56.615%; width: 109.091%; max-width: none; height: auto; filter: brightness(0); }
+.th-venue-marker-flagship { display: block; width: 100%; height: auto; }
+.th-venue-marker-hall { display: flex; align-items: center; gap: .3em; font: 600 9px/1.2 Arial,sans-serif; letter-spacing: .035em; white-space: nowrap; }
+.th-venue-marker-hall b { font-weight: 800; }
+.th-venue-marker-attendance { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 6px; width: 100%; padding-top: 6px; border-top: 1px solid currentColor; font-size: 10px; line-height: 1.2; }
+.th-venue-marker-attendance strong { display: inline-flex; align-items: baseline; gap: .25em; white-space: nowrap; font: 800 21px/1 "Barlow Condensed",sans-serif; font-variant-numeric: tabular-nums; }
+.th-venue-marker-attendance small { font: 500 10px/1.2 Arial,sans-serif; }
+.th-venue-marker--flagship .th-venue-marker-attendance { color: #f4d56d; }
+.th-venue-marker[aria-pressed="true"] .th-venue-marker-surface { box-shadow: 0 0 0 2px #f4c62e80,0 8px 24px #0004; }
+.th-venue-marker--flagship .th-venue-marker-hall { color: #f4c62e; }
+.th-venue-label-connector { fill: none; stroke: #ffe06c; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.th-venue-label-target { fill: #ffe06c; }
+.th-venue-floor-panels { position: relative; z-index: 2; display: grid; opacity: 0; translate: 0 10px; transition: opacity .5s cubic-bezier(.22,1,.36,1) .15s, translate .6s cubic-bezier(.22,1,.36,1) .15s; }
+.th-venue-explorer[data-arrived="true"] .th-venue-floor-panels { opacity: 1; translate: 0 0; }
+.th-venue-floor-panel { grid-area: 1/1; min-width: 0; display: grid; grid-template-columns: 175px minmax(0,1fr) auto; column-gap: 24px; row-gap: 10px; align-items: center; min-height: 165px; padding: 26px 30px; background: #111419; border-top: 2px solid #f4c62e; color: #fff; }
+.th-venue-floor-panel[aria-hidden="true"] { pointer-events: none; }
+.th-venue-floor-heading { grid-column: 1; grid-row: 1/3; display: flex; align-items: center; gap: 15px; }
+.th-venue-floor-heading > span { color: #f4c62e; font: 800 48px/.9 "Barlow Condensed",sans-serif; }
+.th-venue-floor-heading > div { display: grid; gap: 4px; }
+.th-venue-floor-heading strong { font-size: 14px; font-weight: 600; }
+.th-venue-floor-heading small { color: #aeb5bf; font: 500 9px/1.3 Arial,sans-serif; letter-spacing: .04em; }
+.thailand-event-site .th-venue-floor-panel h3[lang="en"] { grid-column: 2; grid-row: 1; margin: 0; align-self: end; font: 700 24px/1.1 "Barlow Condensed",sans-serif; color: #fff; letter-spacing: .02em; }
+.th-venue-floor-panel > p { grid-column: 2; grid-row: 2; align-self: start; color: #c9cbd1; font-size: 12px; line-height: 1.8; max-width: 620px; }
+.th-venue-attendance { grid-column: 3; grid-row: 1; margin: 0 0 0 20px; align-self: end; }
+.th-venue-attendance dt { color: #c9cbd1; font-size: 11px; line-height: 1.5; }
+.th-venue-attendance dd { margin: 4px 0 0; color: #f4d56d; font: 700 36px/1 "Barlow Condensed",sans-serif; font-variant-numeric: tabular-nums; }
+.th-venue-attendance dd small { font: 500 13px/1.4 Arial,sans-serif; }
+.th-venue-floor-panel > a { grid-column: 3; grid-row: 2; display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-left: 20px; padding-block: 12px; border-bottom: 1px solid #ffffff50; color: #f4d56d; text-decoration: none; font-size: 12px; }
+.th-venue-floor-panel > a svg { width: 18px; height: 18px; }
+.th-venue-bbw-mark { grid-column: 2; grid-row: 1; align-self: end; position: relative; display: block; width: 180px; aspect-ratio: 1760/514; overflow: hidden; }
+.th-venue-bbw-mark img { position: absolute; left: -4.545%; top: -56.615%; width: 109.091%; max-width: none; height: auto; }
+.th-venue-building-caption { display: flex; justify-content: space-between; gap: 18px; margin-top: 12px; font-size: 10px; line-height: 1.6; color: #454128; }
+.th-venue-building-caption > a { display: inline-flex; align-items: center; gap: 7px; flex: none; text-decoration: none; }
+.th-venue-building-caption svg { width: 13px; height: 13px; }
+@media (max-width:1000px) {
+  .th-venue-marker { width: 180px; }
+  .th-venue-marker-surface { padding: 10px 12px; gap: 6px; }
+  .th-venue-marker--flagship { width: 140px; }
+  .th-venue-marker-hall { font-size: 8px; }
+  .th-venue-floor-panel { grid-template-columns: 150px minmax(0,1fr); padding: 24px; }
+  .th-venue-attendance { grid-column: 2; grid-row: 3; margin: 6px 0 0; }
+  .th-venue-floor-panel > a { grid-column: 2; grid-row: 4; margin: 0; justify-self: start; }
+  .th-venue-floor-heading { grid-row: 1/5; }
+}
+@media (max-width:700px) {
+  .th-venue-explorer { margin-bottom: 36px; }
+  .th-venue-explorer-instruction { font-size: 12px; margin-bottom: 16px !important; }
+  .th-venue-building-name { left: 12px; top: 12px; font-size: 20px; }
+  .th-venue-building-name > span { font-size: 6px; }
+  .th-venue-building-badge { right: 10px; top: 12px; max-width: 100px; padding: 5px 6px; font-size: 7px; }
+  .th-venue-building-name,.th-venue-building-badge { display: none; }
+  .th-venue-marker { width: 92px; min-height: 44px; }
+  .th-venue-marker-surface { min-height: 44px; gap: 4px; padding: 7px; }
+  .th-venue-marker--flagship { width: 76px; }
+  .th-venue-marker--flagship .th-venue-marker-surface { padding: 4px 6px; }
+  .th-venue-marker-hall { font-size: 5px; letter-spacing: 0; }
+  .th-venue-marker-attendance { gap: 3px; padding-top: 4px; font-size: 7px; }
+  .th-venue-marker-attendance strong { font-size: 15px; }
+  .th-venue-marker-attendance small { font-size: 7px; }
+  .th-venue-floor-panel { display: block; padding: 24px; }
+  .th-venue-floor-heading { margin-bottom: 18px; }
+  .th-venue-floor-panel > :is(h3,.th-venue-bbw-mark) { margin-bottom: 12px !important; }
+  .th-venue-floor-panel > p { font-size: 12px; }
+  .th-venue-attendance { margin-top: 18px; }
+  .th-venue-floor-panel > a { display: flex; margin-top: 18px; }
+  .th-venue-building-caption { flex-direction: column; gap: 8px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .th-venue-building-photo > img,.th-venue-zone,.th-venue-marker,.th-venue-floor-panels { transition: none; }
+}

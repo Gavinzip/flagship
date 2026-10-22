@@ -20,13 +20,15 @@ import {
 } from "./transferRuntime";
 import { geographicHandoff } from "./geographicHandoff";
 import { useWorldReturn } from "./useWorldReturn";
-import { observeEditionPreparation } from "../prepareEdition";
+import { observeEditionPreparation, warmEdition } from "../prepareEdition";
 import { EditionAdmissionStatus } from "./EditionAdmissionStatus";
+import { ThailandArrivalFilm } from "./ThailandArrivalFilm";
+import { prepareThailandArrival, thailandArrival } from "./thailandArrival";
 import "./transition.css";
 
 type Transfer = {
   edition: EditionId;
-  phase: "preparing" | "aligning" | "geographic" | "handoff" | "error";
+  phase: "preparing" | "aligning" | "geographic" | "handoff" | "venue" | "revealing" | "error";
   theme: "dark" | "light";
   navigate: () => void;
   anchor?: GeographicAnchor;
@@ -57,9 +59,40 @@ export function EditionTransition({ children }: { children: ReactNode }) {
   const active = useRef<AbortController | null>(null),
     world = useRef<WorldEntryBridge | null>(null),
     mark = useRef<HTMLDivElement>(null),
+    arrivalHost = useRef<HTMLDivElement>(null),
+    arrivalVideo = useRef<HTMLVideoElement>(null),
     opener = useRef<HTMLElement | null>(null),
     scroll = useRef(0),
     entryOrigin = useRef<WorldEntryOrigin | undefined>(undefined);
+  const thailandPreparation = useRef<Promise<void> | null>(null);
+  const thailandPreparationController = useRef<AbortController | null>(null);
+  const thailandPrepared = useRef(false);
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const prepareEntry = useCallback((edition: EditionId) => {
+    if (edition !== "thailand" || reducedMotion) return warmEdition(edition);
+    const video = arrivalVideo.current;
+    if (!video) return Promise.reject(new Error("The QSNCC arrival film is missing."));
+    if (thailandPreparation.current && (!thailandPrepared.current || (!video.seeking && video.currentTime === 0))) {
+      return thailandPreparation.current;
+    }
+    thailandPreparation.current = null;
+    thailandPrepared.current = false;
+    const controller = new AbortController();
+    thailandPreparationController.current = controller;
+    const preparation = Promise.all([
+      warmEdition(edition),
+      prepareThailandArrival(video, controller.signal, () => {}),
+    ]).then(() => {
+      thailandPrepared.current = true;
+    }).catch((error) => {
+      thailandPreparation.current = null;
+      thailandPrepared.current = false;
+      throw error;
+    });
+    thailandPreparation.current = preparation;
+    return preparation;
+  }, [reducedMotion]);
+  useEffect(() => () => thailandPreparationController.current?.abort(), []);
   const { returning, returnMark, returnHome, cancelReturn, interruptReturn, running } = useWorldReturn(world, active, entryOrigin);
   useEffect(() => registerHistoryTransition((from, to, commit) => {
     if (running.current) { interruptReturn(); return false; }
@@ -132,29 +165,25 @@ export function EditionTransition({ children }: { children: ReactNode }) {
       const bridge = world.current;
       if (!bridge) throw new Error("The Protocol globe is not ready.");
       bridge.prepare(value.edition);
-      let initialProgress = 0;
-      const preparation = observeEditionPreparation(
-        value.edition,
-        (snapshot) => {
-          initialProgress = snapshot.progress;
-          setTransfer((current) =>
-            current?.edition === value.edition && current.phase === "preparing"
-              ? { ...current, progress: snapshot.progress }
-              : current,
-          );
-        },
-      );
-      setTransfer({
-        ...value,
-        phase: "preparing",
-        anchor: undefined,
-        progress: initialProgress,
-      });
-      await nextPaint();
-      try {
-        await waitForPreparation(preparation.promise, signal);
-      } finally {
-        preparation.stop();
+      const withVenueFilm = value.edition === "thailand" && !reducedMotion;
+      if (value.edition === "thailand") {
+        setTransfer({ ...value, phase: "aligning", anchor: undefined, progress: 100 });
+        await waitForPreparation(prepareEntry(value.edition), signal);
+        await nextPaint();
+      } else {
+        let routeProgress = 0;
+        const preparation = observeEditionPreparation(value.edition, (snapshot) => {
+          routeProgress = snapshot.progress;
+          setTransfer(current => current?.edition === value.edition && current.phase === "preparing"
+            ? { ...current, progress: routeProgress } : current);
+        });
+        setTransfer({ ...value, phase: "preparing", anchor: undefined, progress: routeProgress });
+        await nextPaint();
+        try {
+          await waitForPreparation(preparation.promise, signal);
+        } finally {
+          preparation.stop();
+        }
       }
       if (signal.aborted) return;
       setTransfer({ ...value, phase: "aligning", anchor: undefined, progress: 100 });
@@ -172,9 +201,19 @@ export function EditionTransition({ children }: { children: ReactNode }) {
       if (signal.aborted) return;
       setTransfer({ ...value, phase: "handoff", anchor: arrival, progress: 100 });
       await nextPaint();
-      await geographicHandoff(value.edition, mark.current, signal, (advance) =>
-        bridge.depart(signal, advance),
-      );
+      if (withVenueFilm) {
+        if (!arrivalHost.current || !arrivalVideo.current) throw new Error("The QSNCC arrival film is missing.");
+        await thailandArrival({
+          host: arrivalHost.current, video: arrivalVideo.current, signal,
+          depart: advance => bridge.depart(signal, advance),
+          onPlayback: () => setTransfer({ ...value, phase: "venue", progress: 100 }),
+          onReveal: () => setTransfer({ ...value, phase: "revealing", progress: 100 }),
+        });
+      } else {
+        await geographicHandoff(value.edition, mark.current, signal, (advance) =>
+          bridge.depart(signal, advance),
+        );
+      }
       if (signal.aborted) return;
       setTransfer(null);
       active.current = null;
@@ -216,7 +255,7 @@ export function EditionTransition({ children }: { children: ReactNode }) {
       value={{ enter, returnHome, retainingWorld: !!transfer || !!returning,
         entryPhase: transfer?.phase, returnPhase: returning?.phase,
         returnEdition: returning?.edition, returnOrigin: returning?.origin,
-        registerWorld }}
+        registerWorld, prepareEntry }}
     >
       <div inert={transfer || returning ? true : undefined}>{children}</div>
       {returning && (
@@ -284,6 +323,9 @@ export function EditionTransition({ children }: { children: ReactNode }) {
             <button onClick={cancel}>{zh ? "返回" : th ? "กลับ" : "Back"}</button>
           </div>
         </div>
+      )}
+      {!reducedMotion && (location.page === "home" || transfer?.edition === "thailand" || thailandPreparation.current !== null) && (
+        <ThailandArrivalFilm host={arrivalHost} video={arrivalVideo} />
       )}
     </EditionTransitionContext.Provider>
   );

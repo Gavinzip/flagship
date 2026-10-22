@@ -1,0 +1,32 @@
+.organizer-credits { display: flex; justify-content: space-between; align-items: center; gap: 44px; padding-top: 28px; border-top: 1px solid #ffffff14; }
+.organizer-credits-role { color: #dcddd9; font: 600 22px/1.1 "Barlow Condensed", sans-serif; white-space: nowrap; }
+.organizer-credits-organizer, .organizer-credits-backer { display: flex; align-items: center; gap: 24px; }
+.organizer-credits-marks { display: grid; gap: 7px; }
+.organizer-credits-renaiss { display: grid; width: 300px; }
+.organizer-credits-renaiss img { display: block; grid-area: 1 / 1; width: 100%; height: auto; filter: brightness(0) invert(1); }
+.organizer-credits-renaiss img.organizer-credits-renaiss-icon { clip-path: inset(0 79% 0 0); filter: none; }
+/* The first letter starts at x=360 in the 1450px organizer asset. */
+.organizer-credits-chain { display: flex; align-items: center; gap: 8px; margin-left: 24.827586%; }
+.organizer-credits-chain > span { color: #d7d7d6; font-size: 10px; line-height: 1; }
+.organizer-credits-chain a { display: flex; align-items: center; min-height: 20px; }
+.organizer-credits-chain img { width: 111px; height: auto; }
+.organizer-credits-backer a { display: flex; align-items: center; min-height: 44px; }
+.organizer-credits-backer img { width: 154px; height: auto; }
+@media (max-width: 1000px) {
+  .organizer-credits { gap: 28px; }
+  .organizer-credits-organizer, .organizer-credits-backer { gap: 14px; }
+  .organizer-credits-role { font-size: 18px; }
+  .organizer-credits-renaiss { width: 240px; }
+  .organizer-credits-backer img { width: 124px; }
+}
+@media (max-width: 700px) {
+  .organizer-credits { flex-direction: column; align-items: flex-start; gap: 22px; padding-top: 26px; }
+  .organizer-credits-organizer, .organizer-credits-backer { width: 100%; gap: 18px; }
+  .organizer-credits-role { width: 85px; flex: 0 0 85px; font-size: 18px; }
+  .organizer-credits-marks { width: min(260px, calc(100% - 103px)); }
+  .organizer-credits-renaiss { width: 100%; }
+  .organizer-credits-chain { gap: 5px; }
+  .organizer-credits-chain img { width: 95px; }
+  .organizer-credits-chain > span { font-size: 9px; white-space: nowrap; }
+  .organizer-credits-backer img { width: 126px; }
+}

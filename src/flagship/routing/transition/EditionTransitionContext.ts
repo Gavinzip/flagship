@@ -6,9 +6,10 @@ export const EditionTransitionContext = createContext<null | {
   enter: (edition: EditionId, navigate: () => void) => void;
   returnHome: (edition: EditionId, navigate: () => void) => void;
   retainingWorld: boolean;
-  entryPhase?: "preparing" | "aligning" | "geographic" | "handoff" | "error";
+  entryPhase?: "preparing" | "aligning" | "geographic" | "handoff" | "venue" | "revealing" | "error";
   returnPhase?: "preparing" | "retreating" | "settling" | "error";
   returnEdition?: EditionId;
   returnOrigin?: WorldEntryOrigin;
   registerWorld: (bridge: WorldEntryBridge) => () => void;
+  prepareEntry: (edition: EditionId) => Promise<void>;
 }>(null);

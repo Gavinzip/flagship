@@ -1,5 +1,11 @@
 {
   "files": {
+    "thailand-proposed-floorplan": 175000,
+    "merch-past-campaign-screen": 250000,
+    "qsncc-venue-aerial-2560": 700000,
+    "bbw-wordmark": 130000,
+    "bnb-chain": 35000,
+    "yzi-labs": 50000,
     "korea-world-detail": 563200,
     "korea-keyvisual": 256000,
     "korea-emblem": 600000,
@@ -75,12 +81,34 @@
     "korea-entry-pack-720": 70000,
     "korea-entry-pack-1280": 180000,
     "thailand-emblem": 1700000,
-    "thailand-card-hero-clean": { "maxBytes": 400000, "extension": "webp" },
-    "qsncc-exterior-1280": { "maxBytes": 180000, "extension": "webp" },
-    "qsncc-event-hall-review": { "maxBytes": 150000, "extension": "webp", "reviewOnly": true },
-    "seoul-booth-reactions": { "maxBytes": 120000, "extension": "webp", "reviewOnly": true },
-    "seoul-graded-card-display": { "maxBytes": 60000, "extension": "webp", "reviewOnly": true },
-    "seoul-collector-cards": { "maxBytes": 155000, "extension": "webp", "reviewOnly": true }
+    "thailand-card-hero-clean": {
+      "maxBytes": 400000,
+      "extension": "webp"
+    },
+    "qsncc-exterior-1280": {
+      "maxBytes": 180000,
+      "extension": "webp"
+    },
+    "qsncc-event-hall-review": {
+      "maxBytes": 150000,
+      "extension": "webp",
+      "reviewOnly": true
+    },
+    "seoul-booth-reactions": {
+      "maxBytes": 120000,
+      "extension": "webp",
+      "reviewOnly": true
+    },
+    "seoul-graded-card-display": {
+      "maxBytes": 60000,
+      "extension": "webp",
+      "reviewOnly": true
+    },
+    "seoul-collector-cards": {
+      "maxBytes": 155000,
+      "extension": "webp",
+      "reviewOnly": true
+    }
   },
   "totalBytes": 11000000
 }
