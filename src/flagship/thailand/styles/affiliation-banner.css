@@ -1,8 +1,8 @@
 .th-affiliation-banner { --th-tape-yellow: #f0b90b; position: relative; overflow: hidden; border-block: 2px solid #0b0d10; background: var(--th-tape-yellow); color: #0b0d10; }
 .th-affiliation-viewport { overflow-x: auto; scrollbar-width: none; }
 .th-affiliation-viewport::-webkit-scrollbar { display: none; }
-.th-affiliation-track { display: flex; width: max-content; min-width: 200%; }
-.th-affiliation-unit { display: flex; align-items: center; justify-content: space-between; gap: 22px; flex: 0 0 auto; min-width: 50%; height: 66px; padding-inline: clamp(24px,3.3vw,56px); white-space: nowrap; }
+.th-affiliation-track { display: flex; width: max-content; animation: th-affiliation-travel 40s linear infinite; }
+.th-affiliation-unit { display: flex; align-items: center; justify-content: space-between; gap: 22px; flex: 0 0 auto; min-width: 100vw; height: 66px; padding-inline: clamp(24px,3.3vw,56px); white-space: nowrap; }
 .th-affiliation-unit a { color: #0b0d10 !important; text-decoration: none; }
 .th-affiliation-unit a:hover { opacity: .65; }
 .th-affiliation-event { display: flex; align-items: center; gap: 22px; flex-shrink: 0; }
@@ -23,13 +23,12 @@
 .th-affiliation-backer img { display: block; width: 110px; height: auto; filter: brightness(0); }
 .thailand-event-site .th-affiliation-arrow { flex: none; width: 22px; height: 22px; stroke-width: 2; }
 .thailand-event-site .th-affiliation-banner :is(a,div):focus-visible { outline: 2px solid #0b0d10; outline-offset: -3px; }
+.th-affiliation-viewport:focus-within .th-affiliation-track { animation-play-state: paused; }
 @media (max-width:1200px) {
-  .th-affiliation-track { min-width: 0; animation: th-affiliation-travel 40s linear infinite; }
   .th-affiliation-unit { min-width: 0; gap: 22px; height: 62px; padding-inline: 24px; }
   .th-affiliation-event { gap: 18px; }
   .th-affiliation-event > strong { font-size: 28px; }
   .th-affiliation-bbw { width: 116px; }
-  .th-affiliation-viewport:hover .th-affiliation-track,.th-affiliation-viewport:focus-within .th-affiliation-track { animation-play-state: paused; }
 }
 @media (max-width:600px) {
   .th-affiliation-unit { height: 54px; gap: 18px; padding-inline: 18px; }
